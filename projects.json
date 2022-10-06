@@ -8,7 +8,7 @@
 "isFrontEnd":true
 },
 {"title":"Zmanim for Machsike Hadas, Copenhagen",
-"summary":"...<p><a href=\"http://tuejoshua.atwebpages.com/zmanim/zmanim_machsikeHadasCopenhagen.png\"><img src=\"http://tuejoshua.atwebpages.com/zmanim/zmanim_machsikeHadasCopenhagen.png\" height=100></a>",
+"summary":"...<p><a href=\"http://tuejoshua.atwebpages.com/zmanim/zmanim_machsikeHadasCopenhagen.png\"><!--img src=\"http://tuejoshua.atwebpages.com/zmanim/zmanim_machsikeHadasCopenhagen.png\" height=100--></a>",
 "details":"...",
 "motivation":"...",
 "isPython":true,
