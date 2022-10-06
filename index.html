@@ -1,10 +1,59 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>
-      TUES TEST
-    </title>
-  </head>
-  <body>
-    <h1>Tue's Test!</h1>
-  </body>
+<head>
+<style>
+td {
+padding: .3em;
+text-align: justify;
+}
+</style>
+<script>
+    // Create XMLHttpRequest object.
+    var oXHR = new XMLHttpRequest();
+
+    // Initiate request.
+    oXHR.onreadystatechange = reportStatus;
+    oXHR.open("GET", "projects.json", true);  // get json file.
+    oXHR.send();
+
+    function reportStatus() {
+        if (oXHR.readyState == 4) {		// Check if request is complete.
+            
+                // Parse text contents of JSON file into Javascipt object
+                var projects = JSON.parse(this.responseText);
+
+                // Build HTML DOM string
+                var domString = '<table border=1><tr>' + 
+                '<th>Title</th>'+
+                '<th>Summary</th>'+
+                '<th>Details</th>'+
+                '<th>Motivation</th>'+
+                '<th>Front-end<br>(HTML+<br>CSS+<br>Javascript)</th>'+
+                '<th>PHP</th>'+
+                '<th>Python</th></tr>';
+            for (i=0; i<projects.length; i++) {
+                    domString += '<tr>'+
+                    '<th>' + projects[i].title + '</th>'+
+                    '<td style="vertical-align: top">' + projects[i].summary + '</td>'+
+                    '<td style="vertical-align: top">' + projects[i].details + '</td>'+
+                    '<td style="vertical-align: top">' + projects[i].motivation + '</td>'+
+                    '<th>' + projects[i].isFrontEnd + '</th>'+
+                    '<th>' + projects[i].isPhp + '</th>'+
+                    '<th>' + projects[i].isPython + '</th>'+
+                    '</tr>';
+            }
+            
+            // Write HTML DOM string to DIV element
+            document.getElementById('showData').innerHTML = domString + '</table>';
+
+        }
+    }
+</script>
+</head>
+<body>
+    <h3>
+    	Data extracted from External JSON file.
+    </h3>
+    <div id='showData'>Please wait: Reading data from JSON file...</div>
+</body>
 </html>
