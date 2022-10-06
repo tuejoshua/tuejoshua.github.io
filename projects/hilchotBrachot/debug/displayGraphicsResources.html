@@ -1,0 +1,24 @@
+<html>
+<body>
+
+<script src="../backend/include.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
+<script>include('../resources/graphics');</script>
+
+<table border=1><tr><th>key in graphics object</th><th>value, interpreted</th><th>value</th></tr>
+
+<script>
+
+for (var key in graphics) {
+document.write('<tr>' +
+'<td>' + key + '</td>' +
+'<td><img src="../' + graphics[key] + '" height=100></td>' +
+'<td>' + graphics[key] + '</td>' +
+'</tr>');
+}
+
+</script>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+	<head>
+	<script>
+	var datapoints = ['innerWidth', 'innerHeight', 'outerWidth', 'outerHeight']; // 'clientWidth', 'clientHeight', 'offsetWidth', 'offsetHeight'
+
+		function updateBody() {
+			//document.body.innerHTML =
+			document.getElementById('TheCell').innerHTML = '';
+			for (i=0; i<datapoints.length; i++) {
+				var datapoint = 'window.' + datapoints[i];
+				document.getElementById('TheCell').innerHTML += datapoint + ': ' + eval(datapoint) + '<br>';
+			}
+			//document.getElementById('TheCell').innerHTML += 'TD (TABLE) WIDTH: ' + document.getElementById('TheTable').style.width + '<br>';
+			//document.getElementById('TheCell').innerHTML += 'TD (TR) HEIGHT: ' + document.getElementById('TheRow').style.height + '<br>';
+		}
+	</script>
+	</head>
+	<body onload="updateBody();" onresize="updateBody();">
+	<table id="TheTable" style="width:100%; height:100%; border-style: dashed"><tr id="TheRow" style="height:100%"><td id="TheCell" style="text-align: center"></td></tr></table>
+	</body>
+</html>

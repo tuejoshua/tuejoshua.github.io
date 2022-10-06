@@ -1,0 +1,1 @@
+in resources/graphics: .jpg -> .gif (lo res copy made for this deployment due to limit on file upload size

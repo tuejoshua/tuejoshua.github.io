@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="mul"><!-- MULtiple languages -->
+<head>
+<meta charset="UTF-8">
+<title>
+Hilchot Brachot - game: Precedence?
+</title>
+
+<!-- DEBUG - ->
+<link rel="stylesheet" href="debug/drawTableBorders.css" -->
+
+<!-- INCLUDEs -->
+<script src="backend/include.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
+<script>include(['library', 'backend/loadFromLibrary', 'resources/graphics', 'resources/strings', 'backend/addButtonBorders', 'backend/precedencePipeline', 'backend/progressBar']);</script>
+
+<script>
+
+// Initialize GLOBALS(!)
+var awaitingUserInput = false;
+var items = new Array();
+var map1X2 = ['1', 'X', '2'];
+var larger = Math.floor(Math.random()*3); // {0 (item 0 > item 1); 1 (item 0 ~ item 1); 2 (item 0 < item 1)}
+var largeFactor = 1.6; // in case of LARGER, image will be size-increased by this factor
+//var settingsPage - is defined by precedencePipeline.js loaded above
+
+//<!-- The usage of HTML Web Storage below is based on https://www.w3schools.com/html/html5_webstorage.asp and https://www.w3schools.com/jsref/prop_win_localstorage.asp -->
+// Check if HTML Web Storage (used below for Preferences) is supported
+if (typeof(Storage) === "undefined") {
+  window.alert('ERROR - HTML Web Storage not supported!\nGame does not work on this device/browser.');
+}
+
+// Update 'lastGame'
+localStorage.setItem('lastGame', 'priorityGame.html');
+
+// Detect user-selected language (via settingsPage)
+if (localStorage.getItem('hilchotBrachot.Language') != null) {
+	// TODO: Check that value is valid {da, en}
+	language = localStorage.getItem('hilchotBrachot.Language');
+}
+else {
+	window.location.href = settingsPage;
+}
+
+// Update progress bar waiting time
+var reloadStyle = localStorage.getItem('hilchotBrachot.ReloadStyle');
+if (!reloadStyle) { // if it does not exist
+	window.location.href = settingsPage;
+	}
+
+function changeCursors(x) {
+	document.getElementById('img1').style.cursor = x;
+	document.getElementById('imgX').style.cursor = x;
+	document.getElementById('img2').style.cursor = x;
+}
+
+/*
+Inputs:
+- event
+- userGuess in {-1, 0, 1, 2}
+	-1 is reserved for the Settings button
+	{0, 1, 2} for the user guess buttons
+*/
+function clicked(event, userGuess) {
+
+	if (userGuess == -1) { // The Settings button
+		event.stopPropagation(); // Prevent the ONCLICK event to Bubble up to the BODY element and trigger his ONCLICK event handler also
+		window.location.href = settingsPage;
+		return;
+	}
+
+	if (awaitingUserInput) {
+
+		event.stopPropagation(); // Prevent the ONCLICK event to Bubble up to the BODY element and trigger his ONCLICK event handler also
+
+		// State transition changes
+		awaitingUserInput = false;
+		changeCursors('default');
+		// Mark chosen as WRONG (will be overwritten below if CORRECT)
+		document.getElementById('img' + map1X2[userGuess]).style.borderColor = 'red';
+		// Get CORRECT and rationales
+		var Q = precedencePipeline();
+		// Mark CORRECT
+		document.getElementById('img' + map1X2[Q.verdict]).style.borderColor = 'green';
+
+		// Display decision points
+		for (i=0; i<Q.rationales.length; i++) {
+			document.getElementById('rationale' + i + 'text').value = Q.rationales[i][1];
+			document.getElementById('rationale' + i + 'text').style.backgroundColor = 'white';
+			document.getElementById('rationale' + i + 'text').style.border = 'solid';
+		}
+
+		/*
+		var verdictString;
+		switch (Q.verdict) {
+			case 0:
+				verdictString = '←';
+				break;
+			case 1:
+				break;
+			case 2:
+				verdictString = '→';
+				break;
+			default:
+				window.alert('ERROR [SWITCH in clicked() - Q.verdict: ' + Q.verdict + ']');
+		}
+		if (Q.verdict != 1) {
+			document.getElementById('rationaleX' + (Q.rationales.length-1)).value = verdictString;
+			document.getElementById('rationaleX' + (Q.rationales.length-1)).style.backgroundColor = 'white';
+			document.getElementById('rationaleX' + (Q.rationales.length-1)).style.border = 'solid';
+		}*/
+
+		if (userGuess==Q.verdict) {
+			if (reloadStyle=='instant') {
+				location.reload();
+			}
+			progressBar_startCountdown();
+		}
+		else {
+			progressBar_skipToPaused();
+		}
+		document.body.onkeypress = progressBar_click;
+		document.body.onclick = progressBar_click;
+	}
+}
+
+function onLoadFunc() {
+
+/*
+	// Set page background image
+	document.body.style = "background-image: url('" + graphics.background + "'); background-size: 100% 100%;"
+*/
+
+	// Set the Settings button image and initial button behavior
+	document.getElementById('imgSettings').src = graphics.settings;
+	addButtonBorders(document.getElementById('imgSettings'), false);
+	document.getElementById('imgSettings').style.cursor = 'pointer';
+
+	// Make sure previous values of form elements (i.e. TEXT INPUTS) are cleared (necessary in Firefox)
+	document.getElementById('UIForm').reset();
+
+	// Get random items
+	items[0] = loadFromLibrary(Math.floor(Math.random()*library.length));
+	items[1] = loadFromLibrary(Math.floor(Math.random()*library.length));
+	//items[0] = loadFromLibrary(13); // DEBUG (same hardcoded item every time)
+	//items[1] = loadFromLibrary(15); // DEBUG (same hardcoded item every time)
+
+	// Display their images
+	document.getElementById('img1').src = items[0].imagePath;
+	document.getElementById('imgX').src = graphics.equilibrium;
+	document.getElementById('img2').src = items[1].imagePath;
+
+	// ALT texts for images (e.g. for playing offline, where images cannot be loaded)
+	document.getElementById('img1').alt = items[0].title;
+	document.getElementById('imgX').alt = '(Scales)';
+	document.getElementById('img2').alt = items[1].title;
+
+	// Adjust image sizes wrt. LARGER
+	if (larger != 1) { // i.e. either 1 or 2 in {1,X,2}
+		document.getElementById('img' + map1X2[larger]).height =
+		largeFactor*document.getElementById('img' + map1X2[larger]).height;
+	}
+
+	switch (larger) {
+		case 0:
+			document.getElementById('LargerRightImg').style.display = 'none';
+			break;
+		case 1:
+			document.getElementById('LargerTextTD').innerText = 'SAME SIZE';
+			document.getElementById('LargerTable').style.margin = '0 auto'; // center
+			break;
+		case 2:
+			document.getElementById('LargerLeftImg').style.display = 'none';
+			// left-align:
+			document.getElementById('LargerTable').style.marginLeft = 'auto';
+			document.getElementById('LargerTable').style.marginRight = '0';
+	}
+
+	// Strengthen "awaiting user input" state towards user by applying "pointer" mouse cursor over images (besides the ONOUSEOVER and ONMOUSEOUT events for those images defined elsewhere)
+	changeCursors('pointer');
+	for (i=0; i<map1X2.length; i++) {
+		// initial borders; these are changed at onMouseOver and onMouseOut events elsewhere
+		addButtonBorders(document.getElementById('img' + map1X2[i]), false);
+		// ...and wide borders around img buttons
+		document.getElementById('img' + map1X2[i]).style.borderRadius = '25px';
+	}
+
+	// Ready for user input!
+	awaitingUserInput = true;
+
+}
+
+</script>
+
+</head>
+
+<body onLoad="onLoadFunc();">
+
+<div id="progressBarDiv" style="width: 0%; height: 18px; background-color: green; position: fixed" onClick="progressBar_click();"></div>
+
+<table style="width: 100%">
+
+<tr><td><img id="imgSettings" height="75" onclick="clicked(event, -1);" onmouseover="addButtonBorders(this,true);" onmouseout="addButtonBorders(this,false);" alt="Settings" onerror="window.alert('ERROR - could not load ' + this.src);" /></td><td>
+<h2><mark>
+<!--These 2 foods are in front of you, and you are ready to eat both.<br>Which should you say the bracha over (first), i.e. start with?-->
+<script>document.write(strings.priorityGame_headline[language]);</script>
+</mark></h2>
+</td></tr>
+
+
+<tr><td colspan="2">
+
+<!-- Using FORM in order to use ".clear()" (all fields) functionality; needed in e.g. Firefox (otherwise, RELOAD page does not clear the fields) -->
+<!-- Wrt. "TABLE inside FORM and v.v., see https://stackoverflow.com/questions/5967564/form-inside-a-table -->
+<form id="UIForm"><table style="margin: 0 auto /* i.e. center-align */ ">
+
+<!-- IMAGES row -->
+<tr>
+<script>
+for (i = 0; i<map1X2.length; i++) {
+	document.write('<td>');
+	if (i==1) {
+		document.write('<table style="width: 100%"><tr><td>');
+		document.write('<table id="LargerTable"><tr><td><img id="LargerLeftImg" src="' + graphics.arrowLeft + '" height=25 /></td><td id="LargerTextTD" style="font-family: fantasy; font-style: italic; font-weight: bolder; font-size: xx-large; color: blue;">LARGER</td><td><img id="LargerRightImg" src="' + graphics.arrowRight + '" height=25 /></td></tr></table>');
+		document.write('</td></tr><tr><td style="text-align: center;">');
+	}
+	// height=225
+	document.write('<img id="img' + map1X2[i] + '" height="' + window.innerHeight*0.30 + '" onclick="clicked(event, ' + i + ');" onmouseover="if (awaitingUserInput) {addButtonBorders(this,true);}" onmouseout="if (awaitingUserInput) {addButtonBorders(this,false);}" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td>');
+	if (i==1) {
+		document.write('</tr></table>');
+	}
+	}
+</script>
+</tr>
+
+<!-- row of fields below images for showing HOW/WHY the decision should be made -->
+<script>
+for (i=0; i<6; i++) { // Max is 6 rows, e.g. Eitz Vs. Adama; equally whole; equally preferred; equally 7-species; equal size; Eitz <-- Adama
+	/*
+	document.write('<tr>');
+	for (j=0; j<3; j++) {
+		document.write('<td style="text-align: center"><input type="text" id="rationale'+ map1X2[j] + i +'" readonly style="font-size: 16pt;text-align:center;background-color:transparent;border:none"></td>');
+	}
+	document.write('</tr>');
+	*/
+	document.write('<tr>' +
+	'<td style="text-align: center"><img   id="rationale' + i + 'img1" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td>' +
+	'<td style="text-align: center"><input id="rationale' + i + 'text" type="text" readonly style="font-size: 16pt;text-align:center;background-color:transparent;border:none" /></td>' +
+	'<td style="text-align: center"><img   id="rationale' + i + 'img2" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td></tr>');
+}
+</script>
+
+</table></form>
+
+</td></tr></table>
+
+</body>
+
+</html>

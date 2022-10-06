@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="mul"><!-- MULtiple languages -->
+<head>
+<meta charset="UTF-8">
+<title>
+Hilchot Brachot - games: Settings
+</title>
+
+<!-- DEBUG - ->
+<link rel="stylesheet" href="debug/drawTableBorders.css" -->
+
+<!-- The usage of HTML Web Storage below is based on https://www.w3schools.com/html/html5_webstorage.asp and https://www.w3schools.com/jsref/prop_win_localstorage.asp -->
+
+<!-- INCLUDEs -->
+<script src="backend/include.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
+<script>include(['library', 'backend/loadFromLibrary', 'resources/graphics', 'backend/addButtonBorders']);</script>
+
+<script>
+
+// This construct enables the "confirm navigating away from this site" prompt.
+// We use this here to avoid having the user lose his changes without saving them.
+function confirmNavigation() { return true; }
+window.onbeforeunload = confirmNavigation;
+
+// Check if HTML Web Storage (used below for Preferences) is supported by the browser
+if (typeof(Storage) === "undefined") {
+  window.alert('ERROR - HTML Web Storage not supported!\nGame does not work with this browser.');
+}
+
+/* Find out which Game sent the user here
+   (This is done by the OnLoad of every Game writing to the same LocalStorage entry;
+   the last one is expected to be the right one (i.e. playing on multiple tabs not supported...!) */
+referrer = localStorage.getItem('lastGame');
+if (referrer == null) {
+	//window.alert('ERROR - could not detect the Game you are coming from.\nYou will now be directed to the main page.');
+	window.location.href = 'index.html';
+}
+
+// GLOBALS
+alreadyUsedItemTitles = {};
+
+if (referrer == 'priorityGame.html') {
+
+	// Build vectors of items for preference pairs while checking for duplicates (not allowed)
+	eitzAdamaItems = [];
+	for (i = 0; i<library.length; i++) {
+		if (library[i][1] == 5 || library[i][1] == 6) {
+		eitzAdamaItems[eitzAdamaItems.length] = i;
+		newTitleCandidate(library[i][0]);
+		}
+	}
+	shehakolSolidItems = [];
+	for (i = 0; i<library.length; i++) {
+		if (library[i][1] == 7) {
+		shehakolSolidItems[shehakolSolidItems.length] = i;
+		newTitleCandidate(library[i][0]);
+		}
+	}
+	shehakolLiquidItems = [];
+	for (i = 0; i<library.length; i++) {
+		if (library[i][1] == 8) {
+		shehakolLiquidItems[shehakolLiquidItems.length] = i;
+		newTitleCandidate(library[i][0]);
+		}
+	}
+
+}
+
+function newTitleCandidate(candidate) {
+	//window.alert(candidate); // DEBUG
+	if (candidate in alreadyUsedItemTitles){
+		window.alert('Duplicate item Titles found in LIBRARY: ' + candidate + '\nPlease clean up library(.js)');
+	}
+	alreadyUsedItemTitles[candidate] = true;
+}
+
+function setBorders(x, i, isRow, isOver) {
+
+	var borderStyle = isOver ? 'medium dotted blue' : 'medium solid white';
+	var bgColor 	= isOver ? 'lightGray' 			: 'initial';
+
+	if (isRow) {
+		document.getElementById('td_' + x + '_' + i).style.borderTop = borderStyle;
+		document.getElementById('td_' + x + '_' + i).style.borderBottom = borderStyle;
+	}
+	else {
+		document.getElementById('td_' + x + '_' + i).style.borderLeft = borderStyle;
+		document.getElementById('td_' + x + '_' + i).style.borderRight = borderStyle;
+	}
+	document.getElementById('td_' + x + '_' + i).style.backgroundColor = bgColor;
+}
+
+function toggleBorders(img, x, itemArray_i_1, firstElement, lastElement, isOver) {
+	if (isOver) {
+
+		// "Column style" for all cells from this one (incl.) and the topmost one (NOT incl.)
+		for (i_=itemArray_i_1; i_<=lastElement; i_++) {
+			setBorders(x, i_, true, true);
+		}
+		// Style for topmost cell
+		document.getElementById('tdCol' + itemArray_i_1).style.border = 'medium dotted blue';
+		document.getElementById('tdCol' + itemArray_i_1).style.backgroundColor = 'lightGray';
+
+		// "Row style" for all cells from this one (incl.) to the leftmost one (NOT incl.)
+		for (x_=x; x_>=firstElement; x_--) {
+			setBorders(x_, itemArray_i_1, false, true);
+		}
+		// Style for leftmost cell
+		document.getElementById('tdRow' + x).style.border = 'medium dotted blue';
+		document.getElementById('tdRow' + x).style.backgroundColor = 'lightGray';
+
+		// 3D button style for image itself
+		img.style.border = 'thick inset';
+
+	}
+	else { // i.e. is NOT over
+
+		for (i_=itemArray_i_1; i_<=lastElement; i_++) {
+			setBorders(x, i_, true, false);
+		}
+
+		document.getElementById('tdCol' + itemArray_i_1).style.border = 'medium solid white';
+		document.getElementById('tdCol' + itemArray_i_1).style.backgroundColor = 'initial';
+
+		for (x_=x; x_>=firstElement; x_--) {
+			setBorders(x_, itemArray_i_1, false, false);
+		}
+
+		document.getElementById('tdRow' + x).style.border = 'medium solid white';
+		document.getElementById('tdRow' + x).style.backgroundColor = 'initial';
+
+		img.style.border = 'thick outset';
+
+	}
+}
+
+function clicked(img) {
+	//window.alert(img.id); // DEBUG: Show ID of image clicked
+	switch (img.alt) {
+		case '<':
+			img.src = graphics.up;
+			img.alt = '^';
+			break;
+		case '^':
+			img.src = graphics.equilibrium;
+			img.alt = '<^';
+			break;
+		case '<^':
+			img.src = graphics.left;
+			img.alt = '<';
+			break;
+		default:
+			window.alert('ERROR in SWITCH in clicked(); case = ' + img.alt);
+	}
+}
+
+function printPrefTable(itemArray, tableTitle) {
+
+	var firstElement = itemArray[0];
+	var lastElement = itemArray[itemArray.length-1];
+
+	document.write('<hr><table>');
+
+	// In order to ease the use of these tables when they get large, the first/top row (topleft cell excluded) as well as first/leftmost column are made "sticky" (https://www.w3schools.com/css/css_positioning.asp) with the following STYLE attributes: "position: -webkit-sticky; /* Safari */ position: sticky; top: 0;" (and "left: 0;", resp.)
+
+	// Top row
+	document.write('<tr><th style="background-color: gray;"><i>' + tableTitle + '</i></th>');
+	for (i = itemArray.length-1; i>0; i--) { // >0 because we want to skip the first item (0)
+		document.write('<th id="tdCol'+ itemArray[i] +'" style="text-align: center; border: medium solid white; position: -webkit-sticky; /* Safari */ position: sticky; top: 0; background-color: white"><img src="' + loadFromLibrary(itemArray[i]).imagePath + '" alt="' + loadFromLibrary(itemArray[i]).title + '" height=100 onerror="window.alert(\'ERROR - could not load \' + this.src);" />' +
+		//'<br>(' + itemArray[i] + ')' + // DEBUG: Display item #
+		'</th>');
+	}
+	document.write('</tr>');
+
+	// Other rows
+	while (itemArray.length-1 > 0) { // < ...-1 because the last item will already be covered by the others
+		document.write('<tr><td id="tdRow' + itemArray[0] +'" style="text-align: center; border: medium solid white; position: -webkit-sticky; /* Safari */ position: sticky; left: 0; background-color: white"><img src="' + loadFromLibrary(itemArray[0]).imagePath + '" alt="' + loadFromLibrary(itemArray[0]).title + '" height=100 onerror="window.alert(\'ERROR - could not load \' + this.src);" />' +
+		//'<br>(' + itemArray[0] + ')' + // DEBUG: Display item #
+		'</td>');
+		x = itemArray[0];
+		itemArray.shift(); // Remove 1st element
+
+		// Toggle buttons
+		for (i = itemArray.length; i>0; i--) {
+
+			//window.alert(x + ',' + itemArray[i-1]); // DEBUG
+
+			// Get Preferences Data for this pair
+			prefInLocalStorage = localStorage.getItem('hilchotBrachot.Prefs.' + loadFromLibrary(x).title + '#' + loadFromLibrary(itemArray[i-1]).title);
+			//window.alert(prefInLocalStorage);
+			if (prefInLocalStorage) { // Check if exists
+				verdict = Number(prefInLocalStorage);
+			}
+			else {
+				verdict = 1; // i.e. Equal
+			}
+
+			// Get corresponding image
+			switch (verdict) {
+				case 0:
+					image = graphics.left;
+					altText = '<';
+					break;
+				case 1:
+					image = graphics.equilibrium;
+					altText = '<^';
+					break;
+				case 2:
+					image = graphics.up;
+					altText = '^';
+					break;
+				default:
+					window.alert('ERROR in SWITCH in printPrefTable(); case: ' + verdict);
+			}
+
+			document.write('<td id="td_' + x + '_' + itemArray[i-1] + '" style="text-align: center; border: medium solid white;"><img id="Prefs.'+ loadFromLibrary(x).title + '#' + loadFromLibrary(itemArray[i-1]).title +'" src="' + image + '" alt="' + altText + '" height=100 onClick="clicked(this);" style="cursor: pointer; border: thick outset;" onmouseover="toggleBorders(this, ' + x + ', ' + itemArray[i-1] + ', ' + firstElement + ', ' + lastElement + ', true);" onmouseout="toggleBorders(this, ' + x + ', ' + itemArray[i-1] + ', ' + firstElement + ', ' + lastElement + ', false);" onerror="window.alert(\'ERROR - could not load \' + this.src);" />' +
+			//'<br>(' + x + ',' + itemArray[i-1] + ')' + // DEBUG: Display item # pairs
+			'</td>');
+		}
+		document.write('</tr>');
+	}
+	document.write('</table><p>');
+}
+
+function saveAndGoBackToGame() {
+
+	localStorage.setItem('hilchotBrachot.Language', document.getElementById('languageSelect').value);
+	// The next line is based on https://stackoverflow.com/questions/604167/how-can-we-access-the-value-of-a-radio-button-using-the-dom
+	localStorage.setItem('hilchotBrachot.ReloadStyle', document.querySelector('input[name=reloadStyle]:checked').value);
+
+	if (referrer == 'priorityGame.html') {
+
+		for (i = 0; i < document.images.length; i++) {
+			if (document.images[i].id.substr(0,6) == 'Prefs.') { // The only IMGs with IDs that start with "Prefs." on this page are the toggles (hopefully)
+
+				switch (document.images[i].alt) {
+					case '<':
+						verdict = 0;
+						break;
+					case '^':
+						verdict = 2;
+						break;
+					case '<^':
+						verdict = 1;
+						break;
+					default:
+						window.alert('ERROR in SWITCH in saveAndGoBackToGame(); case = ' + document.images[i].src);
+				}
+
+				localStorage.setItem(('hilchotBrachot.' + document.images[i].id), verdict);
+			}
+		}
+	}
+
+// window.alert('DONE'); // DEBUG - general check that the SAVE button operations completed
+
+// Re-disable the "confirm navigating away from this site" prompt which was enabled above
+window.onbeforeunload = null;
+// Go back to last Game
+window.location.href = referrer;
+
+}
+
+function onLoad() {
+
+	// Get Reload Style
+	var reloadStyle = localStorage.getItem('hilchotBrachot.ReloadStyle');
+	if (!reloadStyle) { // if it does not exist
+		reloadStyle = 'progbar';
+	}
+	document.getElementById(reloadStyle).checked = true;
+
+	// Resources/images
+	document.getElementById('imgGame').src = graphics.game;
+	if (referrer=='priorityGame.html') {
+		document.getElementById('imgLeft').src = graphics.left;
+		document.getElementById('imgUp').src = graphics.up;
+		document.getElementById('imgEqual').src = graphics.equilibrium;
+	}
+	document.getElementById('imgLanguages').src = graphics.languages;
+}
+
+</script>
+</head>
+<body onload="onLoad();">
+
+<h1>Settings</h1>
+<h3>(click the button at the bottom of this page to save these settings and return to the game)</h3><hr><hr>
+
+		<table style="width: 100%;"><tr>
+			<td style="width: 50%;">
+
+				<!-- LANGUAGE SETUP -->
+				<img id="imgLanguages" height=50 style="vertical-align: middle;" alt="Language " onerror="window.alert('ERROR - could not load ' + this.src);" /><select id="languageSelect">
+		<option value="da">dansk</option>
+		<option value="en" selected>English</option></select>
+
+			</td><td style="width: 50%;">
+
+				<!-- RELOAD DELAY SETUP -->
+				After correct answer, go to next question...<br>
+				<input type="radio" id="instant" name="reloadStyle" value="instant"><label for="instant">immediately</label><br>
+				<input type="radio" id="progbar" name="reloadStyle" value="progbar"><label for="progbar">slowly (with ample time for pausing)</label><br>
+
+			</td>
+		</tr></table>
+
+<script>
+
+if (referrer == 'priorityGame.html') {
+
+	document.write('<hr><hr><h2>Click the buttons below until they match your preferences (Ashkenazim: in general) (Sefardim: right now):</h3><table style="width: 100%;"><tr><td><img id="imgEqual" height=100 alt="<^" style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I don\'t have a preference</td><td><img id="imgLeft" height=100 alt="<"style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I prefer the food to the left</td><td><img id="imgUp" height=100 alt="^" style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I prefer the food above</td></tr></table>');
+
+	// Display tables
+	// SLICE forces pass-by-copy (arrays are by default passed by reference; see https://www.dyn-web.com/javascript/arrays/value-vs-reference.php
+	printPrefTable(eitzAdamaItems.slice(), 'Eitz/Adama pairs');
+	printPrefTable(shehakolSolidItems.slice(), 'Shehakol solids pairs');
+	printPrefTable(shehakolLiquidItems.slice(), 'Shehakol liquids pairs');
+
+}
+
+</script>
+
+<center>
+
+<hr><hr>
+
+<img id="imgGame" height="100" style="cursor: pointer; border: thick outset;" onclick="saveAndGoBackToGame();" onmouseover="addButtonBorders(this, true);" onmouseout="addButtonBorders(this, false);" alt="Go to Game" onerror="window.alert('ERROR - could not load ' + this.src);" />
+
+</center>
+
+</body>
+</html>

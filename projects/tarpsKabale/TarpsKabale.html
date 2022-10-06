@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<!-- ♠︎♣︎♥︎♦︎ -->
+<!-- Card game terminology used for Variable names and comments is drawn from Wikipedia (Page "Glossary of patience terms") unless I already have a term.-->
+<script>
+
+suits = ['♠','♦︎','♥︎','♣︎'];
+SUITS = suits.length; // 4
+ranks = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+RANKS = ranks.length; // 13
+
+deck = new Array(52);
+for (suit = 0; suit < SUITS; suit++) {
+	for (rank = 0; rank < RANKS; rank++) {
+		deck[(rank*SUITS + suit)] = new Array(2);
+		deck[(rank*SUITS + suit)][0] = suits[suit];
+		deck[(rank*SUITS + suit)][1] = ranks[rank];
+	}
+}
+
+waste = new Array(0);
+
+tableau = new Array(9);
+foundationPiles = [0, 2, 6, 8];
+columnPiles = [1, 3, 4, 5, 7];
+for (i=0; i<9; i++) {
+	tableau[i] = new Array(0);
+}
+
+isCardSelected = false;
+whichCardSelected = new Array(3); // [0] -1 = waste; 0-8 = the piles; [1] suit; [2] number
+
+
+function nextCard(a, b) {
+	// Replace Kn, D, K, A with numerical values
+	if (b-a == 1 || b-a == -12) {return true;}
+	else {return false;}
+}
+
+function value2string(value) {
+	if (value > 13 || value < 1) {
+		alert('ERROR - card value expected in [1; 13], got ' + value);
+	}
+	switch (value) {
+		case 11:
+			return 'Kn';
+		case 12:
+			return 'D';
+		case 13:
+			return 'K';
+		case 1:
+			return 'A';
+		default:
+			return value;
+	}
+}
+
+
+function refreshTopCard(pileNo) { // pileNo: -1: waste; 0-8: tableau piles
+	if (pileNo > -1) { // Not the waste pile
+		if (tableau[pileNo].length > 0) { // Not empty (e.g. anymore)
+			valueString = value2string(tableau[pileNo][tableau[pileNo].length-1][1]);
+			document.getElementById('top'+pileNo).innerText = valueString + '\n' + tableau[pileNo][tableau[pileNo].length-1][0];
+			document.getElementById('top'+pileNo).style.backgroundColor = 'white';
+                        document.getElementById('top'+pileNo).style.borderStyle = 'none';
+			if (foundationPiles.includes(parseInt(pileNo))) { // If a Foundation pile, also do:
+				document.getElementById('top'+pileNo).style.textAlign = 'initial';
+				document.getElementById('top'+pileNo).style.fontSize = '100%';
+			}
+                        if (tableau[pileNo].length == 2) { // POSSIBLY just changed from 1 to 2
+                                // Show bottom card
+                                valueString = value2string(tableau[pileNo][0][1]);
+                                document.getElementById('bottom'+pileNo).innerText = valueString + '\n' + tableau[pileNo][0][0];
+                                document.getElementById('bottom'+pileNo).style.backgroundColor = 'lightgray';
+}
+                        if (tableau[pileNo].length == 1) { // POSSIBLY just changed from 2 to 1
+                                // Hide bottom card
+                                valueString = value2string(tableau[pileNo][0][1]);
+                                document.getElementById('bottom'+pileNo).innerText = '';
+                                document.getElementById('bottom'+pileNo).style.backgroundColor = 'initial';
+                        }
+		}
+		else { // pile empty
+			//document.getElementById('top'+pileNo).style.backgroundColor = 'transparent';
+			if (columnPiles.includes(parseInt(pileNo))) {
+				document.getElementById('top'+pileNo).innerText = '';
+			}
+			else { // i.e. pileNo in foundationPiles
+				document.getElementById('top'+pileNo).innerText = value2string(foundationValue);
+				document.getElementById('top'+pileNo).style.textAlign = 'center';
+				document.getElementById('top'+pileNo).style.fontSize = '300%';
+			}
+			document.getElementById('top'+pileNo).style.backgroundColor = 'initial';
+			document.getElementById('bottom'+pileNo).innerText = '';
+                        document.getElementById('top'+pileNo).style.borderStyle = 'dotted';
+		}
+	}
+	else { // waste
+		q = waste.length;
+		if (q > 0) {
+		valueString = value2string(waste[waste.length-1][1]);
+		document.getElementById('wastePile').innerText = valueString + '\n' + waste[waste.length-1][0];
+		document.getElementById('wastePile').style.backgroundColor = 'white';
+                document.getElementById('wastePile').style.borderStyle = 'none';
+		}
+		else { // pile empty
+			document.getElementById('wastePile').innerText = '';
+			document.getElementById('wastePile').style.backgroundColor = 'initial';
+                        document.getElementById('wastePile').style.borderStyle = 'dotted';
+		}
+	}
+}
+
+function newGame() {
+
+// Shuffle deck
+// algorithm according to a principle I found somewhere online:
+// for each card, swap with a random card among those AFTER it
+// ...it seemed that later cards (ie. the opening layout) often were not shuffled, so
+// I changed it to "all can swap with all"
+//randomCards = []; // DEBUG
+for (i=0; i<52; i++) {
+	otherCard = Math.floor(Math.random()*52); // outcomes in [0; 51]
+//	randomCards.push(otherCard); // DEBUG
+	tempCard = deck[i];
+	deck[i] = deck[otherCard];
+	deck[otherCard] = tempCard;
+}
+
+// alert(randomCards.sort(function(a, b){return a-b})); // DEBUG; see w3schools article on sort()
+// alert(deck); // DEBUG
+
+// Lay out a 1st card in the columns
+for (i=0; i<columnPiles.length; i++) {
+	tableau[columnPiles[i]].push(deck.pop());
+	refreshTopCard(columnPiles[i]);
+}
+
+// Lay out the 1st foundation card
+tableau[foundationPiles[3]].push(deck.pop());
+refreshTopCard(foundationPiles[3]);
+// Set rule for other 3 foundation cards
+foundationValue = tableau[foundationPiles[3]][tableau[foundationPiles[3]].length-1][1];
+refreshTopCard(0);
+refreshTopCard(2);
+refreshTopCard(6);
+//refreshTopCard(8);
+
+// Transfer control to player
+
+}
+
+function clearSelected() {
+	if (whichCardSelected[0] > -1) {
+		document.getElementById('top' + whichCardSelected[0]).style.opacity = 1;
+	}
+	else {
+		document.getElementById('wastePile').style.opacity = 1;
+	}
+	isCardSelected = false;
+}
+
+function deckClick() {
+
+	if (isCardSelected) {
+		clearSelected();
+	}
+	else {
+
+		if (deck.length) { // deck still not empty
+
+			waste.push(deck.pop());
+
+			refreshTopCard(-1);
+			//document.getElementById('wastePile').innerText = value2string(waste[waste.length-1][1]) + '\n' + waste[waste.length-1][0];
+
+			document.getElementById('deckPile').innerText = deck.length; /* DEBUG */
+			if (!deck.length) { // last card was just drawn
+				document.getElementById('deckPile').style.backgroundColor =  'transparent';
+
+			}
+		}
+	}
+}
+
+function wasteClick() {
+	if (isCardSelected) {
+                if (whichCardSelected[0] > -1) { // i.e. 0-8, the tableau piles
+                        // move card to waste
+                        waste.push(tableau[whichCardSelected[0]].pop());
+                        refreshTopCard(-1);
+                        refreshTopCard(whichCardSelected[0]);
+                        clearSelected();
+                }
+                else { // the selected card is the same (waste) card that was now clicked again
+                        clearSelected();
+                        
+                }
+	}
+	else {
+	// select waste card
+	if (waste.length > 0) {
+		isCardSelected = true;
+		whichCardSelected = [-1, waste[waste.length-1][1], waste[waste.length-1][0]];
+		document.getElementById('wastePile').style.opacity = 0.5;
+		}
+	}
+}
+
+function tableauClick(pileNo) {
+	//alert(pileNo);
+	if (isCardSelected) {
+		// attempt to move selected card here; if not possible OR same pile, deselect
+		switch (parseInt(pileNo)) { // Convert string to int
+			case 0: // Foundations
+			case 2:
+			case 6:
+			case 8:
+				if (tableau[pileNo].length) { // pile not empty
+					if ((tableau[pileNo][tableau[pileNo].length-1][0] == whichCardSelected[2]) && nextCard(tableau[pileNo][tableau[pileNo].length-1][1], whichCardSelected[1])) { // same suit && next value (modular)
+						//add to pile
+						switch (whichCardSelected[0] > -1) {
+							case true:
+								tableau[pileNo].push(tableau[whichCardSelected[0]].pop());
+								break;
+							case false:
+								tableau[pileNo].push(waste.pop());
+						}
+					refreshTopCard(whichCardSelected[0]);
+					refreshTopCard(pileNo);
+					}
+				}
+				else { // pile empty
+					if (whichCardSelected[1] == foundationValue) {
+						//move card
+						if (whichCardSelected[0] > -1) {
+							tableau[pileNo].push(tableau[whichCardSelected[0]].pop());
+						}
+						else {
+							tableau[pileNo].push(waste.pop());
+						}
+					}
+					refreshTopCard(whichCardSelected[0]);
+					refreshTopCard(pileNo);
+				}
+				break;
+			case 1:
+			case 3:
+			case 4:
+			case 5:
+			case 7:
+				if (tableau[pileNo].length) {
+					if (nextCard(whichCardSelected[1], tableau[pileNo][tableau[pileNo].length-1][1])) {
+						//add to pile
+						switch (whichCardSelected[0] > -1) {
+							case true:
+								tableau[pileNo].push(tableau[whichCardSelected[0]].pop());
+								break;
+							case false:
+								tableau[pileNo].push(waste.pop());
+						}
+						refreshTopCard(whichCardSelected[0]);
+						refreshTopCard(pileNo);
+					}
+				}
+				else { // empty pile
+					//move card
+					switch (whichCardSelected[0] > -1) {
+						case true:
+							tableau[pileNo].push(tableau[whichCardSelected[0]].pop());
+							break;
+						case false:
+							tableau[pileNo].push(waste.pop());
+					}
+					refreshTopCard(whichCardSelected[0]);
+					refreshTopCard(pileNo);
+				}
+				break;
+			default:
+				alert('ERROR - tried to click tableau pile no. "'+ pileNo +'" - only expected piles 0 through 8');
+		}
+		clearSelected();
+	}
+	else { // if card not selected
+		if (tableau[pileNo].length) {
+			// select card
+			document.getElementById('top' + pileNo).style.opacity = 0.5;
+			isCardSelected = true;
+			whichCardSelected = [parseInt(pileNo), tableau[pileNo][tableau[pileNo].length-1][1], tableau[pileNo][tableau[pileNo].length-1][0]];
+		}
+	}
+}
+
+</script>
+
+<style>
+div.bottomCard {
+	position: absolute;
+	width: 80px;
+	height: 120px;
+	transform: rotate(-10deg) translate(10px, 10px);
+        border-radius: 5px;
+}
+div.deckCard {
+	position: absolute;
+	width: 80px;
+	height: 120px;
+	background-color: blue;
+	transform: translate(20px, 15px);
+	text-align: center; /* DEBUG */
+        border-radius: 5px;
+}
+div.newGameButton {
+	position: absolute;
+	width: 90px;
+	height: 50px;
+	background-color: yellow;
+	transform: translate(8px, 45px);
+	text-align: center;
+}
+div.slot {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 105px;
+	height: 140px;
+}
+div.topCard {
+	position: absolute;
+	width: 80px;
+	height: 120px;
+	transform: translate(20px, 15px);
+        border-style: dotted;
+        border-radius: 5px;
+}
+
+/* DEBUG:
+div.bottomCard {
+	background-color: green;
+}
+div.slot {
+	background-color: blue;
+}
+div.topCard {
+	background-color: red;
+}*/
+
+</style>
+</head>
+<body onload="newGame();" style="background-color: DarkCyan;">
+<script>
+document.write('<table style="margin: auto;">'); // horizontal align: center
+for (r=0; r<3; r++) {
+	document.write('<tr><td><div class="slot">');
+	switch (r) {
+	case 0:
+		document.write('<div class="deckCard" id="deckPile" onClick="deckClick();"></div>');
+		break;
+	case 1:
+		document.write('<div class="topCard" id="wastePile" onClick="wasteClick();"></div>');
+		break;
+	case 2:
+		document.write('<div class="newGameButton" onClick="location.reload();">NYT SPIL</div>');
+	}
+	document.write('</div></td>');
+	for (c=0; c<3; c++) {
+		document.write('<td><div class="slot"><div class="bottomCard" id="bottom'+ (r*3 + c) +'"></div><div class="topCard" id="top'+ (r*3 + c) +'" onClick="tableauClick(\'' + (r*3 + c) +'\');"></div></div></td>');
+	}
+	document.write('</tr>');
+}
+document.write('</table>');
+</script>
+</body>
+</html>

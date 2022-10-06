@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+<script>
+function clearAll() {
+	choice = window.confirm('Press OK to clear all.\nNB: This will affect any/all pages relying on this data!!');
+	if (choice) {
+		localStorage.clear(); // !!!
+	}
+	// Reload page to update table
+	location.reload();
+}
+</script>
+</head>
+<body>
+<h1>Current contents of LocalStorage (i.e. for this browser and user(?))</h1>
+
+<!-- p>
+<table><tr><td bgcolor="pink">NB: It seems iterating through LocalStorage (like this page does) does not work properly in Firefox... (I found some posts online about this earlier)</td></tr></table>
+<p -->
+
+<input type="button" value="CLEAR ALL" onclick="clearAll();"/>
+<table border=1><tr><th>#</th><th>key [string] ⬇︎</th><th>value [string]</th></tr>
+<script>
+
+// Display key/value pairs, row by row:
+// 1. Get unsorted list of heys
+var keys = [];
+for (i = 0; i < localStorage.length; i++) {
+	keys.push(localStorage.key(i));
+	}
+// 2. sort
+keys.sort();
+// 3. display
+for (i = 0; i < keys.length; i++) {
+	document.write(
+	'<tr><td>' + i + '</td><td>' +
+	keys[i] + '</td><td>' +
+	localStorage.getItem(keys[i]) +
+	'</td><td><a href="#" onClick="localStorage.removeItem(\'' + keys[i] + '\'); location.reload();">CLEAR</a></td></tr>');
+}
+
+// If no data found, make clear for user
+if (!localStorage.length) {
+	document.write('<tr><td colspan=3 style="text-align: center">(no data found)</td></tr>');
+}
+
+</script>
+</table>
+</body>
+</html>

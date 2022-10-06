@@ -1,0 +1,11 @@
+https://www.onlineocr.net/, DANISH, to TXT
+Manual sanitize:
+- Remove top (4) rows and bottom lines about daylight savings
+- .s -> :s
+LibreOffice Excel > Open > "Text Import": default settings, except
+- Enable "Space"
+- Enable "Other" - ":"
+- Enable "Merge delimiters"
+- Enable "Trim spaces" (I assume this is good)
+Save as CSV
+...Save as Unicode (UTF-8) [fixed a Python read error: "_csv.Error: line contains NULL byte"]

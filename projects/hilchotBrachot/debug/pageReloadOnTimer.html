@@ -1,0 +1,49 @@
+<html>
+
+<head>
+
+<script>
+// Initialize GLOBALS(!)
+ProgressBarWidth = 0; // %
+waitTimeBeforeNewQuestion = 2500; // ms
+
+function updateProgressBar() {
+	if (ProgressBarWidth < 100) { // This condition is necessary at least for Chrome on Lenovo tablet, for which it was found that the location.reload() call below is asynchronous and so slow that this block of code will continue to run, resizing the progress bar way above 100%, resulting in wierd GUI behavior (page zooming out)
+		ProgressBarWidth++;
+		document.getElementById('ProgressBar').style.width = ProgressBarWidth + '%';
+		document.getElementById('ProgressBar').innerHTML = ProgressBarWidth + '% - Press any key to interrupt page reload';
+		if (ProgressBarWidth == 100) { //... as a continuation of the comment above, it was probably the resulting ~300 repetitions of the location.reload() call below which stalled the browser - hence the need for THIS condition also ;-)
+			location.reload();
+		}
+	}
+}
+
+function delayedReload() {
+
+		document.getElementById('ProgressBar').innerHTML = 'Press any key to interrupt page reload';
+		progressBarInterval = setInterval(updateProgressBar, waitTimeBeforeNewQuestion/100); // 100 1% increments
+		document.body.onkeypress = function() {
+			clearInterval(progressBarInterval);
+			document.getElementById('ProgressBar').innerHTML = 'Page reload interrupted by user';
+			document.getElementById('ProgressBar').style = 'background-color: red;'
+		}; // NB - don't remove semicolon!
+
+}
+
+</script>
+</head>
+
+<body>
+
+<div id="ProgressBar" style="width: 0%; height: 20px; background-color: green;"></div>
+
+<center>
+
+<input type="button" value="Reload NOW" onclick="location.reload();">
+<input type="button" value="Reload AFTER DELAY" onclick="delayedReload();">
+
+</center>
+
+</body>
+
+</html>

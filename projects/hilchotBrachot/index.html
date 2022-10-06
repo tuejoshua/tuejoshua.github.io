@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="mul"><!-- MULtiple languages -->
+<head>
+<meta charset="UTF-8">
+<title>
+Hilchot Brachot - games!
+</title>
+
+<script>
+function validatePage() {
+	// Example: http://chasin.atwebpages.com/hilchotBrachot/brachaGame.html =>
+	// https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&checkerrorpages=yes&useragent=Validator.nu%2FLV+http%3A%2F%2Fvalidator.w3.org%2Fservices&acceptlanguage=&doc=http%3A%2F%2Fchasin.atwebpages.com%2FhilchotBrachot%2FbrachaGame.html
+	// => : ~ %3A, / ~ %2F
+
+	var uri = location.href; // e.g. "http://chasin.atwebpages.com/index.html"
+
+        uri = uri.substring(0, uri.lastIndexOf('/')+1); // remove "index.html" part
+        //alert(uri);
+
+	uri = encodeURI(uri + document.getElementById('page2Bvalidated').value + '.html');
+	// -> http%3A%2F%2Fchasin.atwebpages.com%2F etc.
+	//window.alert(uri); // DEBUG
+
+	open('https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&checkerrorpages=yes&useragent=Validator.nu%2FLV+http%3A%2F%2Fvalidator.w3.org%2Fservices&acceptlanguage=&doc=' + uri); // ...on a new tab
+
+}
+</script>
+</head>
+<body style="text-align: center">
+<h1>Hilchot Brachot (Birkat HaNehinin)</h1>
+<h2>Games to aid your learning!</h2>
+<table style="width: 100%"><tr>
+<td><h3>Which Bracha is Correct?</h3>
+<a href="brachaGame.html">Bracha Game (visual)</a><br><br>
+<a href="brachaGameText.html">Bracha Game (textual)</a></td>
+<td><h3>Which Food takes Precedence?</h3><a href="priorityGame.html">Priority Game</a></td>
+</tr>
+<tr><td colspan=2>
+<hr><h4>Debugging</h4>
+<a href="resources/foods">Contents of resources/foods</a> |
+<a href="debug/displayGraphicsResources.html">displayGraphicsResources</a> |
+<a href="debug/inspectLocalStorage.html">inspectLocalStorage</a> |
+<a href="debug/library_display.html">library_display</a> |
+<a href="debug/pageReloadOnTimer.html">pageReloadOnTimer</a> |
+<a href="debug/FOVinspector.html">FOVinspector</a>
+<br><br>
+<input type="button" value="W3C Markup Validation of:" onClick="validatePage();">
+<select id="page2Bvalidated">
+	<script>
+                var pages = ['brachaGame', 'brachaGameText', 'priorityGame', 'settings', 'index'];
+                for (i=0; i<pages.length; i++) {
+                        document.write('<option value="' + pages[i] + '">' + pages[i] + '.html</option>');
+                }
+	</script>
+</select>
+</td></tr></table>
+</body>
+</html>
