@@ -25,7 +25,7 @@ table {
 
     // Initiate request.
     oXHR.onreadystatechange = reportStatus;
-    oXHR.open("GET", "projects.json", true);  // get json file.
+    oXHR.open("GET", "projects/projects.json", true);  // get json file.
     oXHR.send();
 
     function reportStatus() {
