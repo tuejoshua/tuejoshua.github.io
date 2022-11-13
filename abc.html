@@ -41,7 +41,7 @@ switch (x) {
 
 </script>
 </head>
-<body onClick="alert('body clicked');">
+<body onClick="location.reload();">
 <center>
 <script>
 document.write(progress + '/' + NUMLETTERS);
@@ -49,7 +49,7 @@ document.write(progress + '/' + NUMLETTERS);
 <input type="button" value="5 <-" onClick="localStorage.setItem('TJSCsABC.Progress', 5); location.reload();">
 <input type="button" value="+5" onClick="localStorage.setItem('TJSCsABC.Progress', Math.min(progress + 5, NUMLETTERS)); location.reload();">
 <script>
-document.write('<h1>' + charString + '</h1>');
+document.write('<h1 style="font-size:10vw">' + charString + '</h1>');
 </script>
 </center>
 </body>
