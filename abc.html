@@ -1,0 +1,56 @@
+<html>
+<head>
+<style>
+input { /* -> input type=button */
+        width: 90px;
+        height: 40px;
+    }
+</style>
+<script>
+
+NUMLETTERS = 29;
+
+// Check if HTML Web Storage (used below for Preferences) is supported by the browser
+if (typeof(Storage) === "undefined") {
+  window.alert('ERROR - HTML Web Storage not supported!\nGame does not work with this browser.');
+}
+
+if (localStorage.getItem('TJSCsABC.Progress') != null) {
+	progress = Number(localStorage.getItem('TJSCsABC.Progress'));
+}
+else {
+	progress = 5;
+	localStorage.setItem('TJSCsABC.Progress', progress);
+}
+
+x = Math.floor(Math.random()*progress); // [0; progress-1]
+
+switch (x) {
+	case 26: // Æ
+		charString = String.fromCharCode(198);
+		break;
+	case 27: // Ø
+		charString = String.fromCharCode(216);
+		break;
+	case 28: // Å
+		charString = String.fromCharCode(197);
+		break;
+	default:
+		charString = String.fromCharCode((65+x));
+	}
+
+</script>
+</head>
+<body onClick="alert('body clicked');">
+<center>
+<script>
+document.write(progress + '/' + NUMLETTERS);
+</script>
+<input type="button" value="5 <-" onClick="localStorage.setItem('TJSCsABC.Progress', 5); location.reload();">
+<input type="button" value="+5" onClick="localStorage.setItem('TJSCsABC.Progress', Math.min(progress + 5, NUMLETTERS)); location.reload();">
+<script>
+document.write('<h1>' + charString + '</h1>');
+</script>
+</center>
+</body>
+</html>
