@@ -8,7 +8,7 @@ input { /* -> input type=button */
 </style>
 <script>
 
-NUMLETTERS = 29;
+NUMLETTERS = 29+29;
 
 // Check if HTML Web Storage (used below for Preferences) is supported by the browser
 if (typeof(Storage) === "undefined") {
@@ -35,8 +35,22 @@ switch (x) {
 	case 28: // Å
 		charString = String.fromCharCode(197);
 		break;
+	case 55:
+			charString = String.fromCharCode(230);
+		break;
+	case 56:
+			charString = String.fromCharCode(248);
+		break;
+	case 57:
+			charString = String.fromCharCode(229);
+		break;
 	default:
-		charString = String.fromCharCode((65+x));
+		if (x > 28) {
+		charString = String.fromCharCode((97+x));
+		}
+		else {
+			charString = String.fromCharCode((65+x));
+		}
 	}
 
 </script>
