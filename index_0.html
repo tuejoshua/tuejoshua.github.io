@@ -36,9 +36,7 @@ table {
 
 
                 // Build HTML DOM string
-                var domString = '<table>' +
-				'<tr><td></td><td rowspan="0">HERE GOES CONTENT</td></tr>';
-				/* <tr>' + 
+                var domString = '<table><tr>' + 
                 '<th></th>' +
                 '<th>Title</th>'+
                 '<th>Summary and <mark>languages</mark></th>'+
@@ -47,17 +45,16 @@ table {
                 '<th>Front-end<br>(HTML+<br>CSS+<br>Javascript)</th>'+
                 '<th>PHP</th>'+
                 '<th>Python</th></tr>';
-				*/
                 
-            //var idString = '';    
+            var idString = '';    
                 
             for (i=0; i<projects.length; i++) {
                     
                     // parse Title to format for HTML bookmark
                     // - based on https://stackoverflow.com/a/79022 and https://stackoverflow.com/a/6507078
-                    //idString = projects[i].title.replace(/\s/g, '_');
+                    idString = projects[i].title.replace(/\s/g, '_');
                     
-                    /*domString += '<tr>'+
+                    domString += '<tr>'+
                     '<td style="vertical-align: top">' + (i+1) + ' </td>' +
                     '<th id="' + idString + '">' + projects[i].title + '</th>'+
                     '<td style="vertical-align: top">' + projects[i].summary + '</td>'+
@@ -66,12 +63,7 @@ table {
                     '<th>' + projects[i].isFrontEnd + '</th>'+
                     '<th>' + projects[i].isPhp + '</th>'+
                     '<th>' + projects[i].isPython + '</th>'+
-                    '</tr>';*/
-					
-					domString = '<tr><td>' + projects[i].title + '</td></tr>';
-					
-					
-					
+                    '</tr>';
             }
             
             // Write HTML DOM string to DIV element
