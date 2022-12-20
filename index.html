@@ -20,6 +20,18 @@ table {
  -->
  
 <script>
+
+function displayProject(i) {
+
+// Visualize the selected project
+
+// Display content
+document.getElementById('projectContentTD').innerHTML = 'SUMMARY' + projects[i].summary + 'DETAILS ' projects[i].details + 'MOTIVATION' + projects[i].motivation;
+
+
+}
+
+
     // Create XMLHttpRequest object.
     var oXHR = new XMLHttpRequest();
 
@@ -40,10 +52,10 @@ table {
                 
             for (i=0; i<projects.length; i++) {
 					
-					domString += '<tr><td>' + projects[i].title + '</td>';
+					domString += '<tr><td onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
 					
 					if (i==0) {
-						domString += '<td rowspan="0">HERE GOES CONTENT</td>';
+						domString += '<td rowspan="0" id="projectContentTD">HERE GOES CONTENT</td>';
 					}
 					
 					domString += '</tr>';
@@ -57,7 +69,7 @@ table {
     }
 </script>
 </head>
-<body>
+<body onload="displayProject(0);">
 
 <!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
 <h1><script>document.write(document.title);</script></h1>
