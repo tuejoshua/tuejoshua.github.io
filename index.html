@@ -34,43 +34,19 @@ table {
                 // Parse text contents of JSON file into Javascipt object
                 var projects = JSON.parse(this.responseText);
 
-
                 // Build HTML DOM string
-                var domString = '<table>' +
-				'<tr><td></td><td rowspan="0">HERE GOES CONTENT</td></tr>';
-				/* <tr>' + 
-                '<th></th>' +
-                '<th>Title</th>'+
-                '<th>Summary and <mark>languages</mark></th>'+
-                '<th>Details</th>'+
-                '<th>Motivation</th>'+
-                '<th>Front-end<br>(HTML+<br>CSS+<br>Javascript)</th>'+
-                '<th>PHP</th>'+
-                '<th>Python</th></tr>';
-				*/
-                
-            //var idString = '';    
+                var domString = '<table>';
+  
                 
             for (i=0; i<projects.length; i++) {
-                    
-                    // parse Title to format for HTML bookmark
-                    // - based on https://stackoverflow.com/a/79022 and https://stackoverflow.com/a/6507078
-                    //idString = projects[i].title.replace(/\s/g, '_');
-                    
-                    /*domString += '<tr>'+
-                    '<td style="vertical-align: top">' + (i+1) + ' </td>' +
-                    '<th id="' + idString + '">' + projects[i].title + '</th>'+
-                    '<td style="vertical-align: top">' + projects[i].summary + '</td>'+
-                    '<td style="vertical-align: top">' + projects[i].details + '</td>'+
-                    '<td style="vertical-align: top">' + projects[i].motivation + '</td>'+
-                    '<th>' + projects[i].isFrontEnd + '</th>'+
-                    '<th>' + projects[i].isPhp + '</th>'+
-                    '<th>' + projects[i].isPython + '</th>'+
-                    '</tr>';*/
 					
-					domString += '<tr><td>' + projects[i].title + '</td></tr>';
+					domString += '<tr><td>' + projects[i].title + '</td>';
 					
+					if (i==0) {
+						domString += '<td rowspan="0">HERE GOES CONTENT</td>';
+					}
 					
+					domString += '</tr>';
 					
             }
             
