@@ -67,12 +67,13 @@ document.getElementById('projectContentTD').innerHTML = 'SUMMARY' + projects[i].
             // Write HTML DOM string to DIV element
             document.getElementById('showData').innerHTML = domString + '</table>';
 			
+			displayProject(0);
 
         }
     }
 </script>
 </head>
-<body onload="displayProject(0);">
+<body>
 
 <!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
 <h1><script>document.write(document.title);</script></h1>
