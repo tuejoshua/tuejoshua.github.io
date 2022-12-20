@@ -21,6 +21,8 @@ table {
  
 <script>
 
+var projects; // GLOBAL
+
 function displayProject(i) {
 
 // Visualize the selected project
@@ -44,7 +46,7 @@ document.getElementById('projectContentTD').innerHTML = 'SUMMARY' + projects[i].
         if (oXHR.readyState == 4) {		// Check if request is complete.
             
                 // Parse text contents of JSON file into Javascipt object
-                var projects = JSON.parse(this.responseText);
+                projects = JSON.parse(this.responseText);
 
                 // Build HTML DOM string
                 var domString = '<table>';
@@ -65,13 +67,12 @@ document.getElementById('projectContentTD').innerHTML = 'SUMMARY' + projects[i].
             // Write HTML DOM string to DIV element
             document.getElementById('showData').innerHTML = domString + '</table>';
 			
-			displayProject(0);
 
         }
     }
 </script>
 </head>
-<body>
+<body onload="displayProject(0);">
 
 <!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
 <h1><script>document.write(document.title);</script></h1>
