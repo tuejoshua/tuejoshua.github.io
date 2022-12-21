@@ -23,15 +23,15 @@ table {
 
 var projects; // GLOBAL
 
-function displayProject(i) {
+function displayProject(j) {
 
-// Visualize the selected project
-alert(document.getElementById('projectTitleTD0').style.backgroundColor);
-
-document.getElementById('projectTitleTD0').style.backgroundColor = 'gray';
+for (i=0; i<projects.length; i++) {
+	document.getElementById('projectTitleTD' + i).style.backgroundColor = 'initial';
+}
+document.getElementById('projectTitleTD' + j).style.backgroundColor = 'gray';
 
 // Display content
-document.getElementById('projectContentTD').innerHTML = '<p>' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation;
+document.getElementById('projectContentTD' + j).innerHTML = '<p>' + projects[j].summary + '<p>' + projects[j].details + '<p>' + projects[j].motivation;
 
 
 }
