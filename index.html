@@ -26,9 +26,12 @@ var projects; // GLOBAL
 function displayProject(i) {
 
 // Visualize the selected project
+alert(document.getElementById('projectTitleTD0').style.background-color);
+
+document.getElementById('projectTitleTD0').style.background-color = 'gray';
 
 // Display content
-document.getElementById('projectContentTD').innerHTML = 'SUMMARY' + projects[i].summary + 'DETAILS ' + projects[i].details + 'MOTIVATION' + projects[i].motivation;
+document.getElementById('projectContentTD').innerHTML = '<p>' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation;
 
 
 }
@@ -54,7 +57,8 @@ document.getElementById('projectContentTD').innerHTML = 'SUMMARY' + projects[i].
                 
             for (i=0; i<projects.length; i++) {
 					
-					domString += '<tr><td onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
+					// 38% ~ the golden ratio
+					domString += '<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
 					
 					if (i==0) {
 						domString += '<td rowspan="0" id="projectContentTD">HERE GOES CONTENT</td>';
