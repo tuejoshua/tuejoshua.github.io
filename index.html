@@ -26,9 +26,9 @@ var projects; // GLOBAL
 function displayProject(i) {
 
 // Visualize the selected project
-alert(document.getElementById('projectTitleTD0').style.background-color);
+alert(document.getElementById('projectTitleTD0').style.backgroundColor);
 
-//document.getElementById('projectTitleTD0').style.background-color = 'gray';
+document.getElementById('projectTitleTD0').style.backgroundColor = 'gray';
 
 // Display content
 document.getElementById('projectContentTD').innerHTML = '<p>' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation;
