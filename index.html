@@ -61,7 +61,7 @@ document.getElementById('projectContentTD').innerHTML = '<p>' + projects[j].summ
             for (i=0; i<projects.length; i++) {
 					
 					// 38% ~ the golden ratio
-					domString += '<button type="button">' + projects[j].title + '</button><div>' + projects[j].summary + '<p>' + projects[j].details + '<p>' + projects[j].motivation + '</div>'; //'<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
+					domString += '<button type="button">' + projects[i].title + '</button><div>' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>'; //'<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
 					
 					/*if (i==0) {
 						domString += '<td rowspan="0" id="projectContentTD">HERE GOES CONTENT</td>';
