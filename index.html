@@ -35,8 +35,6 @@ document.getElementById('projectTitleTD' + j).style.backgroundColor = 'gray';
 document.getElementById('projectContentTD').innerHTML = '<p>' + projects[j].summary + '<p>' + projects[j].details + '<p>' + projects[j].motivation;
 */
 
-document.write('<button type="button">' + projects[j].summary + '</button>');
-
 }
 
 
@@ -55,24 +53,26 @@ document.write('<button type="button">' + projects[j].summary + '</button>');
                 projects = JSON.parse(this.responseText);
 
                 // Build HTML DOM string
-                var domString = '<table width="100%">';
+				
+				
+                var domString = ''; //<table width="100%">';
   
                 
             for (i=0; i<projects.length; i++) {
 					
 					// 38% ~ the golden ratio
-					domString += '<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
+					domString += '<button type="button">' + projects[j].summary + '</button>'; //'<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
 					
-					if (i==0) {
+					/*if (i==0) {
 						domString += '<td rowspan="0" id="projectContentTD">HERE GOES CONTENT</td>';
-					}
+					}*/
 					
-					domString += '</tr>';
+					//domString += '</tr>';
 					
             }
             
             // Write HTML DOM string to DIV element
-            document.getElementById('showData').innerHTML = domString + '</table>';
+            document.getElementById('showData').innerHTML = domString; // + '</table>';
 			
 			displayProject(0);
 
