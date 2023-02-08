@@ -23,7 +23,7 @@ table {
 
 var projects; // GLOBAL
 
-function displayProject(j) {
+function showProjectCard(i) {
 
 /*
 for (i=0; i<projects.length; i++) {
@@ -35,6 +35,12 @@ document.getElementById('projectTitleTD' + j).style.backgroundColor = 'gray';
 document.getElementById('projectContentTD').innerHTML = '<p>' + projects[j].summary + '<p>' + projects[j].details + '<p>' + projects[j].motivation;
 */
 
+switch (document.getElementById('projectCard' + i).style.display) {
+case 'none':
+document.getElementById('projectCard' + i).style.display = 'block';
+break;
+case 'block':
+document.getElementById('projectCard' + i).style.display = 'none';
 }
 
 
@@ -61,7 +67,7 @@ document.getElementById('projectContentTD').innerHTML = '<p>' + projects[j].summ
             for (i=0; i<projects.length; i++) {
 					
 					// 38% ~ the golden ratio
-					domString += '<button type="button" style="width: 100%;">' + projects[i].title + '</button><div style="width: 100%;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>'; //'<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
+					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title + '</button><div id="projectCard' + i + '" style="width: 100%;display: none;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>'; //'<tr><td id="projectTitleTD' + i + '" width="38%" onclick="displayProject(' + i + ')">' + projects[i].title + '</td>';
 					
 					/*if (i==0) {
 						domString += '<td rowspan="0" id="projectContentTD">HERE GOES CONTENT</td>';
