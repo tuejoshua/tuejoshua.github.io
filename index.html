@@ -82,7 +82,7 @@ switch (document.getElementById('projectCard' + i).style.display) {
             for (i=0; i<projects.length; i++) {
 					
 					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
-					'<table border=1 style="width: 100%;"><tr><td>' + projects[i].title + '</td><td style="text-align: right;">;
+					'<table border=1 style="width: 100%;"><tr><td>' + projects[i].title + '</td><td style="text-align: right;">';
 					
 					alert(projects[i].technologies.length);
 					for (let tag of projects[i].technologies) {
