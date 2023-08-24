@@ -21,10 +21,6 @@ table {
  
 <script>
 
-
-//var projects; // GLOBAL
-
-
 function getTechLogo(tag) {
 
 	switch(tag) {
@@ -42,6 +38,7 @@ function getTechLogo(tag) {
 			break;
 		default:
 			alert('logo not found for "' + tag + '"');
+			return '';
 	}
 	
 	return '<a href="' + licenseLink + '"><img src="resources/' + logoUrl + '" height=40></a>'; 
