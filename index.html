@@ -31,6 +31,7 @@ function getTechLogo(tag) {
 		case 'FrontEnd':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
 			licenseLink = 'https://github.com/shannonmoeller/front-end-logo';
+			break;
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
 			licenseLink = 'https://www.php.net/download-logos.php';
@@ -85,6 +86,7 @@ switch (document.getElementById('projectCard' + i).style.display) {
 					
 					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title;
 					
+					alert(projects[i].technologies.length);
 					for (let tag of projects[i].technologies) {
 						domString += getTechLogo(tag);
 					}
