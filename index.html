@@ -81,14 +81,15 @@ switch (document.getElementById('projectCard' + i).style.display) {
                 
             for (i=0; i<projects.length; i++) {
 					
-					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title;
+					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
+					'<table border=1 style="width: 100%;"><tr><td>' + projects[i].title + '</td><td style="text-align: right;">;
 					
 					alert(projects[i].technologies.length);
 					for (let tag of projects[i].technologies) {
 						domString += getTechLogo(tag);
 					}
 					
-					domString += '</button>' +
+					domString += '</td></tr></table></button>' +
 					'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>';
 										
             }
