@@ -28,16 +28,22 @@ table {
 function getTechLogo(tag) {
 
 	switch(tag) {
-		case '':
+		case 'FrontEnd':
+			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
+			licenseLink = 'https://github.com/shannonmoeller/front-end-logo';
+		case 'PHP':
+			logoUrl = 'new-php-logo (from php.net).png';
+			licenseLink = 'https://www.php.net/download-logos.php';
 			break;
 		case 'Python':
-			logoUrl = 'resources/python-logo-only (python.org).png';
+			logoUrl = 'python-logo-only (from python.org).png';
+			licenseLink = 'https://www.python.org/community/logos/';
 			break;
 		default:
 			alert('logo not found for "' + tag + '"');
 	}
 	
-	return '<img src="' + logoUrl + '">'; 
+	return '<a href="' + licenseLink + '"><img src="resources/' + logoUrl + '"></a>'; 
 
 }
 
