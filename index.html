@@ -27,16 +27,19 @@ table {
 
 function getTechLogo(tag) {
 
-switch(tag) {
-  case '':
-    // code block
-    break;
-  case ' ':
-    // code block
-    break;
-  default:
-    alert('logo not found for "' + tag + '"');
-} 
+	switch(tag) {
+		case '':
+			break;
+		case 'Python':
+			logoUrl = 'resources/python-logo-only (python.org).png';
+			break;
+		default:
+			alert('logo not found for "' + tag + '"');
+	}
+	
+	return '<img src="' + logoUrl + '">'; 
+
+}
 
 
 function showProjectCard(i) {
