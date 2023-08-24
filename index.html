@@ -43,7 +43,7 @@ function getTechLogo(tag) {
 			alert('logo not found for "' + tag + '"');
 	}
 	
-	return '<a href="' + licenseLink + '"><img src="resources/' + logoUrl + '"></a>'; 
+	return '<a href="' + licenseLink + '"><img src="resources/' + logoUrl + '" height=40></a>'; 
 
 }
 
@@ -86,7 +86,6 @@ switch (document.getElementById('projectCard' + i).style.display) {
 					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title;
 					
 					for (let tag of projects[i].technologies) {
-						alert('tag: = ' + tag);
 						domString += getTechLogo(tag);
 					}
 					
