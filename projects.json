@@ -41,5 +41,23 @@
 "isPython":false,
 "isPhp":false,
 "isFrontEnd":true
+},
+{
+"title":"Projects showcase (this page)",
+"summary":"...",
+"details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.",
+"motivation":"...",
+"isPython":false,
+"isPhp":false,
+"isFrontEnd":false
+},
+{
+"title":"Kotel screen",
+"summary":"...",
+"details":"<a href=https://tuejoshua.github.io/kotelScreen.html>here</a>",
+"motivation":"...",
+"isPython":false,
+"isPhp":false,
+"isFrontEnd":false
 }
 ]
