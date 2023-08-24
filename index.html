@@ -59,8 +59,11 @@ switch (document.getElementById('projectCard' + i).style.display) {
             for (i=0; i<projects.length; i++) {
 					
 					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title;
+					
+					for (let tag of projects[i].technologies) {
+						domString += tag;
+					}
 
-					projects[i].technologies.forEach(alert(tag));
 					
 					domString += '</button>' +
 					'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>';
