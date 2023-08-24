@@ -80,6 +80,7 @@ switch (document.getElementById('projectCard' + i).style.display) {
 					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title;
 					
 					for (let tag of projects[i].technologies) {
+						alert('tag: = ' + tag);
 						domString += getTechLogo(tag);
 					}
 					
