@@ -21,7 +21,23 @@ table {
  
 <script>
 
-var projects; // GLOBAL
+
+//var projects; // GLOBAL
+
+
+function getTechLogo(tag) {
+
+switch(tag) {
+  case '':
+    // code block
+    break;
+  case ' ':
+    // code block
+    break;
+  default:
+    alert('logo not found for "' + tag + '"');
+} 
+
 
 function showProjectCard(i) {
 
@@ -48,7 +64,7 @@ switch (document.getElementById('projectCard' + i).style.display) {
         if (oXHR.readyState == 4) {		// Check if request is complete.
             
                 // Parse text contents of JSON file into Javascript object
-                projects = JSON.parse(this.responseText);
+                var projects = JSON.parse(this.responseText);
 
                 // Build HTML DOM string
 				
@@ -61,15 +77,12 @@ switch (document.getElementById('projectCard' + i).style.display) {
 					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title;
 					
 					for (let tag of projects[i].technologies) {
-						domString += tag;
+						domString += getTechLogo(tag);
 					}
-
 					
 					domString += '</button>' +
 					'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>';
-					
-					alert(projects[i].technologies);
-					
+										
             }
             
             // Write HTML DOM string to DIV element
