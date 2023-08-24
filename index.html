@@ -58,7 +58,7 @@ switch (document.getElementById('projectCard' + i).style.display) {
                 
             for (i=0; i<projects.length; i++) {
 					
-					domString += '<button type="button" style="width: 100%;text-align: left; font-size: 1.5em;" onclick="showProjectCard(' + i + ');">' + projects[i].title + '</button>' +
+					domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' + projects[i].title + '</button>' +
 					'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>';
 					
 					alert(projects[i].technologies);
