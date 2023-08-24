@@ -47,7 +47,7 @@ switch (document.getElementById('projectCard' + i).style.display) {
     function reportStatus() {
         if (oXHR.readyState == 4) {		// Check if request is complete.
             
-                // Parse text contents of JSON file into Javascipt object
+                // Parse text contents of JSON file into Javascript object
                 projects = JSON.parse(this.responseText);
 
                 // Build HTML DOM string
@@ -60,6 +60,8 @@ switch (document.getElementById('projectCard' + i).style.display) {
 					
 					domString += '<button type="button" style="width: 100%;text-align: left; font-size: 1.5em;" onclick="showProjectCard(' + i + ');">' + projects[i].title + '</button>' +
 					'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>';
+					
+					alert(projects[i].technologies);
 					
             }
             
