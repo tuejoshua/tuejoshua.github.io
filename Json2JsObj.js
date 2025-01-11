@@ -13,5 +13,5 @@ function reportStatus() {
             
         // Parse text contents of JSON file into Javascript object
         return JSON.parse(this.responseText);
-		
+	}	
 }
