@@ -56,6 +56,8 @@ function showProjectCard(i) {
 	}
 }
 
+Json2JsObj('projects.json');
+
 /*
 // Create XMLHttpRequest object.
 var oXHR = new XMLHttpRequest();
@@ -72,8 +74,9 @@ function reportStatus() {
         var projects = JSON.parse(this.responseText);
 */
 
-var projects = Json2JsObj('projects.json');
+//var projects = Json2JsObj('projects.json');
 
+/*
         // Build HTML DOM string	
         var domString = '';
      
@@ -92,6 +95,9 @@ var projects = Json2JsObj('projects.json');
             
         // Write HTML DOM string to DIV element
         document.getElementById('showData').innerHTML = domString;
+		
+		*/
+		
 //    }
 //}
 
