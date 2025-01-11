@@ -1,12 +1,13 @@
 function Json2JsObj(file) {
 
-// Create XMLHttpRequest object.
-var oXHR = new XMLHttpRequest();
+	// Create XMLHttpRequest object.
+	var oXHR = new XMLHttpRequest();
 
-// Initiate request.
-oXHR.onreadystatechange = reportStatus;
-oXHR.open("GET", file, true);  // get json file.
-oXHR.send();
+	// Initiate request.
+	oXHR.onreadystatechange = reportStatus;
+	oXHR.open("GET", file, true);  // get json file.
+	oXHR.send();
+}
 
 function reportStatus() {
     if (oXHR.readyState == 4) {		// Check if request is complete.
