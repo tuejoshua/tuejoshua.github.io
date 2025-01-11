@@ -4,11 +4,11 @@ function Json2JsObj(file) {
 	var oXHR = new XMLHttpRequest();
 
 	// Initiate request.
-	oXHR.onreadystatechange = reportStatus;
+	oXHR.onreadystatechange = reportStatus(oXHR); // ADDED input param here and on function declaration below...?
 	oXHR.open("GET", file, true);  // get json file.
 	oXHR.send();
 
-function reportStatus() {
+function reportStatus(oXHR) {
     if (oXHR.readyState == 4) {		// Check if request is complete.
             
         // Parse text contents of JSON file into Javascript object
