@@ -44,7 +44,7 @@ async function displayContentsOfJson(file) {
 	for (i=0; i<projects.length; i++) {
 
 // TEMPORARY: Testing font sizes
-switch (i)
+switch (i) {
 			case 1:
 				fontSizeParam = 'font-size: 100%';
 				break;
