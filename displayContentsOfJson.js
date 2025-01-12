@@ -44,7 +44,7 @@ async function displayContentsOfJson(file) {
 	for (i=0; i<projects.length; i++) {
 
 // TEMPORARY: Testing font sizes
-switch (i) {
+/* switch (i) {
 			case 1:
 				fontSizeParam = 'font-size: 100%';
 				break;
@@ -57,9 +57,9 @@ switch (i) {
 			case 4:
 				fontSizeParam = 'font-size: 2em';
 				break;					
-			default:
+			default: */
 				fontSizeParam = ''; // i.e. default			
-		}
+		//}
 					
 		domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
 			'<table style="width: 100%; border-collapse: collapse; ' + fontSizeParam + '"><tr><td style="border: none">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
