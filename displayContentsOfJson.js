@@ -64,7 +64,7 @@ async function displayContentsOfJson(file) {
 		fontSizeParam = '1.3em';
 					
 		domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
-			'<table style="width: 100%; border-collapse: collapse; ' + fontSizeParam + '"><tr><td style="border: none">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 					
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
