@@ -31,7 +31,7 @@ function showProjectCard(i) {
 
 /* The following is based on an example on https://www.w3schools.com/jsref/api_fetch.asp
 ...yes, previously using a "new XMLHttpRequest()"
-...and of course, one COULD just use React, by it seems I'm still a bit fanatic about "DIY"
+...and of course, one COULD just use React, by it seems I'm still a bit of a DIY fanatic
 */
 
 async function displayContentsOfJson(file) {
@@ -42,14 +42,32 @@ async function displayContentsOfJson(file) {
 	var domString = '';
      
 	for (i=0; i<projects.length; i++) {
+
+// TEMPORARY: Testing font sizes
+switch (i)
+			case 1:
+				fontSizeParam = 'font-size: 100%';
+				break;
+			case 2:
+				fontSizeParam = 'font-size: 200%';
+				break;
+			case 3:
+				fontSizeParam = 'font-size: 1em';
+				break;
+			case 4:
+				fontSizeParam = 'font-size: 2em';
+				break;					
+			default:
+				fontSizeParam = ''; // i.e. default			
+		}
 					
 		domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
-			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none;">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + fontSizeParam + '</td><td style="text-align: right; border: none;">';
 					
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
 		}
-					
+		
 		domString += '</td></tr></table></button>' +
 			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;">' + projects[i].summary + '<p>' + projects[i].details + '<p>' + projects[i].motivation + '</div>';						
     }
