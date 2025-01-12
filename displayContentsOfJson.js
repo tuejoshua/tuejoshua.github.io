@@ -55,13 +55,13 @@ async function displayContentsOfJson(file) {
 				fontSizeParam = 'font-size: 1em';
 				break;
 			case 4:
-				fontSizeParam = 'font-size: 2em';
+				fontSizeParam = '2em';
 				break;					
 			default:
 				fontSizeParam = ''; // i.e. default			
 		}  */
 		
-		fontSizeParam = '1.3em';
+		fontSizeParam = 'font-size: 1.3em';
 					
 		domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
 			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
