@@ -25,7 +25,7 @@ function getTechLogo(tag) {
 			alert('logo not found for "' + tag + '"');
 			return '';
 	}
-	return '<a href="' + licenseLink + '"><img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '. Click to see license for this icon"></a>'; 
+	return '<a href="' + licenseLink + '"><img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nClick to see license for this icon"></a>'; 
 }
 
 function showProjectCard(i) {
