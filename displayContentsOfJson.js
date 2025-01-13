@@ -3,24 +3,29 @@ function getTechLogo(tag) {
 		case 'FrontEnd':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
 			licenseLink = 'https://github.com/shannonmoeller/front-end-logo';
+			altText = 'Front End. Click to see license for this icon';
 			break;
 		case 'JSON':
 			logoUrl = 'JSON_vector_logo.svg (from Wikimedia Commons).png';
 			licenseLink = 'https://commons.wikimedia.org/wiki/File:JSON_vector_logo.svg';
+			altText = 'JSON. Click to see license for this icon';
+
 			break;
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
 			licenseLink = 'https://www.php.net/download-logos.php';
+			altText = 'PHP. Click to see license for this icon';
 			break;
 		case 'Python':
 			logoUrl = 'python-logo-only (from python.org).png';
 			licenseLink = 'https://www.python.org/community/logos/';
+			altText = 'Python. Click to see license for this icon';
 			break;
 		default:
 			alert('logo not found for "' + tag + '"');
 			return '';
 	}
-	return '<a href="' + licenseLink + '"><img src="resources/' + logoUrl + '" height=40></a>'; 
+	return '<a href="' + licenseLink + '"><img alt=" ' + altText + ' " src="resources/' + logoUrl + '" height=40 title="' + altText + '"></a>'; 
 }
 
 function showProjectCard(i) {
