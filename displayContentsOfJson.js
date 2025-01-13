@@ -8,7 +8,7 @@ function getTechLogo(tag) {
 		case 'JSON':
 			logoUrl = 'JSON_vector_logo.svg (from Wikimedia Commons).png';
 			licenseLink = 'https://commons.wikimedia.org/wiki/File:JSON_vector_logo.svg';
-			altText = 'JSON. Click to see license for this icon';
+			altText = 'JSON.\nClick to see license for this icon';
 
 			break;
 		case 'PHP':
