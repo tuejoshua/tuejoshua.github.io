@@ -1,0 +1,51 @@
+<html>
+
+<!-- Baseret på søgning via https://talkAI.info/chat/ -->
+
+<head>
+
+<script src="loadScript.js" onerror="window.alert(\'ERROR: Unable to load\n' + this.src);"></script>
+
+<!-- https://visjs.org/; https://github.com/visjs/vis-timeline -->
+<script>
+loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
+</script>
+
+
+</head>
+
+<body>
+
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+  
+	{content: 'Adam', start: '-003761-01-01', end: '-002830-01-01'},
+	{content: 'Noach', start: '-002704-01-01'},
+	{content: 'The Flood', start: '-002104-01-01'},
+
+	{content: '2. Tempel', start: '352-01-01'},
+	
+	{content: 'Israel 60 år', start: '2008-01-01'},
+
+  ]);
+
+  // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options);
+</script>
+<p>
+Hvad skal der ske med loadScript.js?
+<p>
+"Based on vis.js Timeline"
+<p>
+source: Ken Spiro's book
+</body>
+</html>
