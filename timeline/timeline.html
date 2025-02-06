@@ -37,8 +37,8 @@ complete: function(results) {
 }});
 
 function addToDataSet(dataItem) {
-	console.log(dataItem); // TBD from here...
-	items.add({content: 'Adam', start: '-003761-01-01', end: '-002830-01-01'});
+	console.log(dataItem);
+	items.add({content: dataItem[1], start: dataItem[0], end: dataItem[2]});
 }
 
 
