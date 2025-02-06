@@ -1,3 +1,4 @@
+<!doctype html> <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode -->
 <html>
 
 <!-- Baseret på søgning via https://talkAI.info/chat/ -->
@@ -11,6 +12,10 @@
 loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
 </script>
 
+<!-- https://www.papaparse.com/ -->
+<script>
+loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
+</script>
 
 </head>
 
@@ -19,9 +24,25 @@ loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-gr
 <div id="visualization"></div>
 
 <script type="text/javascript">
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
 
+var items = new vis.DataSet();
+
+// delimiter: "\t",
+
+Papa.parse('data.csv', {
+download: true,
+complete: function(results) {
+	console.log("Parsing complete:", results);
+	results.data.forEach(addToDataSet);
+}});
+
+function addToDataSet(dataItem) {
+	console.log(dataItem); // TBD from here...
+	items.add({content: 'Adam', start: '-003761-01-01', end: '-002830-01-01'});
+}
+
+
+/*
   // Create a DataSet (allows two way data-binding)
   var items = new vis.DataSet([
   
@@ -29,23 +50,33 @@ loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-gr
 	{content: 'Noach', start: '-002704-01-01'},
 	{content: 'The Flood', start: '-002104-01-01'},
 
-	{content: '2. Tempel', start: '352-01-01'},
+	{content: '2. Tempel', start: '0352-01-01'},
 	
 	{content: 'Israel 60 år', start: '2008-01-01'},
 
   ]);
+*/
 
   // Configuration for the Timeline
   var options = {};
 
   // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
+  var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+  
 </script>
+<p>
+TO DO:
 <p>
 Hvad skal der ske med loadScript.js?
 <p>
 "Based on vis.js Timeline"
 <p>
 source: Ken Spiro's book
+<p>
+Valg af tidsakse?
+<p>
+Valg af sprog?
+<p>
+powered by VisJs, PapaParse
 </body>
 </html>
