@@ -38,7 +38,7 @@ complete: function(results) {
 
 function addToDataSet(dataItem) {
 	console.log(dataItem);
-	switch dataItem[2] { // TBD if this is necessary
+	switch (dataItem[2]) { // TBD if this is necessary
 		case "":
 			items.add({content: dataItem[1], start: dataItem[0]});
 			break;
