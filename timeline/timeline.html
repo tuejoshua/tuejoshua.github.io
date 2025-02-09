@@ -25,26 +25,37 @@ loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV
 
 <script type="text/javascript">
 
+var data;
+
 Papa.parse('data.csv', {
 download: true,
 complete: function(results) {
 	console.log("Parsing complete:", results);
-	showTimeline(results.data);
+	data = results.data;
+	showTimeline();
 
 }});
 
-function showTimeline(data) {
+function showTimeline() {
 
 var items = new vis.DataSet();
 
+if (document.getElementById('Gregorian').checked) {
+	var calendarOffset = 0;
+	}
+	else { // Hebrew
+	var calendarOffset = 1;
+}
+}
+
 for (let i = 0; i < data.length; i++) {
 	
-	switch (data[i][2]) { // TBD if this is necessary
+	switch (data[i][3]) { // TBD if this is necessary
 		case "":
-			items.add({content: data[i][1], start: data[i][0]});
+			items.add({content: data[i][2], start: data[i][0+calendarOffset]});
 			break;
 		default:
-			items.add({content: data[i][1], start: data[i][0], end: data[i][2]});
+			items.add({content: data[i][2], start: data[i][0+calendarOffset], end: data[i][3+calendarOffset]});
 	}
 }
 
@@ -58,6 +69,18 @@ for (let i = 0; i < data.length; i++) {
 
   
 </script>
+
+<form>
+  <input type="radio" id="Gregorian" name="Calendar" value="Gregorian" onclick="showTimeline();" checked>
+  <!-- From www.w3schools.com:
+  "Tip: Always add the <label> tag for best accessibility practices!" -->
+  <label for="Gregorian">Gregorian</label><br>
+  <input type="radio" id="Hebrew" name="Calendar" value="Gregorian" onclick="showTimeline();">
+  <label for="Hebrew">Hebrew</label><br>  
+</form>
+
+
+
 <p>
 TO DO:
 <p>
@@ -72,5 +95,7 @@ Valg af tidsakse?
 Valg af sprog?
 <p>
 powered by VisJs, PapaParse
+<p>
+-00-00 when not known?
 </body>
 </html>
