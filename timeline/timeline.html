@@ -28,45 +28,43 @@ loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV
 var data;
 
 Papa.parse('data.csv', {
-download: true,
-complete: function(results) {
-	console.log("Parsing complete:", results);
-	data = results.data;
-	showTimeline();
-
-}});
+	download: true,
+	complete: function(results) {
+		console.log("Parsing complete:", results);
+		data = results.data;
+		showTimeline();
+	}
+}
+);
 
 function showTimeline() {
 
-var items = new vis.DataSet();
+	var items = new vis.DataSet();
 
-if (document.getElementById('Gregorian').checked) {
-	var calendarOffset = 0;
+	if (document.getElementById('Gregorian').checked) {
+		var calendarOffset = 0;
 	}
 	else { // Hebrew
-	var calendarOffset = 1;
-}
-}
-
-for (let i = 0; i < data.length; i++) {
-	
-	switch (data[i][3]) { // TBD if this is necessary
-		case "":
-			items.add({content: data[i][2], start: data[i][0+calendarOffset]});
-			break;
-		default:
-			items.add({content: data[i][2], start: data[i][0+calendarOffset], end: data[i][3+calendarOffset]});
+		var calendarOffset = 1;
 	}
-}
 
-  // Configuration for the Timeline
-  var options = {};
+	for (let i = 0; i < data.length; i++) {
+		switch (data[i][3]) { // TBD if this is necessary
+			case "":
+				items.add({content: data[i][2], start: data[i][0+calendarOffset]});
+				break;
+			default:
+				items.add({content: data[i][2], start: data[i][0+calendarOffset], end: data[i][3+calendarOffset]});
+		}
+	}
+
+	// Configuration for the Timeline
+	var options = {};
 		
-  // Create a Timeline
-  var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+	// Create a Timeline
+	var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
   
 }
-
   
 </script>
 
@@ -78,8 +76,6 @@ for (let i = 0; i < data.length; i++) {
   <input type="radio" id="Hebrew" name="Calendar" value="Gregorian" onclick="showTimeline();">
   <label for="Hebrew">Hebrew</label><br>  
 </form>
-
-
 
 <p>
 TO DO:
