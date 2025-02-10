@@ -52,7 +52,7 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	}
 
 	for (let i = 0; i < data.length; i++) {
-		switch (data[i][3]) { // TBD if this is necessary
+		switch (data[i][3+calendarOffset]) { // TBD if this is necessary
 			case "":
 				console.log(data[i][0+calendarOffset] + " | " + data[i][2]); 
 				items.add({content: data[i][2], start: data[i][0+calendarOffset]});
