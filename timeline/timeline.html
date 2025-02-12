@@ -12,20 +12,18 @@
 loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
 </script>
 
-<!-- Adding this in an attempt to make the "overflow" CSS work... -->
-<link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
 <!-- https://www.papaparse.com/ -->
 <script>
 loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
 </script>
 
-<style>
 <!-- from https://visjs.github.io/vis-timeline/examples/timeline/items/rangeOverflowItem.html 
 and
 https://github.com/almende/vis/issues/1538
  TO DO: Investigate these labels further; if we can do without one of them? -->
-.vis-item .vis-item-range .vis-item-overflow {
+<style type="text/css">
+.vis-item .vis-item-overflow {
 	overflow: visible;
     }
 </style>
