@@ -1,7 +1,7 @@
 <!doctype html> <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode -->
 <html>
 
-<!-- Baseret på søgning via https://talkAI.info/chat/ -->
+<!-- Denne side baseret på en initiel søgning via https://talkAI.info/chat/ -->
 
 <head>
 
@@ -12,17 +12,14 @@
 loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
 </script>
 
-
 <!-- https://www.papaparse.com/ -->
 <script>
 loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
 </script>
 
 <!-- from https://visjs.github.io/vis-timeline/examples/timeline/items/rangeOverflowItem.html 
-and
-https://github.com/almende/vis/issues/1538
- TO DO: Investigate these labels further; if we can do without one of them? -->
-<style type="text/css">
+...it seems BOTH of the following labels are necessary... -->
+<style>
 .vis-item .vis-item-overflow {
 	overflow: visible;
     }
@@ -63,9 +60,10 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	}
 
 	for (let i = 0; i < data.length; i++) {
+		console(date(data[i][0]));
 		switch (data[i][3+calendarOffset]) { // TBD if this is necessary
 			case "":
-				console.log(data[i][0+calendarOffset] + " | " + data[i][2]); 
+				console.log(data[i][0+calendarOffset] + " | " + data[i][2]);
 				items.add({content: data[i][2], start: data[i][0+calendarOffset]});
 				break;
 			default:
