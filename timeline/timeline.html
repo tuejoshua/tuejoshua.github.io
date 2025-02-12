@@ -60,7 +60,6 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	}
 
 	for (let i = 0; i < data.length; i++) {
-		console(date(data[i][0]));
 		switch (data[i][3+calendarOffset]) { // TBD if this is necessary
 			case "":
 				console.log(data[i][0+calendarOffset] + " | " + data[i][2]);
