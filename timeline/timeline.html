@@ -58,13 +58,11 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	else { // Hebrew
 		var calendarOffset = 1;
 	}
-
-debugger;
-				
+	
 	for (let i = 0; i < data.length; i++) {
 	/* based on https://johnkavanagh.co.uk/articles/check-if-a-string-contains-only-whitespace-with-javascript/
 	... and https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons */
-		switch (data[i][3+calendarOffset].trim().length === 0) {
+		switch (data[i][3+calendarOffset].trim()) {
 			case "":
 				console.log(data[i][0+calendarOffset] + " | " + data[i][2]);
 				items.add({content: data[i][2], start: date(data[i][0+calendarOffset])});
