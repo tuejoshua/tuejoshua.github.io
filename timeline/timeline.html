@@ -93,8 +93,7 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	}
 
 	if (!errorString == "") {
-		alert(errorString);
-		return;
+		alert("The following data errors were found:\n\n" + errorString);
 	}
 
 	document.getElementById('visualization').innerHTML = "";
