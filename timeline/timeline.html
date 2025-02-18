@@ -102,6 +102,11 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	// Create a Timeline
 	var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
 
+	// Lock the default view as maximum zoom out
+	var defaultWinddow = timeline.getWindow();
+	debugger;
+	//timeline.setOptions( defaultWindow.start );
+
 	// See "showCurrentTime" above
 	if (!document.getElementById('Gregorian').checked) { // Hebrew
 		timeline.addCustomTime(date("5785"));
