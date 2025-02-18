@@ -61,8 +61,7 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	else { // Hebrew
 		var calendarOffset = 1;
 		// By default, a red line is shown at current timestamp - in Gregorian time, so doesn't work (yet) for Hebrew time...
-	options.showCurrentTime = false;
-	options.addCustomTime("5785-01-01");
+		options.showCurrentTime = false; // Manual adding of correct line - see below
 	}
 	
 	for (let i = 0; i < data.length; i++) {
@@ -83,6 +82,11 @@ document.getElementById('visualization').innerHTML = "";
 		
 	// Create a Timeline
 	var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+
+	// See "showCurrentTime" above
+	if (!document.getElementById('Gregorian').checked) { // Hebrew
+		timeline.addCustomTime(date("5785"));
+	}
   
 }
 
