@@ -64,21 +64,40 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 		options.showCurrentTime = false; // Manual adding of correct line - see below
 	}
 	
+	var errorString = "";
+	
 	for (let i = 0; i < data.length; i++) {
-	/* based on https://johnkavanagh.co.uk/articles/check-if-a-string-contains-only-whitespace-with-javascript/
-	... and https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons */
-		switch (data[i][3+calendarOffset].trim()) {
+	
+		// TRIM: remove whitespace pre- and suffix
+		/* based on https://johnkavanagh.co.uk/articles/check-if-a-string-contains-only-whitespace-with-javascript/ */
+		startTime = data[i][0+calendarOffset].trim();
+		label     = data[i][2].trim();
+		endTime   = data[i][3+calendarOffset].trim();
+	
+		if (startTime == "") {
+			errorString += "Row #" + i + "(" + label + "): start time empty.\n";
+			continue;
+		}
+		
+		startString = date(startTime);
+	
+		switch (endTime) {
 			case "":
-				console.log(data[i][0+calendarOffset] + " | " + data[i][2]);
-				items.add({content: data[i][2], start: date(data[i][0+calendarOffset])});
+				console.log(startTime + " | " + label);
+				items.add({content: label, start: startString});
 				break;
 			default:
-				console.log(data[i][0+calendarOffset] + " | " + data[i][2] + " | " + data[i][3+calendarOffset]); 
-				items.add({content: data[i][2], start: date(data[i][0+calendarOffset]), end: date(data[i][3+calendarOffset])});
+				console.log(startString + " | " + label + " | " + endTime); 
+				items.add({content: label, start: startString, end: date(endTime)});
 		}
 	}
 
-document.getElementById('visualization').innerHTML = "";
+	if (!errorString == "") {
+		alert(errorString);
+		return;
+	}
+
+	document.getElementById('visualization').innerHTML = "";
 		
 	// Create a Timeline
 	var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
@@ -123,3 +142,8 @@ Valg af sprog?
 compute e.g. Gregorian from Hebrew? (missing dates will just be set to leftmost start of timeline, it seems - handle these somehow)
 </body>
 </html>
+
+<!--
+No longer used, but relevant knowledge found during development of this file:
+- https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons 
+-->
