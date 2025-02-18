@@ -102,9 +102,8 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 	var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
 
 	// Lock the default view as maximum zoom out
-	var defaultWinddow = timeline.getWindow();
-	debugger;
-	//timeline.setOptions( defaultWindow.start );
+	var defaultWindow = timeline.getWindow();
+	timeline.setOptions({min: defaultWindow.start, max: defaultWindow.end});
 
 	// See "showCurrentTime" above
 	if (!document.getElementById('Gregorian').checked) { // Hebrew
