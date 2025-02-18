@@ -62,6 +62,7 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 		var calendarOffset = 1;
 		// By default, a red line is shown at current timestamp - in Gregorian time, so doesn't work (yet) for Hebrew time...
 	options.showCurrentTime = false;
+	options.addCustomTime("5785-01-01");
 	}
 	
 	for (let i = 0; i < data.length; i++) {
@@ -103,6 +104,8 @@ function date(year) {
 <p>
 TO DO:
 <p>
+CurrentTime line for Hebrew is currently hardcoded to 5785...
+<p>
 Hvad skal der ske med loadScript.js?
 <p>
 show sources
@@ -112,8 +115,6 @@ Valg af tidsakse?
 Valg af sprog?
 <p>
 "Based on vis.js Timeline"; powered by VisJs, PapaParse
-<p>
-In Hebrew timeline, still showing "now-red-line" at 2025
 <p>
 compute e.g. Gregorian from Hebrew? (missing dates will just be set to leftmost start of timeline, it seems - handle these somehow)
 </body>
