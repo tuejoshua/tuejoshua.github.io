@@ -103,7 +103,6 @@ document.getElementById('visualization').innerHTML = "Loading, please wait...";
 
 	// Lock the default view as maximum zoom out
 	var defaultWindow = timeline.getWindow();
-	debugger; // the following line does not work
 	timeline.setOptions({min: defaultWindow.start, max: defaultWindow.end});
 
 	// See "showCurrentTime" above
