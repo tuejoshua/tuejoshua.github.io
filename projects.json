@@ -22,42 +22,42 @@
 "title":"PHP image gallery",
 "summary":"...",
 "details":"...",
-"motivation":"...",
+"motivation":"When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website.",
 "technologies":["PHP","FrontEnd"]
 },
 {
-"title":"Tarps kabale",
+"title":"Tarps kabale (Four Seasons)",
 "summary":"<a href='tarpsKabale/TarpsKabale.html'>Tarps kabale</a>",
 "details":"...",
-"motivation":"...",
+"motivation":"This is a patience/solitaire game that we have played a lot in my family.",
 "technologies":["FrontEnd"]
 },
 {
 "title":"Projects showcase (this page)",
-"summary":"...",
+"summary":"",
 "details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.",
-"motivation":"...",
+"motivation":"",
 "technologies":["JSON"]
 },
 {
 "title":"Kotel screen",
-"summary":"...",
+"summary":"Using various APIs; trying to layout the page to maximize screen use and legibility.",
 "details":"<a href=https://tuejoshua.github.io/kotelScreen.html>here</a>",
-"motivation":"...",
+"motivation":"Inspired by the screens hanging at the Kotel (Wailing Wall in Jerusalem), I wanted to create one for my home/own use, to be shown on a tablet, especially for days like Shabbat and Yom Tov, where I cannot use my smartphone as an alternative.",
 "technologies":[]
 },
 {
 "title":"Time sheet parser",
-"summary":"...",
-"details":"",
-"motivation":"...",
+"summary":"A Python-based tool compiled to an executable that I could run on my work PC (where the timestamp file would be generated), generating a CSV file containing time spent per project per day.",
+"details":"Reading the  timestamp file, accumulating time spent per project and per day, rounding each day up(!) to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many ASSERTs as I could come up with to sanity check the data along the way.",
+"motivation":"I found myself spending unreasonable amounts of time filling in my monthly time slip for my customer, and did not feel good/confident about the estimates I did. A collegue of mine mentioned incidentally that the good ole Windows app Notepad could log timestamps by pressing F5. This gave me an easy way of checking in and out of projects and tasks during the work day, but a lot of minute-precision data points that needed parsing. Time for automation! ;-)",
 "technologies":["Python"]
 },
 {
 "title":"EDF header record visualization",
-"summary":"...",
+"summary":"",
 "details":"",
-"motivation":"...",
+"motivation":"",
 "technologies":["FrontEnd"]
 },
 ]
