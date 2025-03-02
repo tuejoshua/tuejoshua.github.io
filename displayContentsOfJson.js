@@ -91,7 +91,7 @@ async function displayContentsOfJson(file) {
 		
 		
 		domString += '</td></tr></table></button>' +
-			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + motivationString + '<p>' + projects[i].summary + '<p>' + projects[i].details + '</div>';						
+			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + motivationString + '<p>' + summaryString + '<p>' + projects[i].details + '</div>';						
     }
             
     // Write HTML DOM string to DIV element
