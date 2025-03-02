@@ -81,17 +81,21 @@ async function displayContentsOfJson(file) {
 		
 		motivationString = projects[i].motivation.trim();
 		if (motivationString !== '') {
-			motivationString = '<h5>motivation:<h5>';
+			motivationString = '<h5>motivation:<h5>' + motivationString;
 		}
 		
 		summaryString = projects[i].summary.trim();
 		if (summaryString !== '') {
-			summaryString = '<b>summary: <b>';
+			summaryString = '<b>summary: <b>' + summaryString;
+		}
+
+		detailsString = projects[i].details.trim();
+		if (detailsString !== '') {
+			detailsString = '<b>details: <b>' + detailsString;
 		}
 		
-		
 		domString += '</td></tr></table></button>' +
-			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + motivationString + '<p>' + summaryString + '<p>' + projects[i].details + '</div>';						
+			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + motivationString + '<p>' + summaryString + '<p>' + detailsString + '</div>';						
     }
             
     // Write HTML DOM string to DIV element
