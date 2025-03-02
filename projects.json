@@ -68,6 +68,14 @@
 "details":"...",
 "motivation":"When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website. It was (I believe) also my first ''real'' experience with PHP.",
 "technologies":["PHP","FrontEnd"]
+},
+
+{
+"title":"Timeline",
+"summary":"",
+"details":"",
+"motivation":"",
+"technologies":[]
 }
 
 ]
