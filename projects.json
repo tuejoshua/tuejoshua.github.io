@@ -46,4 +46,18 @@
 "motivation":"...",
 "technologies":[]
 }
+{
+"title":"Time sheet parser",
+"summary":"...",
+"details":"",
+"motivation":"...",
+"technologies":["Python"]
+},
+{
+"title":"EDF header record visualization",
+"summary":"...",
+"details":"",
+"motivation":"...",
+"technologies":["FrontEnd"]
+},
 ]
