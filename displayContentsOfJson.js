@@ -79,8 +79,19 @@ async function displayContentsOfJson(file) {
 				domString += getTechLogo(tag);
 		}
 		
+		motivationString = projects[i].motivation.trim();
+		if (motivationString !== '') {
+			motivationString = '<h5>motivation:<h5>';
+		}
+		
+		summaryString = projects[i].summary.trim();
+		if (summaryString !== '') {
+			summaryString = '<b>summary: <b>';
+		}
+		
+		
 		domString += '</td></tr></table></button>' +
-			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + projects[i].motivation + '<p>' + projects[i].summary + '<p>' + projects[i].details + '</div>';						
+			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + motivationString + '<p>' + projects[i].summary + '<p>' + projects[i].details + '</div>';						
     }
             
     // Write HTML DOM string to DIV element
