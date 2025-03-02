@@ -81,17 +81,17 @@ async function displayContentsOfJson(file) {
 		
 		motivationString = projects[i].motivation.trim();
 		if (motivationString !== '') {
-			motivationString = '<h5>motivation:<h5>' + motivationString;
+			motivationString = '<h5>motivation:</h5>' + motivationString;
 		}
 		
 		summaryString = projects[i].summary.trim();
 		if (summaryString !== '') {
-			summaryString = '<b>summary: <b>' + summaryString;
+			summaryString = '<b>summary: </b>' + summaryString;
 		}
 
 		detailsString = projects[i].details.trim();
 		if (detailsString !== '') {
-			detailsString = '<b>details: <b>' + detailsString;
+			detailsString = '<b>details: </b>' + detailsString;
 		}
 		
 		domString += '</td></tr></table></button>' +
