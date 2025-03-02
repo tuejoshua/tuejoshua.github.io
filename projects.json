@@ -49,15 +49,15 @@
 {
 "title":"Time sheet parser",
 "summary":"A Python-based tool compiled to an executable that I could run on my work PC (where the timestamp file would be generated), generating a CSV file containing time spent per project per day.",
-"details":"Reading the  timestamp file, accumulating time spent per project and per day, rounding each day up(!) to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many ASSERTs as I could come up with to sanity check the data along the way.",
+"details":"Reading the  timestamp file, accumulating time spent per project and per day, rounding each day up(!) to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many ASSERTs as I could come up with to sanity check the data along the way.<p>Sorry, the tool was developed partly on company time, so I cannot share it. I may share some screenshots or other way of illustration in the future...",
 "motivation":"I found myself spending unreasonable amounts of time filling in my monthly time slip for my customer, and did not feel good/confident about the estimates I did. A collegue of mine mentioned incidentally that the good ole Windows app Notepad could log timestamps by pressing F5. This gave me an easy way of checking in and out of projects and tasks during the work day, but a lot of minute-precision data points that needed parsing. Time for automation! ;-)",
 "technologies":["Python"]
 },
 {
 "title":"EDF header record visualization",
-"summary":"",
-"details":"",
-"motivation":"",
+"summary":"A front-end page that lets you select a(n EDF) file, and displays the contents of the header record in (I believe) a very clear/readable manner. Includes functionality for comparing the contents against user-defined format rules.",
+"details":"...<p>Sorry, the tool was developed partly on company time, so I cannot share it. I may share some screenshots or other way of illustration in the future...",
+"motivation":"At one point, I was tasked with verifying the header record contents of EDF files produced by my company's product (if you don't understand what that means, you may Google ''EDF file format''). This was done by opening the file in Notepad and inspecting line and column position of data - very unsatisfying, if you can imaging. Also, I suspected that I was missing out on ''really'' understanding the format, and that I could gain a lot of insight from visualizing it somehow (and maybe I did ;-)).",
 "technologies":["FrontEnd"]
 },
 ]
