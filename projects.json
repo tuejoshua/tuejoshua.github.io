@@ -1,16 +1,5 @@
 [
-{"title":"Folder index page",
-"summary":"<mark><a href='showFolderContents/iframeTest.html'>A page that</a></mark> lists all contents (i.e. files) of the folder in which the page resides, with links to each file plus other filetype-specific behavior (thumbnails for image files etc.)",
-"details":"The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).",
-"motivation":"I wanted to share direct links to images* on my server. However, since my webhost does not allow direct access to image files, I needed an ''in-between'' page for handling that traffic. As I also wanted links to be as short as possible, I came up with this solution, where I can simply put relevant resource(s) in a folder, include a simple ''index.php'' wrapper file, and then share the link to the folder instead.<p>*) Originally, the output image for <a href='#Zmanim_for_Machsike_Hadas,_Copenhagen'>the Zmanim_for_Machsike_Hadas project</a>; where the link actually got a LOT shorter (due to a long file name).",
-"technologies":["PHP","FrontEnd"]
-},
-{"title":"Zmanim for Machsike Hadas, Copenhagen",
-"summary":" I took pictures of its pages, sent them through an online OCR service, did some manual cleanup of the result, and ended up with CSV files containing data points that, when plotted, yield the curves shown here:<p><a href='zmanim/zmanim_machsikeHadasCopenhagen.png'><img src='zmanim/zmanim_machsikeHadasCopenhagen.png' height=100></a>",
-"details":"<a href='https://gist.github.com/tuejoshua/a450b4492218327cb46c471e9191adfd'>Here</a> is a GitHub Gist with my Python code.",
-"motivation":"I wanted to visualize the data contained in a hard copy table of halachic times (stored in the Machsike Hadas synagogue of Copenhagen). (For the uninitiated: the 'netz' and 'skia' curves indicate sunrise and sunset, respectively. Please note that daylight savings is not included.)",
-"technologies":["Python"]
-},
+
 {
 "title":"Hilchot Brachot games",
 "summary":"A suite of games for practicing the principles of Hilchot Brachot* (hebrew: ''Laws of Blessings''); in particular, Birkat HaNehinin (Blessings before and after all types of food).<p>The main page is <a href='hilchotBrachot'>here</a>.<p>*) as stated inside the games as well: please do not decide halachic questions based on these games; they are meant only as an AID, not as a SOURCE of learning - for the latter, <a href='https://www.acronymattic.com/Ask-Your-Local-Orthodox-Rabbi-(AYLOR).html'>AYLOR</a>",
@@ -18,34 +7,7 @@
 "motivation":"Besides the goal to aid learning the subject matter for kids and adults alike, also: how much of a ''real'' game experience can be created using only these languages? ... <p>",
 "technologies":["FrontEnd"]
 },
-{
-"title":"PHP image gallery",
-"summary":"...",
-"details":"...",
-"motivation":"When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website. It was (I believe) also my first ''real'' experience with PHP.",
-"technologies":["PHP","FrontEnd"]
-},
-{
-"title":"Tarps kabale (Four Seasons)",
-"summary":"<a href='tarpsKabale/TarpsKabale.html'>Tarps kabale</a>",
-"details":"...",
-"motivation":"This is a patience/solitaire game that we have played a lot in my family.",
-"technologies":["FrontEnd"]
-},
-{
-"title":"Projects showcase (this page)",
-"summary":"",
-"details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.",
-"motivation":"",
-"technologies":["JSON"]
-},
-{
-"title":"Kotel screen",
-"summary":"Using various APIs; trying to layout the page to maximize screen use and legibility.",
-"details":"<a href=https://tuejoshua.github.io/kotelScreen.html>here</a>",
-"motivation":"Inspired by the screens hanging at the Kotel (Wailing Wall in Jerusalem), I wanted to create one for my home/own use, to be shown on a tablet, especially for days like Shabbat and Yom Tov, where I cannot use my smartphone as an alternative.",
-"technologies":[]
-},
+
 {
 "title":"Time sheet parser",
 "summary":"A Python-based tool compiled to an executable that I could run on my work PC (where the timestamp file would be generated), generating a CSV file containing time spent per project per day.",
@@ -53,11 +15,59 @@
 "motivation":"I found myself spending unreasonable amounts of time filling in my monthly time slip for my customer, and did not feel good/confident about the estimates I did. A collegue of mine mentioned incidentally that the good ole Windows app Notepad could log timestamps by pressing F5. This gave me an easy way of checking in and out of projects and tasks during the work day, but a lot of minute-precision data points that needed parsing. Time for automation! ;-)",
 "technologies":["Python"]
 },
+
 {
 "title":"EDF header record visualization",
 "summary":"A front-end page that lets you select a(n EDF) file, and displays the contents of the header record in (I believe) a very clear/readable manner. Includes functionality for comparing the contents against user-defined format rules.",
 "details":"...<p>Sorry, the tool was developed partly on company time, so I cannot share it. I may share some screenshots or other way of illustration in the future...",
 "motivation":"At one point, I was tasked with verifying the header record contents of EDF files produced by my company's product (if you don't understand what that means, you may Google ''EDF file format''). This was done by opening the file in Notepad and inspecting line and column position of data - very unsatisfying, if you can imaging. Also, I suspected that I was missing out on ''really'' understanding the format, and that I could gain a lot of insight from visualizing it somehow (and maybe I did ;-)).",
 "technologies":["FrontEnd"]
+},
+
+{
+"title":"Tarps kabale (Four Seasons)",
+"summary":"<a href='tarpsKabale/TarpsKabale.html'>Tarps kabale</a>",
+"details":"...",
+"motivation":"This is a patience/solitaire game that we have played a lot in my family.",
+"technologies":["FrontEnd"]
+},
+
+{"title":"Zmanim for Machsike Hadas, Copenhagen",
+"summary":" I took pictures of its pages, sent them through an online OCR service, did some manual cleanup of the result, and ended up with CSV files containing data points that, when plotted, yield the curves shown here:<p><a href='zmanim/zmanim_machsikeHadasCopenhagen.png'><img src='zmanim/zmanim_machsikeHadasCopenhagen.png' height=100></a>",
+"details":"<a href='https://gist.github.com/tuejoshua/a450b4492218327cb46c471e9191adfd'>Here</a> is a GitHub Gist with my Python code.",
+"motivation":"I wanted to visualize the data contained in a hard copy table of halachic times (stored in the Machsike Hadas synagogue of Copenhagen). (For the uninitiated: the 'netz' and 'skia' curves indicate sunrise and sunset, respectively. Please note that daylight savings is not included.)",
+"technologies":["Python"]
+},
+
+{
+"title":"Kotel screen",
+"summary":"Using various APIs; trying to layout the page to maximize screen use and legibility.",
+"details":"<a href=https://tuejoshua.github.io/kotelScreen.html>here</a>",
+"motivation":"Inspired by the screens hanging at the Kotel (Wailing Wall in Jerusalem), I wanted to create one for my home/own use, to be shown on a tablet, especially for days like Shabbat and Yom Tov, where I cannot use my smartphone as an alternative.",
+"technologies":["FrontEnd"]
+},
+
+{
+"title":"Projects showcase (this page)",
+"summary":"",
+"details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.",
+"motivation":"",
+"technologies":["JSON"]
+},
+
+{"title":"Folder index page",
+"summary":"<mark><a href='showFolderContents/iframeTest.html'>A page that</a></mark> lists all contents (i.e. files) of the folder in which the page resides, with links to each file plus other filetype-specific behavior (thumbnails for image files etc.)",
+"details":"The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).",
+"motivation":"I wanted to share direct links to images* on my server. However, since my webhost does not allow direct access to image files, I needed an ''in-between'' page for handling that traffic. As I also wanted links to be as short as possible, I came up with this solution, where I can simply put relevant resource(s) in a folder, include a simple ''index.php'' wrapper file, and then share the link to the folder instead.<p>*) Originally, the output image for <a href='#Zmanim_for_Machsike_Hadas,_Copenhagen'>the Zmanim_for_Machsike_Hadas project</a>; where the link actually got a LOT shorter (due to a long file name).",
+"technologies":["PHP","FrontEnd"]
+},
+
+{
+"title":"PHP image gallery",
+"summary":"...",
+"details":"...",
+"motivation":"When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website. It was (I believe) also my first ''real'' experience with PHP.",
+"technologies":["PHP","FrontEnd"]
 }
+
 ]
