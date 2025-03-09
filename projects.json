@@ -33,8 +33,8 @@
 },
 
 {"title":"Zmanim for Machsike Hadas, Copenhagen",
-"motivation":"I wanted to visualize the data contained in a hard copy table of halachic times (stored in the Machsike Hadas synagogue of Copenhagen). (For the uninitiated: the 'netz' and 'skia' curves indicate sunrise and sunset, respectively. Please note that daylight savings is not included.)",
-"summary":" I took pictures of its pages, sent them through an online OCR service, did some manual cleanup of the result, and ended up with CSV files containing data points that, when plotted, yield the curves shown here:<p><a href='zmanim/zmanim_machsikeHadasCopenhagen.png'><img src='zmanim/zmanim_machsikeHadasCopenhagen.png' height=100></a>",
+"motivation":"I wanted to visualize the data contained in a hard copy table of halachic times,  (stored in the Machsike Hadas synagogue of Copenhagen).",
+"summary":" I took pictures of its pages, sent them through an online OCR service, did some manual cleanup of the result, and ended up with CSV files containing data points that, when plotted, yield the curves shown here:<p><a href='zmanim/zmanim_machsikeHadasCopenhagen.png'><img src='zmanim/zmanim_machsikeHadasCopenhagen.png' height=100></a><p>(For the uninitiated: the 'netz' and 'skia' curves indicate sunrise and sunset, respectively. Please note that daylight savings is not included.)",
 "details":"<a href='https://gist.github.com/tuejoshua/a450b4492218327cb46c471e9191adfd'>Here</a> is a GitHub Gist with my Python code.",
 "technologies":["Python"]
 },
