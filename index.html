@@ -6,16 +6,19 @@
 
 /* Based on https://fabiensanglard.net/ */
     @font-face {
-      font-family: 'fabfont';
+      font-family: 'myfontfamily';
       src: url('/fonts/DejaVuSansMono.ttf');
       font-display: block;
     }
     @font-face {
-      font-family: 'fabfont';
+      font-family: 'myfontfamily';
       src: url('/fonts/DejaVuSansMono-Bold.ttf');
       font-weight: bold;
       font-display: block;
     }
+	html {
+	  font-family: myfontfamily, monospace; 
+	}
 
 td, th {
 	border: 1px solid black;
