@@ -42,6 +42,17 @@ table {
 <script>
 displayContentsOfJson("projects.json");
 </script>
+
+<script>
+function externalLink(link) {
+	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
+	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for this destination. Are you sure that you want to continue?')) {
+		location.href = link;
+	}
+}
+</script>
+
+
 </head>
 <body>
 
@@ -55,16 +66,16 @@ Feel free to contact me via the GitHub links below, or in general via <a href="h
 <h2>Some of my projects</h2>
 <!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-<div id='showData'>[ Please wait: Reading data from JSON file... ]</div>
+<div id='showData'>[ Please wait: Reading data from JSON file... <br>  If this message remains in place, either my JSON parsing pipeline is broken - or you're viewing a client-side version of this page ]</div>
 
 <h2>Acknowledgements</h2>
-The technology icons used above are not my creation. Click them to see the license under which I'm using them.
-Fonts are from https://dejavu-fonts.github.io/ (found via <a href="https://fabiensanglard.net/">fabiensanglard.net</a> (also the <i>contents</i> of that site alone make it worth a visit))
+The <b>technology icons</b> used above are the creations of others. Click them to see the source and the license under which I'm using them.<br>
+<b>Fonts</b> are from https://dejavu-fonts.github.io/. (I discovered them while admiring <a href="javascript:void(0)" onClick="externalLink('https://fabiensanglard.net/');">fabiensanglard.net</a>, whose style/layout OR contents alone would make it well worth a visit...)
 
 <h2>To Do</h2>
 - ALL of the above-mentioned projects are in a perpetual state of improvement.<br>
-- Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me?
-- Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of <a href="https://fabiensanglard.net/">fabiensanglard.net</a> (also the <i>contents</i> of that site alone make it worth a visit)<br>
+- Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me?<br>
+- Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of fabiensanglard.net<br>
 - Consider adding a check/warning for dead links functionality
 
 <!--p>
