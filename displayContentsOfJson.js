@@ -25,7 +25,8 @@ function getTechLogo(tag) {
 			alert('logo not found for "' + tag + '"');
 			return '';
 	}
-	return '<a href="' + licenseLink + '"><img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nClick to see license for this icon"></a>'; 
+	// The following statement assumes that externalLink() is defined (currently in index.html)
+	return '<a href="javascript:void(0)" onClick="externalLink(' + licenseLink + ');"><img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nClick to see license for this icon"></a>'; 
 }
 
 function showProjectCard(i) {
