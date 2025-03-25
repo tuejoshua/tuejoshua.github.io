@@ -46,7 +46,7 @@ table {
 <script>
 function externalLink(link) {
 	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
-	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for this destination. Are you sure that you want to continue?')) {
+	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
 		location.href = link;
 	}
 }
@@ -73,11 +73,12 @@ it seems that the I tag is still not deprecated, so I'll use that instead of STY
 
 <h2>Acknowledgements</h2>
 The <b>technology icons</b> used above are the creations of others. Click them to see the source and the license under which I'm using them.<br><br>
-<b>Fonts</b> are from <a href="javascript:void(0)" onClick="externalLink('https://dejavu-fonts.github.io/');">dejavu-fonts.github.io</a>. (I discovered them while admiring <a href="javascript:void(0)" onClick="externalLink('https://fabiensanglard.net/');">fabiensanglard.net</a>, whose style/layout OR contents alone would make it well worth a visit...)<br><br>
-<b><a href="javascript:void(0)" onClick="externalLink('https://en.wikipedia.org/wiki/Favicon');">Favicon</a></b> generated via (Paint and) <a href="javascript:void(0)" onClick="externalLink('https://www.favicon.cc/');">favicon.cc</a>
+<b>Fonts</b> are from <a title="https://dejavu-fonts.github.io/" href="javascript:void(0)" onClick="externalLink('https://dejavu-fonts.github.io/');">dejavu-fonts.github.io</a>. (I discovered them while admiring <a title="https://fabiensanglard.net/" href="javascript:void(0)" onClick="externalLink('https://fabiensanglard.net/');">fabiensanglard.net</a>, whose style/layout OR contents alone would make it well worth a visit...)<br><br>
+<b><a title="https://en.wikipedia.org/wiki/Favicon" href="javascript:void(0)" onClick="externalLink('https://en.wikipedia.org/wiki/Favicon');">Favicon</a></b> generated via (Paint and) <a title="https://www.favicon.cc/" href="javascript:void(0)" onClick="externalLink('https://www.favicon.cc/');">favicon.cc</a>
 
 <h2>To Do</h2>
 - Fix the current bug so the technology icons can be clicked again...<br>
+- consider replacing the hardcoded boilerplate for externalLink() links with a preprocessing macro like a JS function or similar?
 - ALL of the above-mentioned projects are in a perpetual state of improvement.<br>
 - Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me?<br>
 - Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of fabiensanglard.net<br>
