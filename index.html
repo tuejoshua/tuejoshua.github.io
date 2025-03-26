@@ -41,16 +41,7 @@ table {
  -->
 
 <!-- INCLUDEs -->
-<script src="displayContentsOfJson.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
-
-<script>
-function externalLink(link) {
-	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
-	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
-		location.href = link;
-	}
-}
-</script>
+<script src="displayContentsOfJson.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script><!-- for now, this file includes externalLink() -->
 
 <script>
 displayContentsOfJson("projects.json");
