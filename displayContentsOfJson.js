@@ -1,10 +1,3 @@
-function externalLink(link) {
-	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
-	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
-		location.href = link;
-	}
-}
-
 function getTechLogo(tag) {
 	switch(tag) {
 		case 'FrontEnd':
