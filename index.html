@@ -47,7 +47,7 @@ table {
 function externalLink(link) {
 	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
 	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
-		location.href = link;
+		window.open(link);
 	}
 }
 </script>
@@ -63,7 +63,7 @@ displayContentsOfJson("projects.json");
 <h1><script>document.write(document.title);</script></h1>
 
 <h2>About me/contact</h2>
-Feel free to contact me via the GitHub links below, or in general via <a href="https://www.linkedin.com/in/tue-chasin/">my LinkedIn profile.</a>
+Feel free to contact me via the GitHub links below, or in general via <a href="https://www.linkedin.com/in/tue-chasin/">my LinkedIn profile</a>.
 <br><br>
 
 <h2>Some of my projects</h2>
