@@ -40,17 +40,24 @@ table {
                 // In order to ease the use of this table when it gets large, the first/top row is made "sticky" (https://www.w3schools.com/css/css_positioning.asp) with the following STYLE attributes: "position: -webkit-sticky; /* Safari */ position: sticky; top: 0;"
  -->
 
-<!-- INCLUDEs -->
-<script src="displayContentsOfJson.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
-
 <script>
 function externalLink(link) {
 	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
 	if (confirm('By following this link to ' + link + ', you\'ll be leaving the relative safety of my ' + domain + ' domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
-		window.open(link);
+		window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
 	}
 }
+
+function linkMacro(url, linkText) {
+	if (linkText === undefined) {
+		linkText = url;
+	}
+	document.write('<a title="https://' + url + '" href="javascript:void(0)" onClick="externalLink(\'https://' + url + '\');">' + linkText + '</a>');
+}
 </script>
+
+<!-- INCLUDEs -->
+<script src="displayContentsOfJson.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
 
 <script>
 displayContentsOfJson("projects.json");
@@ -74,17 +81,16 @@ it seems that the I tag is still not deprecated, so I'll use that instead of STY
 
 <h2>Acknowledgements</h2>
 The <b>technology icons</b> used above are the creations of others. Click them to see the source and the license under which I'm using them.<br><br>
-<b>Fonts</b> are from <a title="https://dejavu-fonts.github.io/" href="javascript:void(0)" onClick="externalLink('https://dejavu-fonts.github.io/');" target="_blank">dejavu-fonts.github.io</a>. (I discovered them while admiring <a title="https://fabiensanglard.net/" href="javascript:void(0)" onClick="externalLink('https://fabiensanglard.net/');" target="_blank">fabiensanglard.net</a>, whose style/layout OR contents alone would make it well worth a visit...)<br><br>
-<b><a title="https://en.wikipedia.org/wiki/Favicon" href="javascript:void(0)" onClick="externalLink('https://en.wikipedia.org/wiki/Favicon');" target="_blank">Favicon</a></b> generated via (MS Paint and) <a title="https://www.favicon.cc/" href="javascript:void(0)" onClick="externalLink('https://www.favicon.cc/');" target="_blank">favicon.cc</a>
+<b>Fonts</b> are from <script>linkMacro('dejavu-fonts.github.io');</script>. (I discovered them while admiring <script>linkMacro('fabiensanglard.net');</script>, whose style/layout OR contents alone would make it well worth a visit...)<br><br>
+<b><script>linkMacro('en.wikipedia.org/wiki/Favicon', 'Favicon');</script></b> generated via (MS Paint and) <script>linkMacro('favicon.cc');</script>.
 <br><br>
 
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br>
 - Apply the externalLink() functionality to the technology icons also<br>
-- consider replacing the hardcoded boilerplate for externalLink() links with a preprocessing macro like a JS function or similar? ...plus, Edge still shows the content of the href parameter also as a tooltip... Probably a security feature that is difficult and/or bad form to get around?
+- Speaking of external links: browsers show the content of the href parameter also as a tooltip... Probably a security feature that is difficult and/or bad form to get around?
 - Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me, perhaps emphasize this via keywords shown on the "title bar"?<br>
 - Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of fabiensanglard.net<br>
-- Reconsider Favicon strategy, incl. for subpages
 
 <!--p>
 <a href="https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&checkerrorpages=yes&useragent=Validator.nu%2FLV+http%3A%2F%2Fvalidator.w3.org%2Fservices&acceptlanguage=&doc=https://tuejoshua.github.io/index.html">W3C validation report for this page</a>
