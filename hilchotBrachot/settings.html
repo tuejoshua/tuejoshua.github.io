@@ -63,7 +63,6 @@ if (referrer == 'priorityGame.html') {
 		newTitleCandidate(library[i][0]);
 		}
 	}
-
 }
 
 function newTitleCandidate(candidate) {
@@ -287,29 +286,38 @@ function onLoad() {
 <h1>Settings</h1>
 <h3>(click the button at the bottom of this page to save these settings and return to the game)</h3><hr><hr>
 
-		<table style="width: 100%;"><tr>
-			<td style="width: 50%;">
+<table style="width: 100%;"><tr>
+	<td style="width: 33%; text-align: center;">
 
-				<!-- LANGUAGE SETUP -->
-				<img id="imgLanguages" height=50 style="vertical-align: middle;" alt="Language " onerror="window.alert('ERROR - could not load ' + this.src);" /><select id="languageSelect">
+		<!-- LANGUAGE SETUP -->
+		<img id="imgLanguages" height=50 style="vertical-align: middle;" alt="Language " onerror="window.alert('ERROR - could not load ' + this.src);" /><select id="languageSelect">
 		<option value="da">dansk</option>
 		<option value="en" selected>English</option></select>
 
-			</td><td style="width: 50%;">
+	</td><td style="width: 33%; text-align: center;">
 
-				<!-- RELOAD DELAY SETUP -->
-				After correct answer, go to next question...<br>
-				<input type="radio" id="instant" name="reloadStyle" value="instant"><label for="instant">immediately</label><br>
-				<input type="radio" id="progbar" name="reloadStyle" value="progbar"><label for="progbar">slowly (with ample time for pausing)</label><br>
+		<!-- RELOAD DELAY SETUP -->
+		<table style="margin: 0 auto; text-align: left;"><tr><td>
+		After correct answer, go to next question...<br>
+		<input type="radio" id="instant" name="reloadStyle" value="instant"><label for="instant">immediately</label><br>
+		<input type="radio" id="progbar" name="reloadStyle" value="progbar"><label for="progbar">slowly (with ample time for pausing)</label><br>
+		</td></tr></table>
 
-			</td>
-		</tr></table>
+	</td><td style="width: 33%; text-align: center;">
+	
+		<!-- LIBRARY USAGE SETUP -->
+		<a href="library_displayAndInclude.html" onclick="window.onbeforeunload = null;">Select included items</a><!-- cancel the onbeforeonload set above -->
+	
+	</td>
+</tr></table>
 
 <script>
 
+// PREFERENCES SETUP
+
 if (referrer == 'priorityGame.html') {
 
-	document.write('<hr><hr><h2>Click the buttons below until they match your preferences (Ashkenazim: in general) (Sefardim: right now):</h3><table style="width: 100%;"><tr><td><img id="imgEqual" height=100 alt="<^" style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I don\'t have a preference</td><td><img id="imgLeft" height=100 alt="<"style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I prefer the food to the left</td><td><img id="imgUp" height=100 alt="^" style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I prefer the food above</td></tr></table>');
+	document.write('<hr><hr><h2>Click the buttons below until they match your preferences (Ashkenazim: in general - Sefardim: right now):</h3><table style="width: 100%;"><tr><td><img id="imgEqual" height=100 alt="<^" style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I don\'t have a preference</td><td><img id="imgLeft" height=100 alt="<"style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I prefer the food to the left</td><td><img id="imgUp" height=100 alt="^" style="vertical-align: middle;" onerror="window.alert(\'ERROR - could not load \' + this.src);" /></td><td> = I prefer the food above</td></tr></table>');
 
 	// Display tables
 	// SLICE forces pass-by-copy (arrays are by default passed by reference; see https://www.dyn-web.com/javascript/arrays/value-vs-reference.php

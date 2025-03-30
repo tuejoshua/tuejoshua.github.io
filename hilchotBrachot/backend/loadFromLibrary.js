@@ -1,9 +1,16 @@
 /*
 * This function assumes that the variable "library" already exists, i.e. that library.js was included BEFORE this file!
 */
-function loadFromLibrary(entryNo) {
+function loadFromLibrary(entryNo, full) {
 
-	entry = library[entryNo];
+	if (full === undefined) {
+		entry = library[entryNo];
+	}
+	else {
+		entry = fullLibrary[entryNo];
+	}
+
+
 
 	var item = {};
 

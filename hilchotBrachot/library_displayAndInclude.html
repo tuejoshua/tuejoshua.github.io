@@ -1,0 +1,106 @@
+<html>
+<head>
+
+<!-- INCLUDEs -->
+<script src="backend/include.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
+<script>include(['library', 'backend/loadFromLibrary']);</script>
+
+<script>
+
+// This construct enables the "confirm navigating away from this site" prompt.
+// We use this here to avoid having the user lose his changes without saving them.
+function confirmNavigation() { return true; }
+window.onbeforeunload = confirmNavigation;
+
+// Check if HTML Web Storage (used below for Preferences) is supported by the browser
+if (typeof(Storage) === "undefined") {
+  window.alert('ERROR - HTML Web Storage not supported!\nGame does not work with this browser.');
+}
+
+function mapToColor(x) {
+	switch (x) {
+		case true:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+			return 'green';
+		case false:
+		case 0:
+			return 'red';
+		case undefined:
+			return 'grey';
+		default:
+			window.alert('ERROR in SWITCH in mapToColor()');
+
+	}
+}
+
+function saveAndReturnToSettings() {
+
+
+	for (i=0; i<fullLibrary.length; i++) {
+		if (document.getElementById('Include.' + loadFromLibrary(i).title).checked) {
+			localStorage.removeItem('hilchotBrachot.Exclude.' + loadFromLibrary(i).title);		
+		}
+		else {
+			localStorage.setItem('hilchotBrachot.Exclude.' + loadFromLibrary(i).title, '');
+		}
+	}
+
+	window.onbeforeunload = null; // cancel the onbeforeonload set above
+	
+	window.location.href = 'settings.html';
+	
+}
+
+</script>
+
+</head>
+<body style="background-color: Aquamarine;">
+
+<table border=1>
+
+<tr style="position: -webkit-sticky; /* Safari */ position: sticky; top: 0; background-color: white"><th>#</th><th>titel</th><th>imagePath</th><th>bracha/category</th><th>isWhole*</th><th>7 Species*</th><th>isBaked*</th><th>Include in games</th></tr>
+
+<script>
+
+for (i=0; i<fullLibrary.length; i++) {
+
+	item = loadFromLibrary(i, 'full');
+
+	document.write(
+	'<tr><td>' + i +
+	'</td><td>' + item.title +
+	'</td><td><a href="' + item.imagePath + '" target="_blank"><img height=100 src="' + item.imagePath +
+	'" style="cursor: pointer;"></a></td><td>' + brachot[item.bracha] +
+	'</td><td style="background-color: ' + mapToColor(item.isWhole) + '">' + item.isWhole +
+	'</td><td style="background-color: ' + mapToColor(item.sevenSpecies) + '">' + sevenSpecies[item.sevenSpecies] +
+	'</td><td style="background-color: ' + mapToColor(item.isBaked) + '">' + item.isBaked +
+	'</td><td><input type="checkbox" id="Include.' + item.title + '" checked></td></tr>'); // Default is checked, i.e. included in games
+}
+
+for (i=0; i<fullLibrary.length; i++) {
+
+	excludedAccordingToLocalStorage = localStorage.getItem('hilchotBrachot.Exclude.' + loadFromLibrary(i, 'full').title);
+	if (excludedAccordingToLocalStorage !== null) { // Check if exists
+		document.getElementById('Include.' + loadFromLibrary(i).title).checked = false;	
+	}
+	
+}
+
+</script>
+
+</table>
+
+*) "undefined" means "N/A for this type of food (according to halacha)"
+
+<p>
+
+<a href="javascript:void(0)" "javassettings.html" onclick="saveAndReturnToSettings();">Save and return to Settings page</a>
+
+</body>
+</html>

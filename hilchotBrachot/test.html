@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Table</title>
+    <style>
+        .outer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .outer-table td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center; /* Center content in the outer cell */
+        }
+
+        .inner-table {
+            border-collapse: collapse;
+            
+        }
+
+        .inner-table td {
+            border: 1px solid #000;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<table class="outer-table" border=1>
+    <tr>
+        <td>
+            <table class="inner-table" border=1>
+                <tr>
+                    <td>Inner Cell 1</td>
+                    <td>Inner Cell 2</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

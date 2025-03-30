@@ -5,7 +5,7 @@ brachot = [ , 'haMotzi', 'Mezonot/korn', 'haGafen', 'Mezonot/ris', 'haÆtz', 'ha
 // "The order, therefore, is: 1. wheat, 2. barley, 3. olives, 4. dates, 5. grapes, 6. figs and 7. pomegranates." [https://www.aish.com/h/15sh/ho/93224084.html]
 sevenSpecies = ['(Not one of the 7 species)', '(7) granatæble', '(6) figen', '(5) vindrue', '(4) dadel', '(3) oliven', '(2) byg', '(1) hvede'];
 
-library = [
+fullLibrary = [
 
 /* While hunting for images of BARLEY bread, I found that _all_ recipes include MORE other (WHEAT) flour than barley flour.
 I assume one should employ a MAJORITY rule in such situations; in any case, I did not want to include these 'inbetween' cases
@@ -57,3 +57,17 @@ I further found that even traditional Danish RUGBRØD has about 1/4 th of the fl
 
 
 ];
+
+library = structuredClone(fullLibrary);
+
+// REMOVE items that were excluded by the user
+
+for (i = library.length-1; i>-1; i--) {
+	
+	excludedAccordingToLocalStorage = localStorage.getItem('hilchotBrachot.Exclude.' + library[i][0]);
+	
+	if (excludedAccordingToLocalStorage !== null) { // Check if exists
+		library.splice(i, 1); // remove the item
+	}
+	
+}

@@ -89,26 +89,6 @@ function clicked(event, userGuess) {
 			document.getElementById('rationale' + i + 'text').style.border = 'solid';
 		}
 
-		/*
-		var verdictString;
-		switch (Q.verdict) {
-			case 0:
-				verdictString = '←';
-				break;
-			case 1:
-				break;
-			case 2:
-				verdictString = '→';
-				break;
-			default:
-				window.alert('ERROR [SWITCH in clicked() - Q.verdict: ' + Q.verdict + ']');
-		}
-		if (Q.verdict != 1) {
-			document.getElementById('rationaleX' + (Q.rationales.length-1)).value = verdictString;
-			document.getElementById('rationaleX' + (Q.rationales.length-1)).style.backgroundColor = 'white';
-			document.getElementById('rationaleX' + (Q.rationales.length-1)).style.border = 'solid';
-		}*/
-
 		if (userGuess==Q.verdict) {
 			if (reloadStyle=='instant') {
 				location.reload();
@@ -165,7 +145,7 @@ function onLoadFunc() {
 			document.getElementById('LargerRightImg').style.display = 'none';
 			break;
 		case 1:
-			document.getElementById('LargerTextTD').innerText = 'SAME SIZE';
+			document.getElementById('LargerTextTD').innerText = strings.priorityGame_sameSizeLabel[language];
 			document.getElementById('LargerTable').style.margin = '0 auto'; // center
 			break;
 		case 2:
@@ -220,7 +200,7 @@ for (i = 0; i<map1X2.length; i++) {
 	document.write('<td>');
 	if (i==1) {
 		document.write('<table style="width: 100%"><tr><td>');
-		document.write('<table id="LargerTable"><tr><td><img id="LargerLeftImg" src="' + graphics.arrowLeft + '" height=25 /></td><td id="LargerTextTD" style="font-family: fantasy; font-style: italic; font-weight: bolder; font-size: xx-large; color: blue;">LARGER</td><td><img id="LargerRightImg" src="' + graphics.arrowRight + '" height=25 /></td></tr></table>');
+		document.write('<table id="LargerTable"><tr><td><img id="LargerLeftImg" src="' + graphics.arrowLeft + '" height=25 /></td><td id="LargerTextTD" style="font-family: fantasy; font-style: italic; font-weight: bolder; font-size: xx-large; color: blue;">' + strings.priorityGame_largerSizeLabel[language] + '</td><td><img id="LargerRightImg" src="' + graphics.arrowRight + '" height=25 /></td></tr></table>');
 		document.write('</td></tr><tr><td style="text-align: center;">');
 	}
 	// height=225
