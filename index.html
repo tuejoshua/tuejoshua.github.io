@@ -48,13 +48,21 @@ function externalLink(link) {
 	}
 }
 
-function linkMacro(url, linkText) { // linkText can also be an <img> etc.
+// This function generates a "<a>...</a>" string  
+function linkMacroString(url, linkText) {
 	if (linkText === undefined) {
 		linkText = url;
 	}
-	// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
-	document.write('<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>');
+	return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>';
 }
+
+// This function writes directly to the DOM where invoked
+function linkMacro(url, linkText) { // linkText can also be an <img> etc.
+
+	// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
+	document.write(linkMacroString(url, linkText));
+}
+
 </script>
 
 <!-- INCLUDEs -->
@@ -88,7 +96,6 @@ The <b>technology icons</b> used above are the creations of others. Click them t
 
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br>
-- Apply the externalLink() functionality to the technology icons also<br>
 - Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me, perhaps emphasize this via keywords shown on the "title bar"?<br>
 - Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of fabiensanglard.net<br>
 
