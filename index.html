@@ -52,7 +52,8 @@ function linkMacro(url, linkText) {
 	if (linkText === undefined) {
 		linkText = url;
 	}
-	document.write('<a title="https://' + url + '" href="javascript:void(0)" onClick="externalLink(\'https://' + url + '\');">' + linkText + '</a>');
+	// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
+	document.write('<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>');
 }
 </script>
 
@@ -88,7 +89,6 @@ The <b>technology icons</b> used above are the creations of others. Click them t
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br>
 - Apply the externalLink() functionality to the technology icons also<br>
-- Speaking of external links: browsers show the content of the href parameter also as a tooltip... Probably a security feature that is difficult and/or bad form to get around?
 - Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me, perhaps emphasize this via keywords shown on the "title bar"?<br>
 - Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of fabiensanglard.net<br>
 
