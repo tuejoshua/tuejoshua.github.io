@@ -75,7 +75,7 @@ async function displayContentsOfJson(file) {
 					
 		domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
 			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
-					
+		debugger;			
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
 		}
@@ -100,6 +100,7 @@ async function displayContentsOfJson(file) {
     }
             
     // Write HTML DOM string to DIV element
+	debugger;
     document.getElementById('showData').innerHTML = domString;
 		
 }
