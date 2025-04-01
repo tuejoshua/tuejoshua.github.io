@@ -32,7 +32,7 @@ if (typeof(Storage) === "undefined") {
    the last one is expected to be the right one (i.e. playing on multiple tabs not supported...!) */
 referrer = localStorage.getItem('lastGame');
 if (referrer == null) {
-	//window.alert('ERROR - could not detect the Game you are coming from.\nYou will now be directed to the main page.');
+	alert('ERROR - this page is designed to be accessed only from one of the Game pages, and not directly.\nYou will now be redirected to the main page.');
 	window.location.href = 'index.html';
 }
 
@@ -223,9 +223,11 @@ function printPrefTable(itemArray, tableTitle) {
 
 function saveAndGoBackToGame() {
 
-	localStorage.setItem('hilchotBrachot.Language', document.getElementById('languageSelect').value);
+	
+	/* The following has been replaced by onchange parameters on the radio buttons directly...
 	// The next line is based on https://stackoverflow.com/questions/604167/how-can-we-access-the-value-of-a-radio-button-using-the-dom
 	localStorage.setItem('hilchotBrachot.ReloadStyle', document.querySelector('input[name=reloadStyle]:checked').value);
+	*/
 
 	if (referrer == 'priorityGame.html') {
 
@@ -290,7 +292,7 @@ function onLoad() {
 	<td style="width: 33%; text-align: center;">
 
 		<!-- LANGUAGE SETUP -->
-		<img id="imgLanguages" height=50 style="vertical-align: middle;" alt="Language " onerror="window.alert('ERROR - could not load ' + this.src);" /><select id="languageSelect">
+		<img id="imgLanguages" height=50 style="vertical-align: middle;" alt="Language " onerror="window.alert('ERROR - could not load ' + this.src);" /><select id="languageSelect" onchange="localStorage.setItem('hilchotBrachot.Language', this.value);">
 		<option value="da">dansk</option>
 		<option value="en" selected>English</option></select>
 
@@ -299,8 +301,8 @@ function onLoad() {
 		<!-- RELOAD DELAY SETUP -->
 		<table style="margin: 0 auto; text-align: left;"><tr><td>
 		After correct answer, go to next question...<br>
-		<input type="radio" id="instant" name="reloadStyle" value="instant"><label for="instant">immediately</label><br>
-		<input type="radio" id="progbar" name="reloadStyle" value="progbar"><label for="progbar">slowly (with ample time for pausing)</label><br>
+		<input type="radio" id="instant" name="reloadStyle" value="instant" onchange="localStorage.setItem('hilchotBrachot.ReloadStyle', this.value)"><label for="instant">immediately</label><br>
+		<input type="radio" id="progbar" name="reloadStyle" value="progbar" onchange="localStorage.setItem('hilchotBrachot.ReloadStyle', this.value)"><label for="progbar">slowly (with ample time for pausing)</label><br>
 		</td></tr></table>
 
 	</td><td style="width: 33%; text-align: center;">
