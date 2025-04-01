@@ -2,23 +2,23 @@ function getTechLogo(tag) {
 	switch(tag) {
 		case 'FrontEnd':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
-			licenseLink = 'https://github.com/shannonmoeller/front-end-logo';
+			licenseLink = 'github.com/shannonmoeller/front-end-logo';
 			altText = 'Front End';
 			break;
 		case 'JSON':
 			logoUrl = 'JSON_vector_logo.svg (from Wikimedia Commons).png';
-			licenseLink = 'https://commons.wikimedia.org/wiki/File:JSON_vector_logo.svg';
+			licenseLink = 'commons.wikimedia.org/wiki/File:JSON_vector_logo.svg';
 			altText = 'JSON';
 
 			break;
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
-			licenseLink = 'https://www.php.net/download-logos.php';
+			licenseLink = 'www.php.net/download-logos.php';
 			altText = 'PHP';
 			break;
 		case 'Python':
 			logoUrl = 'python-logo-only (from python.org).png';
-			licenseLink = 'https://www.python.org/community/logos/';
+			licenseLink = 'www.python.org/community/logos/';
 			altText = 'Python';
 			break;
 		default:
