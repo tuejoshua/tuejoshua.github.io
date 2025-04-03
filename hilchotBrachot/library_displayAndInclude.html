@@ -85,9 +85,10 @@ for (i=0; i<fullLibrary.length; i++) {
 
 for (i=0; i<fullLibrary.length; i++) {
 
-	excludedAccordingToLocalStorage = localStorage.getItem('hilchotBrachot.Exclude.' + loadFromLibrary(i, 'full').title);
+	itemTitle = loadFromLibrary(i, 'full').title;
+	excludedAccordingToLocalStorage = localStorage.getItem('hilchotBrachot.Exclude.' + itemTitle);
 	if (excludedAccordingToLocalStorage !== null) { // Check if exists
-		document.getElementById('Include.' + loadFromLibrary(i).title).checked = false;	
+		document.getElementById('Include.' + itemTitle).checked = false;	
 	}
 	
 }
