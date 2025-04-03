@@ -43,11 +43,12 @@ function saveAndReturnToSettings() {
 
 
 	for (i=0; i<fullLibrary.length; i++) {
-		if (document.getElementById('Include.' + loadFromLibrary(i).title).checked) {
-			localStorage.removeItem('hilchotBrachot.Exclude.' + loadFromLibrary(i).title);		
+		itemTitle = loadFromLibrary(i, 'full').title;
+		if (document.getElementById('Include.' + itemTitle).checked) {
+			localStorage.removeItem('hilchotBrachot.Exclude.' + itemTitle);		
 		}
 		else {
-			localStorage.setItem('hilchotBrachot.Exclude.' + loadFromLibrary(i).title, '');
+			localStorage.setItem('hilchotBrachot.Exclude.' + itemTitle, '');
 		}
 	}
 
