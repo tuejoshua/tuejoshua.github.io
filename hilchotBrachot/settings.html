@@ -227,7 +227,7 @@ function saveAndGoBackToGame() {
 	The following was briefly replaced by onchange parameters on the radio buttons directly
 	- but that created a bug when the user does not CHANGE the default parameters...
 	*/
-	localStorage.setItem('hilchotBrachot.Language', document.getElementById("languageSelect").value;
+	localStorage.setItem('hilchotBrachot.Language', document.getElementById("languageSelect").value);
 	// The next line is based on https://stackoverflow.com/questions/604167/how-can-we-access-the-value-of-a-radio-button-using-the-dom
 	localStorage.setItem('hilchotBrachot.ReloadStyle', document.querySelector('input[name=reloadStyle]:checked').value);
 	
