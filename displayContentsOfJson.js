@@ -72,8 +72,9 @@ async function displayContentsOfJson(file) {
 		}  */
 		
 		fontSizeParam = 'font-size: 1.3em';
-					
-		domString += '<button type="button" style="width: 100%;text-align: left;" onclick="showProjectCard(' + i + ');">' +
+		
+		// adding fontSizeParam style also for button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
+		domString += '<button type="button" style="width: 100%;text-align: left; style="' + fontSizeParam + '" onclick="showProjectCard(' + i + ');">' +
 			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 			
 		for (let tag of projects[i].technologies) {
