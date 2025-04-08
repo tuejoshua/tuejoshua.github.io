@@ -52,9 +52,30 @@ async function displayContentsOfJson(file) {
 	var domString = '';
      
 	for (i=0; i<projects.length; i++) {
+
+// TEMPORARY: Testing font sizes
+/* switch (i) {
+			case 1:
+				fontSizeParam = 'font-size: 100%';
+				break;
+			case 2:
+				fontSizeParam = 'font-size: 200%';
+				break;
+			case 3:
+				fontSizeParam = 'font-size: 1em';
+				break;
+			case 4:
+				fontSizeParam = '2em';
+				break;					
+			default:
+				fontSizeParam = ''; // i.e. default			
+		}  */
 		
-		domString += '<button type="button" style="width: 100%;text-align: left; onclick="showProjectCard(' + i + ');">' +
-			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none;">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+		fontSizeParam = 'font-size: 1.3em';
+		
+		// adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
+		domString += '<button type="button" style="width: 100%;text-align: left; style="max-height: 999999px;" onclick="showProjectCard(' + i + ');">' +
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 			
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
