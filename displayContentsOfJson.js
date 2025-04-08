@@ -53,9 +53,9 @@ async function displayContentsOfJson(file) {
      
 	for (i=0; i<projects.length; i++) {
 		
-		// "text-align: left" to fix (another) Chrome for Android bug (according to ChatGPT, this is known): when text wraps, it is sometimes "justify" instead of "left"-aligned
+		// "text-align: left" and "white-space: normal" to fix (another) Chrome for Android bug (according to ChatGPT, this is known): when text wraps, it is sometimes "justify" instead of "left"-aligned
 		domString += '<button type="button" style="width: 100%;text-align: left; onclick="showProjectCard(' + i + ');">' +
-			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; text-align: left;">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; text-align: left; white-space: normal; /* allow wrapping */">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 			
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
