@@ -30,9 +30,9 @@ if (typeof(Storage) === "undefined") {
 /* Find out which Game sent the user here
    (This is done by the OnLoad of every Game writing to the same LocalStorage entry;
    the last one is expected to be the right one (i.e. playing on multiple tabs not supported...!) */
-referrer = localStorage.getItem('lastGame');
+referrer = localStorage.getItem('hilchotBrachot.lastGame');
 if (referrer == null) {
-	alert('ERROR - this page is designed to be accessed only from one of the Game pages, and not directly.\nYou will now be redirected to the main page.');
+	alert('ERROR - this page is designed to be accessed only from one of the Game pages, and not directly.\nYou will now be redirected to the main page.\n\n[Item "hilchotBrachot.lastGame" not found in LocalStorage]');
 	window.location.href = 'index.html';
 }
 
