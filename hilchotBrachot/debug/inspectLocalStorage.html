@@ -1,13 +1,27 @@
 ﻿<html>
 <head>
 <script>
-function clearAll() {
-	choice = window.confirm('Press OK to clear all.\nNB: This will affect any/all pages relying on this data!!');
+function clear(item) {
+
+	switch(item === undefined) {
+		case true:
+			choice = window.confirm('Press OK to clear all.\nNB: This will affect any/all pages relying on this data!!');
+			if (choice) {
+				localStorage.clear(); // !!!
+			}			
+			break;
+		case false:
+			choice = window.confirm('Press OK to clear the item.\nNB: This will affect any/all pages relying on this data!!');
+			if (choice) {
+				localStorage.clear(item);
+			}
+		}
+	
 	if (choice) {
-		localStorage.clear(); // !!!
+		// Reload page to update table
+		location.reload();
 	}
-	// Reload page to update table
-	location.reload();
+	
 }
 </script>
 </head>
@@ -18,7 +32,7 @@ function clearAll() {
 <table><tr><td bgcolor="pink">NB: It seems iterating through LocalStorage (like this page does) does not work properly in Firefox... (I found some posts online about this earlier)</td></tr></table>
 <p -->
 
-<input type="button" value="CLEAR ALL" onclick="clearAll();"/>
+<input type="button" value="CLEAR ALL" onclick="clear();"/>
 <table border=1><tr><th>#</th><th>key [string] ⬇︎</th><th>value [string]</th></tr>
 <script>
 
@@ -36,7 +50,7 @@ for (i = 0; i < keys.length; i++) {
 	'<tr><td>' + i + '</td><td>' +
 	keys[i] + '</td><td>' +
 	localStorage.getItem(keys[i]) +
-	'</td><td><a href="#" onClick="localStorage.removeItem(\'' + keys[i] + '\'); location.reload();">CLEAR</a></td></tr>');
+	'</td><td><a href="#" onClick="clear(' + keys[i] + ');">CLEAR</a></td></tr>');
 }
 
 // If no data found, make clear for user
