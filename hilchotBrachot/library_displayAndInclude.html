@@ -81,7 +81,7 @@ for (i=0; i<fullLibrary.length; i++) {
 	'</td><td style="background-color: ' + mapToColor(item.isWhole) + '">' + item.isWhole +
 	'</td><td style="background-color: ' + mapToColor(item.sevenSpecies) + '">' + sevenSpecies[item.sevenSpecies] +
 	'</td><td style="background-color: ' + mapToColor(item.isBaked) + '">' + item.isBaked +
-	'</td><td onClick="document.getElementById(\'Include.' + item.title + '\').checked = !document.getElementById(\'Include.' + item.title + '\').checked;">' + // easier to click the checkbox: clicking anywhere in the cell does the same. Based on https://stackoverflow.com/a/48663608
+	'</td><td style="text-align: center;" onClick="document.getElementById(\'Include.' + item.title + '\').checked = !document.getElementById(\'Include.' + item.title + '\').checked;">' + // easier to click the checkbox: clicking anywhere in the cell does the same. Based on https://stackoverflow.com/a/48663608
 	'<input type="checkbox" id="Include.' + item.title + '" checked></td></tr>'); // Default is checked, i.e. included in games
 }
 
