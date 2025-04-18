@@ -25,7 +25,6 @@ function getTechLogo(tag) {
 			alert('logo not found for "' + tag + '"');
 			return '';
 	}
-	// return '<a href="' + licenseLink + '" target="_blank"><img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nClick to see license for this icon"></a>';
 	return linkMacroString(licenseLink, '<img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nClick to see license for this icon">');
 }
 
@@ -52,30 +51,13 @@ async function displayContentsOfJson(file) {
 	var domString = '';
      
 	for (i=0; i<projects.length; i++) {
-
-// TEMPORARY: Testing font sizes
-/* switch (i) {
-			case 1:
-				fontSizeParam = 'font-size: 100%';
-				break;
-			case 2:
-				fontSizeParam = 'font-size: 200%';
-				break;
-			case 3:
-				fontSizeParam = 'font-size: 1em';
-				break;
-			case 4:
-				fontSizeParam = '2em';
-				break;					
-			default:
-				fontSizeParam = ''; // i.e. default			
-		}  */
 		
 		fontSizeParam = 'font-size: 1.3em';
 		
 		// adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
-		domString += '<button type="button" style="width: 100%;text-align: left; style="max-height: 999999px;" onclick="showProjectCard(' + i + ');">' +
-			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+		// also, without forcing "text-align: left" here (as should be the default), many browsers use "justify" instead (which I dislike)
+		domString += '<button type="button" style="width: 100%; text-align: left; style="max-height: 999999px;" onclick="showProjectCard(' + i + ');">' +
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; text-align: left; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 			
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
