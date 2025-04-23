@@ -78,8 +78,9 @@ async function displayContentsOfJson(file) {
 			detailsString = '<b>details: </b><br>' + detailsString;
 		}
 		
+		// max-width because width does not include the padding that were also applying
 		domString += '</td></tr></table></button>' +
-			'<div id="projectCard' + i + '" style="width: 100%;display: none;border-left-style: dotted;padding: 15px;">' + motivationString + '<p>' + summaryString + '<p>' + detailsString + '</div>';						
+			'<div id="projectCard' + i + '" style="max-width: 100%; display: none; border-left-style: dotted; padding: 15px;">' + motivationString + '<p>' + summaryString + '<p>' + detailsString + '</div>';						
     }
             
     // Write HTML DOM string to DIV element
