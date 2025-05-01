@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
 
-<!-- in an attempt to fix the "Chrome for Android using very small font for labels on the project Buttons" bug,
-suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+<!-- in order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- The following is broadly unnecessary according to https://en.wikipedia.org/wiki/Favicon, since my favicon.ico is in the domain root -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-<title>Tue Joshua on GitHub</title>
+<title>Tue Joshua on Github</title>
 <style>
+/* non-instantaneous scrolling when following link to section elsewhere on page.
+Based on https://stackoverflow.com/a/24739173 */
+html {
+  scroll-behavior: smooth;
+}
 
 /* Based on https://fabiensanglard.net/ */
     @font-face {
@@ -27,6 +31,22 @@ suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.
 	html {
 	  font-family: myfontfamily, monospace; 
 	}
+
+@font-face {
+	font-family: 'mySignatureFontFamily';
+	src: url('/fonts/tomatoes-font/Tomatoes-O8L8.ttf');
+	font-display: block;
+}
+
+#signatureText {
+	font-family: mySignatureFontFamily;
+}
+
+h1 {
+	background-color: blue;
+	color: white;
+	text-align: center;
+}
 
 td, th {
 	border: 1px solid black;
@@ -78,15 +98,26 @@ displayContentsOfJson("projects.json");
 <!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
 <h1><script>document.write(document.title);</script></h1>
 
-<h2>About me/contact</h2>
-Feel free to contact me via the GitHub links below, or in general via <a href="https://www.linkedin.com/in/tue-chasin/">my LinkedIn profile</a>.
-<br><br>
+This page presents a curated collection of projects that I've done — for future inspiration, personal nostalgia, and sharing.<br><br>
+Welcome!<br><br>
+<div id="signatureText">Tue Joshua Steen Chasin</div>
+(<a href="https://www.linkedin.com/in/tue-chasin/">LinkedIn</a>)<br>
+<!-- br>
+PS: Click the following links for more information regarding 
+<a href="#chronologySection">chronology</a>, 
+<a href="#copyrightSection">copyright</a>,
+<a href="#Section">technical details/documentation and ToDo
+<br>
+<br -->
 
-<h2>Some of my projects</h2>
+<!-- h2>Some of my projects</h2 -->
 <!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-<div id='showData'>[ Please wait: Reading data from JSON file... <br>&nbsp;&nbsp;If this message remains in place, it means that my JSON parsing pipeline is broken - or that you're viewing a client-side version of this page ]</div>
+<div id='showData'><br><i>[ Please wait: Reading data from JSON file...<br>&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is broken<br>- or that you're viewing a client-side version of this page ]</i></div>
 <br>
+
+<!--p>
+<a href="">W3C validation report for this page</a> -->
 
 <h2>Acknowledgements</h2>
 The <b>technology icons</b> used above are the creations of others. Click them to see the source and the license under which I'm using them.<br><br>
@@ -94,21 +125,16 @@ The <b>technology icons</b> used above are the creations of others. Click them t
 <b><script>linkMacro('en.wikipedia.org/wiki/Favicon', 'Favicon');</script></b> generated via (MS Paint and) <script>linkMacro('favicon.cc');</script>.
 <br><br>
 
-<h2>To Do</h2>
-- Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br>
-- Reformat the above project descriptions, e.g. by adding a "new ground covered" section for describing what was new for me, perhaps emphasize this via keywords shown on the "title bar"?<br>
-- Improve the layout/formatting/fonts/style/etc. of this page. Get inspiration from "minimalist" style such as that of fabiensanglard.net<br>
+<!--h2>Chronology</h2>
 
-<!--p>
-<a href="https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&checkerrorpages=yes&useragent=Validator.nu%2FLV+http%3A%2F%2Fvalidator.w3.org%2Fservices&acceptlanguage=&doc=https://tuejoshua.github.io/index.html">W3C validation report for this page</a>
-
-<p>
-<h1>A note about licensing</h1>
+<h2>License</h2>
 The source code presented on this (my) website is not accompanied by an explicit license statement.
-This is not an oversight; I've decided (after briefly researching the topic of source code licensing) that I for now won't invest the (significant) effort required for determining the optimal type of license for my use of this website.
+This is not an oversight; I've decided (after briefly researching the topic of source code licensing) that for now, I won't invest the (significant) effort required for determining the optimal type of license for my use of this website.
 <mark>Please be aware that this does NOT mean that the license defaults to Public Domain; the opposite is actually the case</mark> according to the sources I did skim before giving up on making a quick decision on this topic.
 If you want to do more with my source code than allowed by default, feel free to contact me :)
-<p>
-https://www.python.org/community/logos/ -->
+
+<h2>To Do</h2>
+- Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br-->
+
 </body>
 </html>
