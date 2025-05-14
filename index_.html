@@ -96,10 +96,6 @@ function linkMacro(url, linkText) { // linkText can also be an <img> etc.
 import { displayProjectCards } from './displayProjectCards.js';
 </script>
 
-<script>
-displayProjectCards("projects.json");
-</script>
-
 </head>
 <body>
 
@@ -151,6 +147,11 @@ If you want to do more with my source code than allowed by default, feel free to
 
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br-->
+
+<!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
+<script>
+displayProjectCards("projects.json");
+</script>
 
 </body>
 </html>
