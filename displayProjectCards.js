@@ -47,7 +47,7 @@ function showProjectCard(i) {
 ...and of course, one COULD just use React, by it seems I'm still a bit of a DIY fanatic
 */
 
-async function displayProjectCards(file) {
+export async function displayProjectCards(file) {
 
 	let projectsJsonObject = await fetch(file);
 	let projects = await projectsJsonObject.json();

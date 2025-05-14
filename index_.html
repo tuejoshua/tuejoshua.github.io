@@ -91,7 +91,10 @@ function linkMacro(url, linkText) { // linkText can also be an <img> etc.
 
 <!-- INCLUDEs -->
 <!-- TO DO: Other .js files also as modules? -->
-<script type="module" src="displayProjectCards.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
+<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
+<script type="module">
+import { displayProjectCards } from './displayProjectCards.js';
+</script>
 
 <script>
 displayProjectCards("projects.json");
