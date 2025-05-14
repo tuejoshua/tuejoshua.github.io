@@ -69,6 +69,10 @@ async function displayProjectCards(file) {
 		
 	/// PROJECT DESCRIPTION FROM MARKDOWN FILE
 
+		// max-width because width does not include the padding that were also applying
+		domString += '</td></tr></table></button>' +
+			'<div id="projectCard' + i + '" style="max-width: 100%; display: none; border-left-style: dotted; padding: 15px;">';
+
 		// Read assumed Markdown file; alert if problem
 		// projects[i].title + '.md'
 		// Error handling based on chatGPT suggestion
@@ -81,8 +85,10 @@ async function displayProjectCards(file) {
 			domString += marked.parse(mdContent);
 		}
 		catch (error) {
+			domString += '<p style="color:red;"><em>Could not load project description from file ' + projects[i].title + '.md:<br>' + error + '</em></p>';
 		}
-				domString += '<p style="color:red;"><em>Could not load project description from file ' + projects[i].title + '.md:<br>' + error + '</em></p>';
+		
+		domString += '</div>';
 				
 		/*
 		motivationString = projects[i].motivation.trim();
@@ -99,16 +105,10 @@ async function displayProjectCards(file) {
 		if (detailsString !== '') {
 			detailsString = '<b>details: </b><br>' + detailsString;
 		}
-		
-		*/
-		
-		// max-width because width does not include the padding that were also applying
-		domString += '</td></tr></table></button>' +
-			'<div id="projectCard' + i + '" style="max-width: 100%; display: none; border-left-style: dotted; padding: 15px;">' +
-			marked.parse(FILE CONTENT) +
-			'</div>';
+
+			motivationString + '<p>' + summaryString + '<p>' + detailsString 
 			
-			//motivationString + '<p>' + summaryString + '<p>' + detailsString 
+		*/
 				
     }
             
