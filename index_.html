@@ -89,13 +89,6 @@ function linkMacro(url, linkText) { // linkText can also be an <img> etc.
 
 </script>
 
-<!-- INCLUDEs -->
-<!-- TO DO: Other .js files also as modules? -->
-<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
-<script type="module">
-import { displayProjectCards } from './displayProjectCards.js';
-</script>
-
 </head>
 <body>
 
@@ -149,7 +142,11 @@ If you want to do more with my source code than allowed by default, feel free to
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br-->
 
 <!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
-<script>
+<!-- TO DO: Other .js files also as modules? -->
+<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
+<script type="module">
+import { displayProjectCards } from './displayProjectCards.js';
+// The following function call must be in this script block, together with 
 displayProjectCards("projects.json");
 </script>
 
