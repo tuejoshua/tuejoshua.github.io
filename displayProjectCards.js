@@ -49,14 +49,14 @@ function showProjectCard(i) {
 
 export async function displayProjectCards(file) {
 
-	let projectsJsonObject = await fetch(file);
-	let projects = await projectsJsonObject.json();
+	const projectsJsonObject = await fetch(file);
+	const projects = await projectsJsonObject.json();
   
-	var domString = '';
+	let domString = '';
      
 	for (let i=0; i<projects.length; i++) {
 		
-		fontSizeParam = 'font-size: 1.3em';
+		const fontSizeParam = 'font-size: 1.3em';
 		
 		// adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
 		// also, without forcing "text-align: left" here (as should be the default), many browsers use "justify" instead (which I dislike)
