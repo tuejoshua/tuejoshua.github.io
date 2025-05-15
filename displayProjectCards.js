@@ -54,7 +54,7 @@ export async function displayProjectCards(file) {
   
 	var domString = '';
      
-	for (i=0; i<projects.length; i++) {
+	for (let i=0; i<projects.length; i++) {
 		
 		fontSizeParam = 'font-size: 1.3em';
 		
