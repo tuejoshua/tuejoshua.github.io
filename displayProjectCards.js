@@ -3,6 +3,7 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
 
 function getTechLogo(tag) {
+	let logoUrl, altText;
 	switch(tag) {
 		case 'FrontEnd':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
@@ -13,7 +14,6 @@ function getTechLogo(tag) {
 			logoUrl = 'JSON_vector_logo.svg (from Wikimedia Commons).png';
 			//licenseLink = 'commons.wikimedia.org/wiki/File:JSON_vector_logo.svg';
 			altText = 'JSON';
-
 			break;
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
