@@ -1,4 +1,4 @@
-**Motivation:**  
+<!-- **Motivation:**  -->
 _"Please report how much time has been spent on each project per day."_  
 Such a demand* for time registration has been recurring throughout my carreer. And still, it took me quite some time to make peace with it.
 This is because I usually can't remember what I did when half a day ago, and so, trying to guesstimate these numbers _at the end_ of the work day is very unsatisfying. I tried doing this time registration _throughout_ the day, but found that it made me ineffective in my REAL work by taking up significant mental bandwidth.
