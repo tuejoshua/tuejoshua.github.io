@@ -113,7 +113,10 @@ export async function displayProjectCards(file) {
 		*/
 				
     }
-            
+    
+	// DEBUG
+	console.log(domString);
+	
     // Write HTML DOM string to DIV element
     document.getElementById('showData').innerHTML = domString;
 	

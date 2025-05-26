@@ -82,6 +82,9 @@ async function displayContentsOfJson(file) {
 		domString += '</td></tr></table></button>' +
 			'<div id="projectCard' + i + '" style="max-width: 100%; display: none; border-left-style: dotted; padding: 15px;">' + motivationString + '<p>' + summaryString + '<p>' + detailsString + '</div>';						
     }
+
+	// DEBUG
+	console.log(domString);
             
     // Write HTML DOM string to DIV element
     document.getElementById('showData').innerHTML = domString;
