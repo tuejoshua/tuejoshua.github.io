@@ -1,7 +1,7 @@
 <html>
 <body>
-<table border=1 style="width: 100%;">
-<tr><td style="width: 50%;">
+<table border=1>
+<tr><td>
 <!-- 
 https://www.hebcal.com/home/developer-apis
 -> https://www.hebcal.com/home/4289/giving-appropriate-credit-to-hebcal
@@ -13,16 +13,6 @@ https://www.hebcal.com/home/developer-apis
 <script src="https://www.hebcal.com/etc/hdate-en.js">
 </script>
 <br>
-<!-- script>
-/*
-As noted on https://www.hebcal.com/home/40/displaying-todays-hebrew-date-on-your-website:
-... - ->
-if local time >= 20:00
-=>
-"starting tonight"
-otherwise
-"until tonight"
-<p -->
 <script>
 // based on a ChatGPT query
 // (cause I couldn't be bothered "the old way"
@@ -33,6 +23,8 @@ const minutes = now.getMinutes();
 // Convert to decimal time (e.g., 20.5 for 20:30)
 const decimalTime = hours + minutes / 60;
 
+/* As noted on https://www.hebcal.com/home/40/displaying-todays-hebrew-date-on-your-website:
+The date displayed uses the web browser’s local timezone to determine today’s date. Any time after 20:00 (8:00pm in the evening) is considered “after sunset” so the Hebrew date displayed corresponds to the next day. */
 if (decimalTime >= 20.0 && decimalTime < 24.0) {
 document.write('starting tonight');
 }
@@ -47,12 +39,12 @@ document.write('until tonight');
 <p>Powered by <a href="hebcal.com">Hebcal.com</a>
 <hr>
 <div id="hebcal-shabbat"></div>
-<script defer>
+<script defer> <!-- ToDo: why do I have the DEFER parameter here? -->
 fetch('https://www.hebcal.com/shabbat?cfg=i2&geonameid=294577&b=30&M=on&lg=s&tgt=_top')
   .then(response => response.text())
   .then(data => document.getElementById('hebcal-shabbat').innerHTML = data);
 </script>
-</td><td style="width: 50%;">
+</td><td>
 <!--Start MyZmanim Widget for: https://tuejoshua.github.io/kotelScreen.html  -->
 <script type="text/javascript" charset="UTF-8" language="javascript" src="https://www.myzmanim.com/widget.aspx?lang=en&mode=Standard&fsize=13&fcolor=003BBE&hcolor=EBF1FF&bcolor=C0C0C0&suf=s&key=5z0sskm31T51cpL16ClOS5N%2bljoYc0NhWIVX0HIqaXQud3Df4SiB6gl4fuvpU2aBwmx5q2HhJW7UJ0ySTwt9yhhrtDACnWlyBbArESw%2b3x7eDgsijmwKQTPY32foKuz65zOngfVdoD2aL9qVlp6%2fs3z3KBHdXU9EFoDT15vA4SWF8ey9pXV9Gyi1yTriE4Px"></script><noscript style="font-family:verdana;">Find your daily zmanim at <a href="http://www.myzmanim.com/">MyZmanim.com</a>.</noscript>
 <!--End MyZmanim Widget-->
