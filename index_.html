@@ -62,6 +62,14 @@ td {
 table {
 	border-collapse: collapse;
 }
+
+/* Marked.js wraps each paragraph in <p></p>s. 
+This is conceptually correct, but interpreted (at least by my Edge browser) 
+as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
+.markdown-content p:first-child {
+	margin-top: 0;
+}
+
 </style>
 
 <script>
@@ -108,7 +116,7 @@ Welcome!<br><br>
 <!-- h2>Some of my projects</h2 -->
 <!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-<div id='showData'><i style="color: red;">[ Please wait: Reading data from JSON file...<br>&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as intended.<br>This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]</i></div>
+<div id='showData' class="markdown-content"><i style="color: red;">[ Please wait: Reading data from JSON file...<br>&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as intended.<br>This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]</i></div>
 <br>
 
 <!--p>
