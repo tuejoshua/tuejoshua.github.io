@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <title>Redirecting...</title>
+  <title>Page Not Found</title>
 
   <!--
     ========================================
@@ -50,32 +50,26 @@
     - Therefore, not suitable here—use JavaScript below instead.
   -->
 
-  <script>
-    // Define specific redirect paths here
-    const redirects = {
-      "/kotelScreen.html": "/kotelScreen/kotelScreen.html"
-    };
-
-    const path = window.location.pathname.replace(/\/+$/, ""); // Trim trailing slashes
-    const target = redirects[path];
-
-    if (target) {
-      window.location.replace(target); // Client-side redirect
-    }
-  </script>
 </head>
 <body>
-  <noscript>
-    <h1>Oops, I can't find that page</h1>
-    <p>Click <a href="https://tuejoshua.github.io/">here</a> to go to the main page.</p>
-  </noscript>
-  <script>
-    if (!target) {
-      document.body.innerHTML = `
-        <h1>Oops, I can't find that page</h1>
-        <p>Click <a href="https://tuejoshua.github.io/">here</a> to go to the main page.</p>
-      `;
-    }
-  </script>
+
+<!-- Fallback content for all cases -->
+<h1>Oops, I can't find that page</h1>
+<noscript>
+<p>(or the defined redirect strategy requires JS, which you have disabled)</p>
+</noscript>
+<p>Click <a href="https://tuejoshua.github.io/">here</a> to go to the main page.</p>
+
+<script>
+  const redirectMap = {
+    '/kotelScreen.html': '/kotelScreen/kotelScreen.html'
+  };
+  const path = window.location.pathname.replace(/\/+$/, ""); // Trim trailing slashes, so a user error "path\filename.html\" will not be treated as a folder
+  const target = redirectMap[path];
+  if (target) {
+    window.location.replace(target);
+  }
+</script>
+
 </body>
 </html>
