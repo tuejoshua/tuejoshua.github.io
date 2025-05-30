@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Redirecting...</title>
+
+  <!--
+    ========================================
+    Notes on GitHub Pages 404 handling logic
+    ========================================
+
+    • This setup works specifically for GitHub Pages (and similarly configured static hosts).
+      - GitHub Pages will serve this 404.html file for *any unrecognized URL path*.
+      - This includes requests to nonexistent HTML files and folders *without* an index.html.
+      - If a folder *does* contain index.html, that file is served instead (normal behavior).
+
+    • The server does not issue a 3xx redirect.
+      - It simply serves 404.html as the response *body*, with either a 404 or 200 status.
+      - This is sometimes called a "soft 404" when the status is 200.
+
+    • Because the server doesn’t redirect, the browser’s address bar remains unchanged.
+      - For example, visiting /kotelScreen.html stays in the bar even though /404.html is shown.
+
+    • The redirect logic in this file is called a "client-side redirect"
+		(eventhough it is the server that replaces the contents with 404.html - but does NOT redirect!):
+      - It runs entirely in the browser (JavaScript).
+      - The client interprets the path and decides whether to redirect.
+
+    • A <meta> redirect (see below) is a very limited form of client-side redirect:
+      - It can only redirect to a *fixed*, unconditional URL, and 1:1 - i.e. the "wrong" address needs to exist
+      - It cannot examine the requested path or make decisions.
+      - It is included below as a commented-out example.
+
+    • 3xx redirects differ in key ways:
+      - Sent by the server with a Location header (e.g., 301, 302).
+      - The browser immediately follows the new URL and updates the address bar.
+      - The user never sees the content of the redirecting page.
+
+    ============================
+    Optional META redirect demo
+    ============================
+
+    Example of a static META redirect:
+    <meta http-equiv="refresh" content="0; URL=/kotelScreen/kotelScreen.html">
+
+    ⚠️ Limitations:
+    - Redirects *all* unmatched paths to that one URL.
+	-- So for specific "path A to path B" redirects, path A - containing this META tag - needs to exist(!)
+    - Cannot inspect path or apply per-path logic.
+    - Therefore, not suitable here—use JavaScript below instead.
+  -->
+
+  <script>
+    // Define specific redirect paths here
+    const redirects = {
+      "/kotelScreen.html": "/kotelScreen/kotelScreen.html"
+    };
+
+    const path = window.location.pathname.replace(/\/+$/, ""); // Trim trailing slashes
+    const target = redirects[path];
+
+    if (target) {
+      window.location.replace(target); // Client-side redirect
+    }
+  </script>
+</head>
+<body>
+  <noscript>
+    <h1>Oops, I can't find that page</h1>
+    <p>Click <a href="https://tuejoshua.github.io/">here</a> to go to the main page.</p>
+  </noscript>
+  <script>
+    if (!target) {
+      document.body.innerHTML = `
+        <h1>Oops, I can't find that page</h1>
+        <p>Click <a href="https://tuejoshua.github.io/">here</a> to go to the main page.</p>
+      `;
+    }
+  </script>
+</body>
+</html>
