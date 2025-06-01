@@ -1,12 +1,12 @@
 <!-- **Motivation:**  -->
 _"Please report how much time has been spent on each project per day."_  
-Such a demand* for time registration has been recurring throughout my carreer. And still, it took me quite some time to make peace with it.
-This is because I usually can't remember what I did when half a day ago, and so, trying to guesstimate these numbers _at the end_ of the work day is very unsatisfying. I tried doing this time registration _throughout_ the day, but found that it made me ineffective in my REAL work by taking up significant mental bandwidth.
+Although such a demand* for time registration has been recurring throughout my carreer, it took me quite some time and effort to make peace with it.
+This is because I usually can't remember - with adequate precision - what I did just half a day ago, and so, trying to guesstimate these numbers _at the end_ of the work day is very unsatisfying. I tried doing this time registration _throughout_ the day, but found that it made me ineffective in my REAL work by taking up significant mental bandwidth.
 
-While discussing another topic with a colleague, I found out that the good ol' Windows app Notepad has a shortcut for logging timestamps (F5). This, together with an unglamourous, but very efficient tab-seperated value format, gave me an easy way of checking in and out of projects and tasks during the work day &mdash; but a lot of minute-precision data points that needed parsing. Time for automation! 😉
+While discussing another topic with a colleague, I found out that the good ol' Windows app Notepad has a shortcut (F5) for logging timestamps. After throwing together an unglamourous, but very efficient tab-separated value format, this gave me an easy way of checking in and out of projects and tasks during the work day — but a lot of minute-precision data points that needed parsing. Time for automation! 😉
 
 **Summary:**  
-A Python-based tool compiled to an executable that I could run on my work PC. Reading the above-described timestamp file, and generating a CSV file containing time spent per project per day &emdash; plus a Pyplots "dashboard" for visualizing statistics as additional sanity checks - and keeping up with how the month's work was progresing.
+A Python-based tool compiled to an executable that I could run on my work PC. Reading the above-described timestamp file, and generating a CSV file containing time spent per project per day — plus a Pyplots "dashboard" for visualizing statistics as additional sanity checks - and keeping up with how the month's work was progresing.
 
 _Unfortunately, the tool was developed partly on company time, so I cannot share it. I may generate and share some sketches or other way of illustration in the future..._
 
