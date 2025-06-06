@@ -17,7 +17,7 @@
 },
 
 {
-"title":"EDF header record visualization",
+"title":"EDF header record visualization and validation",
 "motivation":"At one point, I was tasked with verifying the header record contents of EDF files (https://www.edfplus.info/) produced by my company's product. This was done by opening the file in Notepad and inspecting line and column position of data - very unsatisfying, as you can imagine. Also, I suspected that I was missing out on ''really'' understanding the format, and that I could gain a lot of insight from visualizing it somehow (and maybe I did ;-)).",
 "summary":"A front-end page that lets you select a(n EDF) file, and displays the contents of the header record in (I believe) a very clear/readable manner. Includes functionality for comparing the contents against user-defined format rules. <p>Sorry, the tool was developed partly on company time, so I cannot share it. I may share some screenshots or other way of illustration in the future...",
 "details":"",
