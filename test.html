@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- in order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- The following is broadly unnecessary according to https://en.wikipedia.org/wiki/Favicon, since my favicon.ico is in the domain root -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<!-- on small screens like phones, I'd like like breaking to occur between "Joshua" and "on" (and not between the 2 last words of the string. ChatGPT helped me realize that &nbsp; stands for Non-Breaking SPace...
+This means that the string "on_Github" will never be line-broken - if the window/screen size and/or zoom is so extreme that this will overflow the FOV, we have other layout problems/cannot expect a nice layout anyway -->
+<title>Tue Joshua Steen Chasin</title>
+<style>
+/* non-instantaneous scrolling when following link to section elsewhere on page.
+Based on https://stackoverflow.com/a/24739173 
+ToDo - (re)move this, as currently not in use??? */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Based on https://fabiensanglard.net/ */
+    @font-face {
+      font-family: 'myfontfamily';
+      src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'myfontfamily';
+      src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
+      font-weight: bold;
+      font-display: block;
+    }
+	html {
+	  font-family: myfontfamily, monospace; 
+	}
+
+@font-face {
+	font-family: 'mySignatureFontFamily';
+	src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
+	font-display: block;
+}
+
+#signatureText {
+	font-family: mySignatureFontFamily;
+}
+
+
+h1 {
+	background-color: blue;
+	color: white;
+	text-align: center;
+}
+
+td, th {
+	border: 1px solid black;
+}
+td {
+	padding: .3em;
+	text-align: justify;
+}
+table {
+	border-collapse: collapse;
+}
+</style>
+
+<script>
+function externalLink(link) {
+	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
+	if (confirm('By following this link to [' + link + '], you\'ll be leaving the relative safety of my [' + domain + '] domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
+		window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
+	}
+}
+
+// This function generates a "<a>...</a>" string  
+function linkMacroString(url, linkText) {
+	if (linkText === undefined) {
+		linkText = url;
+	}
+	return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>';
+}
+
+// This function writes directly to the DOM where invoked
+function linkMacro(url, linkText) { // linkText can also be an <img> etc.
+
+	// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
+	document.write(linkMacroString(url, linkText));
+}
+
+</script>
+
+<!-- INCLUDEs ->
+<script src="displayContentsOfJson.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
+
+<script>
+displayContentsOfJson("projects.json");
+</script-->
+
+</head>
+<body>
+
+<!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
+<h1><script>document.write(document.title);</script></h1>
+<center>
+
+<!-- img src="VennDiagram.png" height="200" style="float: left" -->
+
+<!-- svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="float: left">
+  <!-- Circles - ->
+  <circle cx="300" cy="250" r="150" fill="lightblue" fill-opacity="0.6" stroke="black" />
+  <circle cx="500" cy="250" r="150" fill="lightgreen" fill-opacity="0.6" stroke="black" />
+  <circle cx="400" cy="400" r="150" fill="wheat" fill-opacity="0.6" stroke="black" />
+
+  <!-- Labels inside circles - ->
+  <text x="230" y="250" font-size="20" font-weight="bold">Medical Devices</text>
+  <text x="480" y="250" font-size="20" font-weight="bold">Software</text>
+  <text x="360" y="400" font-size="20" font-weight="bold">Verification/QA</text>
+
+  <!-- External labels - ->
+  <text x="130" y="160" font-size="16">Other regulated industries</text>
+  <text x="360" y="570" font-size="16">QA/RA</text>
+
+  <!-- Tue Joshua in bottom right - ->
+  <text x="630" y="550" font-size="18" font-weight="bold">Tue Joshua</text>
+
+  <!-- Red curved arrow - ->
+  <path d="M620,540 Q520,300 400,300" fill="none" stroke="red" stroke-width="3" marker-end="url(#arrowhead)" />
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+      refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="red" />
+    </marker>
+  </defs>
+</svg -->
+
+<img src="VennDiagram.drawio.png" height="200" style="float: left">
+
+</center>
+Extensive experience in <b>Verification</b>, <b>Quality Assurance</b>, and <b>Compliance</b> within Product Development, with a strong focus on <b>Software Development</b>.<br>
+Proven success supporting <b>MDR (CE)</b> and <b>FDA submissions</b> for <b>medical devices</b>.<br>
+Skilled in cross-functional <b>collaboration</b> — especially across Systems Engineering, QA/RA, and Production.<br>
+<i>(For more details, see <a href="https://www.linkedin.com/in/tue-chasin/">my LinkedIn profile</a>)</i>
+
+<p>Whether you're seeking freelance expertise or a dedicated full-time contributor<br>
+- contact me at <mark>tuejoshua@gmail.com</mark>, and let's discuss how I can contribute to your goals!
+<br><br>
+<span id="signatureText">Tue Joshua Steen Chasin</span><br>
+
+
+<hr> <!--I'm also nostalgic about this HTML element... -> 
+
+<h2>Projects</h2-->
+<br>
+<a href="projects.html">Projects showcase</a>
+
+</body>
+</html>
