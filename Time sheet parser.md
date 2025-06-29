@@ -11,7 +11,7 @@ A Python-based tool compiled to an executable that I could run on my work PC. Re
 _Unfortunately, the tool was developed partly on company time, so I cannot share it. I may generate and share some sketches or other way of illustration in the future..._
 
 Some **details** of interest:
-Reading the timestamp file, accumulating time spent per project and per day, rounding each day up to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many Exceptions and ASSERTs as I could come up with to sanity check the data along the way - which turned out to be indispensable when using a manual input file with strict data format criteria, including on how whitespace is used...
+Reading the timestamp file, accumulating time spent per project and per day, rounding each day off to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many Exceptions and ASSERTs as I could come up with to sanity check the data along the way - which turned out to be indispensable when using a manual input file with strict data format criteria, including on how whitespace is used...
 
 **Learnings:**
 This was my first "real" Python project, my previous experience being limited to the code snippet written for the _Zmanim_ project (see elsewhere on this page). Initial design input documentation; <mark>multi-file and</mark> multi-function architecture; <mark>TBD...</mark>
