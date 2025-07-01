@@ -14,6 +14,6 @@ Some **details** of interest:
 Reading the timestamp file, accumulating time spent per project and per day, rounding each day off to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many Exceptions and ASSERTs as I could come up with to sanity check the data along the way - which turned out to be indispensable when using a manual input file with strict data format criteria, including on how whitespace is used...
 
 **Learnings:**
-This was my first "real" Python project, my previous experience being limited to the code snippet written for the _Zmanim_ project (see elsewhere on this page). Initial design input documentation; <mark>multi-file and</mark> multi-function architecture; <mark>TBD...</mark>
+This was my first "real" Python project, my previous experience being limited to the code snippet written for the _Zmanim_ project (see elsewhere on this page). Initial design input documentation; multi-file and multi-function architecture; <mark>TBD...</mark>
 
 _*) a better word here would probably be "requirement"; however, due to an occupational quirk, I usually reserve that term for the design input context (in order to avoid confusion)._
