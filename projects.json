@@ -49,7 +49,7 @@
 
 {
 "title":"Projects showcase (this page)",
-"motivation":"...at some point I realized that this is a project in itself; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files...",
+"motivation":"...at some point I realized that this is a project in itself; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files... Future improvement: Footnotes?",
 "summary":"",
 "details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.",
 "technologies":["JSON"]
