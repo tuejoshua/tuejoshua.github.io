@@ -87,30 +87,20 @@ export async function displayProjectCards(file) {
 			domString += marked.parse(mdContent);
 		}
 		catch (error) {
+			
+			/* To be re-enabled once we are ready to remove the fallback functionality below - and together with removing these 3 fields from the JSON:
 			domString += '<p style="color:red;"><em>Could not load project description from file ' + projects[i].title + '.md:<br>' + error + '</em></p>';
+			*/
+			
+			// FALLBACK:
+			motivationString = projects[i].motivation.trim(); if (motivationString !== '') { motivationString = '<b>motivation:</b><br>' + motivationString; }
+			summaryString    = projects[i].summary.trim();	  if (summaryString    !== '') {	summaryString = '<b>summary: </b><br>'   + summaryString;	 }
+			detailsString    = projects[i].details.trim();    if (detailsString    !== '') {	detailsString = '<b>details: </b><br>'   + detailsString;    }
+			domString += motivationString + '<p>' + summaryString + '<p>' + detailsString;
+			
 		}
 		
 		domString += '</div>';
-				
-		/*
-		motivationString = projects[i].motivation.trim();
-		if (motivationString !== '') {
-			motivationString = '<b>motivation:</b><br>' + motivationString;
-		}
-		
-		summaryString = projects[i].summary.trim();
-		if (summaryString !== '') {
-			summaryString = '<b>summary: </b><br>' + summaryString;
-		}
-
-		detailsString = projects[i].details.trim();
-		if (detailsString !== '') {
-			detailsString = '<b>details: </b><br>' + detailsString;
-		}
-
-			motivationString + '<p>' + summaryString + '<p>' + detailsString 
-			
-		*/
 				
     }
     

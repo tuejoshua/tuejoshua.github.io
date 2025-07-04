@@ -63,6 +63,14 @@ td {
 table {
 	border-collapse: collapse;
 }
+
+/* Marked.js wraps each paragraph in <p></p>s. 
+This is conceptually correct, but interpreted (at least by my Edge browser) 
+as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
+.markdown-content p:first-child {
+	margin-top: 0;
+}
+
 </style>
 
 <script>
@@ -90,13 +98,6 @@ function linkMacro(url, linkText) { // linkText can also be an <img> etc.
 
 </script>
 
-<!-- INCLUDEs -->
-<script src="displayContentsOfJson.js" onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');"></script>
-
-<script>
-displayContentsOfJson("projects.json");
-</script>
-
 </head>
 <body>
 
@@ -111,13 +112,12 @@ Welcome!<br><br>
 <!-- hr> I'm also nostalgic about this HTML element... --> 
 
 <!-- h2>Projects</h2 -->
-
 <div style="text-align: right;">(Click to expand)</div>
 
 <!-- h2>Some of my projects</h2 -->
 <!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-<div id='showData'><i style="color: red;">[ Please wait: Reading data from JSON file...<br>&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is broken<br>- or that you're viewing a client-side version of this page ]</i></div>
+<div id='showData' class="markdown-content"><i style="color: red;">[ Please wait: Reading data from JSON file...<br>&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as intended.<br>This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]</i></div>
 <br>
 
 <!--p>
@@ -137,7 +137,11 @@ This page uses <script>linkMacro('dejavu-fonts.github.io','DejaVu Fonts');</scri
 
 <!--h2>Chronology</h2>
 
-<h2>License</h2>
+<h2>Licenses</h2>
+
+Above (under Acknowledgements [LINK?])...
+the rest...
+
 The source code presented on this (my) website is not accompanied by an explicit license statement.
 This is not an oversight; I've decided (after briefly researching the topic of source code licensing) that for now, I won't invest the (significant) effort required for determining the optimal type of license for my use of this website.
 <mark>Please be aware that this does NOT mean that the license defaults to Public Domain; the opposite is actually the case</mark> according to the sources I did skim before giving up on making a quick decision on this topic.
@@ -145,6 +149,15 @@ If you want to do more with my source code than allowed by default, feel free to
 
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br-->
+
+<!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
+<!-- TO DO: Other .js files also as modules? -->
+<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
+<script type="module">
+import { displayProjectCards } from './displayProjectCards.js';
+// The following function call must be in this script block, together with 
+displayProjectCards("projects.json");
+</script>
 
 </body>
 </html>
