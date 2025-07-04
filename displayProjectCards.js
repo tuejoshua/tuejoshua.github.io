@@ -93,9 +93,9 @@ export async function displayProjectCards(file) {
 			*/
 			
 			// FALLBACK:
-			motivationString = projects[i].motivation.trim(); if (motivationString !== '') { motivationString = '<b>motivation:</b><br>' + motivationString; }
-			summaryString    = projects[i].summary.trim();	  if (summaryString    !== '') {	summaryString = '<b>summary: </b><br>'   + summaryString;	 }
-			detailsString    = projects[i].details.trim();    if (detailsString    !== '') {	detailsString = '<b>details: </b><br>'   + detailsString;    }
+			let motivationString = projects[i].motivation.trim(); if (motivationString !== '') { motivationString = '<b>motivation:</b><br>' + motivationString; }
+			let summaryString    = projects[i].summary.trim();	  if (summaryString    !== '') {	summaryString = '<b>summary: </b><br>'   + summaryString;	 }
+			let detailsString    = projects[i].details.trim();    if (detailsString    !== '') {	detailsString = '<b>details: </b><br>'   + detailsString;    }
 			domString += motivationString + '<p>' + summaryString + '<p>' + detailsString;
 			
 		}
