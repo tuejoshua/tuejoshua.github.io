@@ -2,17 +2,17 @@
 
 {
 "title":"Hilchot Brachot games",
-"motivation":"While learning the principles of a particular part of Hilchot Brachot (hebrew: ''Laws of Blessings''), I was annoyed to find that a part of them did not seem to lend itself to deeper logic understanding (it probably does on a deeper level than the one I reached), but rather requiring simple memorization. This was the inspiration for trying to gamify the topic... And when I saw my kids enjoying the game I had originally created for my own use, the scope expanded to more games, and also trying to answer the question: ''How much of a ''real'' game experience, suitable for adults and children alike, can I create using only my front-end skills?",
-"summary":"The ''main menu'' of this suite of games for practicing the principles of Hilchot Brachot can be found <a href='hilchotBrachot'>here</a>. NB: please do not decide halachic questions based on these games; they are meant only as an <b>aid</b> for learning.",
-"details":"They were (and are still) developed based on the following principles:<br>Use multimedia but keep lightweight<br>frontend-techniques only",
+"motivation":"",
+"summary":"",
+"details":"",
 "technologies":["FrontEnd"]
 },
 
 {
 "title":"Time sheet parser",
-"motivation":"I found myself spending unreasonable amounts of time filling in my monthly time slip for my customer, and did not feel good/confident about the estimates I did. A collegue of mine mentioned incidentally that the good ole Windows app Notepad could log timestamps by pressing F5. This gave me an easy way of checking in and out of projects and tasks during the work day, but a lot of minute-precision data points that needed parsing. Time for automation! ;-)",
-"summary":"A Python-based tool compiled to an executable that I could run on my work PC (where the timestamp file would be generated), generating a CSV file containing time spent per project per day. <p>Sorry, the tool was developed partly on company time, so I cannot share it. I may share some screenshots or other way of illustration in the future...",
-"details":"Reading the  timestamp file, accumulating time spent per project and per day, rounding each day off to whole quarters of an hour, and a heuristic for deciding which project got the extra quarter in case of ties. As many ASSERTs as I could come up with to sanity check the data along the way - which turned out to be indispensible when using a manual input file with strict data format criteria, including on how whitespace is used...",
+"motivation":"",
+"summary":"",
+"details":"",
 "technologies":["Python"]
 },
 
