@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -58,17 +58,41 @@
 <noscript>
 <p>(or the defined redirect strategy requires JS, which you have disabled)</p>
 </noscript>
-<p>Click <a href="https://tuejoshua.github.io/">here</a> to go to the main page.</p>
+<p>Go to the main page by clicking <a href="https://tuejoshua.github.io/">here</a> - or simply wait: <span id="countdownSpan" style="color: red;">5</span></p>
 
 <script>
+
   const redirectMap = {
+	'/index.html': '/projects.html', // NB: this does NOT catch root URLs (i.e. where /index.html is not explicitly included ny the user; see also the content of the index.html file
     '/kotelScreen.html': '/kotelScreen/kotelScreen.html'
   };
+  
   const path = window.location.pathname.replace(/\/+$/, ""); // Trim trailing slashes, so a user error "path\filename.html\" will not be treated as a folder
   const target = redirectMap[path];
+  
   if (target) {
     window.location.replace(target);
   }
+  else { // 5-second countdown, then redirect to /index.html
+	
+	const span = document.getElementById('countdownSpan');
+	
+	let remainingSeconds = Number(span.textContent);
+
+	function timeoutAction() {
+		remainingSeconds--;
+		if (remainingSeconds < 1) {
+			clearInterval(timer);
+			window.location.replace("/index.html");
+		}
+		span.textContent += '... ' + remainingSeconds;
+	}
+	
+	const timer = setInterval(timeoutAction, 1000);
+	
+  }
+  
+  
 </script>
 
 </body>
