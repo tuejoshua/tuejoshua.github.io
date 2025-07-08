@@ -81,7 +81,7 @@
 {
 "title":"404 -> Redirect",
 "motivation":"I had a broken link on my phone (to the kotel screen page) which has since moved. That got me thinking about redirects - probably because I was at the same time reading up on API calls and HTTP responses :)",
-"summary":"See <a href='404.html'>404.html.</a>",
+"summary":"See code of <a href='404.html'>404.html.</a> ...and also index.html",
 "details":"ToDo: Add content from the default GitHub 404 page - and a comment about how we could only load this dynamically via (iframe or similar to) ANOTHER domain guaranteed not to implement its own 404.html (now or in the future)",
 "technologies":[]
 }
