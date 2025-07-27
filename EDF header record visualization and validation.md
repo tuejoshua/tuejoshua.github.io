@@ -1,10 +1,10 @@
 <!--"motivation":" -->
 At one point, I was tasked with verifying the format and contents of the files produced by my company's software; more specifically, the header records of [EDF+](https://www.edfplus.info/) files.
-This was done initially by opening the file in Notepad and inspecting line and column position of data - very unsatisfying and error prone, as you can imagine. Also, I suspected that I was missing out on "really" understanding the format, and that I could gain a lot of insight from visualizing it somehow.  
+This was done initially by opening the file in Notepad and inspecting line and column position of data — very unsatisfying and error prone, as you can imagine. Also, I suspected that I was missing out on "really" understanding the format, and that I could gain a lot of insight from visualizing it somehow.  
   
 **Summary:** A front-end page that lets you select a(n EDF) file, and displays the contents of the header record in a very clear and readable manner. Includes functionality for further visualization adjustment, and validation of the contents vs. user-defined pseudo-RegEx formatting patterns.
 
-_Sorry, the tool was developed on company time, so I cannot share the code - in fact, I no longer have access to it.  
+_Sorry, the tool was developed on company time, so I cannot share the code — in fact, I no longer have access to it.  
 If I find a need for a similar tool (probably for another file format) in the future, I might try to recreate (a better version! of) it and share here..._
 
 Interesting **details:**
