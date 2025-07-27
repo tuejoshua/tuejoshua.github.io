@@ -32,11 +32,14 @@ function getTechLogo(tag) {
 	return '<img alt="' + altText + ' icon" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nFor source and license of this icon, see further down this page">';
 }
 
-function showProjectCard(btn) {
-	const card = document.getElementById('projectCard' + btn.dataset.index); // DATA-INDEX parameter);
-	const isVisible = card.style.display === 'block';
-	card.style.display = isVisible? 'none' : 'block';
-	btn.textContent = (isVisible ? '▶' : '▼') + ' ' + btn.textContent.slice(2);
+function showProjectCard(i) {
+	switch (document.getElementById('projectCard' + i).style.display) {
+		case 'none':
+			document.getElementById('projectCard' + i).style.display = 'block';
+			break;
+		case 'block':
+		document.getElementById('projectCard' + i).style.display = 'none';
+	}
 }
 
 /* The following is based on an example on https://www.w3schools.com/jsref/api_fetch.asp
@@ -60,7 +63,7 @@ export async function displayProjectCards(file) {
 		// ...
 		// ONCLICK is obsolete - and breaks with MODULE code => CLASS + DATA-* + event listener elsewhere...
 		domString += '<button type="button" class="ProjectButton" data-index="' + i + '" style="width: 100%; text-align: left; style="max-height: 999999px;">' +
-			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; text-align: left; ' + fontSizeParam + '">' + '▶ ' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; text-align: left; ' + fontSizeParam + '">' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 			
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
@@ -110,7 +113,8 @@ export async function displayProjectCards(file) {
 	// OnClick events (see ONCLICK comment above)
 	document.querySelectorAll('.ProjectButton').forEach(btn => { // all CLASS = ProjectButton
 		btn.addEventListener('click', () => {
-			showProjectCard(btn);
+			const i = btn.dataset.index; // DATA-INDEX parameter
+			showProjectCard(i);
 		});
 	});
 
