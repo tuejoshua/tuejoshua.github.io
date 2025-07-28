@@ -36,7 +36,10 @@ function showProjectCard(btn) {
 	const card = document.getElementById('projectCard' + btn.dataset.index); // DATA-INDEX parameter);
 	const isVisible = card.style.display === 'block';
 	card.style.display = isVisible? 'none' : 'block';
-	btn.textContent = (isVisible ? '▶' : '▼') + ' ' + btn.textContent.slice(2);
+	const titleCell = btn.querySelector('.project-title-cell');
+	const currentText = titleCell.textContent;
+	// Replace just the first character (icon) with ▶ or ▼
+	titleCell.textContent = (isVisible ? '▶' : '▼') + currentText.slice(1);
 }
 
 /* The following is based on an example on https://www.w3schools.com/jsref/api_fetch.asp
@@ -57,7 +60,7 @@ export async function displayProjectCards(file) {
 		
 		// ONCLICK is obsolete - and breaks with MODULE code => CLASS + DATA-* + event listener elsewhere...
 		domString += '<button type="button" class="ProjectButton" data-index="' + i + '">' +
-			'<table style="width: 100%; border-collapse: collapse;"><tr><td style="border: none; text-align: left; ' + fontSizeParam + '">' + '▶ ' + projects[i].title + '</td><td style="text-align: right; border: none;">';
+			'<table style="width: 100%; border-collapse: collapse;"><tr><td class="project-title-cell" style="border: none; text-align: left; ' + fontSizeParam + '">' + '▶ ' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 			
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
