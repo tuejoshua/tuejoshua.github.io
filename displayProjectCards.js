@@ -52,7 +52,7 @@ export async function displayProjectCards(file) {
 	const projectsJsonObject = await fetch(file);
 	const projects = await projectsJsonObject.json();
   
-	let domString = '';
+	let domString = '<div style="text-align: right;">(Click to expand)</div>';
      
 	for (let i=0; i<projects.length; i++) {
 		
