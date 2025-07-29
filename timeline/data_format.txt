@@ -1,0 +1,13 @@
+The .csv file format is as follows:
+
+Start time      Label               End time        Sources (see sources.txt)
+===============                     ===============
+Greg.   Hebr.                       Greg.   Hebr.
+
+EXAMPLE:
+-003761	0000	Adam            	-002830	0930	Spiro,Artscroll
+
+Entries are interpreted as a range aka. time period if the End time is defined
+and as a discreet time point aka. event if not.
+
+If one (or both) Start time is missing, the entry will be ignored for that calendar (and an error pop-up will inform the user)
