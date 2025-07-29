@@ -43,7 +43,7 @@
 "title":"Kotel screen",
 "motivation":"Inspired by the screens hanging at the Kotel (Wailing Wall in Jerusalem), I wanted to create one for my home/own use, to be shown on a tablet, especially for days like Shabbat and Yom Tov, where I cannot use my smartphone as an alternative.",
 "summary":"Using various APIs; trying to layout the page to maximize screen use and legibility.",
-"details":"<a href=https://tuejoshua.github.io/kotelScreen/kotelScreen.html>here</a>",
+"details":"<a href=https://tuejoshua.github.io/kotelScreen/kotelScreen.html>here</a><br> https://github.com/tuejoshua/tuejoshua.github.io/tree/main/kotelScreen (incl. test versions)",
 "technologies":["FrontEnd"]
 },
 
@@ -51,14 +51,14 @@
 "title":"Projects showcase (this page)",
 "motivation":"...at some point I realized that this is a project in itself; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files... Future improvement: Footnotes? Also: code formatting (via backticks) doesn't look nice with my current font settings...",
 "summary":"",
-"details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.",
+"details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.<br> https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.html",
 "technologies":["JSON"]
 },
 
 {"title":"Folder index page",
 "motivation":"I wanted to share direct links to images* on my server. However, since my webhost does not allow direct access to image files, I needed an ''in-between'' page for handling that traffic. As I also wanted links to be as short as possible, I came up with this solution, where I can simply put relevant resource(s) in a folder, include a simple ''index.php'' wrapper file, and then share the link to the folder instead.<p>*) Originally, the output image for <a href='#Zmanim_for_Machsike_Hadas,_Copenhagen'>the Zmanim_for_Machsike_Hadas project</a>; where the link actually got a LOT shorter (due to a long file name).",
 "summary":"<mark><a href='showFolderContents/iframeTest.html'>A page that</a></mark> lists all contents (i.e. files) of the folder in which the page resides, with links to each file plus other filetype-specific behavior (thumbnails for image files etc.)",
-"details":"The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).",
+"details":"The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).<br><br>https://github.com/tuejoshua/tuejoshua.github.io/tree/main/showFolderContents",
 "technologies":["PHP","FrontEnd"]
 },
 
@@ -66,15 +66,15 @@
 "title":"PHP image gallery",
 "motivation":"When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website. It was (I believe) also my first ''real'' experience with PHP.",
 "summary":"",
-"details":"",
+"details":"https://github.com/tuejoshua/tuejoshua.github.io/tree/main/galleri",
 "technologies":["PHP","FrontEnd"]
 },
 
 {
 "title":"Timeline",
 "motivation":"",
-"summary":"<a href=https://tuejoshua.github.io/timeline/timeline.html>here</a>",
-"details":"",
+"summary":"<a href=https://tuejoshua.github.io/timeline/timeline.html>here</a><br> ",
+"details":"https://github.com/visjs/vis-timeline/issues/1856",
 "technologies":["FrontEnd"]
 },
 
