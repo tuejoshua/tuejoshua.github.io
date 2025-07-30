@@ -1,0 +1,112 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Page-1" id="JajVS5oi3K1L_Pkpffvc">
+    <mxGraphModel dx="2431" dy="1415" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nN7HiU9CASVYB58JUrAK-5" value="read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nN7HiU9CASVYB58JUrAK-1" target="nN7HiU9CASVYB58JUrAK-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-1" value="Data file&lt;br&gt;&lt;br&gt;.csv" style="shape=card;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="254" y="339.94" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-2" value="Human readable, easily editable in text editor" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="234" y="269.94" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-3" value="Data points:&lt;br&gt;Timestamp OR Start- and End- [year]&lt;div&gt;Label [string]&lt;/div&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;direction=west;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="184" y="429.94" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nN7HiU9CASVYB58JUrAK-4" target="nN7HiU9CASVYB58JUrAK-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-4" value="PapaParse" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=2" parent="1" vertex="1">
+          <mxGeometry x="444" y="359.94" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-6" value="split in different files?&lt;br&gt;=&amp;gt; load all files in folder?" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="374" y="279.94" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="q5q70_BWkZCH5tW8NZf4-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" source="nN7HiU9CASVYB58JUrAK-7" target="nN7HiU9CASVYB58JUrAK-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="594" y="569.94" />
+              <mxPoint x="594" y="329.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-7" value="To Do: add some way to group (Event, Person, etc.)" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;direction=west;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="264" y="509.94" width="100" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-8" value="currently, both Gregorian and Hebrew timestamps are expected in this file" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#e1d5e7;strokeColor=#9673a6;direction=north;" parent="1" vertex="1">
+          <mxGeometry x="144" y="329.94" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="q5q70_BWkZCH5tW8NZf4-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" source="nN7HiU9CASVYB58JUrAK-9" target="q5q70_BWkZCH5tW8NZf4-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="84" y="249.94" />
+              <mxPoint x="1084" y="249.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q5q70_BWkZCH5tW8NZf4-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" source="nN7HiU9CASVYB58JUrAK-9" target="nN7HiU9CASVYB58JUrAK-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="104" y="259.94" />
+              <mxPoint x="414" y="259.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-9" value="...should we compute the missing ones somehow on the fly?" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#e1d5e7;strokeColor=#9673a6;direction=north;" parent="1" vertex="1">
+          <mxGeometry x="34" y="329.94" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nN7HiU9CASVYB58JUrAK-10" target="nN7HiU9CASVYB58JUrAK-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-10" value="JS object" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="614" y="359.94" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nN7HiU9CASVYB58JUrAK-12" target="nN7HiU9CASVYB58JUrAK-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-12" value="VisJs Timeline" style="whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=2" parent="1" vertex="1">
+          <mxGeometry x="774" y="359.94" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nN7HiU9CASVYB58JUrAK-14" target="nN7HiU9CASVYB58JUrAK-16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="994" y="429.94" />
+              <mxPoint x="994" y="429.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-14" value="html" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
+          <mxGeometry x="944" y="339.94" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nN7HiU9CASVYB58JUrAK-16" target="nN7HiU9CASVYB58JUrAK-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="974" y="449.94" />
+              <mxPoint x="974" y="449.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nN7HiU9CASVYB58JUrAK-16" value="toggle between Gregorian and Hebrew calendar" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="924" y="479.94" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="q5q70_BWkZCH5tW8NZf4-1" value="&lt;meta charset=&quot;utf-8&quot;&gt;CurrentTime line for Hebrew is currently hardcoded to 5785..." style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#e1d5e7;strokeColor=#9673a6;direction=south;" parent="1" vertex="1">
+          <mxGeometry x="1014" y="299.94" width="110" height="120" as="geometry" />
+        </mxCell>
+        <UserObject label="Hvad skal der ske med loadScript.js?" link="Hvad skal der ske med loadScript.js?" id="q5q70_BWkZCH5tW8NZf4-3">
+          <mxCell style="whiteSpace=wrap;html=1;shape=callout;perimeter=calloutPerimeter;base=15;size=20;position=0.61;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+            <mxGeometry x="634" y="469.94" width="230" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="q5q70_BWkZCH5tW8NZf4-4" value="when clicking an item, show all data incl. sources" style="whiteSpace=wrap;shape=callout;html=1;perimeter=calloutPerimeter;fillColor=#e1d5e7;strokeColor=#9673a6;direction=south;position2=0;size=30;position=0.15;" parent="1" vertex="1">
+          <mxGeometry x="1024" y="429.94" width="110" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="q5q70_BWkZCH5tW8NZf4-6" value="Multilingual - English, Hebrew, Danish?" style="whiteSpace=wrap;shape=callout;html=1;perimeter=calloutPerimeter;fillColor=#e1d5e7;strokeColor=#9673a6;direction=east;" parent="1" vertex="1">
+          <mxGeometry x="714" y="529.94" width="130" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
