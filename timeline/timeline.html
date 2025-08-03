@@ -5,135 +5,149 @@
 
 <head>
 
-<script src="loadScript.js" onerror="window.alert('ERROR: Unable to load\n' + this.src);"></script>
+	<script src="loadScript.js" onerror="window.alert('ERROR: Unable to load\n' + this.src);"></script>
 
-<!-- https://visjs.org/; https://github.com/visjs/vis-timeline -->
-<script>
-loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
-</script>
+	<!-- https://visjs.org/; https://github.com/visjs/vis-timeline -->
+	<script>
+		loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
+	</script>
 
-<!-- https://www.papaparse.com/ -->
-<script>
-loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
-</script>
+	<!-- https://www.papaparse.com/ -->
+	<script>
+		loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
+	</script>
 
-<!-- from https://visjs.github.io/vis-timeline/examples/timeline/items/rangeOverflowItem.html 
+	<!-- from https://visjs.github.io/vis-timeline/examples/timeline/items/rangeOverflowItem.html 
 ...it seems BOTH of the following labels are necessary... -->
-<style>
-.vis-item .vis-item-overflow {
-	overflow: visible;
-    }
-</style>
+	<style>
+		.vis-item .vis-item-overflow {
+			overflow: visible;
+		}
+	</style>
 
 </head>
 
 <body>
 
-<div id="visualization">Loading, please wait...</div>
+	<div id="visualization">Loading, please wait...</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
-var data;
+		var data;
 
-Papa.parse('data.csv', {
-	download: true,
-	complete: function(results) {
-		console.log("Parsing complete:", results);
-		data = results.data;
-		showTimeline();
-	}
-}
-);
-
-function showTimeline() {
-
-// If not clearing here, the timeline would just be added below existing ones(!)
-document.getElementById('visualization').innerHTML = "Loading, please wait...";
-
-	var items = new vis.DataSet();
-	
-	// Configuration for the Timeline
-	var options = {};
-
-	if (document.getElementById('Gregorian').checked) {
-		var calendarOffset = 0;
-	}
-	else { // Hebrew
-		var calendarOffset = 1;
-		// By default, a red line is shown at current timestamp - in Gregorian time, so doesn't work (yet) for Hebrew time...
-		options.showCurrentTime = false; // Manual adding of correct line - see below
-	}
-	
-	var errorString = "";
-	
-	for (let i = 0; i < data.length; i++) {
-	
-		// TRIM: remove whitespace pre- and suffix
-		/* based on https://johnkavanagh.co.uk/articles/check-if-a-string-contains-only-whitespace-with-javascript/ */
-		startTime = data[i][0+calendarOffset].trim();
-		label     = data[i][2].trim();
-		endTime   = data[i][3+calendarOffset].trim();
-	
-		if (startTime == "") {
-			errorString += "Row #" + i + "(" + label + "): start time empty.\n";
-			continue;
+		Papa.parse('data.csv', {
+			download: true,
+			complete: function (results) {
+				console.log("Parsing complete:", results);
+				data = results.data;
+				showTimeline();
+			}
 		}
-		
-		startString = date(startTime);
-	
-		switch (endTime) {
-			case "":
-				console.log(startTime + " | " + label);
-				items.add({content: label, start: startString});
-				break;
-			default:
-				console.log(startString + " | " + label + " | " + endTime); 
-				items.add({content: label, start: startString, end: date(endTime)});
+		);
+
+		function showTimeline() {
+
+			// If not clearing here, the timeline would just be added below existing ones(!)
+			document.getElementById('visualization').innerHTML = "Loading, please wait...";
+
+			var items = new vis.DataSet();
+
+			// Configuration for the Timeline
+			var options = {};
+
+			if (document.getElementById('Gregorian').checked) {
+				var calendarOffset = 0;
+			}
+			else { // Hebrew
+				var calendarOffset = 1;
+				// By default, a red line is shown at current timestamp - in Gregorian time, so doesn't work (yet) for Hebrew time...
+				options.showCurrentTime = false; // Manual adding of correct line - see below
+			}
+
+			var errorString = "";
+
+			for (let i = 0; i < data.length; i++) {
+
+				// TRIM: remove whitespace pre- and suffix
+				/* based on https://johnkavanagh.co.uk/articles/check-if-a-string-contains-only-whitespace-with-javascript/ */
+				startTime = data[i][0 + calendarOffset].trim();
+				label = data[i][2].trim();
+				endTime = data[i][3 + calendarOffset].trim();
+
+				if (startTime == "") {
+					errorString += "Row #" + i + "(" + label + "): start time empty.\n";
+					continue;
+				}
+
+				startString = date(startTime);
+
+				switch (endTime) {
+					case "":
+						console.log(startTime + " | " + label);
+						items.add({ content: label, start: startString });
+						break;
+					default:
+						console.log(startString + " | " + label + " | " + endTime);
+						items.add({ content: label, start: startString, end: date(endTime) });
+				}
+			}
+
+			if (!errorString == "") {
+				alert("Please note that the following entries are excluded from the timeline\nsince they are incomplete for the selected calendar:\n\n" + errorString);
+			}
+
+			document.getElementById('visualization').innerHTML = "";
+
+			// Create a Timeline
+			var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+
+			// Lock the default view as maximum zoom out
+			var defaultWindow = timeline.getWindow();
+			timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
+
+			// See "showCurrentTime" above
+			if (!document.getElementById('Gregorian').checked) { // Hebrew
+				timeline.addCustomTime(date("5785"));
+			}
+
+			// From https://stackoverflow.com/a/70392483:
+			// Alternatively register select event
+			timeline.on("select", function (selection) {
+				// If you set `multiselect: false` or leave it unset then only one item can selected at once.
+				// Therefore you can just use [0] to access the first item in the items array
+				if (selection.items.length > 0) {
+					const item = items.get(selection.items[0]);
+					console.log('select event - title:', item.title);
+				}
+
+			}
+
 		}
-	}
 
-	if (!errorString == "") {
-		alert("The following data errors were found:\n\n" + errorString);
-	}
+		function date(year) {
+			return year + '-01-01';
+		}
 
-	document.getElementById('visualization').innerHTML = "";
-		
-	// Create a Timeline
-	var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+	</script>
 
-	// Lock the default view as maximum zoom out
-	var defaultWindow = timeline.getWindow();
-	timeline.setOptions({min: defaultWindow.start, max: defaultWindow.end});
+	<form>
+		<input type="radio" id="Hebrew" name="Calendar" value="Gregorian" onclick="showTimeline();" checked>
+		<!-- From www.w3schools.com:  "Tip: Always add the <label> tag for best accessibility practices!" -->
+		<label for="Hebrew">Hebrew</label><br>
 
-	// See "showCurrentTime" above
-	if (!document.getElementById('Gregorian').checked) { // Hebrew
-		timeline.addCustomTime(date("5785"));
-	}
-  
-}
+		<input type="radio" id="Gregorian" name="Calendar" value="Gregorian" onclick="showTimeline();">
+		<label for="Gregorian">Gregorian</label><br>
+	</form>
 
-function date(year) {
-	return year + '-01-01';
-}
-  
-</script>
-
-<form>
-  <input type="radio" id="Gregorian" name="Calendar" value="Gregorian" onclick="showTimeline();">
-  <!-- From www.w3schools.com:
-  "Tip: Always add the <label> tag for best accessibility practices!" -->
-  <label for="Gregorian">Gregorian</label><br>
-  <input type="radio" id="Hebrew" name="Calendar" value="Gregorian" onclick="showTimeline();" checked>
-  <label for="Hebrew">Hebrew</label><br>  
-</form>
-
-<p>
-<i>Powered by <a href="https://github.com/visjs/vis-timeline">vis.js/vis-timeline</a> and <a href="https://github.com/mholt/PapaParse">PapaParse</a></i>
+	<p>
+		<i>Powered by <a href="https://github.com/visjs/vis-timeline">vis.js/vis-timeline</a> and <a
+				href="https://github.com/mholt/PapaParse">PapaParse</a></i>
 
 </body>
-</html>
 
 <!--
 No longer used, but relevant knowledge found during development of this file:
 - https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons 
 -->
+
+</html>
