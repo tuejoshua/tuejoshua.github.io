@@ -2,8 +2,7 @@
 A suite of edutainment games aimed at exercising knowledge of _Hilchot Brachot_ (Jewish law concerning blessings).  
 **Disclaimer:** I take no responsibility for the halachic correctness of these games — as they say: _"Please refer to your local (Orthodox) rabbi."_  
 
-Click <mark>[here](https://tuejoshua.github.io/hilchotBrachot)</mark> for the main menu of the game suite  
-(and [here (GitHub)](https://github.com/tuejoshua/tuejoshua.github.io/tree/main/hilchotBrachot) to review the source files).
+Click <mark>[here](https://tuejoshua.github.io/hilchotBrachot)</mark> for the main menu of the game suite (and [here (GitHub)](https://github.com/tuejoshua/tuejoshua.github.io/tree/main/hilchotBrachot) to review the source files).
 
 **Motivation:**  
 When I was learning (the _Order of Priority/Precedence_ part of) these laws, I was having difficulty obtaining a logical understanding of them. Having to resort to memorization seemed unsatisfying, and I realized that I would have to "gamify" this knowledge somehow if I wanted to retain it.  
