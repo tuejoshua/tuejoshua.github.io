@@ -1,6 +1,6 @@
 <!-- **Summary:**  -->
 A suite of edutainment games aimed at exercising knowledge of _Hilchot Brachot_ (Jewish law concerning blessings).  
-**Disclaimer:** I take no responsibility for the halachic correctness of these games - as they say: _"Please refer to your local (Orthodox) rabbi."_  
+**Disclaimer:** I take no responsibility for the halachic correctness of these games — as they say: _"Please refer to your local (Orthodox) rabbi."_  
 
 Click <mark>[here](https://tuejoshua.github.io/hilchotBrachot)</mark> for the main menu of the game suite  
 (and [here (GitHub)](https://github.com/tuejoshua/tuejoshua.github.io/tree/main/hilchotBrachot) to review the source files).
