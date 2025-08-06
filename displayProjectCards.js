@@ -109,9 +109,32 @@ export async function displayProjectCards(file) {
 	
 	// OnClick events (see ONCLICK comment above)
 	document.querySelectorAll('.ProjectButton').forEach(btn => { // all CLASS = ProjectButton
-		btn.addEventListener('click', () => {
+
+		/* Since we enabled selection of project titles / button labels (via CSS; see projects.html),
+		   we want to NOT fire the click event if text is being selected - therefore, replace this
+		
+		   btn.addEventListener('click', () => {
 			showProjectCard(btn);
 		});
+
+			with this: */
+
+		let mouseMoved = false;
+
+		btn.addEventListener('mousedown', () => {
+  			mouseMoved = false;
+		});
+
+		btn.addEventListener('mousemove', () => {
+			mouseMoved = true;
+		});
+
+		btn.addEventListener('mouseup', () => {
+			if (!mouseMoved) {
+    			showProjectCard(btn);
+  			}
+		});
+
 	});
 
 	
