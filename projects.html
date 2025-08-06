@@ -83,6 +83,12 @@ also, without forcing "text-align: left" here (as should be the default), many b
   background: lightgrays;
   border: none;
   cursor: pointer;
+  
+  /* Make button label, i.e. project titles, selectable (for copying, translation etc.) */
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 </style>
