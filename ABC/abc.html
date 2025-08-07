@@ -47,11 +47,11 @@ switch (x) {
 			charString = String.fromCharCode(229);
 		break;
 	default:
-		if (x > 28) {
-		charString = String.fromCharCode((97+x));
+		if (x > 25) { // x = [29; 54], i.e. {A, ...Z}
+		charString = String.fromCharCode((68+x)); // [97; 122]
 		}
-		else {
-			charString = String.fromCharCode((65+x));
+		else { // x = [0; 25], i.e. {A, ...Z}
+			charString = String.fromCharCode((65+x)); // [65; 90]
 		}
 	}
 
