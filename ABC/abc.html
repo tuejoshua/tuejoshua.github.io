@@ -70,7 +70,7 @@ document.write(progress + '/' + NUMLETTERS);
 <input type="button" value="+5" onClick="localStorage.setItem('TJSCsABC.Progress', Math.min(progress + 5, NUMLETTERS)); location.reload();">
 <script>
 document.write('<h1 style="font-size:10vw">' + charString + '</h1>');
-document.write('<audio id="characterAudio"><source src="' + charString.toUpperCase + '.da.m4a" type="audio/mpeg">Your browser does not support the audio element.</audio>');
+document.write('<audio id="characterAudio"><source src="' + charString.toUpperCase() + '.da.m4a" type="audio/mpeg">Your browser does not support the audio element.</audio>');
 </script>
 <input type="button" value="~~~" onClick="document.getElementById('characterAudio').play();">
 <input type="button" value=">>>" onClick="location.reload();">
