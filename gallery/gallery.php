@@ -1,4 +1,6 @@
-﻿<HTML>
+<!DOCTYPE HTML>
+
+<HTML>
 
 <HEAD>
 
@@ -8,20 +10,24 @@
 numThumbs = 5; // number of Thumb images - must correspond to <img> Thumb fields!
 
 // Array of Danish or English titles for Folders. Make sure the order is in the same order as the alphabetical order of the actual (short) folder names.
-folderNames = ["food items", "hilchot brachot icons"];
+folderNames = ["graphics used by this PHP gallery itself"]; //"food items", "hilchot brachot icons"];
 
 				/// Declare JavaScript arrays for later use ///
 
+baseDir = '';                                
 Folders = new Array();
 Images = new Array();
 Indices = new Array(); // Indices in Images where a new Folder's images starts
 
 <?php
 
-				/// Find folders of images in the 'photos' folder ///
+				/// Find folders of images ///
+
+// Base folder containing the image folders
+$baseDir = "./"; // "../hilchotBrachot/resources";
 
 // get handle of current directory
-$curDir = opendir("../hilchotBrachot/resources");
+$curDir = opendir($baseDir);
 
 // Declare PHP array (otherwise, the code below will not work - on this server at least...)
 $Folders = array();
@@ -60,7 +66,7 @@ for ($i = 0; $i < count($Folders); $i++) { //
 
 	$Indices[count($Indices)] = count($Images); // Record index of 'Folder start' image
 
-	$curDir = opendir("../hilchotBrachot/resources/" . $Folders[$i]); // get handle of current directory
+	$curDir = opendir($baseDir . $Folders[$i]); // get handle of current directory
 
 	$images = array(); // Initialize (clear) array for images in one folder
 
@@ -87,6 +93,7 @@ for ($i = 0; $i < count($Folders); $i++) { //
 
 			/// Bridge the gap: copy from php arrays to JavaScript ditto ///
 
+echo "BaseDir = '$baseDir';";
 for ($i = 0; $i < count($Folders); $i++) echo "Folders[$i] = '$Folders[$i]';";
 // difficult to read because it contains php nested in JS nested in php :-S
 for ($i = 0; $i < count($Images); $i++) echo "Images[$i] = '$Images[$i]';";
@@ -107,7 +114,7 @@ document.images.Main.src = 'graphics/blank.png';
 if (n < (Indices[f+1]-Indices[f])) { // If Image index is not out of bounds for this Folder
 
 document.images.Main.src = 'graphics/hourglass_anim.gif';
-document.images.Main.src = '../hilchotBrachot/resources/' + Folders[f] + '/' + Images[Indices[f] + n];
+document.images.Main.src = baseDir + Folders[f] + '/' + Images[Indices[f] + n];
 
 document.FolderForm.CurrentImageNumberText.value = n+1; // Update Image Counter Text Field
 }
@@ -138,7 +145,7 @@ if ((Indices[f]+page*numThumbs+i) >= Indices[f+1]) { // If index out of bounds w
 else {
 	eval("document.images.Thumb"+(i+1)+".src='graphics/hourglass_anim.gif';");
 	// eval("document.images.Thumb"+(i+1)+".src='photos/_thumbnails/'+Images["+(Indices[f]+page*numThumbs+i)+"];");
-	   eval("document.images.Thumb"+(i+1)+".src='../hilchotBrachot/resources/'+ Folders[f] +'/'+ Images["+(Indices[f]+page*numThumbs+i)+"];");
+	   eval("document.images.Thumb"+(i+1)+".src= baseDir + Folders[f] +'/'+ Images["+(Indices[f]+page*numThumbs+i)+"];");
 	}
 }
 
@@ -182,7 +189,7 @@ document.body.style.cursor="pointer";
 
 function CM() {	// Click Main - Clicking on the Main image opens a new window with the image
 
-window.open('../hilchotBrachot/resources/'+Folders[Number(document.FolderForm.FolderSelect.value)]+'/'+Images[Indices[Number(document.FolderForm.FolderSelect.value)]+current]);
+window.open(baseDir+Folders[Number(document.FolderForm.FolderSelect.value)]+'/'+Images[Indices[Number(document.FolderForm.FolderSelect.value)]+current]);
 }
 
 function CT(n) { // Click Thumb no. n loads it into Main
