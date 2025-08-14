@@ -50,7 +50,7 @@
 {
 "title":"Projects showcase (this page)",
 "motivation":"...at some point I realized that this is a project in itself; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files... Future improvement: Footnotes? Also: code formatting (via backticks) doesn't look nice with my current font settings...; when opening new one 1) close other card(s) and/or 2) auto-scroll to that card;",
-"summary":"A note about the AwardSpace domain for hosting PHP? (and non-Git-fitting data?) Links/anchors for when project descriptions refer to each other? Make sure all text is selectable (e.g. for copying and translation)?",
+"summary":"A note about the AwardSpace domain for hosting PHP? (and non-Git-fitting data?) - on that domain, config redirect to GitHUb Page for 404s? Links/anchors for when project descriptions refer to each other? Make sure all text is selectable (e.g. for copying and translation)?",
 "details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.<br> https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.html",
 "technologies":["JSON"]
 },
