@@ -39,6 +39,11 @@
     // Verse counts for Devarim
     const verseCounts = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22 };
 
+    const chapterStartDates = [];
+    for (let c in verseCounts) {
+      chapterStartDates.push(refToDate(+c, 1)); // first verse of each chapter
+    }
+
     function refToIndex(chapter, verse) {
       let idx = 0;
       for (let c = 1; c < chapter; c++) idx += verseCounts[c] || 0;
@@ -102,6 +107,11 @@
         //zoomMin: 1000,
         //zoomMax: 60 * 1000
 
+        showMajorLabels: true,
+        // The property vis.js uses for custom tick positions depends on version:
+        // For v7+, use 'major': { tick: { values: [...] } }
+        // Older standalone UMD may not expose tick.values, so we'll use a workaround below
+
       };
 
       if (!timeline) {
@@ -112,6 +122,10 @@
         // Lock the default view as maximum zoom out
         var defaultWindow = timeline.getWindow();
         timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
+
+        chapterStartDates.forEach((d, i) => {
+          timeline.addCustomTime(d, 'chapter' + i);
+        });
 
         // Click to show details
         // - BUT see alternative implementation in jewishHistory.html...
