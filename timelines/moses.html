@@ -26,6 +26,13 @@
     .vis-item .vis-item-overflow {
       overflow: visible;
     }
+
+    .chapter-line {
+      border-color: blue;
+      /* or whatever */
+      z-index: 0 !important;
+      /* push behind items */
+    }
   </style>
 
 </head>
@@ -105,8 +112,8 @@
         },
 
         // Double(!) attempt at preventing too far zoom-in (resulting in duplicate minor ticks)
-        zoomMin: 1001,
-        //timeAxis: { scale: 'second', step: 1 },
+        //zoomMin: 1001,
+        timeAxis: { scale: 'second', step: 1 },
 
         //zoomMax: 60 * 1000
 
@@ -131,7 +138,7 @@
         timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
         chapterStartDates.forEach((d, i) => {
-          timeline.addCustomTime(d, 'chapter' + i);
+          timeline.addCustomTime(d, 'chapter' + i, { className: 'chapter-line' });
         });
 
         // Click to show details
