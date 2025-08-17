@@ -27,14 +27,6 @@
       overflow: visible;
     }
 
-    .chapter-line {
-      border-color: blue;
-      /* or whatever */
-      z-index: 0 !important;
-      /* push behind items */
-      pointer-events: none;
-    }
-
     .vis-custom-time {
       z-index: -1 !important;
       pointer-events: none;
@@ -152,9 +144,7 @@
         var defaultWindow = timeline.getWindow();
         timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
-        chapterStartDates.forEach((d, i) => {
-          timeline.addCustomTime(d, 'chapter' + i, { className: 'chapter-line' });
-        });
+        chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
 
         // Click to show details
         // - BUT see alternative implementation in jewishHistory.html...
