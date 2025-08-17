@@ -94,12 +94,23 @@
             return r ? `Genesis ${r.chapter}` : '';
           }
         },
-        zoomMin: 1000,
-        zoomMax: 60 * 1000
+
+        //zoomMin: 1000,
+        //zoomMax: 60 * 1000
+
+        // See same, but alternative phrasing in jewishHistory.html...
+        min: defaultWindow.start,
+        max: defaultWindow.end
+
       };
 
       if (!timeline) {
+
+        // Display timeline
         timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+
+        // Click to show details
+        // - BUT see alternative implementation in jewishHistory.html...
         timeline.on('select', props => {
           if (props.items.length) {
             const item = items.get(props.items[0]);
