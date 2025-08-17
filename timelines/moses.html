@@ -133,6 +133,17 @@
         // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the 
         // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
 
+        // Make back-to-back events stay on same line; don't stack
+        // source: https://stackoverflow.com/a/43986133
+        margin: {
+          item: 0,
+          axis: 0,
+          item : {
+            horizontal : -25
+          }
+        },
+
+
       };
 
       if (!timeline) {
