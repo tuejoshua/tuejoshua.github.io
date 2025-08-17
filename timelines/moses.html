@@ -97,10 +97,11 @@
       items = new vis.DataSet();
 
       data.forEach((row, i) => {
-        if (row.length < 5) return; // skip invalid
+        if (row.length < 6) return; // skip invalid
         const startCh = +row[0].trim(), startV = +row[1].trim();
-        const content = row[2].trim();
-        const endCh = +row[3].trim(), endV = +row[4].trim();
+        const subgroup = row[2].trim();
+        const content = row[3].trim();
+        const endCh = +row[4].trim(), endV = +row[5].trim();
         items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDateInclusive(endCh, endV) });
       });
 
