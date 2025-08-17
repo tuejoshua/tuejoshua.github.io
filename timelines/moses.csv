@@ -1,3 +1,12 @@
-11	26	Kohen       	11	31
-11	32	Levi        	12	5
-12	6	Israel      	12 	10
+11	10	Masoretic	10  	12	19
+11	26	Parsha  	Re'eh	16	17
+11	26	weekday 	Kohen  	11	31
+11	26	Aliyah  	1    	12	10
+11	32	weekday 	Levi   	12	5
+12	6	weekday 	Israel 	12 	10
+12	11	Aliyah  	2      	12	28
+12	20	Masoretic	11  	13	19		
+12	29	Aliyah  	3      	13	19
+14	1	Masoretic	12  	15	6	
+14	1	Aliyah  	4      	14	21
+15	7	Masoretic	13  	16	17	
