@@ -84,18 +84,18 @@
       const options = {
         format: {
           minorLabels: date => {
-            const idx = Math.round((date - baseDate) / 1000);
+            const idx = Math.round((date - baseDate) / 1000 + 0.5);
             const r = indexToRef(idx);
             return r ? `${r.chapter}:${r.verse}` : '';
           },
           majorLabels: date => {
-            const idx = Math.round((date - baseDate) / 1000);
+            const idx = Math.round((date - baseDate) / 1000 + 0.5);
             const r = indexToRef(idx);
             return r ? `Genesis ${r.chapter}` : '';
           }
         },
 
-        //zoomMin: 1000,
+        zoomMin: 1000,
         //zoomMax: 60 * 1000
 
       };
