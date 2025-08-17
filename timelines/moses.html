@@ -117,6 +117,12 @@
             const r = indexToRef(idx);
             return r ? `Genesis ${r.chapter}` : '';
           }
+        
+          stack: false,   // don’t pile items within a subgroup
+          subgroupStack: false,  // keeps items in same subgroup on same line
+          // optional: control subgroup order
+          // subgroupOrder: (a, b) => a.localeCompare(b)
+
         },
 
         // Double(!) attempt at preventing too far zoom-in (resulting in duplicate minor ticks)
