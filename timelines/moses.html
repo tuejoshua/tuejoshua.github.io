@@ -22,47 +22,48 @@
 
 
 
-<style>
+  <style>
     .vis-item .vis-item-overflow {
-      overflow: visible; 
+      overflow: visible;
     }
   </style>
 
 </head>
 
 <body>
+<h1>DEVARIM</h1>
   <div id="visualization">Loading, please wait...</div>
   <div id="details">Click an event to see details here</div>
 
   <script type="text/javascript">
-    // Verse counts for Genesis 1–3 (expandable)
-    const verseCounts = {1:31,2:25,3:24};
+    // Verse counts for Devarim
+    const verseCounts = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22};
 
     function refToIndex(chapter, verse) {
       let idx = 0;
-      for (let c=1;c<chapter;c++) idx += verseCounts[c] || 0;
+      for (let c = 1; c < chapter; c++) idx += verseCounts[c] || 0;
       return idx + (verse - 1);
     }
 
     function indexToRef(idx) {
       let rem = idx;
-      for (let c=1;c<=Object.keys(verseCounts).length;c++) {
+      for (let c = 1; c <= Object.keys(verseCounts).length; c++) {
         const vc = verseCounts[c] || 0;
-        if (rem < vc) return {chapter:c, verse: rem+1};
+        if (rem < vc) return { chapter: c, verse: rem + 1 };
         rem -= vc;
       }
       return null;
     }
 
-    const baseDate = new Date(2000,0,1);
+    const baseDate = new Date(2000, 0, 1);
     function indexToDate(idx) { return new Date(baseDate.getTime() + idx * 1000); } // 1 sec per verse
-    function refToDate(ch,v) { return indexToDate(refToIndex(ch,v)); }
+    function refToDate(ch, v) { return indexToDate(refToIndex(ch, v)); }
 
     let timeline, items;
 
     Papa.parse('moses.csv', {
       download: true,
-      complete: function(results) {
+      complete: function (results) {
         const data = results.data;
         showTimeline(data);
       }
@@ -72,38 +73,38 @@
       document.getElementById('visualization').innerHTML = "Loading, please wait...";
       items = new vis.DataSet();
 
-      data.forEach((row,i) => {
-        if(row.length < 5) return; // skip invalid
+      data.forEach((row, i) => {
+        if (row.length < 5) return; // skip invalid
         const startCh = +row[0].trim(), startV = +row[1].trim();
         const content = row[2].trim();
         const endCh = +row[3].trim(), endV = +row[4].trim();
-        items.add({id:i+1, content, start: refToDate(startCh,startV), end: refToDate(endCh,endV)});
+        items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDate(endCh, endV) });
       });
 
       const options = {
         format: {
           minorLabels: date => {
-            const idx = Math.round((date-baseDate)/1000);
+            const idx = Math.round((date - baseDate) / 1000);
             const r = indexToRef(idx);
             return r ? `${r.chapter}:${r.verse}` : '';
           },
           majorLabels: date => {
-            const idx = Math.round((date-baseDate)/1000);
+            const idx = Math.round((date - baseDate) / 1000);
             const r = indexToRef(idx);
             return r ? `Genesis ${r.chapter}` : '';
           }
         },
         zoomMin: 1000,
-        zoomMax: 60*1000
+        zoomMax: 60 * 1000
       };
 
-      if(!timeline) {
+      if (!timeline) {
         timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
         timeline.on('select', props => {
-          if(props.items.length){
+          if (props.items.length) {
             const item = items.get(props.items[0]);
-            const sIdx = Math.round((item.start-baseDate)/1000);
-            const eIdx = Math.round((item.end-baseDate)/1000);
+            const sIdx = Math.round((item.start - baseDate) / 1000);
+            const eIdx = Math.round((item.end - baseDate) / 1000);
             const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
             document.getElementById('details').textContent =
               `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
@@ -112,9 +113,8 @@
       } else {
         timeline.setItems(items);
       }
-      document.getElementById('visualization').innerHTML = "";
     }
   </script>
 </body>
-</html>
 
+</html>
