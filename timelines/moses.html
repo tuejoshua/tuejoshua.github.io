@@ -31,13 +31,13 @@
 </head>
 
 <body>
-<h1>DEVARIM</h1>
+  <h1>DEVARIM</h1>
   <div id="visualization">Loading, please wait...</div>
   <div id="details">Click an event to see details here</div>
 
   <script type="text/javascript">
     // Verse counts for Devarim
-    const verseCounts = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22};
+    const verseCounts = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22 };
 
     function refToIndex(chapter, verse) {
       let idx = 0;
@@ -98,16 +98,16 @@
         //zoomMin: 1000,
         //zoomMax: 60 * 1000
 
-        // See same, but alternative phrasing in jewishHistory.html...
-        min: defaultWindow.start,
-        max: defaultWindow.end
-
       };
 
       if (!timeline) {
 
         // Display timeline
         timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+
+        // Lock the default view as maximum zoom out
+        var defaultWindow = timeline.getWindow();
+        timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
         // Click to show details
         // - BUT see alternative implementation in jewishHistory.html...
