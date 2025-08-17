@@ -58,6 +58,10 @@
     const baseDate = new Date(2000, 0, 1);
     function indexToDate(idx) { return new Date(baseDate.getTime() + idx * 1000); } // 1 sec per verse
     function refToDate(ch, v) { return indexToDate(refToIndex(ch, v)); }
+    function refToDateInclusive(ch, v) {
+      const idx = refToIndex(ch, v) + 1;  // +1 to include last verse
+      return indexToDate(idx);
+    }
 
     let timeline, items;
 
@@ -78,24 +82,24 @@
         const startCh = +row[0].trim(), startV = +row[1].trim();
         const content = row[2].trim();
         const endCh = +row[3].trim(), endV = +row[4].trim();
-        items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDate(endCh, endV) });
+        items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDateInclusive(endCh, endV) });
       });
 
       const options = {
         format: {
           minorLabels: date => {
-            const idx = Math.round((date - baseDate) / 1000 + 0.5);
+            const idx = Math.round((date - baseDate) / 1000);
             const r = indexToRef(idx);
             return r ? `${r.chapter}:${r.verse}` : '';
           },
           majorLabels: date => {
-            const idx = Math.round((date - baseDate) / 1000 + 0.5);
+            const idx = Math.round((date - baseDate) / 1000);
             const r = indexToRef(idx);
             return r ? `Genesis ${r.chapter}` : '';
           }
         },
 
-        zoomMin: 1000,
+        //zoomMin: 1000,
         //zoomMax: 60 * 1000
 
       };
