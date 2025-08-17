@@ -50,6 +50,16 @@
   <div id="details">Click an event to see details here</div>
 
   <script type="text/javascript">
+
+// Make labelled swim lanes
+const groups = new vis.DataSet([
+  { id: 'Masoretic', content: 'Masoretic Kapitels' },
+  { id: 'weekday', content: 'Aliyot for Monday/Thursday' },
+  { id: 'Parsha', content: 'Parsha' },
+    { id: 'Aliyah', content: 'Aliyot for Shabbat' }
+  // Add as many subgroup definitions as you need
+]);
+
     // Verse counts for Devarim
     const verseCounts = { 1: 46, 2: 37, 3: 29, 4: 49, 5: 30, 6: 25, 7: 26, 8: 20, 9: 29, 10: 22, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22 };
 
@@ -145,7 +155,7 @@
       if (!timeline) {
 
         // Display timeline
-        timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
+        timeline = new vis.Timeline(document.getElementById('visualization'), items, groups, options);
 
         // Lock the default view as maximum zoom out
         var defaultWindow = timeline.getWindow();
