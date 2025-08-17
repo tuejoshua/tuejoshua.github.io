@@ -117,11 +117,6 @@
             const r = indexToRef(idx);
             return r ? `Genesis ${r.chapter}` : '';
           },
-        
-          stack: false,   // don’t pile items within a subgroup
-          subgroupStack: false,  // keeps items in same subgroup on same line
-          // optional: control subgroup order
-          // subgroupOrder: (a, b) => a.localeCompare(b)
 
         },
 
@@ -139,6 +134,11 @@
         // package that does not expose the same axis-tick configuration API 
         // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the 
         // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
+
+          stack: false,   // don’t pile items within a subgroup
+          subgroupStack: false,  // keeps items in same subgroup on same line
+          // optional: control subgroup order
+          // subgroupOrder: (a, b) => a.localeCompare(b)
 
       };
 
