@@ -113,7 +113,8 @@
           id: `perek-${chapter}`,
           content: `Perek ${chapter}`,
           start: refToDate(chapter, 1),
-          subgroup: "Perek"
+          subgroup: "Perek",
+          type: "point"
         });
       });
 
@@ -131,7 +132,8 @@
           minorLabels: date => {
             const idx = Math.round((date - baseDate) / 1000);
             const r = indexToRef(idx);
-            return r ? `${r.chapter}:${r.verse}` : '';
+            //return r ? `${r.chapter}:${r.verse}` : '';
+            return r ? `${r.verse}` : '';
           },
           majorLabels: date => {
             const idx = Math.round((date - baseDate) / 1000);
