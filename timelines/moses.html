@@ -180,23 +180,21 @@
         timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
         chapterStartDates.forEach((d, i) => {
-
           const chapterNum = i + 1;
-          const ms = d.getTime();
 
-          // Get the x-coordinate of the marker
-          const coords = timeline.toScreen({x: ms, y: 0});
-          const x = coords.x;
+          // Convert Date to x-coordinate (in px)
+          const x = timeline.body.util.toScreen(d);
 
-          // Add label overlay
+          // Create label
           const label = document.createElement('div');
           label.textContent = `Chapter ${chapterNum}`;
           label.className = 'chapter-label';
+          label.style.position = 'absolute';
           label.style.left = `${x}px`;
+          label.style.top = '20px'; // adjust as needed
 
-          //timeline.addCustomTime(d, 'chapter' + i, {className: 'chapter-line'});
-          document.getElementById('visualization').appendChild(label);
-
+          // Attach to the timeline container, not the timeline object
+          timeline.dom.container.appendChild(label);
         });
 
         // Click to show details
