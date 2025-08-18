@@ -111,7 +111,7 @@
       Object.entries(verseCounts).forEach(([chapter, verseCount]) => {
         items.add({
           id: `perek-${chapter}`,
-          content: `Perek ${chapter}`,
+          content: `${chapter}`,
           start: refToDate(chapter, 1),
           subgroup: "Perek",
           type: "point"
