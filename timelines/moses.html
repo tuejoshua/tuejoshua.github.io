@@ -40,6 +40,22 @@
       z-index: 2;
       position: relative;
     }
+
+    .chapter-line {
+      /* keeps the vertical line behind items */
+      z-index: -1 !important;
+    }
+
+    .chapter-label {
+      position: absolute;
+      top: 0;
+      /* adjust as needed */
+      transform: translate(-50%, 0);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0 2px;
+      font-size: 0.8em;
+      pointer-events: none;
+    }
   </style>
 
 </head>
@@ -51,16 +67,16 @@
 
   <script type="text/javascript">
 
-/*
-// Make labelled swim lanes
-const groups = new vis.DataSet([
-  { id: 'Masoretic', content: 'Masoretic Kapitels' },
-  { id: 'weekday', content: 'Aliyot for Monday/Thursday' },
-  { id: 'Parsha', content: 'Parsha' },
-    { id: 'Aliyah', content: 'Aliyot for Shabbat' }
-  // Add as many subgroup definitions as you need
-]);
-*/
+    /*
+    // Make labelled swim lanes
+    const groups = new vis.DataSet([
+      { id: 'Masoretic', content: 'Masoretic Kapitels' },
+      { id: 'weekday', content: 'Aliyot for Monday/Thursday' },
+      { id: 'Parsha', content: 'Parsha' },
+        { id: 'Aliyah', content: 'Aliyot for Shabbat' }
+      // Add as many subgroup definitions as you need
+    ]);
+    */
 
     // Verse counts for Devarim
     const verseCounts = { 1: 46, 2: 37, 3: 29, 4: 49, 5: 30, 6: 25, 7: 26, 8: 20, 9: 29, 10: 22, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22 };
@@ -147,10 +163,10 @@ const groups = new vis.DataSet([
         // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the 
         // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
 
-          stack: false,   // don’t pile items within a subgroup
-          stackSubgroups: false, // do not stack across subgroups; keeps items in same subgroup on same line
-          // optional: control subgroup order
-          // subgroupOrder: (a, b) => a.localeCompare(b)
+        stack: false,   // don’t pile items within a subgroup
+        stackSubgroups: false, // do not stack across subgroups; keeps items in same subgroup on same line
+        // optional: control subgroup order
+        // subgroupOrder: (a, b) => a.localeCompare(b)
 
       };
 
@@ -163,7 +179,25 @@ const groups = new vis.DataSet([
         var defaultWindow = timeline.getWindow();
         timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
-        chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
+        chapterStartDates.forEach((d, i) => {
+
+          const chapterNum = i + 1;
+          const ms = d.getTime();
+
+          // Get the x-coordinate of the marker
+          const coords = timeline.DOMtoScreen(x: ms, y: 0);
+          const x = coords.x;
+
+          // Add label overlay
+          const label = document.createElement('div');
+          label.textContent = `Chapter ${chapterNum}`;
+          label.className = 'chapter-label';
+          label.style.left = `${x}px`;
+
+          //timeline.addCustomTime(d, 'chapter' + i, {className: 'chapter-line'});
+          document.getElementById('visualization').appendChild(label);
+
+        });
 
         // Click to show details
         // - BUT see alternative implementation in jewishHistory.html...
