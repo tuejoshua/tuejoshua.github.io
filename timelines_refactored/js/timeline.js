@@ -21,6 +21,7 @@ export function renderTimeline(containerId, dataFile) {
         .then(res => res.text())
         .then(csvText => {
             const events = parseCSV(csvText);
+            console.log(events);
             const container = document.getElementById(containerId);
             container.innerHTML = ''; // clear container
 
