@@ -5,12 +5,12 @@ let delimiter = "\t"; // Tab
 // Very basic CSV parser: assumes first line = headers
 function parseCSV(text) {
     const lines = text.trim().split("\n");
-    const headers = lines.shift().split(delimiter);
+    const headers = lines.shift().split(delimiter).map(h => h.trim());
     return lines.map(line => {
         const values = line.split(delimiter);
         const entry = {};
         headers.forEach((h, i) => {
-            entry[h] = values[i];
+            entry[h] = values[i].trim();
         });
         return entry;
     });
