@@ -34,7 +34,7 @@
 
     <!-- Load reusable timeline logic -->
     <script type="module">
-        import { renderTimeline } from 'js/timeline.js';
+        import { renderTimeline } from '../timelines_refactored/js/timeline.js'; // Note that just /js(...) did not work here... annoying
         renderTimeline('timeline-container', 'data/jewishHistory.csv');
     </script>
 </body>
