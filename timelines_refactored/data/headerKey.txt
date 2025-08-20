@@ -1,0 +1,10 @@
+Here's an elaboration of the header labels used in the CSV files:
+
+*) Mandatory
+
+GrgYr   *   Gregorian Year (start)
+GrgYr2  	Gregorian Year End
+HebYr   *   Hebrew    Year (start)
+HebYr2	    Hebrew    Year (end)
+Label              	
+Source

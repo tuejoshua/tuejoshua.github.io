@@ -2,7 +2,7 @@
 
 let delimiter = "\t"; // Tab
 
-// Very basic CSV parser: assumes first line = headers, comma-separated, no quoted commas
+// Very basic CSV parser: assumes first line = headers
 function parseCSV(text) {
     const lines = text.trim().split("\n");
     const headers = lines.shift().split(delimiter);
@@ -10,7 +10,7 @@ function parseCSV(text) {
         const values = line.split(delimiter);
         const entry = {};
         headers.forEach((h, i) => {
-            entry[h.trim()] = values[i].trim();
+            entry[h] = values[i];
         });
         return entry;
     });
@@ -28,10 +28,9 @@ export function renderTimeline(containerId, dataFile) {
             events.forEach(event => {
                 const div = document.createElement('div');
                 div.className = 'timeline-event';
-                div.innerHTML = `<strong>${event.year}</strong>: ${event.description}`;
+                div.innerHTML = `<strong>${event.HebYr}</strong>: ${event.Label}`;
                 container.appendChild(div);
             });
         })
         .catch(err => console.error('Failed to load timeline:', err));
 }
-
