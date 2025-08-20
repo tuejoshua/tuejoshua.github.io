@@ -1,11 +1,13 @@
 // timeline.js
 
+let delimiter = "\t"; // Tab
+
 // Very basic CSV parser: assumes first line = headers, comma-separated, no quoted commas
 function parseCSV(text) {
     const lines = text.trim().split("\n");
-    const headers = lines.shift().split(",");
+    const headers = lines.shift().split(delimiter);
     return lines.map(line => {
-        const values = line.split(",");
+        const values = line.split(delimiter);
         const entry = {};
         headers.forEach((h, i) => {
             entry[h.trim()] = values[i].trim();
