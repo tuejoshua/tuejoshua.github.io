@@ -130,7 +130,7 @@
           const startCh = +row[0].trim(), startV = +row[1].trim();
           const subgroup = row[2].trim();
           const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
-          items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup }); //group: subgroup });
+          items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: point }); //group: subgroup });
         }
         else {
           alert('Unexpected number of columns for data entry');
@@ -163,9 +163,9 @@
         // The property vis.js uses for custom tick positions depends on version:
         // For v7+, use 'major': { tick: { values: [...] } }
         // Older standalone UMD may not expose tick.values, so we'll use a workaround below
-        // - ditto the standalone UMD build of vis-timeline that I'm using is a slimmed-down 
-        // package that does not expose the same axis-tick configuration API 
-        // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the 
+        // - ditto the standalone UMD build of vis-timeline that I'm using is a slimmed-down
+        // package that does not expose the same axis-tick configuration API
+        // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the
         // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
 
         stack: false,   // don’t pile items within a subgroup
