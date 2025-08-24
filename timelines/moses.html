@@ -130,7 +130,7 @@
           const startCh = +row[0].trim(), startV = +row[1].trim();
           const subgroup = row[2].trim();
           const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
-          items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: point }); //group: subgroup });
+          items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: "point" }); //group: subgroup });
         }
         else {
           alert('Unexpected number of columns for data entry');
