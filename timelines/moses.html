@@ -96,7 +96,7 @@
 
     let timeline, items;
 
-    Papa.parse('/data/annotations_Devarim.csv', {
+    Papa.parse('./data/annotations_Devarim.csv', {
       download: true,
       complete: function (results) {
         const data = results.data;
