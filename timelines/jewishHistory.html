@@ -20,7 +20,7 @@
 		loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
 	</script>
 
-	<!-- from https://visjs.github.io/vis-timeline/examples/timeline/items/rangeOverflowItem.html 
+	<!-- from https://visjs.github.io/vis-timeline/examples/timeline/items/rangeOverflowItem.html
 ...it seems BOTH of the following labels are necessary... -->
 	<style>
 		.vis-item .vis-item-overflow {
@@ -32,7 +32,16 @@
 
 <body>
 
-	<div id="visualization">Loading, please wait...</div>
+	<div id="visualization" class="markdown-content">
+    <i style="color: red;">
+      <br>
+      [ Please wait: Processing...<br>
+      <br>
+      &nbsp;&nbsp;If this message remains in place, it means that the pipeline is not working as intended.<br>
+      &nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS.<br>
+      &nbsp;&nbsp;In any case, check the console output for clues... ]
+    </i>
+  </div>
 
 	<script type="text/javascript">
 
@@ -49,9 +58,6 @@
 		);
 
 		function showTimeline() {
-
-			// If not clearing here, the timeline would just be added below existing ones(!)
-			document.getElementById('visualization').innerHTML = "Loading, please wait...";
 
 			var items = new vis.DataSet();
 
@@ -101,7 +107,9 @@
 
 			document.getElementById('visualization').innerHTML = "";
 
-			// Create a Timeline
+			// Clear DIV, then create a Timeline
+			// If not clearing here, the timeline would just be added below existing ones(!) - and the placeholder text
+			document.getElementById('visualization').innerHTML = "";
 			var timeline = new vis.Timeline(document.getElementById('visualization'), items, options);
 
 			// Lock the default view as maximum zoom out
@@ -150,7 +158,7 @@
 
 <!--
 No longer used, but relevant knowledge found during development of this file:
-- https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons 
+- https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
 -->
 
 </html>
