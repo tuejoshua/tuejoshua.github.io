@@ -6,8 +6,6 @@
   <meta charset="UTF-8">
   <title>5 Books of Moses</title>
 
-  <script src="loadScript.js" onerror="window.alert('ERROR: Unable to load\n' + this.src);"></script>
-
   <!-- vis.js Timeline -->
   <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
 
@@ -180,7 +178,9 @@
 
       if (!timeline) {
 
-        // Display timeline
+        /* Clear placeholder content, then
+           Display timeline */
+        document.getElementById('visualization').innerHTML = "";
         timeline = new vis.Timeline(document.getElementById('visualization'), items, options); //groups, options);
 
         // Lock the default view as maximum zoom out
