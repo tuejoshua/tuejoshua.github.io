@@ -14,7 +14,7 @@ This means that the string "on_Github" will never be line-broken - if the window
 <title>Projects by Tue&nbsp;Joshua</title>
 <style>
 /* non-instantaneous scrolling when following link to section elsewhere on page.
-Based on https://stackoverflow.com/a/24739173 
+Based on https://stackoverflow.com/a/24739173
 ToDo - (re)move this, as currently not in use??? */
 html {
   scroll-behavior: smooth;
@@ -34,7 +34,7 @@ html {
       font-display: block;
     }
 	html {
-	  font-family: myfontfamily, monospace; 
+	  font-family: myfontfamily, monospace;
 	}
 
 @font-face {
@@ -65,8 +65,8 @@ table {
 	border-collapse: collapse;
 }
 
-/* Marked.js wraps each paragraph in <p></p>s. 
-This is conceptually correct, but interpreted (at least by my Edge browser) 
+/* Marked.js wraps each paragraph in <p></p>s.
+This is conceptually correct, but interpreted (at least by my Edge browser)
 as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
 .markdown-content p:first-child {
 	margin-top: 0;
@@ -83,7 +83,7 @@ also, without forcing "text-align: left" here (as should be the default), many b
   background: lightgrays;
   border: none;
   cursor: pointer;
-  
+
   /* Make button label, i.e. project titles, selectable (for copying, translation etc.) */
   user-select: text;
   -webkit-user-select: text;
@@ -101,7 +101,7 @@ function externalLink(link) {
 	}
 }
 
-// This function generates a "<a>...</a>" string  
+// This function generates a "<a>...</a>" string
 function linkMacroString(url, linkText) {
 	if (linkText === undefined) {
 		linkText = url;
@@ -129,7 +129,7 @@ Welcome!<br><br>
 <div id="signatureText">Tue Joshua Steen Chasin</div>
 (<a href="https://www.linkedin.com/in/tue-chasin/">LinkedIn</a>)<br><br>
 
-<!-- hr> I'm also nostalgic about this HTML element... --> 
+<!-- hr> I'm also nostalgic about this HTML element... -->
 
 <!-- h2>Projects</h2 -->
 
@@ -141,7 +141,7 @@ it seems that the I tag is still not deprecated, so I'll use that instead of STY
 	[ Please wait: Reading data from JSON file...<br>
 	<br>
 	&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as intended.<br>
-	This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]
+	&nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]
 </i></div>
 <br>
 
@@ -151,10 +151,10 @@ it seems that the I tag is still not deprecated, so I'll use that instead of STY
 <!-- hr -->
 
 <h2>Acknowledgements</h2>
-The sources and licenses of the <b>technology icons</b> used above can be found here: 
-<script>linkMacro('github.com/shannonmoeller/front-end-logo', 'Front-end');</script>, 
-<script>linkMacro('commons.wikimedia.org/wiki/File:JSON_vector_logo.svg', 'JSON');</script>, 
-<script>linkMacro('www.php.net/download-logos.php', 'PHP');</script>, 
+The sources and licenses of the <b>technology icons</b> used above can be found here:
+<script>linkMacro('github.com/shannonmoeller/front-end-logo', 'Front-end');</script>,
+<script>linkMacro('commons.wikimedia.org/wiki/File:JSON_vector_logo.svg', 'JSON');</script>,
+<script>linkMacro('www.php.net/download-logos.php', 'PHP');</script>,
 <script>linkMacro('www.python.org/community/logos/', 'Python');</script>.<br><br>
 This page uses <script>linkMacro('dejavu-fonts.github.io','DejaVu Fonts');</script> and <script>linkMacro('www.fontspace.com/tomatoes-font-f29709', 'Tomatoes Font');</script> (I discovered the former while admiring <script>linkMacro('fabiensanglard.net');</script>, whose style/layout OR contents alone would make it well worth a visit...)<br><br>
 <b><script>linkMacro('en.wikipedia.org/wiki/Favicon', 'Favicon');</script></b> generated via (MS Paint and) <script>linkMacro('favicon.cc');</script>.
@@ -180,7 +180,7 @@ If you want to do more with my source code than allowed by default, feel free to
 <!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
 <script type="module">
 import { displayProjectCards } from './displayProjectCards.js';
-// The following function call must be in this script block, together with 
+// The following function call must be in this script block, together with
 displayProjectCards("projects.json");
 </script>
 
