@@ -1,8 +1,6 @@
 <!doctype html>
 <html>
 
-
-
 <head>
 
   <meta charset="UTF-8">
@@ -11,15 +9,10 @@
   <script src="loadScript.js" onerror="window.alert('ERROR: Unable to load\n' + this.src);"></script>
 
   <!-- vis.js Timeline -->
-  <script>
-    loadScript('https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js', 'Vis.js Timeline library');
-  </script>
+  <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.jss" onerror="console.error('Unable to load Vis.js Timeline library');"></script>
 
-  <!-- PapaParse -->
-  <script>
-    loadScript('https://unpkg.com/papaparse@latest/papaparse.min.js', 'PapaParse CSV parser');
-  </script>
-
+  <!-- PapaParse: csv -> JSON -->
+  <script src="https://unpkg.com/papaparse@latest/papaparse.min.jss"></script>
 
 
   <style>
