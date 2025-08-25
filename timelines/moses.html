@@ -44,6 +44,8 @@
 
 </head>
 
+<script src="./data/versesPerChapter_Devarim.js"></script>
+
 <body>
   <h1>DEVARIM</h1>
   <div id="visualization">Loading, please wait...</div>
@@ -62,8 +64,6 @@
     ]);
     */
 
-    // Verse counts for Devarim
-    const verseCounts = { 1: 46, 2: 37, 3: 29, 4: 49, 5: 30, 6: 25, 7: 26, 8: 20, 9: 29, 10: 22, 11: 32, 12: 31, 13: 19, 14: 29, 15: 23, 16: 22, 17: 20, 18: 22, 19: 21, 20: 20, 21: 23, 22: 29, 23: 26, 24: 22, 25: 19, 26: 19, 27: 26, 28: 69, 29: 28, 30: 20, 31: 30, 32: 52, 33: 29, 34: 12 };
 
     function refToIndex(chapter, verse) {
       let idx = 0;
@@ -96,7 +96,7 @@
 
     let timeline, items;
 
-    Papa.parse('moses.csv', {
+    Papa.parse('/data/annotations_Devarim.csv', {
       download: true,
       complete: function (results) {
         const data = results.data;
