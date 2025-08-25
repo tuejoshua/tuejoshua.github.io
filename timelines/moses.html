@@ -9,10 +9,10 @@
   <script src="loadScript.js" onerror="window.alert('ERROR: Unable to load\n' + this.src);"></script>
 
   <!-- vis.js Timeline -->
-  <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.jss" onerror="console.error('Unable to load Vis.js Timeline library');"></script>
+  <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
 
   <!-- PapaParse: csv -> JSON -->
-  <script src="https://unpkg.com/papaparse@latest/papaparse.min.jss"></script>
+  <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
 
 
   <style>
@@ -41,7 +41,16 @@
 
 <body>
   <h1>DEVARIM</h1>
-  <div id="visualization">Loading, please wait...</div>
+  <div id="visualization"> class="markdown-content">
+    <i style="color: red;">
+      <br>
+      [ Please wait: Reading data from JSON file...<br>
+      <br>
+      &nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as
+      intended.<br>
+      This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]
+    </i>
+  </div>
   <div id="details">Click an event to see details here</div>
 
   <script type="text/javascript">
@@ -98,7 +107,8 @@
     });
 
     function showTimeline(data) {
-      document.getElementById('visualization').innerHTML = "Loading, please wait...";
+      //The following should not be necessary since we (currently) only run showTimeline() once per page load...
+      //document.getElementById('visualization').innerHTML = "Loading, please wait..."; // If not clearing here, the timeline would just be added below existing ones(!)
       items = new vis.DataSet();
 
       Object.entries(verseCounts).forEach(([chapter, verseCount]) => {
