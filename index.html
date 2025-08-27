@@ -1,12 +1,151 @@
 <!DOCTYPE html>
-<!-- GitHub Pages will not serve 404.html for this / the server root page
-- so we need this dedicated redirect file... --> 
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; URL=projects.html">
-    <title>Tue Joshua on Github</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href="projects.html">projects.html</a>...</p>
-  </body>
+<html lang="en">
+
+<head>
+
+  <!-- in order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- The following is broadly unnecessary according to https://en.wikipedia.org/wiki/Favicon, since my favicon.ico is in the domain root -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- on small screens like phones, I'd like like breaking to occur between "Joshua" and "on" (and not between the 2 last words of the string. ChatGPT helped me realize that &nbsp; stands for Non-Breaking SPace...
+This means that the string "on_Github" will never be line-broken - if the window/screen size and/or zoom is so extreme that this will overflow the FOV, we have other layout problems/cannot expect a nice layout anyway -->
+  <title>Tue Joshua Steen Chasin</title>
+  <style>
+    /* non-instantaneous scrolling when following link to section elsewhere on page.
+Based on https://stackoverflow.com/a/24739173
+ToDo - (re)move this, as currently not in use??? */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html {
+      text-align: justify;
+    }
+
+    /* Based on https://fabiensanglard.net/ */
+    @font-face {
+      font-family: 'myfontfamily';
+      src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: 'myfontfamily';
+      src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
+      font-weight: bold;
+      font-display: block;
+    }
+
+    html {
+      font-family: myfontfamily, monospace;
+    }
+
+    @font-face {
+      font-family: 'mySignatureFontFamily';
+      src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
+      font-display: block;
+    }
+
+    #signatureText {
+      font-family: mySignatureFontFamily;
+    }
+
+
+    h1 {
+      background-color: blue;
+      color: white;
+      text-align: center;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+    }
+
+    td {
+      padding: .3em;
+      text-align: justify;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    img {
+      float: left;
+      /* or left, depending on your layout */
+      margin: 0 1.5em 1.5em 0;
+      /* top right bottom left */
+      /* max-width: 40%; optional: keeps it from dominating */
+    }
+
+    .belowFigure {
+      clear: both;
+      /* forces it to start below any floated figure */
+      margin-top: 1.5em;
+      /* extra breathing space */
+    }
+  </style>
+
+  <script>
+    function externalLink(link) {
+      domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
+      if (confirm('By following this link to [' + link + '], you\'ll be leaving the relative safety of my [' + domain + '] domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
+        window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
+      }
+    }
+
+    // This function generates a "<a>...</a>" string
+    function linkMacroString(url, linkText) {
+      if (linkText === undefined) {
+        linkText = url;
+      }
+      return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>';
+    }
+
+    // This function writes directly to the DOM where invoked
+    function linkMacro(url, linkText) { // linkText can also be an <img> etc.
+
+      // the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
+      document.write(linkMacroString(url, linkText));
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+  <!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
+  <h1>
+    <script>document.write(document.title);</script>
+  </h1>
+
+  <img src="VennDiagram.drawio.png" height="200">
+
+
+  Extensive experience in <b>Design Verification</b>, <b>Quality Assurance</b>, and <b>Compliance</b> within Product
+  Development,<br>with a strong focus on <b>Software</b>.<br><br>
+  Proven success supporting <b>MDR (CE)</b> and <b>FDA submissions</b> for <b>medical devices</b>.<br><br>
+  Skilled in cross-functional <b>collaboration</b> — especially across <i>Systems Engineering</i>, <i>QA/RA</i>, and
+  <i>Production</i>;<br>
+  a lifelong passion for scripting and coding* gives me a collaborative edge for working with developers.<br><br>
+  <div class="belowFigure">
+    <p>Whether you're seeking freelance expertise or a dedicated full-time
+      contributor<br><!-- &thinsp; in an attempt to avoid text-align: justify; streching that space -->
+      -&thinsp;let's <a href="https://www.linkedin.com/in/tue-chasin/">connect via LinkedIn</a> and discuss how I can
+      contribute to your goals!
+      <br><br>
+      <span id="signatureText">Tue Joshua Steen Chasin</span><br>
+
+      <hr> <!--I'm also nostalgic about this HTML element... -->
+
+      <i>*) See my <a href="projects.html">projects showcase</a></i>
+
+  </div>
+
+</body>
+
 </html>
