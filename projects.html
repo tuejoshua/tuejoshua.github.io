@@ -1,166 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<!-- in order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- in order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- The following is broadly unnecessary according to https://en.wikipedia.org/wiki/Favicon, since my favicon.ico is in the domain root -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<!-- The following is broadly unnecessary according to https://en.wikipedia.org/wiki/Favicon, since my favicon.ico is in the domain root -->
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 
-<!-- on small screens like phones, I'd like like breaking to occur between "Joshua" and "on" (and not between the 2 last words of the string. ChatGPT helped me realize that &nbsp; stands for Non-Breaking SPace...
+	<!-- on small screens like phones, I'd like like breaking to occur between "Joshua" and "on" (and not between the 2 last words of the string. ChatGPT helped me realize that &nbsp; stands for Non-Breaking SPace...
 This means that the string "on_Github" will never be line-broken - if the window/screen size and/or zoom is so extreme that this will overflow the FOV, we have other layout problems/cannot expect a nice layout anyway - ->
 <title>Tue Joshua on&nbsp;Github</title-->
-<title>Projects by Tue&nbsp;Joshua</title>
-<style>
-/* non-instantaneous scrolling when following link to section elsewhere on page.
+	<title>Projects by Tue&nbsp;Joshua</title>
+	<style>
+		/* non-instantaneous scrolling when following link to section elsewhere on page.
 Based on https://stackoverflow.com/a/24739173
 ToDo - (re)move this, as currently not in use??? */
-html {
-  scroll-behavior: smooth;
+		html {
+			scroll-behavior: smooth;
   overflow-wrap: break-word; /* in case of single long words, e.g. URLs, wider than screen width */
-}
+		}
 
-/* Based on https://fabiensanglard.net/ */
-    @font-face {
-      font-family: 'myfontfamily';
-      src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
-      font-display: block;
-    }
-    @font-face {
-      font-family: 'myfontfamily';
-      src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
-      font-weight: bold;
-      font-display: block;
-    }
-	html {
-	  font-family: myfontfamily, monospace;
-	}
+		/* Based on https://fabiensanglard.net/ */
+		@font-face {
+			font-family: 'myfontfamily';
+			src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
+			font-display: block;
+		}
 
-@font-face {
-	font-family: 'mySignatureFontFamily';
-	src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
-	font-display: block;
-}
+		@font-face {
+			font-family: 'myfontfamily';
+			src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
+			font-weight: bold;
+			font-display: block;
+		}
 
-#signatureText {
-	font-family: mySignatureFontFamily;
-}
+		html {
+			font-family: myfontfamily, monospace;
+		}
+
+		@font-face {
+			font-family: 'mySignatureFontFamily';
+			src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
+			font-display: block;
+		}
+
+		#signatureText {
+			font-family: mySignatureFontFamily;
+		}
 
 
-h1 {
-	background-color: blue;
-	color: white;
-	text-align: center;
-}
+		h1 {
+			background-color: blue;
+			color: white;
+			text-align: center;
+		}
 
 td, th {
-	border: 1px solid black;
-}
-td {
-	padding: .3em;
-	text-align: justify;
-}
-table {
-	border-collapse: collapse;
-}
+			border: 1px solid black;
+		}
 
-/* Marked.js wraps each paragraph in <p></p>s.
+		td {
+			padding: .3em;
+			text-align: justify;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		/* Marked.js wraps each paragraph in <p></p>s.
 This is conceptually correct, but interpreted (at least by my Edge browser)
 as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
-.markdown-content p:first-child {
-	margin-top: 0;
-}
+		.markdown-content p:first-child {
+			margin-top: 0;
+		}
 
-/* Styling for toggle buttons used by showProjectCard() */
-/* adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
+		/* Styling for toggle buttons used by showProjectCard() */
+		/* adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
 also, without forcing "text-align: left" here (as should be the default), many browsers use "justify" instead (which I dislike)
  */
-.ProjectButton {
-  width: 100%;
-  text-align: left;
-  max-height: 999999px;
-  background: lightgrays;
-  border: none;
-  cursor: pointer;
+		.ProjectButton {
+			width: 100%;
+			text-align: left;
+			max-height: 999999px;
+			background: lightgrays;
+			border: none;
+			cursor: pointer;
 
-  /* Make button label, i.e. project titles, selectable (for copying, translation etc.) */
-  user-select: text;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-}
+			/* Make button label, i.e. project titles, selectable (for copying, translation etc.) */
+			user-select: text;
+			-webkit-user-select: text;
+			-moz-user-select: text;
+			-ms-user-select: text;
+		}
+	</style>
 
-</style>
+	<script>
+		function externalLink(link) {
+			domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
+			if (domain == '') {
+				console.error('No domain detected. If you\'re viewing an offline copy of this page (from your local filesystem), that\'s probably why...');
+			}
+			else {
+				domain = '[' + domain + '] ';
+			}
+			if (confirm('By following this link to [' + link + '], you\'ll be leaving the relative safety of my ' + domain + 'domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
+				window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
+			}
+		}
 
-<script>
-function externalLink(link) {
-	domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
-	if (confirm('By following this link to [' + link + '], you\'ll be leaving the relative safety of my [' + domain + '] domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
-		window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
-	}
-}
+		// This function generates a "<a>...</a>" string
+		function linkMacroString(url, linkText) {
+			if (linkText === undefined) {
+				linkText = url;
+			}
+			return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>';
+		}
 
-// This function generates a "<a>...</a>" string
-function linkMacroString(url, linkText) {
-	if (linkText === undefined) {
-		linkText = url;
-	}
-	return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>';
-}
+		// This function writes directly to the DOM where invoked
+		function linkMacro(url, linkText) { // linkText can also be an <img> etc.
 
-// This function writes directly to the DOM where invoked
-function linkMacro(url, linkText) { // linkText can also be an <img> etc.
+			// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
+			document.write(linkMacroString(url, linkText));
+		}
 
-	// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
-	document.write(linkMacroString(url, linkText));
-}
-
-</script>
+	</script>
 
 </head>
+
 <body>
 
-<!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
+	<!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
 <h1><script>document.write(document.title);</script></h1>
 
 This page presents a curated collection of projects that I've done — for future inspiration, personal nostalgia, and sharing.<br><br>
-Welcome!<br><br>
-<div id="signatureText">Tue Joshua Steen Chasin</div>
-(<a href="/">Who am I?</a>)<br><br>
+	Welcome!<br><br>
+	<div id="signatureText">Tue Joshua Steen Chasin</div>
+	(<a href="/">Who am I?</a>)<br><br>
 
-<!-- hr> I'm also nostalgic about this HTML element... -->
+	<!-- hr> I'm also nostalgic about this HTML element... -->
 
-<!-- h2>Projects</h2 -->
+	<!-- h2>Projects</h2 -->
 
-<!-- h2>Some of my projects</h2 -->
-<!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
+	<!-- h2>Some of my projects</h2 -->
+	<!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-<div id='showData' class="markdown-content"><i style="color: red;">
+	<div id='showData' class="markdown-content"><i style="color: red;">
+			<br>
+			[ Please wait: Reading data from JSON file...<br>
+			<br>
+			&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as	intended.<br>
+			&nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin	without CORS ]
+		</i></div>
 	<br>
-	[ Please wait: Reading data from JSON file...<br>
-	<br>
-	&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as intended.<br>
-	&nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS ]
-</i></div>
-<br>
 
-<!--p>
+	<!--p>
 <a href="">W3C validation report for this page</a> -->
 
-<!-- hr -->
+	<!-- hr -->
 
-<h2>Acknowledgements</h2>
-This site uses <script>linkMacro('dejavu-fonts.github.io','DejaVu Fonts');</script> and <script>linkMacro('www.fontspace.com/tomatoes-font-f29709', 'Tomatoes Font');</script> (I discovered the former while admiring <script>linkMacro('fabiensanglard.net');</script>, whose style/layout OR contents alone would make it well worth a visit...)<br><br>
-Its <b><script>linkMacro('en.wikipedia.org/wiki/Favicon', 'favicon');</script></b> was generated via (MS Paint and) <script>linkMacro('favicon.cc');</script>.<br><br>
-The sources and licenses of the <b>technology icons</b> used above can be found here:
-<script>linkMacro('github.com/shannonmoeller/front-end-logo', 'Front-end');</script>,
-<script>linkMacro('commons.wikimedia.org/wiki/File:JSON_vector_logo.svg', 'JSON');</script>,
-<script>linkMacro('www.php.net/download-logos.php', 'PHP');</script>,
-<script>linkMacro('www.python.org/community/logos/', 'Python');</script>.<br><br>
+	<h2 id="acknowledgements">Acknowledgements</h2>
+	This site uses <script>linkMacro('dejavu-fonts.github.io', 'DejaVu Fonts');</script> and <script>linkMacro('www.fontspace.com/tomatoes-font-f29709', 'Tomatoes Font')</script><br>
+	(The former, as well as other layout choices, are heavily inspired by <script>linkMacro('fabiensanglard.net');</script>, which is well worth a visit — not only for its layout, but also for its contents...)<br><br>
+
+	Its <b><script>linkMacro('en.wikipedia.org/wiki/Favicon', 'favicon');</script></b> was generated via (MS Paint and)	<script>linkMacro('favicon.cc');</script>.<br><br>
+
+	The sources and licenses of the <b>technology icons</b> used above can be found here:
+	<script>linkMacro('github.com/shannonmoeller/front-end-logo', 'Front-end');</script>,
+	<script>linkMacro('commons.wikimedia.org/wiki/File:JSON_vector_logo.svg', 'JSON');</script>,
+	<script>linkMacro('www.php.net/download-logos.php', 'PHP');</script>,
+	<script>linkMacro('www.python.org/community/logos/', 'Python');</script>.<br><br>
+
 Throughout my projects I've made extensive use of <a href="https://www.drawio.com/">draw.io aka. diagrams.net</a>, which is an excellent <b>diagramming</b> tool!
 
-<!--h2>Chronology</h2>
+	<!--h2>Chronology</h2>
 
 <h2>Licenses</h2>
 
@@ -175,14 +190,15 @@ If you want to do more with my source code than allowed by default, feel free to
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br-->
 
-<!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
-<!-- TO DO: Other .js files also as modules? -->
-<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
-<script type="module">
-import { displayProjectCards } from './displayProjectCards.js';
-// The following function call must be in this script block, together with
-displayProjectCards("projects.json");
-</script>
+	<!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
+	<!-- TO DO: Other .js files also as modules? -->
+	<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
+	<script type="module">
+		import { displayProjectCards } from './displayProjectCards.js';
+		// The following function call must be in this script block, together with
+		displayProjectCards("projects.json");
+	</script>
 
 </body>
+
 </html>
