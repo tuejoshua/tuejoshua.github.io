@@ -260,7 +260,7 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
                 </TD>
                 <TD>
                         <CENTER>
-                        <img id="Main" src="graphics/blank.png" height=300 onMouseOut="m0();" onMouseOver="document.body.style.cursor='url(graphics/magGlass.cur),url(graphics/magGlass.ico),pointer';" onClick="CM();" title="Klik for at åbne i fuld størrelse" style="border: 1px;">
+                        <img id="Main" src="graphics/blank.png" height=300 onMouseOut="m0();" onMouseOver="document.body.style.cursor='url(graphics/magGlass.cur),url(graphics/magGlass.ico),pointer';" onClick="CM();" title="Klik for at åbne i fuld størrelse" style="border: 1px solid black;">
                         </CENTER>
                 </TD>
                 <TD style="width: 10%">
@@ -275,7 +275,7 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
                         <CENTER>
                         <script>
                                 for (i = 0; i < numThumbs; i++) {
-                                        document.write('<img id="Thumb' + (i+1) + '" src="graphics/blank.png" height=50 onMouseOut="m0();" onMouseOver="m1();" onClick="CT(' + i + ');" style="border: 1px;">');
+                                        document.write('<img id="Thumb' + (i+1) + '" src="graphics/blank.png" height=50 onMouseOut="m0();" onMouseOver="m1();" onClick="CT(' + i + ');" style="border: 1px solid black;">');
                                 }
                         </script>
                         </CENTER>
