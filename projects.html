@@ -3,15 +3,18 @@
 
 <head>
 
-	<!-- in order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+	<!-- In order to fix the "Chrome for Android using very small font for labels on the project Buttons" bug, suggested by ChatGPT; more info: https://www.w3schools.com/css/css_rwd_viewport.asp -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- The following is broadly unnecessary according to https://en.wikipedia.org/wiki/Favicon, since my favicon.ico is in the domain root -->
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 
+	<script src="./externalLinkWrapping.js"></script><!-- externalLink(), linkMacroString(), linkMacro() -->
+
 	<!-- on small screens like phones, I'd like like breaking to occur between "by" and "Tue" (and not between the 2 last words of the string. ChatGPT helped me realize that &nbsp; stands for Non-Breaking SPace...
 This means that the string "Tue Joshua" will never be line-broken - if the window/screen size and/or zoom is so extreme that this will overflow the FOV, we have other layout problems/cannot expect a nice layout anyway -->
 	<title>Projects by Tue&nbsp;Joshua</title>
+
 	<style>
 		/* non-instantaneous scrolling when following link to section elsewhere on page.
 Based on https://stackoverflow.com/a/24739173
@@ -95,37 +98,6 @@ also, without forcing "text-align: left" here (as should be the default), many b
 			-ms-user-select: text;
 		}
 	</style>
-
-	<script>
-		function externalLink(link) {
-			domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
-			if (domain == '') {
-				console.error('No domain detected. If you\'re viewing an offline copy of this page (from your local filesystem), that\'s probably why...');
-			}
-			else {
-				domain = '[' + domain + '] ';
-			}
-			if (confirm('By following this link to [' + link + '], you\'ll be leaving the relative safety of my ' + domain + 'domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
-				window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
-			}
-		}
-
-		// This function generates a "<a>...</a>" string
-		function linkMacroString(url, linkText) {
-			if (linkText === undefined) {
-				linkText = url;
-			}
-			return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\'); return false;">' + linkText + '</a>';
-		}
-
-		// This function writes directly to the DOM where invoked
-		function linkMacro(url, linkText) { // linkText can also be an <img> etc.
-
-			// the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
-			document.write(linkMacroString(url, linkText));
-		}
-
-	</script>
 
 </head>
 
