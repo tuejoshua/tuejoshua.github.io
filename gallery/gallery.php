@@ -219,7 +219,7 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
 
 </HEAD>
 
-<BODY onload="OpenFolder(document.FolderForm.FolderSelect.value);">
+<BODY onload="OpenFolder(document.FolderForm.FolderSelect.value);" style="background-color:lightgray;">
 
 <H2>Gallery</H2>
 <BR><BR>
