@@ -221,7 +221,7 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
 
 <BODY onload="OpenFolder(document.FolderForm.FolderSelect.value);">
 
-<H2>Galleri</H2>
+<H2>Gallery</H2>
 <BR><BR>
 
 <TABLE style="width: 100%">
@@ -243,9 +243,9 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
                                                 </SCRIPT></SELECT>
                                         </TD>
                                         <TD STYLE="text-align: right">
-                                                Viser billede
+                                                Showing image
                                                 <INPUT TYPE="text" NAME="CurrentImageNumberText" VALUE="..." SIZE=1 STYLE="text-align: right" READONLY>
-                                                af
+                                                of
                                                 <INPUT TYPE="text" NAME="TotalNumberOfImagesText" VALUE="..." SIZE=1 STYLE="text-align: right" READONLY>
                                         </TD>
                                 </TR>
