@@ -14,7 +14,7 @@ folderNames = ["graphics used by this PHP gallery itself"]; //"food items", "hil
 
 				/// Declare JavaScript arrays for later use ///
 
-baseDir = '';                                
+baseDir = '';
 Folders = new Array();
 Images = new Array();
 Indices = new Array(); // Indices in Images where a new Folder's images starts
@@ -35,17 +35,17 @@ $Folders = array();
 // somehow this finds all the files
 while (($file = readdir($curDir)) != false)
 	{
-        
+
         // remove non-folder-, "directory up"- and "this directory"-elements
 	if (!strpos($file,".") && $file != "." && $file != "..")
-        
+
 		{
-                
+
                 // saved at next free index in array
 		$Folders[count($Folders)] = $file;
-                
+
                 }
-                
+
 	}
 
 
@@ -57,10 +57,10 @@ closedir($curDir);
 
 
 				/// For every found folder, find images ///
-                                
+
 // Declare PHP array (otherwise, the code below will not work - on this server at least...)
-$Indices = array();     
-$Images = array(); 
+$Indices = array();
+$Images = array();
 
 for ($i = 0; $i < count($Folders); $i++) { //
 
@@ -115,6 +115,8 @@ if (n < (Indices[f+1]-Indices[f])) { // If Image index is not out of bounds for 
 
 document.images.Main.src = 'graphics/hourglass_anim.gif';
 document.images.Main.src = baseDir + Folders[f] + '/' + Images[Indices[f] + n];
+document.images.Main.alt = baseDir + Folders[f] + '/' + Images[Indices[f] + n];
+document.images.Main.title = baseDir + Folders[f] + '/' + Images[Indices[f] + n];
 
 document.FolderForm.CurrentImageNumberText.value = n+1; // Update Image Counter Text Field
 }
@@ -141,11 +143,14 @@ for (i=0;i<5;i++) {	// load Thumb images
 if ((Indices[f]+page*numThumbs+i) >= Indices[f+1]) { // If index out of bounds when accessing 5 thumb images
 	eval("document.images.Thumb"+(i+1)+".src='graphics/blank.png';");
 	// We need EVAL because thumbnail <IMG>s are named Thumb1, Thumb2 etc.
+        eval("document.images.Thumb"+(i+1)+".alt='';");
+        eval("document.images.Thumb"+(i+1)+".title='';");
 }
 else {
 	eval("document.images.Thumb"+(i+1)+".src='graphics/hourglass_anim.gif';");
-	// eval("document.images.Thumb"+(i+1)+".src='photos/_thumbnails/'+Images["+(Indices[f]+page*numThumbs+i)+"];");
-	   eval("document.images.Thumb"+(i+1)+".src= baseDir + Folders[f] +'/'+ Images["+(Indices[f]+page*numThumbs+i)+"];");
+	eval("document.images.Thumb"+(i+1)+".src= baseDir + Folders[f] +'/'+ Images["+(Indices[f]+page*numThumbs+i)+"];");
+        eval("document.images.Thumb"+(i+1)+".alt= Images["+(Indices[f]+page*numThumbs+i)+"];");
+        eval("document.images.Thumb"+(i+1)+".title= Images["+(Indices[f]+page*numThumbs+i)+"];");
 	}
 }
 
@@ -231,7 +236,7 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
                                         <TD>
                                                 <SELECT name="FolderSelect" onChange="OpenFolder(document.FolderForm.FolderSelect.value);">
                                                 <SCRIPT>
-                                                
+
                                                         /// Create drop-down menu from found image folders
 
                                                         for (i=0;i<Folders.length;i++) {
@@ -240,9 +245,9 @@ if ((PAGE+1)<( (Indices[Number(document.FolderForm.FolderSelect.value)+1]-Indice
                                                 </SCRIPT></SELECT>
                                         </TD>
                                         <TD STYLE="text-align: right">
-                                                Viser billede 
+                                                Viser billede
                                                 <INPUT TYPE="text" NAME="CurrentImageNumberText" VALUE="..." SIZE=1 STYLE="text-align: right" READONLY>
-                                                af 
+                                                af
                                                 <INPUT TYPE="text" NAME="TotalNumberOfImagesText" VALUE="..." SIZE=1 STYLE="text-align: right" READONLY>
                                         </TD>
                                 </TR>
