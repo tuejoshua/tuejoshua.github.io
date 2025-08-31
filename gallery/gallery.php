@@ -143,13 +143,11 @@ for (i=0;i<5;i++) {	// load Thumb images
 if ((Indices[f]+page*numThumbs+i) >= Indices[f+1]) { // If index out of bounds when accessing 5 thumb images
 	eval("document.images.Thumb"+(i+1)+".src='graphics/blank.png';");
 	// We need EVAL because thumbnail <IMG>s are named Thumb1, Thumb2 etc.
-        eval("document.images.Thumb"+(i+1)+".alt='';");
         eval("document.images.Thumb"+(i+1)+".title='';");
 }
 else {
 	eval("document.images.Thumb"+(i+1)+".src='graphics/hourglass_anim.gif';");
 	eval("document.images.Thumb"+(i+1)+".src= baseDir + Folders[f] +'/'+ Images["+(Indices[f]+page*numThumbs+i)+"];");
-        eval("document.images.Thumb"+(i+1)+".alt= Images["+(Indices[f]+page*numThumbs+i)+"];");
         eval("document.images.Thumb"+(i+1)+".title= Images["+(Indices[f]+page*numThumbs+i)+"];");
 	}
 }
