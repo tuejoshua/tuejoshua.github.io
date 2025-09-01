@@ -52,21 +52,21 @@ export async function displayProjectCards(file) {
 
 	const projectsJsonObject = await fetch(file);
 	const projects = await projectsJsonObject.json();
-  
+
 	let domString = '<div style="text-align: right;">(Click to expand)</div>';
-     
+
 	for (let i=0; i<projects.length; i++) {
-		
+
 		const fontSizeParam = 'font-size: 1.3em';
-		
+
 		// ONCLICK is obsolete - and breaks with MODULE code => CLASS + DATA-* + event listener elsewhere...
 		domString += '<button type="button" class="ProjectButton" data-index="' + i + '">' +
 			'<table style="width: 100%; border-collapse: collapse;"><tr><td class="project-title-cell" style="border: none; text-align: left; ' + fontSizeParam + '">' + '▶ ' + projects[i].title + '</td><td style="text-align: right; border: none;">';
-			
+
 		for (let tag of projects[i].technologies) {
 				domString += getTechLogo(tag);
 		}
-		
+
 	/// PROJECT DESCRIPTION FROM MARKDOWN FILE
 
 		// max-width because width does not include the padding that were also applying
@@ -85,35 +85,32 @@ export async function displayProjectCards(file) {
 			domString += marked.parse(mdContent);
 		}
 		catch (error) {
-			
+
 			/* To be re-enabled once we are ready to remove the fallback functionality below - and together with removing these 3 fields from the JSON:
 			domString += '<p style="color:red;"><em>Could not load project description from file ' + projects[i].title + '.md:<br>' + error + '</em></p>';
 			*/
-			
+
 			// FALLBACK:
 			let motivationString = projects[i].motivation.trim(); if (motivationString !== '') { motivationString = '<b>motivation:</b><br>' + motivationString; }
 			let summaryString    = projects[i].summary.trim();	  if (summaryString    !== '') {	summaryString = '<b>summary: </b><br>'   + summaryString;	 }
 			let detailsString    = projects[i].details.trim();    if (detailsString    !== '') {	detailsString = '<b>details: </b><br>'   + detailsString;    }
 			domString += motivationString + '<p>' + summaryString + '<p>' + detailsString;
-			
+
 		}
-		
+
 		domString += '</div>';
-				
+
     }
-    
-	// DEBUG
-	console.log(domString);
-	
+
     // Write HTML DOM string to DIV element
     document.getElementById('showData').innerHTML = domString;
-	
+
 	// OnClick events (see ONCLICK comment above)
 	document.querySelectorAll('.ProjectButton').forEach(btn => { // all CLASS = ProjectButton
 
 		/* Since we enabled selection of project titles / button labels (via CSS; see projects.html),
 		   we want to NOT fire the click event if text is being selected - therefore, replace this
-		
+
 		   btn.addEventListener('click', () => {
 			showProjectCard(btn);
 		});
@@ -138,5 +135,5 @@ export async function displayProjectCards(file) {
 
 	});
 
-	
+
 }
