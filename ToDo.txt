@@ -1,0 +1,38 @@
+merge common parts of index.html and projects.html - and maybe other pages?
+
+externalLink.js:
+- also: ...right-click > open in new tab should NOT just open the same page (with a "#" suffix)... Can we improve that?
+
+index_.html:
+No longer used... Delete? Or keep as redirect example?
+
+gallery.php.html:
+Study further -> reuse knowledge for "display contents of folder . php"
+
+Make Markdown file for all projects, then remove fallback code in displayProjectCards.js and corresponding params in JSON file
+
+Projects to be added:
+- "ABC" "FrontEnd"
+- WIN -> LINUX
+- Google Drive sync on Linux
+
+Hardcoded data alternative for timelines snippet:
+"
+    // Demo data with multi-chapter ranges
+    const rawEvents = [
+      { startChapter: 1, startVerse: 1, endChapter: 1, endVerse: 5, content: "Creation of light" },
+      { startChapter: 1, startVerse: 6, endChapter: 1, endVerse: 8, content: "Creation of sky" },
+      { startChapter: 1, startVerse: 26, endChapter: 2, endVerse: 3, content: "Creation of man and rest" },
+      { startChapter: 3, startVerse: 1, endChapter: 3, endVerse: 6, content: "Temptation by the serpent" }
+    ];
+
+    // Convert to vis.js items
+    const items = new vis.DataSet(
+      rawEvents.map((e, i) => ({
+        id: i + 1,
+        content: e.content,
+        start: refToDate(e.startChapter, e.startVerse),
+        end: refToDate(e.endChapter, e.endVerse)
+      }))
+    );
+"
