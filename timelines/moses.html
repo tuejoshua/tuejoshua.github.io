@@ -71,15 +71,15 @@
 
     function refToIndex(chapter, verse) {
       let idx = 0;
-      for (let c = 1; c < chapter; c++) idx += verseCounts[c] || 0;
+      for (let c = 0; c < chapter - 1; c++) idx += verseCounts[c] || 0;
       return idx + (verse - 1);
     }
 
     function indexToRef(idx) {
       let rem = idx;
-      for (let c = 1; c <= Object.keys(verseCounts).length; c++) {
-        const vc = verseCounts[c] || 0;
-        if (rem < vc) return { chapter: c, verse: rem + 1 };
+      for (let c = 0; c <= verseCounts.length; c++) {
+        const vc = verseCounts[c];
+        if (rem < vc) return { chapter: c + 1, verse: rem + 1 };
         rem -= vc;
       }
       return null;
