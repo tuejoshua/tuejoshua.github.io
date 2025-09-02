@@ -115,7 +115,7 @@
 
       // Add Chapter point events
       Object.entries(verseCounts).forEach(([chapter, verseCount]) => {
-        chapter += 1;
+        chapter = Number(chapter)+1;
         items.add({
           id: `perek-${chapter}`,
           content: `${chapter}`,
