@@ -41,9 +41,9 @@
 
 {
 "title":"Kotel screen",
-"motivation":"Inspired by the screens hanging at the Kotel (Wailing Wall in Jerusalem), I wanted to create one for my home/own use, to be shown on a tablet, especially for days like Shabbat and Yom Tov, where I cannot use my smartphone as an alternative.",
-"summary":"Using various APIs; trying to layout the page to maximize screen use and legibility.",
-"details":"<a href=https://tuejoshua.github.io/kotelScreen/kotelScreen.html>here</a><br> https://github.com/tuejoshua/tuejoshua.github.io/tree/main/kotelScreen (incl. test versions)",
+"motivation":"",
+"summary":"",
+"details":"",
 "technologies":["FrontEnd"]
 },
 
