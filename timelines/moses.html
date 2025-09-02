@@ -35,7 +35,7 @@
 
 </head>
 
-<script src="./data/versesPerChapter_Devarim.js"></script>
+<script src="./data/versesPerChapter_Devarim.js"></script><!-- verseCounts -->
 
 <body>
   <h1>DEVARIM</h1>
@@ -113,7 +113,9 @@
       //document.getElementById('visualization').innerHTML = "Loading, please wait..."; // If not clearing here, the timeline would just be added below existing ones(!)
       items = new vis.DataSet();
 
+      // Add Chapter point events
       Object.entries(verseCounts).forEach(([chapter, verseCount]) => {
+        chapter += 1;
         items.add({
           id: `perek-${chapter}`,
           content: `${chapter}`,
@@ -123,6 +125,7 @@
         });
       });
 
+      // Add events from CSV file
       data.forEach((row, i) => {
         if (row.length == 6) { // range
           const startCh = +row[0].trim(), startV = +row[1].trim();
