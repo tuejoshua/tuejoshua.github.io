@@ -113,17 +113,17 @@
       //document.getElementById('visualization').innerHTML = "Loading, please wait..."; // If not clearing here, the timeline would just be added below existing ones(!)
       items = new vis.DataSet();
 
-      // Add Chapter point events
-      Object.entries(verseCounts).forEach(([chapter, verseCount]) => {
-        chapter = Number(chapter)+1;
-        items.add({
-          id: `perek-${chapter}`,
-          content: `${chapter}`,
-          start: refToDate(chapter, 1),
-          subgroup: "Perek",
-          type: "point"
-        });
-      });
+// Add Chapter point events
+verseCounts.forEach((verseCount, i) => {
+  const chapter = i + 1; // 1-based
+  items.add({
+    id: `perek-${chapter}`,
+    content: `${chapter}`,
+    start: refToDate(chapter, 1),
+    subgroup: "Perek",
+    type: "point"
+  });
+});
 
       // Add events from CSV file
       data.forEach((row, i) => {
