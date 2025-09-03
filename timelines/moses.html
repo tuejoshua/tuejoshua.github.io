@@ -35,7 +35,7 @@
 
 </head>
 
-<script src="./data/versesPerChapter_Devarim.js"></script><!-- verseCounts -->
+<script src="./data/versesPerChapter_Devarim.js"></script> <!-- verseCounts -->
 
 <body>
   <h1>DEVARIM</h1>
@@ -57,18 +57,6 @@
 
 
     <script type="text/javascript">
-
-      /*
-      // Make labelled swim lanes
-      const groups = new vis.DataSet([
-        { id: 'Masoretic', content: 'Masoretic Kapitels' },
-        { id: 'weekday', content: 'Aliyot for Monday/Thursday' },
-        { id: 'Parsha', content: 'Parsha' },
-          { id: 'Aliyah', content: 'Aliyot for Shabbat' }
-        // Add as many subgroup definitions as you need
-      ]);
-      */
-
 
       function refToIndex(chapter, verse) {
         let idx = 0;
@@ -110,8 +98,7 @@
       });
 
       function showTimeline(data) {
-        //The following should not be necessary since we (currently) only run showTimeline() once per page load...
-        //document.getElementById('visualization').innerHTML = "Loading, please wait..."; // If not clearing here, the timeline would just be added below existing ones(!)
+
         items = new vis.DataSet();
 
         // Add Chapter point events
@@ -146,16 +133,11 @@
           }
         });
 
-        // Find last chapter and its verse count
-        //const lastChapter = verseCounts.length;
-        //const lastVerse = verseCounts[lastChapter - 1];
-
         const options = {
           format: {
             minorLabels: date => {
               const idx = Math.round((date - baseDate) / 1000);
               const r = indexToRef(idx);
-              //return r ? `${r.chapter}:${r.verse}` : '';
               return r ? `${r.verse}` : '';
             },
             majorLabels: date => {
@@ -166,11 +148,8 @@
 
           },
 
-          // Double(!) attempt at preventing too far zoom-in (resulting in duplicate minor ticks)
-          //zoomMin: 1001,
+          // Attempt at preventing too far zoom-in (resulting in duplicate minor ticks)
           timeAxis: { scale: 'second', step: 1 },
-
-          //zoomMax: 60 * 1000
 
           showMajorLabels: false,  // 👈 hides the "chapter X" ticks
           // The property vis.js uses for custom tick positions depends on version:
@@ -183,11 +162,6 @@
 
           stack: false,   // don’t pile items within a subgroup
           stackSubgroups: false, // do not stack across subgroups; keeps items in same subgroup on same line
-          // optional: control subgroup order
-          // subgroupOrder: (a, b) => a.localeCompare(b)
-
-          //start: refToDate(1, 1), // Chapter 1, Verse 1 - to avoid showing negative "verse numbers" before chapter 1
-          //end: refToDate(lastChapter, lastVerse)
 
         };
 
@@ -197,17 +171,12 @@
              Display timeline */
           document.getElementById('visualization').innerHTML = "";
           timeline = new vis.Timeline(document.getElementById('visualization'), items, options); //groups, options);
-          // Force view
-          //timeline.setWindow(refToDate(1, 1), refToDate(lastChapter, lastVerse));
-
-          //console.log("First date:", refToDate(1, 1).toISOString());
-          //console.log("Last date:", refToDate(lastChapter, lastVerse).toISOString());
-          //console.log("Timeline window:", timeline.getWindow());
 
           // Lock the default view as maximum zoom out
           var defaultWindow = timeline.getWindow();
           timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
+          // Blue vertical lines at chapters
           chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
 
           // Click to show details
