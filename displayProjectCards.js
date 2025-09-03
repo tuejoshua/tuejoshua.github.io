@@ -3,34 +3,29 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
 
 function getTechLogo(tag) {
-	let logoUrl, altText;
+	let logoUrl;
 	switch(tag) {
 		case 'Bash':
 			logoUrl = '256x256 (Bash logo from github.com-odb).png';
-			altText = 'Front End';
 			break;
-		case 'FrontEnd':
+		case 'Front End':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
-			altText = 'Front End';
 			break;
 		case 'JSON':
 			logoUrl = 'JSON_vector_logo.svg (from Wikimedia Commons).png';
-			altText = 'JSON';
 			break;
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
-			altText = 'PHP';
 			break;
 		case 'Python':
 			logoUrl = 'python-logo-only (from python.org).png';
-			altText = 'Python';
 			break;
 		default:
-			alert('logo not found for "' + tag + '"');
+			console.error('logo not found for "' + tag + '"');
 			return '';
 	}
 	// In order to improve readability of when selecting the image as part of text (which will include the alt text), delimited by []s
-	return '<img alt="[' + altText + ' icon]" src="resources/' + logoUrl + '" height=40 title="' + altText + '.\nFor source and license of this icon, see further down this page">';
+	return '<img alt="[' + tag + ' icon]" src="resources/' + logoUrl + '" height=40 title="' + tag + '.\nFor source and license of this icon, see further down this page">';
 }
 
 function showProjectCard(btn) {
