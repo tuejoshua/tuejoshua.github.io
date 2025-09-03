@@ -101,7 +101,7 @@
 
         items = new vis.DataSet();
 
-        /*/ Add Chapter point events
+        // Add Chapter point events
         verseCounts.forEach((verseCount, i) => {
           const chapter = i + 1; // 1-based
           items.add({
@@ -111,7 +111,7 @@
             subgroup: "Perek",
             type: "point"
           });
-        }); */
+        });
 
         // Add events from CSV file
         data.forEach((row, i) => {
@@ -176,7 +176,7 @@
           var defaultWindow = timeline.getWindow();
           timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
-          chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
+          //chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
 
           // Click to show details
           // - BUT see alternative implementation in jewishHistory.html...
