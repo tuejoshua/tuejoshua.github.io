@@ -147,8 +147,9 @@
         });
 
         // Find last chapter and its verse count
-        const lastChapter = Object.keys(verseCounts).length;
-        const lastVerse = verseCounts[lastChapter];
+        const lastChapter = verseCounts.length;
+        const lastVerse = verseCounts[lastChapter - 1];
+
 
         const options = {
           format: {
