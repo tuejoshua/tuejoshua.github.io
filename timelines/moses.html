@@ -134,12 +134,14 @@
             const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
             const endCh = +row[4].trim(), endV = +row[5].trim();
             items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDateInclusive(endCh, endV), subgroup: subgroup }); //group: subgroup });
+            console.log(item.id, item.start.toISOString(), item.end?.toISOString());
           }
           else if (row.length == 4) { // point/event
             const startCh = +row[0].trim(), startV = +row[1].trim();
             const subgroup = row[2].trim();
             const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
             items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: "point" }); //group: subgroup });
+            console.log(item.id, item.start.toISOString(), item.end?.toISOString());
           }
           else {
             alert('Unexpected number of columns for data entry');
