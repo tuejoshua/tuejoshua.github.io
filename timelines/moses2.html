@@ -101,7 +101,7 @@
 
         items = new vis.DataSet();
 
-        // Add Chapter point events
+        /*/ Add Chapter point events
         verseCounts.forEach((verseCount, i) => {
           const chapter = i + 1; // 1-based
           items.add({
@@ -111,9 +111,9 @@
             subgroup: "Perek",
             type: "point"
           });
-        });
+        }); */
 
-        /*/ Add events from CSV file
+        // Add events from CSV file
         data.forEach((row, i) => {
           if (row.length == 6) { // range
             const startCh = +row[0].trim(), startV = +row[1].trim();
@@ -131,7 +131,7 @@
           else {
             alert('Unexpected number of columns for data entry');
           }
-        }); */
+        });
 
         const options = {
           format: {
