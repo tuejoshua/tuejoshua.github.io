@@ -58,19 +58,26 @@
 
     <script type="text/javascript">
 
+      // Convert Chapter:Verse to "global verse index number"
       function refToIndex(chapter, verse) {
         let idx = 0;
+          // 1. Add up all the verses from the chapters before the given one
         for (let c = 0; c < chapter - 1; c++) idx += verseCounts[c] || 0;
+          // 2. Add the verse number within the current chapter
         return idx + (verse - 1);
       }
 
+      // Convert "global verse index number" to Chapter:Verse
       function indexToRef(idx) {
-        let rem = idx;
-        for (let c = 0; c <= verseCounts.length; c++) {
-          const vc = verseCounts[c];
-          if (rem < vc) return { chapter: c + 1, verse: rem + 1 };
-          rem -= vc;
+
+        // Subtract verses per chapter until we reach the right chapter
+        let remainder = idx;
+        for (let chapterIdx = 0; chapterIdx <= verseCounts.length; chapterIdx++) {
+          const versesInNextChapter = verseCounts[chapterIdx];
+          if (remainder < versesInNextChapter) return { chapter: chapterIdx + 1, verse: remainder + 1 };
+          remainder -= versesInNextChapter;
         }
+
         return null;
       }
 
@@ -140,11 +147,13 @@
               const r = indexToRef(idx);
               return r ? `${r.verse}` : '';
             },
+
+            /* DEAD CODE because of "showMajorLabels: false" below
             majorLabels: date => {
               const idx = Math.round((date - baseDate) / 1000);
               const r = indexToRef(idx);
               return r ? `Genesis ${r.chapter}` : '';
-            },
+            },*/
 
           },
 
