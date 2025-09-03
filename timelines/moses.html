@@ -181,6 +181,8 @@ verseCounts.forEach((verseCount, i) => {
         // optional: control subgroup order
         // subgroupOrder: (a, b) => a.localeCompare(b)
 
+        start: refToDate(1, 1), // Chapter 1, Verse 1 - to avoid showing negative "verse numbers" before chapter 1
+
       };
 
       if (!timeline) {
