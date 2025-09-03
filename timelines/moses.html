@@ -185,7 +185,7 @@
             if (props.items.length) {
               const item = items.get(props.items[0]);
               const sIdx = Math.round((item.start - baseDate) / 1000);
-              const eIdx = Math.round((item.end - baseDate) / 1000);
+              const eIdx = Math.round((item.end - baseDate) / 1000) - 1; // -1 because we want last verse, not the one after that (which the event box stretches to)
               const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
               document.getElementById('details').textContent =
                 `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
