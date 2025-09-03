@@ -5,24 +5,24 @@ import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
 function getTechLogo(tag) {
 	let logoUrl, altText;
 	switch(tag) {
+		case 'Bash':
+			logoUrl = '256x256 (Bash logo from github.com-odb).png';
+			altText = 'Front End';
+			break;
 		case 'FrontEnd':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
-			//licenseLink = 'github.com/shannonmoeller/front-end-logo';
 			altText = 'Front End';
 			break;
 		case 'JSON':
 			logoUrl = 'JSON_vector_logo.svg (from Wikimedia Commons).png';
-			//licenseLink = 'commons.wikimedia.org/wiki/File:JSON_vector_logo.svg';
 			altText = 'JSON';
 			break;
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
-			//licenseLink = 'www.php.net/download-logos.php';
 			altText = 'PHP';
 			break;
 		case 'Python':
 			logoUrl = 'python-logo-only (from python.org).png';
-			//licenseLink = 'www.python.org/community/logos/';
 			altText = 'Python';
 			break;
 		default:

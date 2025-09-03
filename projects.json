@@ -1,89 +1,114 @@
 [
+    {
+        "title": "Hilchot Brachot games",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "Time sheet parser",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "Python"
+        ]
+    },
+    {
+        "title": "EDF header record visualization and validation",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "Tarps kabale (Four Seasons)",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "Zmanim for Machsike Hadas, Copenhagen",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "Python"
+        ]
+    },
+    {
+        "title": "Kotel screen",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "Projects showcase (this page)",
+        "motivation": "...at some point I realized that this is a project in itself; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files... Future improvement: Footnotes? Also: code formatting (via backticks) doesn't look nice with my current font settings...; when opening new one 1) close other card(s) and/or 2) auto-scroll to that card;",
+        "summary": "A note about the AwardSpace domain for hosting PHP? (and non-Git-fitting data?) - on that domain, config redirect to GitHUb Page for 404s? Links/anchors for when project descriptions refer to each other? Make sure all text is selectable (e.g. for copying and translation)?",
+        "details": "<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.<br> https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.html",
+        "technologies": [
+            "JSON"
+        ]
+    },
+    {
+        "title": "Folder index page",
+        "motivation": "I wanted to share direct links to images* on my server. However, since my webhost does not allow direct access to image files, I needed an ''in-between'' page for handling that traffic. As I also wanted links to be as short as possible, I came up with this solution, where I can simply put relevant resource(s) in a folder, include a simple ''index.php'' wrapper file, and then share the link to the folder instead.<p>*) Originally, the output image for <a href='#Zmanim_for_Machsike_Hadas,_Copenhagen'>the Zmanim_for_Machsike_Hadas project</a>; where the link actually got a LOT shorter (due to a long file name).",
+        "summary": "<mark><a href='showFolderContents/iframeTest.html'>A page that</a></mark> lists all contents (i.e. files) of the folder in which the page resides, with links to each file plus other filetype-specific behavior (thumbnails for image files etc.)",
+        "details": "The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).<br><br>https://github.com/tuejoshua/tuejoshua.github.io/tree/main/showFolderContents",
+        "technologies": [
+            "PHP",
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "PHP image gallery",
+        "motivation": "When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website. It was (I believe) also my first ''real'' experience with PHP.",
+        "summary": "",
+        "details": "https://github.com/tuejoshua/tuejoshua.github.io/tree/main/galleri",
+        "technologies": [
+            "PHP",
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "Timeline",
+        "motivation": "",
+        "summary": "<a href=https://tuejoshua.github.io/timelines/jewishHistory.html>here</a><br> ",
+        "details": "https://github.com/visjs/vis-timeline/issues/1856",
+        "technologies": [
+            "FrontEnd"
+        ]
+    },
+    {
+        "title": "404 -> Redirect",
+        "motivation": "I had a broken link on my phone (to the kotel screen page) which has since moved. That got me thinking about redirects - probably because I was at the same time reading up on API calls and HTTP responses :)",
+        "summary": "See <a href='404.html'>here (404.html)</a> what happens; <br>see code/comments <a href='https://github.com/tuejoshua/tuejoshua.github.io/blob/main/404.html'>here</a> ...and also index.html",
+        "details": "ToDo: Add content from the default GitHub 404 page - and a comment about how we could only load this dynamically via (iframe or similar to) ANOTHER domain guaranteed not to implement its own 404.html (now or in the future)",
+        "technologies": [
+            "FrontEnd"
+        ]
+    },
 
 {
-"title":"Hilchot Brachot games",
-"motivation":"",
-"summary":"",
-"details":"",
-"technologies":["FrontEnd"]
-},
-
-{
-"title":"Time sheet parser",
-"motivation":"",
-"summary":"",
-"details":"",
-"technologies":["Python"]
-},
-
-{
-"title":"EDF header record visualization and validation",
-"motivation":"",
-"summary":"",
-"details":"",
-"technologies":["FrontEnd"]
-},
-
-{
-"title":"Tarps kabale (Four Seasons)",
-"motivation":"",
-"summary":"",
-"details":"",
-"technologies":["FrontEnd"]
-},
-
-{"title":"Zmanim for Machsike Hadas, Copenhagen",
-"motivation":"",
-"summary":"",
-"details":"",
-"technologies":["Python"]
-},
-
-{
-"title":"Kotel screen",
-"motivation":"",
-"summary":"",
-"details":"",
-"technologies":["FrontEnd"]
-},
-
-{
-"title":"Projects showcase (this page)",
-"motivation":"...at some point I realized that this is a project in itself; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files... Future improvement: Footnotes? Also: code formatting (via backticks) doesn't look nice with my current font settings...; when opening new one 1) close other card(s) and/or 2) auto-scroll to that card;",
-"summary":"A note about the AwardSpace domain for hosting PHP? (and non-Git-fitting data?) - on that domain, config redirect to GitHUb Page for 404s? Links/anchors for when project descriptions refer to each other? Make sure all text is selectable (e.g. for copying and translation)?",
-"details":"<a href=https://tuejoshua.github.io/projects.json>here</a> the JSON data file used by this page.<br> https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.html",
-"technologies":["JSON"]
-},
-
-{"title":"Folder index page",
-"motivation":"I wanted to share direct links to images* on my server. However, since my webhost does not allow direct access to image files, I needed an ''in-between'' page for handling that traffic. As I also wanted links to be as short as possible, I came up with this solution, where I can simply put relevant resource(s) in a folder, include a simple ''index.php'' wrapper file, and then share the link to the folder instead.<p>*) Originally, the output image for <a href='#Zmanim_for_Machsike_Hadas,_Copenhagen'>the Zmanim_for_Machsike_Hadas project</a>; where the link actually got a LOT shorter (due to a long file name).",
-"summary":"<mark><a href='showFolderContents/iframeTest.html'>A page that</a></mark> lists all contents (i.e. files) of the folder in which the page resides, with links to each file plus other filetype-specific behavior (thumbnails for image files etc.)",
-"details":"The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).<br><br>https://github.com/tuejoshua/tuejoshua.github.io/tree/main/showFolderContents",
-"technologies":["PHP","FrontEnd"]
-},
-
-{
-"title":"PHP image gallery",
-"motivation":"When I was webmaster for the site https://machsikehadas.dk/, we wanted to add an image gallery functionality to the website. It was (I believe) also my first ''real'' experience with PHP.",
-"summary":"",
-"details":"https://github.com/tuejoshua/tuejoshua.github.io/tree/main/galleri",
-"technologies":["PHP","FrontEnd"]
-},
-
-{
-"title":"Timeline",
-"motivation":"",
-"summary":"<a href=https://tuejoshua.github.io/timelines/jewishHistory.html>here</a><br> ",
-"details":"https://github.com/visjs/vis-timeline/issues/1856",
-"technologies":["FrontEnd"]
-},
-
-{
-"title":"404 -> Redirect",
-"motivation":"I had a broken link on my phone (to the kotel screen page) which has since moved. That got me thinking about redirects - probably because I was at the same time reading up on API calls and HTTP responses :)",
-"summary":"See <a href='404.html'>here (404.html)</a> what happens; <br>see code/comments <a href='https://github.com/tuejoshua/tuejoshua.github.io/blob/main/404.html'>here</a> ...and also index.html",
-"details":"ToDo: Add content from the default GitHub 404 page - and a comment about how we could only load this dynamically via (iframe or similar to) ANOTHER domain guaranteed not to implement its own 404.html (now or in the future)",
-"technologies":["FrontEnd"]
+"title": "Google Drive sync for Linux",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "Bash"
+        ]
 }
 
 ]
