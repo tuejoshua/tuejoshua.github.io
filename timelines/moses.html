@@ -45,176 +45,182 @@
       [ <b>Please wait: Processing...</b><br>
       <br>
       &nbsp;&nbsp;If this message remains in place, it means that the pipeline is not working as intended.<br>
-      &nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin without CORS.<br>
+      &nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin without
+      CORS.<br>
       &nbsp;&nbsp;In any case, check the console output for clues... ]
     </i>
   </div>
   <div id="details">Click an event to see details here</div>
-	<p>
-		<i>Powered by <a href="https://github.com/visjs/vis-timeline">vis.js/vis-timeline</a> and <a
-				href="https://github.com/mholt/PapaParse">PapaParse</a></i>
+  <p>
+    <i>Powered by <a href="https://github.com/visjs/vis-timeline">vis.js/vis-timeline</a> and <a
+        href="https://github.com/mholt/PapaParse">PapaParse</a></i>
 
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    /*
-    // Make labelled swim lanes
-    const groups = new vis.DataSet([
-      { id: 'Masoretic', content: 'Masoretic Kapitels' },
-      { id: 'weekday', content: 'Aliyot for Monday/Thursday' },
-      { id: 'Parsha', content: 'Parsha' },
-        { id: 'Aliyah', content: 'Aliyot for Shabbat' }
-      // Add as many subgroup definitions as you need
-    ]);
-    */
+      /*
+      // Make labelled swim lanes
+      const groups = new vis.DataSet([
+        { id: 'Masoretic', content: 'Masoretic Kapitels' },
+        { id: 'weekday', content: 'Aliyot for Monday/Thursday' },
+        { id: 'Parsha', content: 'Parsha' },
+          { id: 'Aliyah', content: 'Aliyot for Shabbat' }
+        // Add as many subgroup definitions as you need
+      ]);
+      */
 
 
-    function refToIndex(chapter, verse) {
-      let idx = 0;
-      for (let c = 0; c < chapter - 1; c++) idx += verseCounts[c] || 0;
-      return idx + (verse - 1);
-    }
-
-    function indexToRef(idx) {
-      let rem = idx;
-      for (let c = 0; c <= verseCounts.length; c++) {
-        const vc = verseCounts[c];
-        if (rem < vc) return { chapter: c + 1, verse: rem + 1 };
-        rem -= vc;
+      function refToIndex(chapter, verse) {
+        let idx = 0;
+        for (let c = 0; c < chapter - 1; c++) idx += verseCounts[c] || 0;
+        return idx + (verse - 1);
       }
-      return null;
-    }
 
-    const baseDate = new Date(2000, 0, 1);
-    function indexToDate(idx) { return new Date(baseDate.getTime() + idx * 1000); } // 1 sec per verse
-    function refToDate(ch, v) { return indexToDate(refToIndex(ch, v)); }
-    function refToDateInclusive(ch, v) {
-      const idx = refToIndex(ch, v) + 1;  // +1 to include last verse
-      return indexToDate(idx);
-    }
-
-    const chapterStartDates = [];
-    for (let c in verseCounts) {
-      chapterStartDates.push(refToDate(+c, 1)); // first verse of each chapter
-    }
-
-    let timeline, items;
-
-    Papa.parse('./data/annotations_Devarim.csv', {
-      download: true,
-      complete: function (results) {
-        const data = results.data;
-        showTimeline(data);
+      function indexToRef(idx) {
+        let rem = idx;
+        for (let c = 0; c <= verseCounts.length; c++) {
+          const vc = verseCounts[c];
+          if (rem < vc) return { chapter: c + 1, verse: rem + 1 };
+          rem -= vc;
+        }
+        return null;
       }
-    });
 
-    function showTimeline(data) {
-      //The following should not be necessary since we (currently) only run showTimeline() once per page load...
-      //document.getElementById('visualization').innerHTML = "Loading, please wait..."; // If not clearing here, the timeline would just be added below existing ones(!)
-      items = new vis.DataSet();
+      const baseDate = new Date(2000, 0, 1);
+      function indexToDate(idx) { return new Date(baseDate.getTime() + idx * 1000); } // 1 sec per verse
+      function refToDate(ch, v) { return indexToDate(refToIndex(ch, v)); }
+      function refToDateInclusive(ch, v) {
+        const idx = refToIndex(ch, v) + 1;  // +1 to include last verse
+        return indexToDate(idx);
+      }
 
-// Add Chapter point events
-verseCounts.forEach((verseCount, i) => {
-  const chapter = i + 1; // 1-based
-  items.add({
-    id: `perek-${chapter}`,
-    content: `${chapter}`,
-    start: refToDate(chapter, 1),
-    subgroup: "Perek",
-    type: "point"
-  });
-});
+      const chapterStartDates = [];
+      for (let c in verseCounts) {
+        chapterStartDates.push(refToDate(+c, 1)); // first verse of each chapter
+      }
 
-      // Add events from CSV file
-      data.forEach((row, i) => {
-        if (row.length == 6) { // range
-          const startCh = +row[0].trim(), startV = +row[1].trim();
-          const subgroup = row[2].trim();
-          const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
-          const endCh = +row[4].trim(), endV = +row[5].trim();
-          items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDateInclusive(endCh, endV), subgroup: subgroup }); //group: subgroup });
-        }
-        else if (row.length == 4) { // point/event
-          const startCh = +row[0].trim(), startV = +row[1].trim();
-          const subgroup = row[2].trim();
-          const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
-          items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: "point" }); //group: subgroup });
-        }
-        else {
-          alert('Unexpected number of columns for data entry');
+      let timeline, items;
+
+      Papa.parse('./data/annotations_Devarim.csv', {
+        download: true,
+        complete: function (results) {
+          const data = results.data;
+          showTimeline(data);
         }
       });
 
-      const options = {
-        format: {
-          minorLabels: date => {
-            const idx = Math.round((date - baseDate) / 1000);
-            const r = indexToRef(idx);
-            //return r ? `${r.chapter}:${r.verse}` : '';
-            return r ? `${r.verse}` : '';
-          },
-          majorLabels: date => {
-            const idx = Math.round((date - baseDate) / 1000);
-            const r = indexToRef(idx);
-            return r ? `Genesis ${r.chapter}` : '';
-          },
+      function showTimeline(data) {
+        //The following should not be necessary since we (currently) only run showTimeline() once per page load...
+        //document.getElementById('visualization').innerHTML = "Loading, please wait..."; // If not clearing here, the timeline would just be added below existing ones(!)
+        items = new vis.DataSet();
 
-        },
+        // Add Chapter point events
+        verseCounts.forEach((verseCount, i) => {
+          const chapter = i + 1; // 1-based
+          items.add({
+            id: `perek-${chapter}`,
+            content: `${chapter}`,
+            start: refToDate(chapter, 1),
+            subgroup: "Perek",
+            type: "point"
+          });
+        });
 
-        // Double(!) attempt at preventing too far zoom-in (resulting in duplicate minor ticks)
-        //zoomMin: 1001,
-        timeAxis: { scale: 'second', step: 1 },
-
-        //zoomMax: 60 * 1000
-
-        showMajorLabels: false,  // 👈 hides the "chapter X" ticks
-        // The property vis.js uses for custom tick positions depends on version:
-        // For v7+, use 'major': { tick: { values: [...] } }
-        // Older standalone UMD may not expose tick.values, so we'll use a workaround below
-        // - ditto the standalone UMD build of vis-timeline that I'm using is a slimmed-down
-        // package that does not expose the same axis-tick configuration API
-        // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the
-        // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
-
-        stack: false,   // don’t pile items within a subgroup
-        stackSubgroups: false, // do not stack across subgroups; keeps items in same subgroup on same line
-        // optional: control subgroup order
-        // subgroupOrder: (a, b) => a.localeCompare(b)
-
-        start: refToDate(1, 1), // Chapter 1, Verse 1 - to avoid showing negative "verse numbers" before chapter 1
-
-      };
-
-      if (!timeline) {
-
-        /* Clear placeholder content, then
-           Display timeline */
-        document.getElementById('visualization').innerHTML = "";
-        timeline = new vis.Timeline(document.getElementById('visualization'), items, options); //groups, options);
-
-        // Lock the default view as maximum zoom out
-        var defaultWindow = timeline.getWindow();
-        timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
-
-        chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
-
-        // Click to show details
-        // - BUT see alternative implementation in jewishHistory.html...
-        timeline.on('select', props => {
-          if (props.items.length) {
-            const item = items.get(props.items[0]);
-            const sIdx = Math.round((item.start - baseDate) / 1000);
-            const eIdx = Math.round((item.end - baseDate) / 1000);
-            const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
-            document.getElementById('details').textContent =
-              `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
+        // Add events from CSV file
+        data.forEach((row, i) => {
+          if (row.length == 6) { // range
+            const startCh = +row[0].trim(), startV = +row[1].trim();
+            const subgroup = row[2].trim();
+            const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
+            const endCh = +row[4].trim(), endV = +row[5].trim();
+            items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDateInclusive(endCh, endV), subgroup: subgroup }); //group: subgroup });
+          }
+          else if (row.length == 4) { // point/event
+            const startCh = +row[0].trim(), startV = +row[1].trim();
+            const subgroup = row[2].trim();
+            const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
+            items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: "point" }); //group: subgroup });
+          }
+          else {
+            alert('Unexpected number of columns for data entry');
           }
         });
-      } else {
-        timeline.setItems(items);
+
+        // Find last chapter and its verse count
+        const lastChapter = Object.keys(verseCounts).length;
+        const lastVerse = verseCounts[lastChapter];
+
+        const options = {
+          format: {
+            minorLabels: date => {
+              const idx = Math.round((date - baseDate) / 1000);
+              const r = indexToRef(idx);
+              //return r ? `${r.chapter}:${r.verse}` : '';
+              return r ? `${r.verse}` : '';
+            },
+            majorLabels: date => {
+              const idx = Math.round((date - baseDate) / 1000);
+              const r = indexToRef(idx);
+              return r ? `Genesis ${r.chapter}` : '';
+            },
+
+          },
+
+          // Double(!) attempt at preventing too far zoom-in (resulting in duplicate minor ticks)
+          //zoomMin: 1001,
+          timeAxis: { scale: 'second', step: 1 },
+
+          //zoomMax: 60 * 1000
+
+          showMajorLabels: false,  // 👈 hides the "chapter X" ticks
+          // The property vis.js uses for custom tick positions depends on version:
+          // For v7+, use 'major': { tick: { values: [...] } }
+          // Older standalone UMD may not expose tick.values, so we'll use a workaround below
+          // - ditto the standalone UMD build of vis-timeline that I'm using is a slimmed-down
+          // package that does not expose the same axis-tick configuration API
+          // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the
+          // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
+
+          stack: false,   // don’t pile items within a subgroup
+          stackSubgroups: false, // do not stack across subgroups; keeps items in same subgroup on same line
+          // optional: control subgroup order
+          // subgroupOrder: (a, b) => a.localeCompare(b)
+
+          start: refToDate(1, 1), // Chapter 1, Verse 1 - to avoid showing negative "verse numbers" before chapter 1
+          end: refToDate(lastChapter, lastVerse)
+
+        };
+
+        if (!timeline) {
+
+          /* Clear placeholder content, then
+             Display timeline */
+          document.getElementById('visualization').innerHTML = "";
+          timeline = new vis.Timeline(document.getElementById('visualization'), items, options); //groups, options);
+
+          // Lock the default view as maximum zoom out
+          var defaultWindow = timeline.getWindow();
+          timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
+
+          chapterStartDates.forEach((d, i) => { timeline.addCustomTime(d, 'chapter' + i); });
+
+          // Click to show details
+          // - BUT see alternative implementation in jewishHistory.html...
+          timeline.on('select', props => {
+            if (props.items.length) {
+              const item = items.get(props.items[0]);
+              const sIdx = Math.round((item.start - baseDate) / 1000);
+              const eIdx = Math.round((item.end - baseDate) / 1000);
+              const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
+              document.getElementById('details').textContent =
+                `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
+            }
+          });
+        } else {
+          timeline.setItems(items);
+        }
       }
-    }
-  </script>
+    </script>
 </body>
 
 </html>
