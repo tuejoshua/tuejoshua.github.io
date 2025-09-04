@@ -5,7 +5,7 @@
         "summary": "",
         "details": "",
         "technologies": [
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -23,7 +23,7 @@
         "summary": "",
         "details": "",
         "technologies": [
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -32,7 +32,7 @@
         "summary": "",
         "details": "",
         "technologies": [
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -50,7 +50,7 @@
         "summary": "",
         "details": "",
         "technologies": [
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -69,7 +69,7 @@
         "details": "The bulk of the code is contained by this file (not executable directly, by design):<p style='text-align:right'><mark>showFolderContents.php <a href='showFolderContents/showFolderContents_viewSource.php'>(view source)</a></mark><br>(Running the PHP file itself - click <mark><a href='showFolderContents/showFolderContents.php'>here</a></mark> if you want to try - is not allowed for standard backend security reasons)<p>In every folder for which this functionality is wanted, a simple wrapper file with a few lines of code (see header comment of the ''bulk file'' above) shall be added:<p style='text-align:right'>index.php <mark><a href='http://tuejoshua.atwebpages.com/showFolderContents/index_viewSource.php'>(view source)</a></mark><p>- by naming this file index.php, the page will (depending on your server setup*) be displayed when the URL for the containing folder is requested - which is exactly what we want. <p>Lastly, <mark><a href='hilchotBrachot/resources/foods/'>here</a></mark>'s a working example (a folder with some actual contents, showcasing the capabilities of my folder index page.<p>*) <a href='https://www.lifewire.com/index-html-page-3466505'>Here</a>'s a nice article about the 'index.html/.php' naming convention (I take no responsibility for dead links etc. ;-)).<br><br>https://github.com/tuejoshua/tuejoshua.github.io/tree/main/showFolderContents",
         "technologies": [
             "PHP",
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -79,7 +79,7 @@
         "details": "https://github.com/tuejoshua/tuejoshua.github.io/tree/main/galleri",
         "technologies": [
             "PHP",
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -88,7 +88,7 @@
         "summary": "<a href=https://tuejoshua.github.io/timelines/jewishHistory.html>Jewish History</a><br>;<p><a href=https://tuejoshua.github.io/timelines/moses.html>5 Books of Moses</a>",
         "details": "https://github.com/visjs/vis-timeline/issues/1856",
         "technologies": [
-            "FrontEnd"
+            "front-end"
         ]
     },
     {
@@ -97,7 +97,7 @@
         "summary": "See <a href='404.html'>here (404.html)</a> what happens; <br>see code/comments <a href='https://github.com/tuejoshua/tuejoshua.github.io/blob/main/404.html'>here</a> ...and also index.html",
         "details": "ToDo: Add content from the default GitHub 404 page - and a comment about how we could only load this dynamically via (iframe or similar to) ANOTHER domain guaranteed not to implement its own 404.html (now or in the future)",
         "technologies": [
-            "FrontEnd"
+            "front-end"
         ]
     },
 

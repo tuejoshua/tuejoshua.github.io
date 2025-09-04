@@ -8,7 +8,7 @@ function getTechLogo(tag) {
 		case 'Bash':
 			logoUrl = '256x256 (Bash logo from github.com-odb).png';
 			break;
-		case 'Front End':
+		case 'front-end':
 			logoUrl = 'front-end-logo-color (from github.com-shannonmoeller).png';
 			break;
 		case 'JSON':
