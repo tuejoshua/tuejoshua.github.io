@@ -1,54 +1,36 @@
 [
     {
         "title": "Hilchot Brachot games",
-        "motivation": "",
-        "summary": "",
-        "details": "",
         "technologies": [
             "front-end"
         ]
     },
     {
         "title": "Time sheet parser",
-        "motivation": "",
-        "summary": "",
-        "details": "",
         "technologies": [
             "Python"
         ]
     },
     {
         "title": "EDF header record visualization and validation",
-        "motivation": "",
-        "summary": "",
-        "details": "",
         "technologies": [
             "front-end"
         ]
     },
     {
         "title": "Tarps kabale (Four Seasons)",
-        "motivation": "",
-        "summary": "",
-        "details": "",
         "technologies": [
             "front-end"
         ]
     },
     {
         "title": "Zmanim for Machsike Hadas, Copenhagen",
-        "motivation": "",
-        "summary": "",
-        "details": "",
         "technologies": [
             "Python"
         ]
     },
     {
         "title": "Kotel screen",
-        "motivation": "",
-        "summary": "",
-        "details": "",
         "technologies": [
             "front-end"
         ]
