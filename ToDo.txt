@@ -1,6 +1,9 @@
 merge common parts of index.html and projects.html - and maybe other pages?
 
+Complete the EDF Header project description
+
 externalLink.js:
+- make usable for links inside Markdown files also...
 - also: ...right-click > open in new tab should NOT just open the same page (with a "#" suffix)... Can we improve that?
 
 index_.html:
