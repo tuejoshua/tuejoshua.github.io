@@ -7,7 +7,7 @@ function externalLink(link) {
     else {
         domain = '[' + domain + '] ';
     }
-    if (confirm('By following this link to [' + link + '], you\'ll be leaving the relative safety(?) of my ' + domain + 'domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
+    if (confirm('By following this link [to ' + link + '], you\'ll be leaving the relative safety(?) of my ' + domain + 'domain. Although I have provided this external link, I take no responsibility for the corresponding destination. Are you sure that you want to continue?')) {
         window.open(link, "_blank"); // if the target="_blank" parameter is instead provided in the <a> tag, a new tab/window will open even if user does not confirm(!)
     }
 }
