@@ -1,6 +1,6 @@
 merge common parts of index.html and projects.html - and maybe other pages?
 
-Complete the EDF Header project description
+Complete the EDF Header Record project description (commented-out "Learnings: Work in Progress...")
 
 externalLink.js:
 - make usable for links inside Markdown files also...

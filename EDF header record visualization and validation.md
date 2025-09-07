@@ -20,5 +20,11 @@ Interesting **details:**
 
 **Side note:** Sample EDF files are available [here](https://www.teuniz.net/edf_bdf_testfiles/index.html), which by the way is a subdirectory of [Teunis van Beelen\'s homepage](https://www.teuniz.net), a great resource for free EDF-related software (and other things.)
 
- **Learnings:**
- <mark> Work in Progress...</mark>
+<!-- ToDo: Finish this
+ **Learnings:**  
+ I believe this was my first success in letting the user select a file for processing
+ - at least it was a first using an asynchronous pipeline*, which was a bit of a mystery to me at the time 
+ *) sing `Promise` and `FileReader` object to process the contents of a user-selected file via an `<input type="file">`.
+ Furthermore, this was an exercise in how to obtain a very compact and info-ful layout
+ ...very proud of separation into several smaller files (Separation of Concerns)...
+ -->
