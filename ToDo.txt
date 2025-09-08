@@ -41,3 +41,5 @@ Hardcoded data alternative for timelines snippet:
       }))
     );
 "
+
+Go through comments in ALL(!) files

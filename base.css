@@ -1,0 +1,52 @@
+   /* Based on https://fabiensanglard.net/ */
+   @font-face {
+       font-family: 'myfontfamily';
+       src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
+       font-display: block;
+   }
+
+   @font-face {
+       font-family: 'myfontfamily';
+       src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
+       font-weight: bold;
+       font-display: block;
+   }
+
+   @font-face {
+       font-family: 'mySignatureFontFamily';
+       src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
+       font-display: block;
+   }
+
+   html {
+       font-family: myfontfamily, monospace;
+       /* non-instantaneous scrolling when following link to section elsewhere on page.
+        Based on https://stackoverflow.com/a/24739173
+        ToDo - (re)move this, as currently not in use??? */
+       overflow-wrap: break-word;
+       /* in case of single long words, e.g. URLs, wider than screen width */
+       scroll-behavior: smooth;
+   }
+
+   #signatureText {
+       font-family: mySignatureFontFamily;
+   }
+
+   h1 {
+       background-color: blue;
+       color: white;
+       text-align: center;
+   }
+
+   td, th {
+       border: 1px solid black;
+   }
+
+   td {
+       padding: .3em;
+       text-align: justify;
+   }
+
+   table {
+       border-collapse: collapse;
+   }

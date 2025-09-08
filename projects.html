@@ -15,63 +15,9 @@
 This means that the string "Tue Joshua" will never be line-broken - if the window/screen size and/or zoom is so extreme that this will overflow the FOV, we have other layout problems/cannot expect a nice layout anyway -->
 	<title>Projects by Tue&nbsp;Joshua</title>
 
+	<link rel="stylesheet" href="./base.css">
+
 	<style>
-		/* non-instantaneous scrolling when following link to section elsewhere on page.
-Based on https://stackoverflow.com/a/24739173
-ToDo - (re)move this, as currently not in use??? */
-		html {
-			scroll-behavior: smooth;
-  			overflow-wrap: break-word; /* in case of single long words, e.g. URLs, wider than screen width */
-		}
-
-		/* Based on https://fabiensanglard.net/ */
-		@font-face {
-			font-family: 'myfontfamily';
-			src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
-			font-display: block;
-		}
-
-		@font-face {
-			font-family: 'myfontfamily';
-			src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
-			font-weight: bold;
-			font-display: block;
-		}
-
-		html {
-			font-family: myfontfamily, monospace;
-		}
-
-		@font-face {
-			font-family: 'mySignatureFontFamily';
-			src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
-			font-display: block;
-		}
-
-		#signatureText {
-			font-family: mySignatureFontFamily;
-		}
-
-
-		h1 {
-			background-color: blue;
-			color: white;
-			text-align: center;
-		}
-
-td, th {
-			border: 1px solid black;
-		}
-
-		td {
-			padding: .3em;
-			text-align: justify;
-		}
-
-		table {
-			border-collapse: collapse;
-		}
-
 		/* Marked.js wraps each paragraph in <p></p>s.
 This is conceptually correct, but interpreted (at least by my Edge browser)
 as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
@@ -104,9 +50,11 @@ also, without forcing "text-align: left" here (as should be the default), many b
 <body>
 
 	<!-- In order to avoid duplicates of the document title, we refer to the (required) HTML TITLE attribute above here -->
-<h1><script>document.write(document.title);</script></h1>
+	<h1>
+		<script>document.write(document.title);</script>
+	</h1>
 
-This page presents a curated collection of projects that I've done — for future inspiration, personal nostalgia, and sharing.<br><br>
+	This page presents a curated collection of projects that I've done — for future inspiration, personal nostalgia, and sharing.<br><br>
 	Welcome!<br><br><br>
 	<div id="signatureText">Tue Joshua Steen Chasin</div>
 	(<a href="/">Who am I?</a>)<br><br>
@@ -145,7 +93,7 @@ it seems that the I tag is still not deprecated, so I'll use that instead of STY
 	<script>linkMacro('www.php.net/download-logos.php', 'PHP');</script>,
 	<script>linkMacro('www.python.org/community/logos/', 'Python');</script>.<br><br>
 
-Throughout my projects I've made extensive use of <a href="https://www.drawio.com/">draw.io aka. diagrams.net</a>, which is an excellent <b>diagramming</b> tool!
+	Throughout my projects I've made extensive use of <a href="https://www.drawio.com/">draw.io aka. diagrams.net</a>, which is an excellent <b>diagramming</b> tool!
 
 	<!--h2>Chronology</h2>
 
