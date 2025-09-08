@@ -14,13 +14,6 @@ This means that the string "Steen Chasin" will never be line-broken - if the win
   <title>Tue Joshua Steen&nbsp;Chasin</title>
 
   <style>
-    /* non-instantaneous scrolling when following link to section elsewhere on page.
-Based on https://stackoverflow.com/a/24739173
-ToDo - (re)move this, as currently not in use??? */
-    html {
-      scroll-behavior: smooth;
-      /* text-align: justify; */
-    }
 
     /* Based on https://fabiensanglard.net/ */
     @font-face {
@@ -28,30 +21,29 @@ ToDo - (re)move this, as currently not in use??? */
       src: url('/fonts/DejaVu/DejaVuSansMono.ttf');
       font-display: block;
     }
-
     @font-face {
       font-family: 'myfontfamily';
       src: url('/fonts/DejaVu/DejaVuSansMono-Bold.ttf');
       font-weight: bold;
       font-display: block;
     }
-
-    html {
-      font-family: myfontfamily, monospace;
-      /* max-width: 900px; */
-      /* For Desktop PC (see @media for Tablets/Phones) */
-    }
-
     @font-face {
       font-family: 'mySignatureFontFamily';
       src: url('fonts/Tomatoes/Tomatoes-O8L8.ttf');
       font-display: block;
     }
 
+    html {
+      font-family: myfontfamily, monospace;
+      /* non-instantaneous scrolling when following link to section elsewhere on page.
+        Based on https://stackoverflow.com/a/24739173
+        ToDo - (re)move this, as currently not in use??? */
+      scroll-behavior: smooth;
+    }
+
     #signatureText {
       font-family: mySignatureFontFamily;
     }
-
 
     h1 {
       background-color: blue;
@@ -59,8 +51,7 @@ ToDo - (re)move this, as currently not in use??? */
       text-align: center;
     }
 
-    td,
-    th {
+    td, th {
       border: 1px solid black;
     }
 
@@ -73,13 +64,6 @@ ToDo - (re)move this, as currently not in use??? */
       border-collapse: collapse;
     }
 
-    img {
-      float: left;
-      /* or left, depending on your layout */
-      /* margin: 0 1.5em 1.5em 0; */
-      /* top right bottom left */
-      /* max-width: 40%; optional: keeps it from dominating */
-    }
   </style>
 
 </head>
@@ -91,7 +75,13 @@ ToDo - (re)move this, as currently not in use??? */
     <script>document.write(document.title);</script>
   </h1>
 
-  <img src="VennDiagram.drawio.svg" style="max-width: 100%;"">
+
+
+
+
+
+
+  <img src="VennDiagram.drawio.svg" style="max-width: 100%; float: left;">
 
   Extensive experience in <b>Design Verification</b>, <b>Quality Assurance</b> and <b>Compliance</b> within Product Development, with a strong focus on <b>Software</b>.<br><br>
   Proven success supporting <b>MDR (CE)</b> and <b>FDA submissions</b> for <b>Medical Devices</b>.<br><br>

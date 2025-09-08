@@ -8,7 +8,7 @@ externalLink.js:
 - make usable for links inside Markdown files also...
 - also: ...right-click > open in new tab should NOT just open the same page (with a "#" suffix)... Can we improve that?
 
-index_.html:
+index_redirect.html:
 No longer used... Delete? Or keep as redirect example?
 
 gallery.php.html:
