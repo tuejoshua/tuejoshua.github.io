@@ -66,7 +66,7 @@ export async function displayProjectCards(file) {
 
 		// max-width because width does not include the padding that were also applying
 		domString += '</td></tr></table></button>' +
-			'<div id="projectCard' + i + '" style="max-width: 100%; display: none; border-left-style: solid; border-color: lightgray; padding: 15px;">';
+			'<div id="projectCard' + i + '" class="markdown-content" style="max-width: 100%; display: none; border-left-style: solid; border-color: lightgray; padding: 15px;">';
 
 		// Read assumed Markdown file; alert if problem
 		// projects[i].title + '.md'

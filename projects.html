@@ -17,33 +17,7 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 
 	<link rel="stylesheet" href="./base.css">
 
-	<style>
-		/* Marked.js wraps each paragraph in <p></p>s.
-This is conceptually correct, but interpreted (at least by my Edge browser)
-as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
-		.markdown-content p:first-child {
-			margin-top: 0;
-		}
-
-		/* Styling for toggle buttons used by showProjectCard() */
-		/* adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
-also, without forcing "text-align: left" here (as should be the default), many browsers use "justify" instead (which I dislike)
- */
-		.ProjectButton {
-			width: 100%;
-			text-align: left;
-			max-height: 999999px;
-			background: lightgrays;
-			border: none;
-			cursor: pointer;
-
-			/* Make button label, i.e. project titles, selectable (for copying, translation etc.) */
-			user-select: text;
-			-webkit-user-select: text;
-			-moz-user-select: text;
-			-ms-user-select: text;
-		}
-	</style>
+	<link rel="stylesheet" href="./displayProjectCards.css"><!-- Goes together with displayProjectCards.js, which is called below -->
 
 </head>
 
@@ -66,7 +40,7 @@ also, without forcing "text-align: left" here (as should be the default), many b
 	<!-- h2>Some of my projects</h2 -->
 	<!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-	<div id='showData' class="markdown-content"><i style="color: red;">
+	<div id='showData'><i style="color: red;">
 			<br>
 			[ <b>Please wait: Loading data...</b><br>
 			<br>

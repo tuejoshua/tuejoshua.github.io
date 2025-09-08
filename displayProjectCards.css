@@ -1,0 +1,24 @@
+/* Marked.js wraps each paragraph in <p></p>s.
+This is conceptually correct, but interpreted (at least by my Edge browser)
+as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
+.markdown-content p:first-child {
+    margin-top: 0;
+}
+
+/* Styling for toggle buttons used by showProjectCard() */
+/* adding "max-height: 999999px;" style to button element, as per suggestion from chatGPT to fix problem I'm seeing specifically in Chrome for Android
+also, without forcing "text-align: left" here (as should be the default), many browsers use "justify" instead (which I dislike) */
+.ProjectButton {
+    width: 100%;
+    text-align: left;
+    max-height: 999999px;
+    background: lightgrays;
+    border: none;
+    cursor: pointer;
+
+    /* Make button label, i.e. project titles, selectable (for copying, translation etc.) */
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
