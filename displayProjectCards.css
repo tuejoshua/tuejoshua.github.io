@@ -1,8 +1,12 @@
-/* Marked.js wraps each paragraph in <p></p>s.
-This is conceptually correct, but interpreted (at least by my Edge browser)
-as a NEWLINE before the 1st paragraph(!). ChatGPT suggests via CSS: */
-.markdown-content p:first-child {
-    margin-top: 0;
+/* This file contains styles for (DIV) classes defined in displayProjectCards.js
+- that file also contains other style attributes, which I believe make more sense to keep there... */
+
+.markdown-content {
+    max-width: 100%;
+    display: none;
+    border-left-style: solid;
+    border-color: lightgray;
+    padding: 15px;
 }
 
 /* Styling for toggle buttons used by showProjectCard() */

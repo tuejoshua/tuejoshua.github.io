@@ -50,3 +50,12 @@
    table {
        border-collapse: collapse;
    }
+
+   /* Conceptually, each text paragraph - also the first - should be wrapped in <p> and </p>.
+   This is what Marked.js (which is used by projects.html) does.
+   However: some browsers (including my Edge browser) interprets <p>s as newline - also for the first paragraph (which I DON'T want).
+   Therefore this style below (suggested by ChatGPT) is applied to ANY <p> which is the first child of its parent element,
+   i.e. nothing (not even whitespace or freetext) comes before it */
+   p:first-child {
+       margin-top: 0;
+   }
