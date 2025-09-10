@@ -1,8 +1,8 @@
 The .csv file format is as follows:
 
-Start time      Label               End time        Sources (see sources.txt)
-===============                     ===============
-Greg.   Hebr.                       Greg.   Hebr.
+Start time                          End time
+=============                       =============
+Greg.   Hebr.   Label               Greg.   Hebr.   Sources (see sources.txt)
 
 EXAMPLE:
 -003761	0000	Adam            	-002830	0930	Spiro,Artscroll

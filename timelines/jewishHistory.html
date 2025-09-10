@@ -41,7 +41,7 @@
 
 		var data;
 
-		Papa.parse('data.csv', {
+		Papa.parse('./data/jewishHistory/historicalEvents.csv', {
 			download: true,
 			complete: function (results) {
 				console.log("Parsing complete:", results);

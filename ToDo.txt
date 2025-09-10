@@ -3,8 +3,8 @@ Complete the Markdown project descriptions, incl.
 - full draft for Projects showcase
 
 externalLink.js:
-- make usable for links inside Markdown files also...
-- also: ...right-click > open in new tab should NOT just open the same page (with a "#" suffix)... Can we improve that?
+- make usable for links inside Markdown files also (see https://chatgpt.com/c/68bf0d89-67bc-8325-88d2-f159bf5509f7; compare to https://marked.js.org/ documentation...)
+- also: ...right-click > open in new tab should NOT just open the same page (with a "#" suffix)... Can we improve that? (I think not; we've tried in the past...)
 
 index_redirect.html:
 No longer used... Delete? Or keep as redirect example?
