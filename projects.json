@@ -64,7 +64,7 @@
     {
         "title": "Timelines",
         "motivation": "",
-        "summary": "<a href=https://tuejoshua.github.io/timelines/jewishHistory.html>Jewish History</a><br>;<p><a href=https://tuejoshua.github.io/timelines/moses.html>5 Books of Moses</a>",
+        "summary": "<a href=https://tuejoshua.github.io/timelines/jewishHistory.html>Jewish History</a><br>;<p><a href=https://tuejoshua.github.io/timelines/5BooksOfMoses.html>5 Books of Moses</a>",
         "details": "https://github.com/visjs/vis-timeline/issues/1856",
         "technologies": [
             "front-end"
