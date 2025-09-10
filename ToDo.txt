@@ -9,7 +9,7 @@ externalLink.js:
 index_redirect.html:
 No longer used... Delete? Or keep as redirect example?
 
-gallery.php.html:
+gallery.php.html + .md file:
 Study further -> reuse knowledge for "display contents of folder . php"
 
 Make Markdown file for all projects, then remove fallback code in displayProjectCards.js and corresponding params in JSON file
