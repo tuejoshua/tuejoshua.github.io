@@ -41,3 +41,6 @@ Hardcoded data alternative for timelines snippet:
 "
 
 Go through comments in ALL(!) files
+
+My Favicon(.ico) doesn't look good on darker backgrounds, especially Dark Mode, but also just OOF-tabs/windows...
+Furthermore, I understand that other formats (svg?) may be supported now?
