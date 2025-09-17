@@ -18,6 +18,7 @@ Projects to be added:
 - "ABC" "FrontEnd"
 - WIN -> LINUX
 - Google Drive sync on Linux
+- Årets hjul
 
 Hardcoded data alternative for timelines snippet:
 "
