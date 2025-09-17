@@ -68,11 +68,12 @@
       const totalMonths = months13.length; // always 13
       const monthIndex = months13.indexOf(today.getMonthName());
       const day = today.getDate();
-      const daysInMonth = today.monthLength(); // <-- fixed
+      const daysInMonth = today.daysInMonth(); // Correct method call
 
       const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
       return -90 + fracYear * 360; // Nisan 1 == -90°
     }
+
 
 
     function setInitialRotation() {
