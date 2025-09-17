@@ -64,116 +64,117 @@
 </div>
 
 <!-- Hebrew calendar library -->
-<script src="https://unpkg.com/hebcal"></script>
-<script>
-(function() {
-  const wrap = document.getElementById('rotWrap');
-  const img = document.getElementById('rotImg');
-  const angleLabel = document.getElementById('angle');
-  const resetBtn = document.getElementById('resetBtn');
+<script type="module">
+  import { HDate } from "https://unpkg.com/hebcal/dist/esm/hebcal.esm.js";
 
-  let dragging = false;
-  let startAngleRad = 0;
-  let startRotationDeg = 0;
-  let currentRotationDeg = 0;
+  (function() {
+    const wrap = document.getElementById('rotWrap');
+    const img = document.getElementById('rotImg');
+    const angleLabel = document.getElementById('angle');
+    const resetBtn = document.getElementById('resetBtn');
 
-  function getCenter(elem) {
-    const r = elem.getBoundingClientRect();
-    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-  }
-  function pointerToAngle(ev, center) {
-    const dx = ev.clientX - center.x;
-    const dy = ev.clientY - center.y;
-    return Math.atan2(dy, dx);
-  }
-  function radToDeg(rad) { return rad * 180 / Math.PI; }
+    let dragging = false;
+    let startAngleRad = 0;
+    let startRotationDeg = 0;
+    let currentRotationDeg = 0;
 
-  // ---- Hebrew calendar alignment ----
-  const monthsLeap = [
-    'Nisan','Iyyar','Sivan','Tammuz','Av','Elul',
-    'Tishrei','Cheshvan','Kislev','Tevet','Shevat','Adar I','Adar II'
-  ];
-  const monthsRegular = [
-    'Nisan','Iyyar','Sivan','Tammuz','Av','Elul',
-    'Tishrei','Cheshvan','Kislev','Tevet','Shevat','Adar'
-  ];
+    function getCenter(elem) {
+      const r = elem.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    }
+    function pointerToAngle(ev, center) {
+      const dx = ev.clientX - center.x;
+      const dy = ev.clientY - center.y;
+      return Math.atan2(dy, dx);
+    }
+    function radToDeg(rad) { return rad * 180 / Math.PI; }
 
-  function getHebrewAngle() {
-    const today = new Date();
-    const hdate = new Hebcal.HDate(today);
-    const isLeap = hdate.isLeapYear();
+    // Hebrew calendar
+    const monthsLeap = [
+      'Nisan','Iyyar','Sivan','Tammuz','Av','Elul',
+      'Tishrei','Cheshvan','Kislev','Tevet','Shevat','Adar I','Adar II'
+    ];
+    const monthsRegular = [
+      'Nisan','Iyyar','Sivan','Tammuz','Av','Elul',
+      'Tishrei','Cheshvan','Kislev','Tevet','Shevat','Adar'
+    ];
 
-    const months = isLeap ? monthsLeap : monthsRegular;
-    const monthName = hdate.monthName();
-    const day = hdate.day;
-    const monthLength = hdate.daysInMonth();
+    function getHebrewAngle() {
+      const today = new Date();
+      const hdate = new HDate(today);
+      const isLeap = hdate.isLeapYear();
 
-    let idx = months.indexOf(monthName);
-    if (idx === -1) {
-      console.warn('Unexpected month name:', monthName);
-      idx = 0;
+      const months = isLeap ? monthsLeap : monthsRegular;
+      const monthName = hdate.monthName();
+      const day = hdate.day;
+      const monthLength = hdate.daysInMonth();
+
+      let idx = months.indexOf(monthName);
+      if (idx === -1) {
+        console.warn('Unexpected month name:', monthName);
+        idx = 0;
+      }
+
+      const fraction = (day - 1) / monthLength;
+      const pos = idx + fraction;
+      const degreesPerMonth = 360 / months.length;
+
+      return -90 - pos * degreesPerMonth;
     }
 
-    const fraction = (day - 1) / monthLength;
-    const pos = idx + fraction; // fractional month index
-    const degreesPerMonth = 360 / months.length;
+    function setInitialRotation() {
+      currentRotationDeg = getHebrewAngle();
+      img.style.transform = `rotate(${currentRotationDeg}deg)`;
+      angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
+    }
 
-    return -90 - pos * degreesPerMonth;
-  }
-
-  function setInitialRotation() {
-    currentRotationDeg = getHebrewAngle();
-    img.style.transform = `rotate(${currentRotationDeg}deg)`;
-    angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
-  }
-
-  setInitialRotation();
-
-  // ---- Drag rotation logic ----
-  wrap.addEventListener('pointerdown', function(ev) {
-    ev.preventDefault();
-    wrap.setPointerCapture(ev.pointerId);
-    dragging = true;
-    wrap.classList.add('dragging');
-
-    const center = getCenter(img);
-    startAngleRad = pointerToAngle(ev, center);
-    startRotationDeg = currentRotationDeg;
-  });
-
-  wrap.addEventListener('pointermove', function(ev) {
-    if (!dragging) return;
-    ev.preventDefault();
-
-    const center = getCenter(img);
-    const angleNowRad = pointerToAngle(ev, center);
-    let deltaRad = angleNowRad - startAngleRad;
-    if (deltaRad > Math.PI) deltaRad -= 2 * Math.PI;
-    if (deltaRad < -Math.PI) deltaRad += 2 * Math.PI;
-
-    const deltaDeg = radToDeg(deltaRad);
-    currentRotationDeg = startRotationDeg + deltaDeg;
-
-    img.style.transform = `rotate(${currentRotationDeg}deg)`;
-    angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
-  });
-
-  function endDrag(ev) {
-    if (!dragging) return;
-    dragging = false;
-    wrap.classList.remove('dragging');
-    try { wrap.releasePointerCapture(ev.pointerId); } catch (e) {}
-  }
-
-  wrap.addEventListener('pointerup', endDrag);
-  wrap.addEventListener('pointercancel', endDrag);
-
-  // ---- Reset button resets to today's Hebrew position ----
-  resetBtn.addEventListener('click', () => {
     setInitialRotation();
-  });
 
-})();
+    // Drag rotation
+    wrap.addEventListener('pointerdown', function(ev) {
+      ev.preventDefault();
+      wrap.setPointerCapture(ev.pointerId);
+      dragging = true;
+      wrap.classList.add('dragging');
+
+      const center = getCenter(img);
+      startAngleRad = pointerToAngle(ev, center);
+      startRotationDeg = currentRotationDeg;
+    });
+
+    wrap.addEventListener('pointermove', function(ev) {
+      if (!dragging) return;
+      ev.preventDefault();
+
+      const center = getCenter(img);
+      const angleNowRad = pointerToAngle(ev, center);
+      let deltaRad = angleNowRad - startAngleRad;
+      if (deltaRad > Math.PI) deltaRad -= 2 * Math.PI;
+      if (deltaRad < -Math.PI) deltaRad += 2 * Math.PI;
+
+      const deltaDeg = radToDeg(deltaRad);
+      currentRotationDeg = startRotationDeg + deltaDeg;
+
+      img.style.transform = `rotate(${currentRotationDeg}deg)`;
+      angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
+    });
+
+    function endDrag(ev) {
+      if (!dragging) return;
+      dragging = false;
+      wrap.classList.remove('dragging');
+      try { wrap.releasePointerCapture(ev.pointerId); } catch (e) {}
+    }
+
+    wrap.addEventListener('pointerup', endDrag);
+    wrap.addEventListener('pointercancel', endDrag);
+
+    resetBtn.addEventListener('click', () => {
+      setInitialRotation();
+    });
+
+  })();
 </script>
+
 </body>
 </html>
