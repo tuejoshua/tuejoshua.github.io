@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Årets Hjul</title>
@@ -11,33 +12,43 @@
       height: 100vh;
       margin: 0;
     }
+
     #container {
       display: flex;
       align-items: center;
     }
+
     #resetBtn {
       margin-right: 20px;
       height: 40px;
     }
+
     img {
       width: 500px;
       height: auto;
       transform-origin: center center;
       cursor: grab;
     }
+
     img:active {
       cursor: grabbing;
     }
   </style>
 </head>
+
 <body>
   <div id="container">
     <button id="resetBtn">Reset</button>
     <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
 
-  <!-- Load Hebcal UMD build -->
-  <script src="https://cdn.jsdelivr.net/npm/hebcal@2.3.2/dist/cjs/hebcal.browser.min.js"></script>
+  <script type="module">
+    import { HDate, HebrewCalendar } from "https://esm.sh/hebcal@2.3.2";
+
+    const today = new HDate();
+    console.log(today.toString(), HebrewCalendar.isLeapYear(today.getFullYear()));
+  </script>
+
   <script>
     const img = document.getElementById('wheel');
     const resetBtn = document.getElementById('resetBtn');
@@ -54,8 +65,8 @@
 
       // Months order depending on leap year
       const months = leap
-        ? ["Nisan","Iyyar","Sivan","Tamuz","Av","Elul","Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar I","Adar II"]
-        : ["Nisan","Iyyar","Sivan","Tamuz","Av","Elul","Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar"];
+        ? ["Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II"]
+        : ["Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar"];
 
       const totalMonths = months.length;
       const monthIndex = months.indexOf(today.getMonthName());
@@ -64,7 +75,7 @@
       const daysInMonth = Hebcal.HDate.daysInMonth(today.month, year);
 
       // Fractional position in year
-      const fracYear = (monthIndex + (day-1)/daysInMonth) / totalMonths;
+      const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
 
       // Map so that Nisan 1 == -90deg
       return -90 + fracYear * 360;
@@ -81,8 +92,8 @@
     // --- Drag rotation handling ---
     function getAngle(e) {
       const rect = img.getBoundingClientRect();
-      const cx = rect.left + rect.width/2;
-      const cy = rect.top + rect.height/2;
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
       const x = (e.touches ? e.touches[0].clientX : e.clientX) - cx;
       const y = (e.touches ? e.touches[0].clientY : e.clientY) - cy;
       return Math.atan2(y, x) * 180 / Math.PI;
@@ -117,4 +128,5 @@
     });
   </script>
 </body>
+
 </html>
