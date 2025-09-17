@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Årets Hjul</title>
@@ -11,34 +12,40 @@
       height: 100vh;
       margin: 0;
     }
+
     #container {
       display: flex;
       align-items: center;
     }
+
     #resetBtn {
       margin-right: 20px;
       height: 40px;
     }
+
     img {
       width: 500px;
       height: auto;
       transform-origin: center center;
       cursor: grab;
-      transition: transform 0.3s ease; /* smooth reset animation */
+      transition: transform 0.3s ease;
+      /* smooth reset animation */
     }
+
     img:active {
       cursor: grabbing;
-      transition: none; /* disable animation while dragging */
+      transition: none;
+      /* disable animation while dragging */
     }
   </style>
 </head>
+
 <body>
   <div id="container">
     <button id="resetBtn">Reset</button>
     <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
 
-  <!-- Hebcal ESM for browser -->
   <script type="module">
     import { HDate } from "https://esm.sh/hebcal@2.3.2";
 
@@ -50,9 +57,10 @@
     let currentRotation = 0;
     let initialRotation = 0;
 
+    // Fixed 13-month wheel
     const months13 = [
-      "Nisan","Iyyar","Sivan","Tamuz","Av","Elul",
-      "Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar I","Adar II"
+      "Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul",
+      "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II"
     ];
 
     function getHebrewAngle() {
@@ -60,11 +68,12 @@
       const totalMonths = months13.length; // always 13
       const monthIndex = months13.indexOf(today.getMonthName());
       const day = today.getDate();
-      const daysInMonth = HDate.daysInMonth(today.month, today.getFullYear());
+      const daysInMonth = today.monthLength(); // <-- fixed
 
-      const fracYear = (monthIndex + (day - 1)/daysInMonth) / totalMonths;
+      const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
       return -90 + fracYear * 360; // Nisan 1 == -90°
     }
+
 
     function setInitialRotation() {
       initialRotation = getHebrewAngle();
@@ -113,4 +122,5 @@
     });
   </script>
 </body>
+
 </html>
