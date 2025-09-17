@@ -42,7 +42,7 @@
 
 <body>
   <div id="container">
-    <button id="resetBtn">Reset</button>
+    <button id="resetBtn">Reset</button>▶
     <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
 
@@ -67,7 +67,9 @@
       const today = new HDate();
       const totalMonths = months13.length; // always 13
       const monthIndex = months13.indexOf(today.getMonthName());
+      console.log('today.getMonthName(): ' + today.getMonthName());
       const day = today.getDate();
+      console.log('day: ' + day);
       const daysInMonth = today.daysInMonth(); // Correct method call
 
       const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
