@@ -73,7 +73,7 @@
       const daysInMonth = today.daysInMonth(); // Correct method call
 
       const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
-      return -90 + fracYear * 360; // Nisan 1 == -90°
+      return -180 - fracYear * 360;
     }
 
 
