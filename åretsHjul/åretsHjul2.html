@@ -1,180 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Rotatable Hebrew Calendar Wheel</title>
+  <meta charset="UTF-8">
+  <title>Årets Hjul</title>
   <style>
     body {
-      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100vh;
+      margin: 0;
+    }
+    #container {
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: #f4f4f4;
-      user-select: none;
     }
-
-    .rot-layout {
-      display: flex;
-      align-items: center; /* vertical centering */
-      justify-content: center;
-      gap: 1rem;
+    #resetBtn {
+      margin-right: 20px;
+      height: 40px;
     }
-
-    .rot-layout button {
-      padding: 0.5em 0.8em;
-      font-size: 1em;
-      border: 1px solid #aaa;
-      border-radius: 0.5em;
-      background: #eee;
-      cursor: pointer;
-    }
-
-    .rot-container {
-      display: inline-block;
-      touch-action: none;
+    img {
+      width: 500px;
+      height: auto;
+      transform-origin: center center;
       cursor: grab;
     }
-    .rot-container.dragging { cursor: grabbing; }
-
-    img.rotatable {
-      display: block;
-      transform-origin: 50% 50%;
-      max-width: none;  /* allow unlimited scaling */
-      max-height: none;
-    }
-
-    .angle-label {
-      text-align: center;
-      margin-top: 8px;
-      font-family: system-ui, sans-serif;
-      font-size: 13px;
-      color: #333;
+    img:active {
+      cursor: grabbing;
     }
   </style>
 </head>
 <body>
-
-<div class="rot-layout">
-  <button id="resetBtn">⟲ Reset</button>
-  <div id="rotWrap" class="rot-container" title="Drag to rotate">
-    <img id="rotImg" class="rotatable" src="./åretsHjul.drawio.svg" alt="rotatable wheel">
-    <div id="angle" class="angle-label">0°</div>
+  <div id="container">
+    <button id="resetBtn">Reset</button>
+    <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
-</div>
 
-<!-- Hebrew calendar library -->
-<script type="module">
-  import { HDate } from "https://unpkg.com/hebcal/dist/esm/hebcal.esm.js";
-
-  (function() {
-    const wrap = document.getElementById('rotWrap');
-    const img = document.getElementById('rotImg');
-    const angleLabel = document.getElementById('angle');
+  <!-- Load Hebcal UMD build -->
+  <script src="https://cdn.jsdelivr.net/npm/hebcal@2.3.2/dist/cjs/hebcal.browser.min.js"></script>
+  <script>
+    const img = document.getElementById('wheel');
     const resetBtn = document.getElementById('resetBtn');
+    let isDragging = false;
+    let startAngle = 0;
+    let currentRotation = 0;
+    let initialRotation = 0;
 
-    let dragging = false;
-    let startAngleRad = 0;
-    let startRotationDeg = 0;
-    let currentRotationDeg = 0;
-
-    function getCenter(elem) {
-      const r = elem.getBoundingClientRect();
-      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-    }
-    function pointerToAngle(ev, center) {
-      const dx = ev.clientX - center.x;
-      const dy = ev.clientY - center.y;
-      return Math.atan2(dy, dx);
-    }
-    function radToDeg(rad) { return rad * 180 / Math.PI; }
-
-    // Hebrew calendar
-    const monthsLeap = [
-      'Nisan','Iyyar','Sivan','Tammuz','Av','Elul',
-      'Tishrei','Cheshvan','Kislev','Tevet','Shevat','Adar I','Adar II'
-    ];
-    const monthsRegular = [
-      'Nisan','Iyyar','Sivan','Tammuz','Av','Elul',
-      'Tishrei','Cheshvan','Kislev','Tevet','Shevat','Adar'
-    ];
-
+    // --- Compute angle based on Hebrew date ---
     function getHebrewAngle() {
-      const today = new Date();
-      const hdate = new HDate(today);
-      const isLeap = hdate.isLeapYear();
+      const today = new Hebcal.HDate();
+      const year = today.getFullYear();
+      const leap = Hebcal.HebrewCalendar.isLeapYear(year);
 
-      const months = isLeap ? monthsLeap : monthsRegular;
-      const monthName = hdate.monthName();
-      const day = hdate.day;
-      const monthLength = hdate.daysInMonth();
+      // Months order depending on leap year
+      const months = leap
+        ? ["Nisan","Iyyar","Sivan","Tamuz","Av","Elul","Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar I","Adar II"]
+        : ["Nisan","Iyyar","Sivan","Tamuz","Av","Elul","Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar"];
 
-      let idx = months.indexOf(monthName);
-      if (idx === -1) {
-        console.warn('Unexpected month name:', monthName);
-        idx = 0;
-      }
+      const totalMonths = months.length;
+      const monthIndex = months.indexOf(today.getMonthName());
+      const day = today.getDate();
 
-      const fraction = (day - 1) / monthLength;
-      const pos = idx + fraction;
-      const degreesPerMonth = 360 / months.length;
+      const daysInMonth = Hebcal.HDate.daysInMonth(today.month, year);
 
-      return -90 - pos * degreesPerMonth;
+      // Fractional position in year
+      const fracYear = (monthIndex + (day-1)/daysInMonth) / totalMonths;
+
+      // Map so that Nisan 1 == -90deg
+      return -90 + fracYear * 360;
     }
 
     function setInitialRotation() {
-      currentRotationDeg = getHebrewAngle();
-      img.style.transform = `rotate(${currentRotationDeg}deg)`;
-      angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
+      initialRotation = getHebrewAngle();
+      currentRotation = initialRotation;
+      img.style.transform = `rotate(${currentRotation}deg)`;
     }
 
     setInitialRotation();
 
-    // Drag rotation
-    wrap.addEventListener('pointerdown', function(ev) {
-      ev.preventDefault();
-      wrap.setPointerCapture(ev.pointerId);
-      dragging = true;
-      wrap.classList.add('dragging');
-
-      const center = getCenter(img);
-      startAngleRad = pointerToAngle(ev, center);
-      startRotationDeg = currentRotationDeg;
-    });
-
-    wrap.addEventListener('pointermove', function(ev) {
-      if (!dragging) return;
-      ev.preventDefault();
-
-      const center = getCenter(img);
-      const angleNowRad = pointerToAngle(ev, center);
-      let deltaRad = angleNowRad - startAngleRad;
-      if (deltaRad > Math.PI) deltaRad -= 2 * Math.PI;
-      if (deltaRad < -Math.PI) deltaRad += 2 * Math.PI;
-
-      const deltaDeg = radToDeg(deltaRad);
-      currentRotationDeg = startRotationDeg + deltaDeg;
-
-      img.style.transform = `rotate(${currentRotationDeg}deg)`;
-      angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
-    });
-
-    function endDrag(ev) {
-      if (!dragging) return;
-      dragging = false;
-      wrap.classList.remove('dragging');
-      try { wrap.releasePointerCapture(ev.pointerId); } catch (e) {}
+    // --- Drag rotation handling ---
+    function getAngle(e) {
+      const rect = img.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - cx;
+      const y = (e.touches ? e.touches[0].clientY : e.clientY) - cy;
+      return Math.atan2(y, x) * 180 / Math.PI;
     }
 
-    wrap.addEventListener('pointerup', endDrag);
-    wrap.addEventListener('pointercancel', endDrag);
-
-    resetBtn.addEventListener('click', () => {
-      setInitialRotation();
+    img.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startAngle = getAngle(e) - currentRotation;
     });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      currentRotation = getAngle(e) - startAngle;
+      img.style.transform = `rotate(${currentRotation}deg)`;
+    });
+    window.addEventListener('mouseup', () => isDragging = false);
 
-  })();
-</script>
+    img.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startAngle = getAngle(e) - currentRotation;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentRotation = getAngle(e) - startAngle;
+      img.style.transform = `rotate(${currentRotation}deg)`;
+    });
+    window.addEventListener('touchend', () => isDragging = false);
 
+    // --- Reset button ---
+    resetBtn.addEventListener('click', () => {
+      currentRotation = initialRotation;
+      img.style.transform = `rotate(${currentRotation}deg)`;
+    });
+  </script>
 </body>
 </html>
