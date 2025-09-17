@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Draggable rotation</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f4f4f4;
+      user-select: none;
+    }
+
+    /* container keeps the image centered and allows transform origin to be the image center */
+    .rot-container {
+      display: inline-block;
+      touch-action: none; /* important for pointer events on touch */
+      cursor: grab;
+    }
+    .rot-container.dragging { cursor: grabbing; }
+
+    img.rotatable {
+      display: block;
+      /* max-width: 80vmin;
+      max-height: 80vmin; */
+      transform-origin: 50% 50%;
+      /* initial transform is managed from JS */
+    }
+
+    /* optional small UI: current angle */
+    .angle-label {
+      text-align: center;
+      margin-top: 8px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-size: 13px;
+      color: #333;
+    }
+
+.rot-layout {
+  display: flex;
+  align-items: center; /* vertical centering */
+  justify-content: center;
+  gap: 1rem;           /* space between button and image */
+  height: 100vh;       /* just for demo to center everything on page */
+}
+
+.rot-layout button {
+  padding: 0.5em 0.8em;
+  font-size: 1.2em;
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  background: #eee;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="rot-layout">
+  <button id="resetBtn">⟲ Reset</button>
+  <div id="rotWrap" class="rot-container" title="Drag to rotate">
+    <img id="rotImg" class="rotatable" src="./åretsHjul.drawio.svg" alt="rotatable">
+    <div id="angle" class="angle-label">0°</div>
+  </div>
+</div>
+
+  <script>
+    (function () {
+      const wrap = document.getElementById('rotWrap');
+      const img = document.getElementById('rotImg');
+      const angleLabel = document.getElementById('angle');
+
+      let dragging = false;
+      let startAngleRad = 0;       // angle from center to pointer when drag starts (radians)
+      let startRotationDeg = 0;    // rotation (deg) at drag start
+      let currentRotationDeg = 0;  // persistent current rotation
+
+      function getCenter(elem) {
+        const r = elem.getBoundingClientRect();
+        return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      }
+
+      function pointerToAngle(ev, center) {
+        const dx = ev.clientX - center.x;
+        const dy = ev.clientY - center.y;
+        return Math.atan2(dy, dx); // radians
+      }
+
+      function radToDeg(rad) { return rad * 180 / Math.PI; }
+
+      // start drag
+      wrap.addEventListener('pointerdown', function (ev) {
+        ev.preventDefault();
+        wrap.setPointerCapture(ev.pointerId);
+        dragging = true;
+        wrap.classList.add('dragging');
+
+        // compute center and starting angles
+        const center = getCenter(img);
+        startAngleRad = pointerToAngle(ev, center);
+        startRotationDeg = currentRotationDeg;
+      });
+
+      // move
+      wrap.addEventListener('pointermove', function (ev) {
+        if (!dragging) return;
+        ev.preventDefault();
+
+        const center = getCenter(img);
+        const angleNowRad = pointerToAngle(ev, center);
+
+        // difference in radians
+        let deltaRad = angleNowRad - startAngleRad;
+
+        // normalize delta to -PI..PI to avoid large jumps when crossing the +/- axis
+        if (deltaRad > Math.PI) deltaRad -= 2 * Math.PI;
+        if (deltaRad < -Math.PI) deltaRad += 2 * Math.PI;
+
+        const deltaDeg = radToDeg(deltaRad);
+        currentRotationDeg = startRotationDeg + deltaDeg;
+
+        // apply rotation (keeps transform-origin center)
+        img.style.transform = `rotate(${currentRotationDeg}deg)`;
+        angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
+      });
+
+      // end drag
+      function endDrag(ev) {
+        if (!dragging) return;
+        dragging = false;
+        wrap.classList.remove('dragging');
+        try { wrap.releasePointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
+      }
+
+      wrap.addEventListener('pointerup', endDrag);
+      wrap.addEventListener('pointercancel', endDrag);
+      wrap.addEventListener('pointerleave', function (ev) {
+        // pointerleave happens when pointer moves outside the element; keep dragging if pointer is captured
+        // if pointer is not captured, treat it as end
+        if (dragging && !wrap.hasPointerCapture(ev.pointerId)) endDrag(ev);
+      });
+
+      // optional: double-click to reset rotation
+      wrap.addEventListener('dblclick', function () {
+        currentRotationDeg = 0;
+        img.style.transform = `rotate(0deg)`;
+        angleLabel.textContent = `0°`;
+      });
+
+      // make sure keyboard users can focus and rotate with arrows (small increments)
+      wrap.tabIndex = 0;
+      wrap.addEventListener('keydown', function (ev) {
+        if (ev.key === 'ArrowLeft') {
+          currentRotationDeg -= 1;
+        } else if (ev.key === 'ArrowRight') {
+          currentRotationDeg += 1;
+        } else return;
+        ev.preventDefault();
+        img.style.transform = `rotate(${currentRotationDeg}deg)`;
+        angleLabel.textContent = `${Math.round(currentRotationDeg)}°`;
+      });
+
+const resetBtn = document.getElementById('resetBtn');
+resetBtn.addEventListener('click', () => {
+  currentRotationDeg = 0;
+  img.style.transform = 'rotate(0deg)';
+  angleLabel.textContent = '0°';
+});
+
+    })();
+  </script>
+</body>
+</html>
+
