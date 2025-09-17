@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Årets Hjul</title>
@@ -12,73 +11,59 @@
       height: 100vh;
       margin: 0;
     }
-
     #container {
       display: flex;
       align-items: center;
     }
-
     #resetBtn {
       margin-right: 20px;
       height: 40px;
     }
-
     img {
       width: 500px;
       height: auto;
       transform-origin: center center;
       cursor: grab;
+      transition: transform 0.3s ease; /* smooth reset animation */
     }
-
     img:active {
       cursor: grabbing;
+      transition: none; /* disable animation while dragging */
     }
   </style>
 </head>
-
 <body>
   <div id="container">
     <button id="resetBtn">Reset</button>
     <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
 
+  <!-- Hebcal ESM for browser -->
   <script type="module">
-    import { HDate, HebrewCalendar } from "https://esm.sh/hebcal@2.3.2";
+    import { HDate } from "https://esm.sh/hebcal@2.3.2";
 
-    const today = new HDate();
-    console.log(today.toString(), HebrewCalendar.isLeapYear(today.getFullYear()));
-  </script>
-
-  <script>
     const img = document.getElementById('wheel');
     const resetBtn = document.getElementById('resetBtn');
+
     let isDragging = false;
     let startAngle = 0;
     let currentRotation = 0;
     let initialRotation = 0;
 
-    // --- Compute angle based on Hebrew date ---
+    const months13 = [
+      "Nisan","Iyyar","Sivan","Tamuz","Av","Elul",
+      "Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar I","Adar II"
+    ];
+
     function getHebrewAngle() {
-      const today = new Hebcal.HDate();
-      const year = today.getFullYear();
-      const leap = Hebcal.HebrewCalendar.isLeapYear(year);
-
-      // Months order depending on leap year
-      const months = leap
-        ? ["Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II"]
-        : ["Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar"];
-
-      const totalMonths = months.length;
-      const monthIndex = months.indexOf(today.getMonthName());
+      const today = new HDate();
+      const totalMonths = months13.length; // always 13
+      const monthIndex = months13.indexOf(today.getMonthName());
       const day = today.getDate();
+      const daysInMonth = HDate.daysInMonth(today.month, today.getFullYear());
 
-      const daysInMonth = Hebcal.HDate.daysInMonth(today.month, year);
-
-      // Fractional position in year
-      const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
-
-      // Map so that Nisan 1 == -90deg
-      return -90 + fracYear * 360;
+      const fracYear = (monthIndex + (day - 1)/daysInMonth) / totalMonths;
+      return -90 + fracYear * 360; // Nisan 1 == -90°
     }
 
     function setInitialRotation() {
@@ -89,8 +74,8 @@
 
     setInitialRotation();
 
-    // --- Drag rotation handling ---
-    function getAngle(e) {
+    // --- Drag handling ---
+    function getPointerAngle(e) {
       const rect = img.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
@@ -99,24 +84,24 @@
       return Math.atan2(y, x) * 180 / Math.PI;
     }
 
-    img.addEventListener('mousedown', (e) => {
+    img.addEventListener('mousedown', e => {
       isDragging = true;
-      startAngle = getAngle(e) - currentRotation;
+      startAngle = getPointerAngle(e) - currentRotation;
     });
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', e => {
       if (!isDragging) return;
-      currentRotation = getAngle(e) - startAngle;
+      currentRotation = getPointerAngle(e) - startAngle;
       img.style.transform = `rotate(${currentRotation}deg)`;
     });
     window.addEventListener('mouseup', () => isDragging = false);
 
-    img.addEventListener('touchstart', (e) => {
+    img.addEventListener('touchstart', e => {
       isDragging = true;
-      startAngle = getAngle(e) - currentRotation;
+      startAngle = getPointerAngle(e) - currentRotation;
     });
-    window.addEventListener('touchmove', (e) => {
+    window.addEventListener('touchmove', e => {
       if (!isDragging) return;
-      currentRotation = getAngle(e) - startAngle;
+      currentRotation = getPointerAngle(e) - startAngle;
       img.style.transform = `rotate(${currentRotation}deg)`;
     });
     window.addEventListener('touchend', () => isDragging = false);
@@ -128,5 +113,4 @@
     });
   </script>
 </body>
-
 </html>
