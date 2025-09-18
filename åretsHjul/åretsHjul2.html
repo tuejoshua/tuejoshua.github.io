@@ -52,6 +52,11 @@
     const img = document.getElementById('wheel');
     const resetBtn = document.getElementById('resetBtn');
 
+    // disable native drag image and gestures
+    wheel.ondragstart = () => false;
+    wheel.style.touchAction = 'none'; // prevents browser touch gestures interfering
+    wheel.style.userSelect = 'none';
+
     let isDragging = false;
     let startAngle = 0;
     let currentRotation = 0;
@@ -96,27 +101,28 @@
       return Math.atan2(y, x) * 180 / Math.PI;
     }
 
-    img.addEventListener('mousedown', e => {
-      isDragging = true;
-      startAngle = getPointerAngle(e) - currentRotation;
-    });
-    window.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      currentRotation = getPointerAngle(e) - startAngle;
-      img.style.transform = `rotate(${currentRotation}deg)`;
-    });
-    window.addEventListener('mouseup', () => isDragging = false);
 
-    img.addEventListener('touchstart', e => {
+    // --- Pointer Events: works for mouse + touch ---
+    img.addEventListener('pointerdown', e => {
       isDragging = true;
+      img.setPointerCapture(e.pointerId);
       startAngle = getPointerAngle(e) - currentRotation;
     });
-    window.addEventListener('touchmove', e => {
+
+    img.addEventListener('pointermove', e => {
       if (!isDragging) return;
       currentRotation = getPointerAngle(e) - startAngle;
       img.style.transform = `rotate(${currentRotation}deg)`;
     });
-    window.addEventListener('touchend', () => isDragging = false);
+
+    img.addEventListener('pointerup', e => {
+      isDragging = false;
+      img.releasePointerCapture(e.pointerId);
+    });
+
+    img.addEventListener('pointercancel', () => {
+      isDragging = false;
+    });
 
     // --- Reset button ---
     resetBtn.addEventListener('click', () => {
