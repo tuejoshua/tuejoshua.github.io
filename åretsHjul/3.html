@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Årets Hjul 2</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+    }
+    #wheel {
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 2px solid black;
+      background: url("hjulet.png") no-repeat center/contain;
+      cursor: grab;
+      transition: transform 0.2s ease-out;
+    }
+    #resetBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="wheel"></div>
+  <button id="resetBtn">Reset Rotation</button>
+
+  <script type="module">
+    import { HebrewDate } from "https://esm.sh/hebcal@2.3.2";
+
+    const wheel = document.getElementById("wheel");
+    const resetBtn = document.getElementById("resetBtn");
+
+    // Calculate today's position in the Hebrew year
+    function getHebrewAngle() {
+      const today = new HebrewDate(); // today in Hebrew calendar
+      const yearStart = new HebrewDate(today.year, 1, 1); // Nisan 1
+      const yearEnd = new HebrewDate(today.year + 1, 1, 1); // next Nisan 1
+
+      const daysSinceYearStart = today.abs() - yearStart.abs();
+      const totalDaysInYear = yearEnd.abs() - yearStart.abs();
+
+      const fracYear = daysSinceYearStart / totalDaysInYear;
+      // Adjust base offset until today is West
+      const base = -135;
+      return base + fracYear * 360;
+    }
+
+    let currentRotation = 0;
+    let initialRotation = getHebrewAngle();
+
+    function setInitialRotation() {
+      currentRotation = (initialRotation * Math.PI) / 180;
+      wheel.style.transform = `rotate(${currentRotation}rad)`;
+    }
+
+    setInitialRotation();
+
+    resetBtn.addEventListener("click", () => {
+      setInitialRotation();
+    });
+
+    // --- DRAG LOGIC FIX ---
+    let isDragging = false;
+    let startAngle = 0;
+
+    wheel.ondragstart = () => false; // disable Firefox drag thumbnail
+
+    wheel.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      const rect = wheel.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      startAngle = Math.atan2(e.clientY - cy, e.clientX - cx) - currentRotation;
+      e.preventDefault();
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const rect = wheel.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
+      currentRotation = angle - startAngle;
+      wheel.style.transform = `rotate(${currentRotation}rad)`;
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+  </script>
+</body>
+</html>
