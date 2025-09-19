@@ -169,7 +169,11 @@
           // (major: { tick: { values: [...] } } etc.) that you’d get if you imported the
           // ES module version (import { Timeline } from "vis-timeline") via npm/modern bundler.
 
-          //stack: false,   // don’t pile items within a subgroup
+          stack: false,   /* don’t stagger items within a subgroup (into separate swim lanes).
+                              NB: This happens even when items are only back-to-back and not overlapping;
+                              would be nice if that was not so - then this feature could we used for visual sanity checking
+                              - i.e. where items NOT supposed to overlap were clearer... Maybe investigate further? */
+
           stackSubgroups: false, // do not stack across subgroups; keeps items in same subgroup on same line
 
         };
