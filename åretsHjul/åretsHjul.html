@@ -78,7 +78,7 @@
       const daysInMonth = today.daysInMonth(); // Correct method call
 
       const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
-      return -53 + fracYear * 360;
+      return -53 - fracYear * 360;
     }
 
 
