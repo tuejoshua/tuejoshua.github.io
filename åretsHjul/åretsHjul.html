@@ -78,7 +78,7 @@
       const daysInMonth = today.daysInMonth(); // Correct method call
 
       const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
-      return -53 - fracYear * 360;
+      return -(90+fracYear) * 360; // 90 because the year starts at Nisan, which is at the top of the figure, but we want today's date rotated to the left
     }
 
 
