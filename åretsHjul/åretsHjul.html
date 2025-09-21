@@ -18,10 +18,12 @@
       align-items: center;
     }
 
+    /*
     #resetBtn {
       margin-right: 20px;
       height: 40px;
     }
+    */
 
     img {
       width: 500px;
@@ -42,7 +44,7 @@
 
 <body>
   <div id="container">
-    <button id="resetBtn">Reset</button>▶&nbsp;
+    <!-- button id="resetBtn">Reset</button-->▶&nbsp;
     <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
 
@@ -102,10 +104,10 @@
     }
 
 
-    // --- Pointer Events: works for mouse + touch ---
+    // --- Pointer Events: works for mouse cursor + touch position ---
     img.addEventListener('pointerdown', e => {
       isDragging = true;
-      img.setPointerCapture(e.pointerId);
+      img.setPointerCapture(e.pointerId); // Even if pointer moves outside image, keep rotating
       startAngle = getPointerAngle(e) - currentRotation;
     });
 
@@ -115,20 +117,26 @@
       img.style.transform = `rotate(${currentRotation}deg)`;
     });
 
-    img.addEventListener('pointerup', e => {
+    img.addEventListener('pointerup', e => { // Undo 'pointerdown' above
       isDragging = false;
       img.releasePointerCapture(e.pointerId);
+      // Rotate back to today's date
+      currentRotation = initialRotation;
+      img.style.transform = `rotate(${currentRotation}deg)`;
     });
 
     img.addEventListener('pointercancel', () => {
       isDragging = false;
     });
 
+    /*
     // --- Reset button ---
     resetBtn.addEventListener('click', () => {
       currentRotation = initialRotation;
       img.style.transform = `rotate(${currentRotation}deg)`;
     });
+    */
+
   </script>
 </body>
 
