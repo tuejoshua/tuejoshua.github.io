@@ -18,7 +18,7 @@ Projects to be added:
 - "ABC" "FrontEnd"
 - WIN -> LINUX
 - Google Drive sync on Linux
-- Årets hjul
+- Årets hjul - as part of "Kotel screen" project?
 
 Hardcoded data alternative for timelines snippet:
 "
