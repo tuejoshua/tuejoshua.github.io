@@ -10,7 +10,7 @@ While discussing another topic with a colleague, I found out that the good ol' W
 **Summary:**  
 A Python-based tool compiled to an executable that I can run on my work PC, which reads the above-described timestamp file and outputs a CSV file containing time spent per project per day — plus a [pyplot](https://matplotlib.org/stable/tutorials/pyplot.html)* "dashboard" for visualizing statistics as additional sanity checks — and keeping track of how the current month's work is progressing.
 
-_Unfortunately, the tool was developed partly on company time, so I cannot share its code. I may generate and share some sketches or other way of illustration in the future..._
+<mark>_Unfortunately, the tool was developed partly on company time, so I cannot share its code.</mark> I may generate and share some sketches or other way of illustration in the future..._
 
 Some **details** of interest:
 - Using *regular expressions* for parsing the input file turned out to be a good solution, but also one that took some frustration to get working, and corresponding joy once it did — which always seems to be my experience when dabbling in that black art 🙃 

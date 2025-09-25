@@ -6,5 +6,5 @@ This led me into a project with 2 major topics:
 1. Finding and learning how to use various APIs (zmanim, of course, but also weather); 
 2. Trying to layout the page to maximize screen use and legibility.  
 
-The current result can be seen [here](https://tuejoshua.github.io/kotelScreen/kotelScreen.html);
+The current result can be seen <mark>[here](https://tuejoshua.github.io/kotelScreen/kotelScreen.html)</mark>;
 its code as well as several other test versions can be seen [here (GitHub)](https://github.com/tuejoshua/tuejoshua.github.io/tree/main/kotelScreen).

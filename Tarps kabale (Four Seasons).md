@@ -1,5 +1,5 @@
 <!--"Summary:" -->
-[Here](tarpsKabale/TarpsKabale.html)* is my implementation of a patience/solitaire card game known in my family as "Tarps kabale"  
+<mark>[Here](tarpsKabale/TarpsKabale.html)</mark>* is my implementation of a patience/solitaire card game known in my family as "Tarps kabale"  
 (it seems that the rest of the world might know it as "[Four Seasons](https://en.wikipedia.org/wiki/Four_Seasons_(card_game))").
 
 As far as testing has shown, the game is fully functional — subject to the **Future improvements** listed below — although I'm still debating with my mother if one should really be able/allowed to move cards to the waste pile and back so freely...
