@@ -1,5 +1,7 @@
 <!-- 
 
+(See the "Projects showcase" project regarding how PHP projects are handled by this site)
+
 "motivation": "I wanted to share direct links to images* on my server. However, since my webhost does not allow direct access to image files, I needed an ''in-between'' page for handling that traffic. As I also wanted links to be as short as possible, I came up with this solution, where I can simply put relevant resource(s) in a folder, include a simple ''index.php'' wrapper file, and then share the link to the folder instead.<p>*) Originally, the output image for <a href='#Zmanim_for_Machsike_Hadas,_Copenhagen'>the Zmanim_for_Machsike_Hadas project</a>; where the link actually got a LOT shorter (due to a long file name).",
 
 "summary": "<mark><a href='showFolderContents/iframeTest.html'>A page that</a></mark> lists all contents (i.e. files) of the folder in which the page resides, with links to each file plus other filetype-specific behavior (thumbnails for image files etc.)",
