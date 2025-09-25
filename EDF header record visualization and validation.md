@@ -4,7 +4,7 @@ This was done initially by opening the file in Notepad and inspecting line and c
   
 **Summary:** A front-end page that lets you select a(n EDF) file, and displays the contents of the header record in a very clear and readable manner. Includes functionality for further visualization adjustment, and validation of the contents vs. user-defined pseudo-RegEx formatting patterns.
 
-<mark>_Sorry, the tool was developed on company time, so I cannot share the code<mark> — in fact, I no longer have access to it.  
+<mark>_Sorry, the tool was developed on company time, so I cannot share the code</mark> — in fact, I no longer have access to it.  
 If I find a need for a similar tool (probably for another file format) in the future, I might try to recreate (a better version! of) it and share here..._
 
 **Features** (in pseudo-chronological order):
