@@ -21,15 +21,14 @@ If I find a need for a similar tool (probably for another file format) in the fu
 
 **Side note:** Sample EDF files are available [here](https://www.teuniz.net/edf_bdf_testfiles/index.html), which by the way is a subdirectory of [Teunis van Beelen\'s homepage](https://www.teuniz.net), a great resource for free EDF-related software (and other things.)
 
-<!-- ToDo: Finish this
-
  **Learnings:**  
- It took me quite an effort to make it possible for the user to provide the input (EDF) file. In the end, I found a fairly concise solution that seemed to be consensual across different web fora... even so, I had a hard time understanding the code - and honestly, looking at that part of the code now still annoys me.
- I have since come to understand that unlike all the JS code I had written up until that point - which was synchronous and procedural, what I was trying to do here was [asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming))* functionality, which was a step up in complexity - and also required a very different syntax.
+ Letting the user provide the input (EDF) file turned out to be much more work than I had expected. In the end, I found a fairly concise solution that seemed to be consensual across different web fora...  
+ ...but even so, I had a hard time understanding the code - and honestly, looking at that part of the code now still annoys me.
+ I have since come to understand that 
+ - what I was trying to do here was more [asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)) than all the other JS code I had written up until that point* - and also required a very different syntax,
+ and
+ - the solution I ended up using _might_ be a bit overkill; for this simple use case, a simple `onload` event handler on the `FileReader` object might have done just fine (with lower risk of [`callback hell`](https://en.wiktionary.org/wiki/callback_hell) than more complex scenarios)
 
- *) I've later noticed that this COULD probably done more simple via event handlers, although this would be subject to and therefore sub-optimal:
+ ...Finally, this project was also a (more readily succesful) exercise in obtaining a very compact and data-rich GUI layout while remaining within the confines of vanilla CSS.
 
- ...Furthermore, this was an exercise in how to obtain a very compact and info-ful layout
- ...very proud of separation into several smaller files (Separation of Concerns)...
-
- -->
+ *) Although simple event handlers like `body onLoad` and `script onError` also have an async nature, their triggering is timewise more expected, almost synchronous-like than waiting for user input and parsing changing external files
