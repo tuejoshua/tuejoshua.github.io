@@ -115,7 +115,7 @@ function showTimeline(DivID, data) {
         /* Clear placeholder content, then
            Display timeline */
         document.getElementById(DivID).innerHTML = "";
-        timeline = new vis.Timeline(document.getElementById('visualization'), items, options); //groups, options);
+        timeline = new vis.Timeline(document.getElementById(DivID), items, options); //groups, options);
 
         // Lock the default view as maximum zoom out
         var defaultWindow = timeline.getWindow();
