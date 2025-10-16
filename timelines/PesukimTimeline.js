@@ -36,15 +36,7 @@ for (let c = 0; c < verseCounts.length; c++) {
 
 let timeline, items;
 
-Papa.parse('./data/5BooksOfMoses/annotations_Devarim.csv', {
-    download: true,
-    complete: function (results) {
-        const data = results.data;
-        showTimeline(data);
-    }
-});
-
-function showTimeline(data) {
+function showTimeline(DivID, data) {
 
     items = new vis.DataSet();
 
@@ -122,7 +114,7 @@ function showTimeline(data) {
 
         /* Clear placeholder content, then
            Display timeline */
-        document.getElementById('visualization').innerHTML = "";
+        document.getElementById(DivID).innerHTML = "";
         timeline = new vis.Timeline(document.getElementById('visualization'), items, options); //groups, options);
 
         // Lock the default view as maximum zoom out

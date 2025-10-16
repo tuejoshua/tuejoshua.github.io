@@ -40,7 +40,7 @@
 <body>
 
   <h1>BERESHIT</h1>
-  <div id="visualization" class="markdown-content">
+  <div id="BereshitDiv" class="markdown-content">
     <i style="color: red;">
       <br>
       [ <b>Please wait: Loading data...</b><br>
@@ -54,7 +54,7 @@
   <div id="details">Click an event to see details here</div>
 
   <h1>DEVARIM</h1>
-  <div id="visualization" class="markdown-content">
+  <div id="DevarimDiv" class="markdown-content">
     <i style="color: red;">
       <br>
       [ <b>Please wait: Loading data...</b><br>
@@ -73,6 +73,24 @@
         href="https://github.com/mholt/PapaParse">PapaParse</a></i>
 
     <script src="./PesukimTimeline.js"></script>
+
+    <script>
+
+      let books = ['Devarim'];
+
+      books.forEach(book => {
+
+      Papa.parse('./data/5BooksOfMoses/annotations_' + book + '.csv', {
+        download: true,
+        complete: function (results) {
+          const data = results.data;
+          showTimeline(book + 'Div', data);
+        }
+      });
+
+      });
+
+    </script>
 
 </body>
 
