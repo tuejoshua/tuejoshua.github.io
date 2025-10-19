@@ -1,4 +1,4 @@
-const verseCounts = [46,
+var versesPerChapter = versesPerChapter || {}; versesPerChapter.Devarim = [46,
 37,
 29,
 49,

@@ -1,4 +1,4 @@
-const verseCounts = [31,
+var versesPerChapter = versesPerChapter || {}; versesPerChapter.Bereshit = [31,
 25,
 24,
 26,

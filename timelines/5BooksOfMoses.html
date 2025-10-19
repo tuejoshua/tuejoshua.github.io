@@ -35,8 +35,6 @@
 
 </head>
 
-<script src="./data/5BooksOfMoses/versesPerChapter_Devarim.js"></script> <!-- verseCounts -->
-
 <body>
 
   <h1>BERESHIT</h1>
@@ -74,11 +72,16 @@
 
     <script src="./PesukimTimeline.js"></script>
 
+    <script src="./data/5BooksOfMoses/versesPerChapter_Bereshit.js"></script> <!-- versesPerChapter.Bereshit -->
+    <script src="./data/5BooksOfMoses/versesPerChapter_Devarim.js"></script> <!-- versesPerChapter.Devarim -->
+
     <script>
 
-      let books = ['Devarim'];
+      let books = ['Bereshit','Devarim'];
 
       books.forEach(book => {
+
+        let verseCounts = versesPerChapter[book];
 
       Papa.parse('./data/5BooksOfMoses/annotations_' + book + '.csv', {
         download: true,
