@@ -29,7 +29,7 @@ function refToDateInclusive(ch, v) {
     return indexToDate(idx);
 }
 
-function showTimeline(DivID, data) {
+function showTimeline(DivID, verseCounts, data) {
 
     const chapterStartDates = [];
     for (let c = 0; c < verseCounts.length; c++) {

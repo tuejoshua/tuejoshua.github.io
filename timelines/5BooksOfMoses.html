@@ -81,13 +81,11 @@
 
       books.forEach(book => {
 
-        let verseCounts = versesPerChapter[book];
-
       Papa.parse('./data/5BooksOfMoses/annotations_' + book + '.csv', {
         download: true,
         complete: function (results) {
           const data = results.data;
-          showTimeline(book + 'Div', data);
+          showTimeline(book + 'Div', versesPerChapter[book], data);
         }
       });
 
