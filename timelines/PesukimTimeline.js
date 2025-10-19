@@ -29,16 +29,14 @@ function refToDateInclusive(ch, v) {
     return indexToDate(idx);
 }
 
-const chapterStartDates = [];
-for (let c = 0; c < verseCounts.length; c++) {
-    chapterStartDates.push(refToDate(c + 1, 1)); // chapter is 1-based
-}
-
-let timeline, items;
-
 function showTimeline(DivID, data) {
 
-    items = new vis.DataSet();
+    const chapterStartDates = [];
+    for (let c = 0; c < verseCounts.length; c++) {
+        chapterStartDates.push(refToDate(c + 1, 1)); // chapter is 1-based
+    }
+
+    let items = new vis.DataSet();
 
     // Add Chapter point events
     verseCounts.forEach((verseCount, i) => {
@@ -115,7 +113,7 @@ function showTimeline(DivID, data) {
         /* Clear placeholder content, then
            Display timeline */
         document.getElementById(DivID).innerHTML = "";
-        timeline = new vis.Timeline(document.getElementById(DivID), items, options); //groups, options);
+        let timeline = new vis.Timeline(document.getElementById(DivID), items, options); //groups, options);
 
         // Lock the default view as maximum zoom out
         var defaultWindow = timeline.getWindow();
