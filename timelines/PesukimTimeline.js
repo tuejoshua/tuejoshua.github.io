@@ -1,5 +1,5 @@
 // Convert Chapter:Verse to "global verse index number"
-function refToIndex(chapter, verse) {
+function refToIndex(verseCounts, chapter, verse) {
     let idx = 0;
     // 1. Add up all the verses from the chapters before the given one
     for (let c = 0; c < chapter - 1; c++) idx += verseCounts[c] || 0;
@@ -23,9 +23,9 @@ function indexToRef(idx) {
 
 const baseDate = new Date(2000, 0, 1);
 function indexToDate(idx) { return new Date(baseDate.getTime() + idx * 1000); } // 1 sec per verse
-function refToDate(ch, v) { return indexToDate(refToIndex(ch, v)); }
-function refToDateInclusive(ch, v) {
-    const idx = refToIndex(ch, v) + 1;  // +1 to include last verse
+function refToDate(verseCounts, ch, v) { return indexToDate(refToIndex(verseCounts, ch, v)); }
+function refToDateInclusive(verseCounts, ch, v) {
+    const idx = refToIndex(verseCounts, ch, v) + 1;  // +1 to include last verse
     return indexToDate(idx);
 }
 
@@ -33,7 +33,7 @@ function showTimeline(DivID, verseCounts, data) {
 
     const chapterStartDates = [];
     for (let c = 0; c < verseCounts.length; c++) {
-        chapterStartDates.push(refToDate(c + 1, 1)); // chapter is 1-based
+        chapterStartDates.push(refToDate(verseCounts, c + 1, 1)); // chapter is 1-based
     }
 
     let items = new vis.DataSet();
@@ -44,7 +44,7 @@ function showTimeline(DivID, verseCounts, data) {
         items.add({
             id: `perek-${chapter}`,
             content: `${chapter}`,
-            start: refToDate(chapter, 1),
+            start: refToDate(verseCounts, chapter, 1),
             subgroup: "Perek",
             type: "point"
         });
@@ -57,13 +57,13 @@ function showTimeline(DivID, verseCounts, data) {
             const subgroup = row[2].trim();
             const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
             const endCh = +row[4].trim(), endV = +row[5].trim();
-            items.add({ id: i + 1, content, start: refToDate(startCh, startV), end: refToDateInclusive(endCh, endV), subgroup: subgroup }); //group: subgroup });
+            items.add({ id: i + 1, content, start: refToDate(verseCounts, startCh, startV), end: refToDateInclusive(verseCounts, endCh, endV), subgroup: subgroup }); //group: subgroup });
         }
         else if (row.length == 4) { // point/event
             const startCh = +row[0].trim(), startV = +row[1].trim();
             const subgroup = row[2].trim();
             const content = row[3].trim(); // ToDo: maybe add pre/suffixes?
-            items.add({ id: i + 1, content, start: refToDate(startCh, startV), subgroup: subgroup, type: "point" }); //group: subgroup });
+            items.add({ id: i + 1, content, start: refToDate(verseCounts, startCh, startV), subgroup: subgroup, type: "point" }); //group: subgroup });
         }
         else {
             alert('Unexpected number of columns for data entry');
