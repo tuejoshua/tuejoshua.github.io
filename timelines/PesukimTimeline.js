@@ -108,35 +108,37 @@ function showTimeline(DivID, verseCounts, data) {
 
     };
 
-    if (!timeline) {
+    //if (!timeline) {
 
-        /* Clear placeholder content, then
-           Display timeline */
-        document.getElementById(DivID).innerHTML = "";
-        let timeline = new vis.Timeline(document.getElementById(DivID), items, options); //groups, options);
+    /* Clear placeholder content, then
+       Display timeline */
+    document.getElementById(DivID).innerHTML = "";
+    let timeline = new vis.Timeline(document.getElementById(DivID), items, options); //groups, options);
 
-        // Lock the default view as maximum zoom out
-        var defaultWindow = timeline.getWindow();
-        timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
+    // Lock the default view as maximum zoom out
+    var defaultWindow = timeline.getWindow();
+    timeline.setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
-        // Blue vertical lines at chapters
-        for (let i = 0; i < chapterStartDates.length; i++) {
-            timeline.addCustomTime(chapterStartDates[i], 'chapter' + (i + 1));
-        }
-
-        // Click to show details
-        // - BUT see alternative implementation in jewishHistory.html...
-        timeline.on('select', props => {
-            if (props.items.length) {
-                const item = items.get(props.items[0]);
-                const sIdx = Math.round((item.start - baseDate) / 1000);
-                const eIdx = Math.round((item.end - baseDate) / 1000) - 1; // -1 because we want last verse, not the one after that (which the event box stretches to)
-                const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
-                document.getElementById('details').textContent =
-                    `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
-            }
-        });
-    } else {
-        timeline.setItems(items);
+    // Blue vertical lines at chapters
+    for (let i = 0; i < chapterStartDates.length; i++) {
+        timeline.addCustomTime(chapterStartDates[i], 'chapter' + (i + 1));
     }
+
+    // Click to show details
+    // - BUT see alternative implementation in jewishHistory.html...
+    timeline.on('select', props => {
+        if (props.items.length) {
+            const item = items.get(props.items[0]);
+            const sIdx = Math.round((item.start - baseDate) / 1000);
+            const eIdx = Math.round((item.end - baseDate) / 1000) - 1; // -1 because we want last verse, not the one after that (which the event box stretches to)
+            const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
+            document.getElementById('details').textContent =
+                `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
+        }
+    });
+
+    /*} else {
+        timeline.setItems(items);
+    }*/
+
 }
