@@ -8,7 +8,7 @@ function refToIndex(verseCounts, chapter, verse) {
 }
 
 // Convert "global verse index number" to Chapter:Verse
-function indexToRef(idx) {
+function indexToRef(verseCounts, idx) {
 
     // Subtract verses per chapter until we reach the right chapter
     let remainder = idx;
@@ -74,14 +74,14 @@ function showTimeline(DivID, verseCounts, data) {
         format: {
             minorLabels: date => {
                 const idx = Math.round((date - baseDate) / 1000);
-                const r = indexToRef(idx);
+                const r = indexToRef(verseCounts, idx);
                 return r ? `${r.verse}` : '';
             },
 
             /* DEAD CODE because of "showMajorLabels: false" below
             majorLabels: date => {
               const idx = Math.round((date - baseDate) / 1000);
-              const r = indexToRef(idx);
+              const r = indexToRef(verseCounts, idx);
               return r ? `Genesis ${r.chapter}` : '';
             },*/
 
@@ -131,7 +131,7 @@ function showTimeline(DivID, verseCounts, data) {
             const item = items.get(props.items[0]);
             const sIdx = Math.round((item.start - baseDate) / 1000);
             const eIdx = Math.round((item.end - baseDate) / 1000) - 1; // -1 because we want last verse, not the one after that (which the event box stretches to)
-            const sRef = indexToRef(sIdx), eRef = indexToRef(eIdx);
+            const sRef = indexToRef(verseCounts, sIdx), eRef = indexToRef(verseCounts, eIdx);
             document.getElementById('details').textContent =
                 `${item.content} (${sRef.chapter}:${sRef.verse}–${eRef.chapter}:${eRef.verse})`;
         }
