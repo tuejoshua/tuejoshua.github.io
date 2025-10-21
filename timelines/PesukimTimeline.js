@@ -114,7 +114,9 @@ function showTimeline(DivID, verseCounts, data) {
        Display timeline */
     document.getElementById(DivID).innerHTML = "";
 
-    let timelines;
+    if (typeof timelines === 'undefined') {
+        let timelines = [];
+    }
 
     let newTimeline = timelines.length;
 
