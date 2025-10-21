@@ -124,7 +124,7 @@ function showTimeline(DivID, verseCounts, data) {
     timelines[newTimeline] = new vis.Timeline(document.getElementById(DivID), items, options); //groups, options);
 
     // Lock the default view as maximum zoom out
-    var defaultWindow = timeline.getWindow();
+    var defaultWindow = timelines[newTimeline].getWindow();
     timelines[newTimeline].setOptions({ min: defaultWindow.start, max: defaultWindow.end });
 
     // Blue vertical lines at chapters
