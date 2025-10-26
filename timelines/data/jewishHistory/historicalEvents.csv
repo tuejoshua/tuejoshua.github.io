@@ -1,11 +1,28 @@
--003761	0000	Adam            	-002830	0930	Spiro,Artscroll
-       	0687	Methuselah      	    	1656	Artscroll
--002704	1056	Noach           	    	2006	Spiro,Artscroll
+-003761	0000	Adam            	-002830	0930	Spiro,ArtscrollTanach
+       	0130	Seth            	    	1042	ArtscrollChumash
+       	0235	Enosh            	    	1140	ArtscrollChumash
+       	0325	Kenan            	    	1235	ArtscrollChumash
+       	0395	Mahalalel       	    	1290	ArtscrollChumash
+       	0460	Yered            	    	1422	ArtscrollChumash
+       	0622	Enoch            	    	0987	ArtscrollChumash
+       	0687	Methuselah      	    	1656	ArtscrollTanach,ArtscrollChumash
+       	0874	Lamech            	    	1651	ArtscrollChumash
+-002704	1056	Noach           	    	2006	Spiro,ArtscrollTanach
+       	1558	Shem            	    	2158	ArtscrollChumash
 -002104	1656	The Flood       	    	    	Spiro
-       	1948	Avraham         	    	2123	Spiro,Artscroll
-       	2048	Isaac           	    	2228	Artscroll
-       	2108	Yaacov          	    	2255	Artscroll
-       	2964	Kingdom Divided 	    	    	Artscroll
-       	3205	10 Tribes Exiled	    	    	Artscroll
-       	3338	Temple Destroyed	    	    	Artscroll
+       	1658	Arpachshad      	    	2096	ArtscrollChumash
+       	1693	Shelach          	    	2126	ArtscrollChumash
+       	1723	Eber            	    	2187	ArtscrollChumash
+       	1757	Peleg            	    	1996	ArtscrollChumash
+       	1787	Reu             	    	2026	ArtscrollChumash
+       	1819	Serug             	    	2049	ArtscrollChumash
+       	1849	Nachor             	    	1997	ArtscrollChumash
+       	1878	Terach             	    	2083	ArtscrollChumash
+       	1948	Avraham         	    	2123	Spiro,ArtscrollTanach,ArtscrollChumash
+       	2048	Isaac           	    	2228	ArtscrollTanach,ArtscrollChumash
+       	2108	Yaacov          	    	2255	ArtscrollTanach,ArtscrollChumash
+       	2964	Kingdom Divided 	    	    	ArtscrollTanach
+       	3205	10 Tribes Exiled	    	    	ArtscrollTanach
+       	3338	Temple Destroyed	    	    	ArtscrollTanach
+1040   	    	Rashi                		1105	ArtscrollChumash
 2008	5768	Israel 60 år    	    	    	Spiro
