@@ -60,7 +60,7 @@ export async function displayProjectCards(file) {
 			'<table style="width: 100%; border-collapse: collapse;"><tr><td class="project-title-cell" style="border: none; text-align: left; font-size: 1.3em;">' + '▶ ' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 
 		for (let tag of projects[i].technologies) {
-				domString += getTechLogo(tag);
+				domString += ' ' + getTechLogo(tag);
 		}
 
 	/// PROJECT DESCRIPTION FROM MARKDOWN FILE
