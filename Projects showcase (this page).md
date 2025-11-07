@@ -1,24 +1,52 @@
-<!-- At some point, I realized that the page you are currently looking at is a project in itself.
+As stated above,
+> This page presents a curated collection of projects that I've done 
+  — for future inspiration, personal nostalgia, and sharing.
 
-It has evolved in several ways:
-- Initially a **single-(HTML) file**-contains-all, it has split into more and more / smaller and smaller files over time.
-Wanting to edit the project descriptions separately from the page layout itself, I first moved all project data into a JSON file -- and then realized that JSON is not very well-suited for the prose I was writing (some of which you are reading right now). As a result, I moved that data further into separate Markdown files (one for each project).
-details:
-here the JSON data file used by this page.
-https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.html
-and here is a sample Markdown file:
-https://github.com/tuejoshua/tuejoshua.github.io/blob/main/Hilchot Brachot games.md
-- initially, I had the site **hosted** in a free web hotel* that supports dynamic pages like the PHP pages I have (but which I did not want to pay for HTTPS),
-I then moved everything to GitHub Pages (for easier integration with my repos which are there anyway) - and lastly I realized that I could use IFRAMEs to 
+Like most of my other projects, it started simple and evolved over time.  
+Being a "meta-project", it took me longer than usual to accept that it had become untrivial and therefore an actual project in its own right whose development process I wanted to describe.  
+As a result, the following is written even more in hindsight than for my other projects 🫣
 
-Besides general front-end choices on visual layout and formatting - LESS IS MORE!!! -, it also became obvious that it would be unmanageable to keep all contents in one single (HTML) file.
+### Complexity  
+Initially **a single (HTML) file** containing everything, this page has split into more and more smaller and smaller files over time.  
+Wanting to edit the project descriptions (**data**) separately from the page layout (**structure**) itself, I first moved the former into a `JSON` file — and then realized that that format is not very well-suited for the prose I was writing (some of which you are reading right now). As a result, I moved that part of the data further into separate `Markdown` files (one for each project).
 
-; around the time when I moved everything into JSON. However, I was doing escaped HTML tags in that, which was not nice... Markdown... separate files... Future improvement: Footnotes? Also: code formatting (via backticks) doesn't look nice with my current font settings...; when opening new one 1) close other card(s) and/or 2) auto-scroll to that card;
+Here's the current state of [the JSON file](https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.json) and [one of the Markdown files](<https://github.com/tuejoshua/tuejoshua.github.io/blob/main/Projects showcase (this page).md>).
+Both are of course changing over time as I add/update project descriptions.
 
-summary:
-A note about the AwardSpace domain for hosting PHP? (and non-Git-fitting data?) - on that domain, config redirect to GitHUb Page for 404s? Links/anchors for when project descriptions refer to each other? Make sure all text is selectable (e.g. for copying and translation)?
+For more details about 3rd party technologies that this site was built on top of, please see the _Acknowledgements_ section at the bottom of this page.
 
-*) (tuejoshua.atwebpages hosted by awardspace.com)
+### Hosting  
+Initially, I had everything hosted in a free web hotel*.
+Since no payment equals no `HTTPS` certificates, content from such domains is served over the less secure `HTTP` protocol.
+In my earliest days of [hacking (in the creative, exploratory sense)](https://en.wikipedia.org/wiki/Hacker), only experts even knew about this distinction, but nowadays, modern browsers warn the user so aggressively about this that the average user ~~would~~ _should_ follow the browser's advice of aborting the page visit.
+This is of course not good [usability](https://en.wikipedia.org/wiki/Usability) (to say the least), so I had to come up with a better (HTTPS-enabled) solution.
 
-https://tuejoshua.github.io/gallery/gallery.php.html -> https://tuejoshua.atwebpages.com/gallery/gallery.php
--->
+---
+
+I don't remember exactly (and am too lazy to find out) what came first:
+- Starting to use `GitHub` for [VC](https://en.wikipedia.org/wiki/Version_control) of all my code projects (previously, I didn't do VC at all),  
+or
+- Realizing that `GitHub Pages` was a good solution to my hosting troubles  
+
+...possibly, they happened at the same time.  
+
+However, unlike my previous web hotel, GitHub Pages does not support (dynamic content like) PHP pages, so I had to find another solution for such outputs.  
+Eventually, I realized that I could use `iframe`s to embed the PHP pages (still hosted in the initial web hotel) into ("wrapper") pages in the GitHub Pages domain.
+
+...For practical examples, go to any one of the projects on this list with a PHP icon, which links to a ".php.html" page. I named them thus to indicate that they are in fact just such wrapper pages for .php pages hosted elsewhere...
+
+_*) Bonus points if you can find that domain 🤓_
+<!-- ...one way is, of course, inspecting the Markdown file; here's an Easter egg for you:
+   tuejoshua.atwebpages.com (hosted by awardspace.com) -->
+
+<!--
+### Design choices
+It's a general design choice to make all (/as much as possible) text on the site selectable, e.g. to enable translation
+--> 
+
+### Future improvements
+- **Footnotes**: My current footnote system (see right above this section for an example) is quite crude. (The Markdown parser I'm using, and otherwise very happy with, does not implement such a feature, so I would probably have to implement some postprocessing of the parser output...)
+- Along a similar vein, **`code formatting`** (via backticks) doesn't look nice with my current fonts...
+- When expanding a project description, maybe the screen should **auto-scroll** to it and/or the others automatically close?
+- Maybe redirect unexpected URLs in the PHP-domain to the GitHub Pages?
+- Implement linking between projects (when they refer to each other)
