@@ -44,7 +44,7 @@
     },
     {
         "title": "Folder index page",
-         "technologies": [
+        "technologies": [
             "PHP",
             "front-end"
         ]
@@ -71,15 +71,22 @@
             "front-end"
         ]
     },
-
-{
-"title": "Google Drive sync for Linux",
+    {
+        "title": "Google Drive sync for Linux",
         "motivation": "",
         "summary": "",
         "details": "",
         "technologies": [
             "Bash"
         ]
-}
-
+    },
+        {
+        "title": "Playwright Pilot: W3C Validation",
+        "motivation": "",
+        "summary": "",
+        "details": "",
+        "technologies": [
+            "Playwright"
+        ]
+    }
 ]

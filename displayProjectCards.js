@@ -20,6 +20,9 @@ function getTechLogo(tag) {
 		case 'PHP':
 			logoUrl = 'new-php-logo (from php.net).png';
 			break;
+		case 'Playwright':
+			logoUrl = 'playwright-logo (from github.com_microsoft_playwright).svg';
+			break;
 		case 'Python':
 			logoUrl = 'python-logo-only (from python.org).png';
 			break;
