@@ -1,56 +1,82 @@
 <html>
+
 <body>
-<table border=1>
-<tr><td>
-<!-- 
-https://www.hebcal.com/home/developer-apis
--> https://www.hebcal.com/home/4289/giving-appropriate-credit-to-hebcal
--> https://www.hebcal.com/home/40/displaying-todays-hebrew-date-on-your-website
--->
-<script src="https://www.hebcal.com/etc/hdate-he.js">
-</script>
-<br>
-<script src="https://www.hebcal.com/etc/hdate-en.js">
-</script>
-<br>
-<script>
-// based on a ChatGPT query
-// (cause I couldn't be bothered "the old way"
-const now = new Date();
-const hours = now.getHours();
-const minutes = now.getMinutes();
+    <table border="1">
+        <tr>
+            <td>
 
-// Convert to decimal time (e.g., 20.5 for 20:30)
-const decimalTime = hours + minutes / 60;
+                <!-- Hebrew date libraries -->
+                <script src="https://www.hebcal.com/etc/hdate-he.js"></script>
+                <br>
+                <script src="https://www.hebcal.com/etc/hdate-en.js"></script>
+                <br>
 
-/* As noted on https://www.hebcal.com/home/40/displaying-todays-hebrew-date-on-your-website:
-The date displayed uses the web browser’s local timezone to determine today’s date. Any time after 20:00 (8:00pm in the evening) is considered “after sunset” so the Hebrew date displayed corresponds to the next day. */
-if (decimalTime >= 20.0 && decimalTime < 24.0) {
-document.write('starting tonight');
-}
-else {
-document.write('until tonight');
-}
-</script>
-<!--
-*/
-</script>
--->
-<p>Powered by <a href="hebcal.com">Hebcal.com</a>
-<hr>
-<div id="hebcal-shabbat"></div>
-<script defer> <!-- ToDo: why do I have the DEFER parameter here? -->
-fetch('https://www.hebcal.com/shabbat?cfg=i2&geonameid=294577&b=30&M=on&lg=s&tgt=_top')
-  .then(response => response.text())
-  .then(data => document.getElementById('hebcal-shabbat').innerHTML = data);
-</script>
-</td><td>
-<!--Start MyZmanim Widget for: https://tuejoshua.github.io/kotelScreen.html  -->
-<script type="text/javascript" charset="UTF-8" language="javascript" src="https://www.myzmanim.com/widget.aspx?lang=en&mode=Standard&fsize=13&fcolor=003BBE&hcolor=EBF1FF&bcolor=C0C0C0&suf=s&key=5z0sskm31T51cpL16ClOS5N%2bljoYc0NhWIVX0HIqaXQud3Df4SiB6gl4fuvpU2aBwmx5q2HhJW7UJ0ySTwt9yhhrtDACnWlyBbArESw%2b3x7eDgsijmwKQTPY32foKuz65zOngfVdoD2aL9qVlp6%2fs3z3KBHdXU9EFoDT15vA4SWF8ey9pXV9Gyi1yTriE4Px"></script><noscript style="font-family:verdana;">Find your daily zmanim at <a href="http://www.myzmanim.com/">MyZmanim.com</a>.</noscript>
-<!--End MyZmanim Widget-->
-</td></tr></table>
+                <!-- Simple ES5-compatible time check -->
+                <script>
+                    var now = new Date();
+                    var hours = now.getHours();
+                    var minutes = now.getMinutes();
+                    var decimalTime = hours + (minutes / 60);
+
+                    if (decimalTime >= 20.0 && decimalTime < 24.0) {
+                        document.write('starting tonight');
+                    } else {
+                        document.write('until tonight');
+                    }
+                </script>
+
+                <p>Powered by <a href="https://www.hebcal.com">Hebcal.com</a></p>
+                <hr>
+
+                <!-- Shabbat section -->
+                <div id="hebcal-shabbat"></div>
+
+                <script>
+                    // Feature detection: use fetch if supported, otherwise XHR
+                    var url = "https://www.hebcal.com/shabbat?cfg=i2&geonameid=294577&b=30&M=on&lg=s&tgt=_top";
+
+                    if (window.fetch) {
+                        // Modern browsers
+                        fetch(url)
+                            .then(function (response) { return response.text(); })
+                            .then(function (data) {
+                                document.getElementById('hebcal-shabbat').innerHTML = data;
+                            })
+                            .catch(function (err) {
+                                console.log("Fetch failed, falling back to XHR:", err);
+                                loadWithXHR();
+                            });
+                    } else {
+                        // Old browsers immediately use XHR
+                        loadWithXHR();
+                    }
+
+                    function loadWithXHR() {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", url, true);
+
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                document.getElementById('hebcal-shabbat').innerHTML = xhr.responseText;
+                            }
+                        };
+
+                        xhr.send();
+                    }
+                </script>
+
+            </td>
+
+            <td>
+                <!-- MyZmanim widget (unchanged) -->
+                <script type="text/javascript" charset="UTF-8" language="javascript"
+                    src="https://www.myzmanim.com/widget.aspx?lang=en&mode=Standard&fsize=13&fcolor=003BBE&hcolor=EBF1FF&bcolor=C0C0C0&suf=s&key=5z0sskm31T51cpL16ClOS5N%2bljoYc0NhWIVX0HIqaXQud3Df4SiB6gl4fuvpU2aBwmx5q2HhJW7UJ0ySTwt9yhhrtDACnWlyBbArESw%2b3x7eDgsijmwKQTPY32foKuz65zOngfVdoD2aL9qVlp6%2fs3z3KBHdXU9EFoDT15vA4SWF8ey9pXV9Gyi1yTriE4Px"></script>
+                <noscript style="font-family:verdana;">Find your daily zmanim at <a
+                        href="http://www.myzmanim.com/">MyZmanim.com</a>.</noscript>
+            </td>
+
+        </tr>
+    </table>
 </body>
+
 </html>
-
-
-
