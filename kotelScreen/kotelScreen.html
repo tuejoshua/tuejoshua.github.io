@@ -34,11 +34,11 @@
 
                 <script>
                     // Feature detection: use fetch if supported, otherwise XHR
-                    var url = "https://www.hebcal.com/shabbat?cfg=i2&geonameid=294577&b=30&M=on&lg=s&tgt=_top";
+                    var url = "www.hebcal.com/shabbat?cfg=i2&geonameid=294577&b=30&M=on&lg=s&tgt=_top";
 
                     if (window.fetch) {
                         // Modern browsers
-                        fetch(url)
+                        fetch('https://' + url)
                             .then(function (response) { return response.text(); })
                             .then(function (data) {
                                 document.getElementById('hebcal-shabbat').innerHTML = data;
@@ -54,7 +54,7 @@
 
                     function loadWithXHR() {
                         var xhr = new XMLHttpRequest();
-                        xhr.open("GET", url, true);
+                        xhr.open("GET", 'http://' + url, true); // Old browser does not like the signature used by the site anyway, so we have to go HTTP
 
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState === 4 && xhr.status === 200) {
