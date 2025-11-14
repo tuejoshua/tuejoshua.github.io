@@ -80,10 +80,20 @@
     </table>
 
 <script>
-    // Reload every 60 minutes (in milliseconds)
+
+    // Reload every 1 hour
+    let reloadFreq_seconds = 60 * 60;
+
     setTimeout(function () {
         window.location.reload(true);
-    }, 60 * 60 * 1000);
+    }, reloadFreq_seconds * 1000);
+
+    // Write at bottom of page about next reload
+    var now = new Date();
+    now.setHours(now.getHours() + reloadFreq_seconds/(60 * 60));
+    var mins = now.getMinutes().toString().padStart(2, '0');  // padding: e.g. "7" -> "07"
+    document.write("<i>Page will reload at " + now.getHours() + ":" + mins + "</i>");
+
 </script>
 
 </body>
