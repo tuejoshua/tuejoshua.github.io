@@ -3,13 +3,16 @@
 <body style="background-color:powderblue;">
     <table border="1">
         <tr>
-            <td>
+            <td style="font-size: 1.2em;">
 
                 <!-- Hebrew date libraries -->
+                 <b>
                 <!-- local copy because old tablet cannot fetch remote -->
                 <!--script src="https://www.hebcal.com/etc/hdate-he.js"--><script src="./libs/hdate-he.js"></script>
                 <br>
                 <!--script src="https://www.hebcal.com/etc/hdate-en.js"--><script src="libs/hdate-en.js"></script>
+                </b>
+
                 <br>
 
                 <!-- Simple ES5-compatible time check -->
@@ -20,13 +23,14 @@
                     var decimalTime = hours + (minutes / 60);
 
                     if (decimalTime >= 20.0 && decimalTime < 24.0) {
-                        document.write('starting tonight');
+                        document.write('fra i aften');
                     } else {
-                        document.write('until tonight');
+                        document.write('indtil i aften');
                     }
                 </script>
 
                 <p>Powered by <a href="https://www.hebcal.com">Hebcal.com</a></p>
+
                 <hr>
 
                 <!-- Shabbat section -->
@@ -92,7 +96,7 @@
     var now = new Date();
     now.setHours(now.getHours() + reloadFreq_seconds/(60 * 60));
     var mins = now.getMinutes().toString().padStart(2, '0');  // padding: e.g. "7" -> "07"
-    document.write("<i>Page will reload at " + now.getHours() + ":" + mins + "</i>");
+    document.write("<i>Denne side opdateres klokken " + now.getHours() + ":" + mins + "</i>");
 
 </script>
 
