@@ -4,7 +4,7 @@
   <style>
     body {
       display: flex;
-      justify-content: center;
+      /*justify-content: center;*/
       align-items: center;
       height: 100vh;
       margin: 0;
@@ -56,7 +56,11 @@
 
       <td style="font-size: 1.2em;">
 
-        <!-- Hebrew date libraries -->
+<table>
+<tr>
+  <td style="width: 50%;">
+
+     <!-- Hebrew date libraries -->
         <b>
           <center>
             <!-- local copy because old tablet cannot fetch remote -->
@@ -87,6 +91,10 @@
 
         <p>Powered by <a href="https://www.hebcal.com">Hebcal.com</a></p>
 
+  </td>
+  <td></td>
+</tr>
+</table>
 
         <div id="container">
           <!-- button id="resetBtn">Reset</button-->▶&nbsp;
@@ -174,14 +182,6 @@
             isDragging = false;
           });
 
-          /*
-          // --- Reset button ---
-          resetBtn.addEventListener('click', () => {
-            currentRotation = initialRotation;
-            img.style.transform = `rotate(${currentRotation}deg)`;
-          });
-          */
-
         </script>
 
           <script>
@@ -197,7 +197,7 @@
     var now = new Date();
     now.setHours(now.getHours() + reloadFreq_seconds / (60 * 60));
     var mins = now.getMinutes().toString().padStart(2, '0');  // padding: e.g. "7" -> "07"
-    document.write("<i>Denne side opdateres klokken " + now.getHours() + ":" + mins + "</i>");
+    document.write("<i>Denne side opdateres<br>klokken " + now.getHours() + ":" + mins + "</i>");
 
   </script>
 
