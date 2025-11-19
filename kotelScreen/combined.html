@@ -1,0 +1,254 @@
+<html>
+
+<head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-color: powderblue;
+    }
+
+    #container {
+      display: flex;
+      align-items: center;
+    }
+
+    /*
+    #resetBtn {
+      margin-right: 20px;
+      height: 40px;
+    }
+    */
+
+    img {
+      width: 500px;
+      height: auto;
+      transform-origin: center center;
+      cursor: grab;
+      transition: transform 0.3s ease;
+      /* smooth reset animation */
+    }
+
+    img:active {
+      cursor: grabbing;
+      transition: none;
+      /* disable animation while dragging */
+    }
+  </style>
+</head>
+
+<body>
+
+  <table border="1">
+    <tr>
+
+      <td>
+        <!-- MyZmanim widget (unchanged) -->
+        <script type="text/javascript" charset="UTF-8" language="javascript"
+          src="https://www.myzmanim.com/widget.aspx?lang=en&mode=Standard&fsize=13&fcolor=003BBE&hcolor=EBF1FF&bcolor=C0C0C0&suf=s&key=5z0sskm31T51cpL16ClOS5N%2bljoYc0NhWIVX0HIqaXQud3Df4SiB6gl4fuvpU2aBwmx5q2HhJW7UJ0ySTwt9yhhrtDACnWlyBbArESw%2b3x7eDgsijmwKQTPY32foKuz65zOngfVdoD2aL9qVlp6%2fs3z3KBHdXU9EFoDT15vA4SWF8ey9pXV9Gyi1yTriE4Px"></script>
+        <noscript style="font-family:verdana;">Find your daily zmanim at <a
+            href="http://www.myzmanim.com/">MyZmanim.com</a>.</noscript>
+      </td>
+
+      <td style="font-size: 1.2em;">
+
+        <!-- Hebrew date libraries -->
+        <b>
+          <center>
+            <!-- local copy because old tablet cannot fetch remote -->
+            <!--script src="https://www.hebcal.com/etc/hdate-he.js"-->
+            <script src="./libs/hdate-he.js"></script>
+            <br>
+            <!--script src="https://www.hebcal.com/etc/hdate-en.js"-->
+            <script src="libs/hdate-en.js"></script>
+        </b>
+
+        <br>
+
+        <!-- Simple ES5-compatible time check -->
+        <script>
+          var now = new Date();
+          var hours = now.getHours();
+          var minutes = now.getMinutes();
+          var decimalTime = hours + (minutes / 60);
+
+          if (decimalTime >= 20.0 && decimalTime < 24.0) {
+            document.write('fra i aften');
+          } else {
+            document.write('indtil i aften');
+          }
+        </script>
+
+        </center>
+
+        <p>Powered by <a href="https://www.hebcal.com">Hebcal.com</a></p>
+
+
+        <div id="container">
+          <!-- button id="resetBtn">Reset</button-->▶&nbsp;
+          <img id="wheel" src="../åretsHjul/temp/åretsHjul.png" alt="Wheel">
+        </div>
+
+        <script type="module">
+          import { HDate } from "https://esm.sh/hebcal@2.3.2";
+
+          const img = document.getElementById('wheel');
+          const resetBtn = document.getElementById('resetBtn');
+
+          // disable native drag image and gestures
+          wheel.ondragstart = () => false;
+          wheel.style.touchAction = 'none'; // prevents browser touch gestures interfering
+          wheel.style.userSelect = 'none';
+
+          let isDragging = false;
+          let startAngle = 0;
+          let currentRotation = 0;
+          let initialRotation = 0;
+
+          // Fixed 13-month wheel
+          const months13 = [
+            "Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul",
+            "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II"
+          ];
+
+          function getHebrewAngle() {
+            const today = new HDate();
+            const totalMonths = months13.length; // always 13
+            const monthIndex = months13.indexOf(today.getMonthName());
+            console.log('today.getMonthName(): ' + today.getMonthName());
+            const day = today.getDate();
+            console.log('day: ' + day);
+            const daysInMonth = today.daysInMonth(); // Correct method call
+
+            const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
+            return -90 - fracYear * 360; // 90 because the year starts at Nisan, which is at the top of the figure, but we want today's date rotated to the left
+          }
+
+
+
+          function setInitialRotation() {
+            initialRotation = getHebrewAngle();
+            currentRotation = initialRotation;
+            img.style.transform = `rotate(${currentRotation}deg)`;
+          }
+
+          setInitialRotation();
+
+          // --- Drag handling ---
+          function getPointerAngle(e) {
+            const rect = img.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const x = (e.touches ? e.touches[0].clientX : e.clientX) - cx;
+            const y = (e.touches ? e.touches[0].clientY : e.clientY) - cy;
+            return Math.atan2(y, x) * 180 / Math.PI;
+          }
+
+
+          // --- Pointer Events: works for mouse cursor + touch position ---
+          img.addEventListener('pointerdown', e => {
+            isDragging = true;
+            img.setPointerCapture(e.pointerId); // Even if pointer moves outside image, keep rotating
+            startAngle = getPointerAngle(e) - currentRotation;
+          });
+
+          img.addEventListener('pointermove', e => {
+            if (!isDragging) return;
+            currentRotation = getPointerAngle(e) - startAngle;
+            img.style.transform = `rotate(${currentRotation}deg)`;
+          });
+
+          img.addEventListener('pointerup', e => { // Undo 'pointerdown' above
+            isDragging = false;
+            img.releasePointerCapture(e.pointerId);
+            // Rotate back to today's date
+            currentRotation = initialRotation;
+            img.style.transform = `rotate(${currentRotation}deg)`;
+          });
+
+          img.addEventListener('pointercancel', () => {
+            isDragging = false;
+          });
+
+          /*
+          // --- Reset button ---
+          resetBtn.addEventListener('click', () => {
+            currentRotation = initialRotation;
+            img.style.transform = `rotate(${currentRotation}deg)`;
+          });
+          */
+
+        </script>
+
+          <script>
+
+    // Reload every 1 hour
+    let reloadFreq_seconds = 60 * 60;
+
+    setTimeout(function () {
+      window.location.reload(true);
+    }, reloadFreq_seconds * 1000);
+
+    // Write at bottom of page about next reload
+    var now = new Date();
+    now.setHours(now.getHours() + reloadFreq_seconds / (60 * 60));
+    var mins = now.getMinutes().toString().padStart(2, '0');  // padding: e.g. "7" -> "07"
+    document.write("<i>Denne side opdateres klokken " + now.getHours() + ":" + mins + "</i>");
+
+  </script>
+
+</td>
+<td>
+
+        <!-- Shabbat section -->
+        <div id="hebcal-shabbat"></div>
+
+        <script>
+          // Feature detection: use fetch if supported, otherwise XHR
+          var url = "www.hebcal.com/shabbat?cfg=i2&geonameid=294577&b=30&M=on&lg=s&tgt=_top";
+
+          if (window.fetch) {
+            // Modern browsers
+            fetch('https://' + url)
+              .then(function (response) { return response.text(); })
+              .then(function (data) {
+                document.getElementById('hebcal-shabbat').innerHTML = data;
+              })
+              .catch(function (err) {
+                console.log("Fetch failed, falling back to XHR:", err);
+                loadWithXHR();
+              });
+          } else {
+            // Old browsers immediately use XHR
+            loadWithXHR();
+          }
+
+          function loadWithXHR() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", 'http://' + url, true); // Old browser does not like the signature used by the site anyway, so we have to go HTTP
+
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById('hebcal-shabbat').innerHTML = xhr.responseText;
+              }
+            };
+
+            xhr.send();
+          }
+        </script>
+        <noscript>
+          <i>Det lykkedes ikke at indlæse en del af siden</i>
+        </noscript>
+
+      </td>
+
+    </tr>
+  </table>
+
+</body>
+
+</html>
