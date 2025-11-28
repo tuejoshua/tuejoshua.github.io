@@ -60,3 +60,17 @@
 27	28	Aliyah	6	28	4
 28	5	Aliyah	7	28	9
 28	7	weekday  	Maftir 	28	9
+28	10	Parsha  	Vajetze     	32	3
+28	10	Masoretic	26	29	30
+28	10	Aliyah	1	28	22
+29	1	Aliyah	2	29	17
+29	18	Aliyah	3	30	13
+29	31	Masoretic	27	30	21
+30	14	Aliyah	4	30	27
+30	22	Masoretic	28	31	2
+30	28	Aliyah	5	31	16
+31	3	Masoretic	29	32	2
+31	17	Aliyah	6	31	42
+31	43	Aliyah	7	32	2
+31	55	weekday  	Maftir 	32	2
+32	3	Masoretic	30	33	17
