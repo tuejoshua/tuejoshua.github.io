@@ -47,6 +47,7 @@ It's a general design choice to make all (/as much as possible) text on the site
 ### Future improvements
 - **Footnotes**: My current footnote system (see right above this section for an example) is quite crude. (The Markdown parser I'm using, and otherwise very happy with, does not implement such a feature, so I would probably have to implement some postprocessing of the parser output...)
 - Along a similar vein, **`code formatting`** (via backticks) doesn't look nice with my current fonts...
-- When expanding a project description, maybe the screen should **auto-scroll** to it and/or the others automatically close? Also, floating buttons for jumping to next/previous project?
+- When expanding a project description, maybe the screen should **auto-scroll** to it and/or the others automatically close?  
+  Also, floating buttons for jumping to next/previous project?
 - Maybe redirect unexpected URLs in the PHP-domain - including the root - to the GitHub Pages?
 - Implement linking between projects (when they refer to each other)
