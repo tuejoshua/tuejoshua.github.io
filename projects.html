@@ -84,29 +84,37 @@ it seems that the I tag is still not deprecated, so I'll use that instead of STY
 
 	Throughout my projects I've made extensive use of <a href="https://www.drawio.com/">draw.io aka. diagrams.net</a>, which is an excellent <b>diagramming</b> tool!
 
-	<!--h2>Chronology</h2>
 
 <h2>Licenses</h2>
 
-Above (under Acknowledgements [LINK?])...
-the rest...
+For third-party content licenses, see the links in the Acknowledgements section above.
 
-The source code presented on this (my) website is not accompanied by an explicit license statement.
-This is not an oversight; I've decided (after briefly researching the topic of source code licensing) that for now, I won't invest the (significant) effort required for determining the optimal type of license for my use of this website.
-<mark>Please be aware that this does NOT mean that the license defaults to Public Domain; the opposite is actually the case</mark> according to the sources I did skim before giving up on making a quick decision on this topic.
-If you want to do more with my source code than allowed by default, feel free to contact me :)
+As for first-party (i.e. my own) content:
+After briefly researching source-code licensing, I decided that (for now) I will not invest further effort into determining an optimal license.
+
+Please be aware: the absence of a specific license statement does NOT mean that the content defaults to the Public Domain; in fact, the opposite is the case.
+
+If you want to do more with my source code than what copyright law normally allows, feel free to contact me :)
+
+
+<!--h2>Chronology</h2>
 
 <h2>To Do</h2>
 - Please be warned: ALL of the above-mentioned projects are in a perpetual state of improvement ;-)<br-->
 
-	<!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
-	<!-- TO DO: Other .js files also as modules? -->
-	<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
-	<script type="module">
-		import { displayProjectCards } from './displayProjectCards.js';
-		// The following function call must be in this script block, together with
-		displayProjectCards("projects.json");
-	</script>
+
+<!-- Fleuron as End Of Page -->
+❦
+
+
+<!-- This function writes to the DOM, therefore, it should be placed here towards the end of BODY -->
+<!-- TO DO: Other .js files also as modules? -->
+<!-- Not allowed for modules(!):  onerror="window.alert('ERROR\n[unable to load ' + this.src + ']');" -->
+<script type="module">
+	import { displayProjectCards } from './displayProjectCards.js';
+	// The following function call must be in this script block, together with
+	displayProjectCards("projects.json");
+</script>
 
 </body>
 
