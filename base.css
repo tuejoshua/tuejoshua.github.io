@@ -59,3 +59,12 @@
    p:first-child {
        margin-top: 0;
    }
+
+    @keyframes pulse {
+        0%      { opacity: 1; }
+        50%     { opacity: 0.4; }
+        100%      { opacity: 1; }
+   }
+   .tempContent {
+      animation: pulse 3s ease-in-out infinite;
+   }

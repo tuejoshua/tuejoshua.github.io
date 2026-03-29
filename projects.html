@@ -40,12 +40,12 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 	<!-- h2>Some of my projects</h2 -->
 	<!-- I initially thought that SPAN ("inline") would be a proper element for the following, but that didn't work; it seems a better description for SPAN is "inside sentences"...
 it seems that the I tag is still not deprecated, so I'll use that instead of STYLE for nostalgia's sake :) -->
-	<div id='showData'><i style="color: red;">
+	<div id='showData' class="tempContent"><i style="color: red;">
 			<br>
 			[ <b>Please wait: Loading data...</b><br>
 			<br>
-			&nbsp;&nbsp;If this message remains in place, it means that the JSON parsing pipeline is not working as	intended.<br>
-			&nbsp;&nbsp;This often happens if you're viewing the page directly from your filesystem, i.e. an origin	without CORS ]
+			&nbsp;&nbsp;If this message persists, it means that the parsing of external (JSON, Markdown) files is not progressing as intended.<br>
+			&nbsp;&nbsp;This may be due to an unstable Internet connection (or an origin without CORS, e.g. a local offline copy) ]
 		</i></div>
 	<br>
 
@@ -104,7 +104,6 @@ If you want to do more with my source code than what copyright law normally allo
 
 
 <!-- Fleuron as End Of Page -->
-<br>
 <h1 align="center">❦</h1>
 <br>
 
