@@ -33,7 +33,7 @@ or
 However, unlike my previous web hotel, GitHub Pages does not support (dynamic content like) PHP pages, so I had to find another solution for such outputs.  
 Eventually, I realized that I could use `iframe`s to embed the PHP pages (still hosted in the initial web hotel) into ("wrapper") pages in the GitHub Pages domain.
 
-...For practical examples, go to any one of the projects on this list with a PHP icon, which links to a ".php.html" page. I named them thus to indicate that they are in fact just such wrapper pages for .php pages hosted elsewhere...
+...For practical examples, go to any one of the projects on this list with a PHP logo, which links to a ".php.html" page. I named them thus to indicate that they are in fact just such wrapper pages for .php pages hosted elsewhere...
 
 _*) Bonus points if you can find that domain 🤓_
 <!-- ...one way is, of course, inspecting the Markdown file; here's an Easter egg for you:

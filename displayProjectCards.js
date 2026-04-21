@@ -31,7 +31,7 @@ function getTechLogo(tag) {
 			return '';
 	}
 	// In order to improve readability of when selecting the image as part of text (which will include the alt text), delimited by []s
-	return '<img alt="[' + tag + ' icon]" src="resources/' + logoUrl + '" height=40 title="' + tag + '.\nFor source and license of this icon, see further down this page">';
+	return '<img alt="[' + tag + ' logo]" src="resources/' + logoUrl + '" height=40 title="' + tag + '.\nFor source and license of this logo, see further down this page">';
 }
 
 function showProjectCard(btn) {
