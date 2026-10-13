@@ -10,7 +10,7 @@ As a result, the following is written even more in hindsight than for my other p
 Initially **a single (HTML) file** containing everything, this page has split into more and more smaller and smaller files over time.  
 Wanting to edit the project descriptions (**data**) separately from the page layout (**structure**) itself, I first moved the former into a `JSON` file — and then realized that that format is not very well-suited for the prose I was writing (some of which you are reading right now). As a result, I moved that part of the data further into separate `Markdown` files (one for each project).
 
-Here's the current state of [the JSON file](https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.json) and [one of the Markdown files](<https://github.com/tuejoshua/tuejoshua.github.io/blob/main/Projects showcase (this page).md>).
+Here's the current state of [the JSON file](https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.json) and [one of the Markdown files](<https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects/Projects showcase (this page).md>).
 Both are of course changing over time as I add/update project descriptions.
 
 For more details about 3rd party technologies that this site was built on top of, please see the _Acknowledgements_ section at the bottom of this page.
