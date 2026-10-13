@@ -1,5 +1,5 @@
 
-<mark>[Here](./gallery/gallery.php.html)</mark>
+<mark>[Here](tuejoshua.atwebpages.com/gallery/gallery.php)</mark>
 
 <!-- 
 

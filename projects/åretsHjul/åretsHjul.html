@@ -44,7 +44,9 @@
 
 <body>
   <div id="container">
-    <!-- button id="resetBtn">Reset</button-->▶&nbsp;
+    <!-- button id="resetBtn">Reset</button-->
+    Today is <span id="todaysDate">[working...]</span>
+    ▶&nbsp;
     <img id="wheel" src="./åretsHjul.drawio.svg" alt="Wheel">
   </div>
 
@@ -61,7 +63,7 @@
 
     let isDragging = false;
     let startAngle = 0;
-    let currentRotation = 0;
+    let newAngle = 0;
     let initialRotation = 0;
 
     // Fixed 13-month wheel
@@ -70,28 +72,36 @@
       "Tishrei", "Cheshvan", "Kislev", "Tevet", "Shevat", "Adar I", "Adar II"
     ];
 
-    function getHebrewAngle() {
-      const today = new HDate();
+    const today = new HDate();
+    // console.log('Today\'s date received from HebCal: ' + today);
+    todaysDate.textContent = today;
+
+    function getHebrewAngle(hebDate) {
+    /* This function converts a Hebrew date to an angle, where
+       Date X is Q and Y is W (TBD!!!)
+       The conversion is approximate - assuming that all Hebrew months are equally long
+       (so each take up 1/12th aka. 30 degrees of a full circle)
+       - in practice, each month has either 29, 30 or vary between the two,
+       which seems like a sufficient precision
+    */
       const totalMonths = months13.length; // always 13
-      const monthIndex = months13.indexOf(today.getMonthName());
-      console.log('today.getMonthName(): ' + today.getMonthName());
-      const day = today.getDate();
-      console.log('day: ' + day);
-      const daysInMonth = today.daysInMonth(); // Correct method call
+      const monthIndex = months13.indexOf(hebDate.getMonthName());
+      //console.log('today.getMonthName(): ' + hebDate.getMonthName());
+      const day = hebDate.getDate();
+      //console.log('day: ' + day);
+      const daysInMonth = hebDate.daysInMonth(); // Correct method call
 
       const fracYear = (monthIndex + (day - 1) / daysInMonth) / totalMonths;
       return -90 - fracYear * 360; // 90 because the year starts at Nisan, which is at the top of the figure, but we want today's date rotated to the left
     }
 
-
-
-    function setInitialRotation() {
-      initialRotation = getHebrewAngle();
-      currentRotation = initialRotation;
-      img.style.transform = `rotate(${currentRotation}deg)`;
+    function rotateImageAccordingToHebDate(hebDate) {
+      newAngle = getHebrewAngle(hebDate);
+      console.log('new rotation angle: ' + newAngle);
+      img.style.transform = `rotate(${newAngle}deg)`;
     }
 
-    setInitialRotation();
+    rotateImageAccordingToHebDate(today);
 
     // --- Drag handling ---
     function getPointerAngle(e) {
@@ -108,21 +118,21 @@
     img.addEventListener('pointerdown', e => {
       isDragging = true;
       img.setPointerCapture(e.pointerId); // Even if pointer moves outside image, keep rotating
-      startAngle = getPointerAngle(e) - currentRotation;
+      startAngle = getPointerAngle(e) - newAngle;
     });
 
     img.addEventListener('pointermove', e => {
       if (!isDragging) return;
-      currentRotation = getPointerAngle(e) - startAngle;
-      img.style.transform = `rotate(${currentRotation}deg)`;
+      newAngle = getPointerAngle(e) - startAngle;
+      img.style.transform = `rotate(${newAngle}deg)`;
     });
 
     img.addEventListener('pointerup', e => { // Undo 'pointerdown' above
       isDragging = false;
       img.releasePointerCapture(e.pointerId);
       // Rotate back to today's date
-      currentRotation = initialRotation;
-      img.style.transform = `rotate(${currentRotation}deg)`;
+      newAngle = initialRotation;
+      img.style.transform = `rotate(${newAngle}deg)`;
     });
 
     img.addEventListener('pointercancel', () => {
@@ -136,6 +146,15 @@
       img.style.transform = `rotate(${currentRotation}deg)`;
     });
     */
+
+    // UNUSED FUNCTION FOR TESTING/DEBUGGING
+    function testYear() {
+
+      months13.forEach(element => {
+
+      });
+
+    }
 
   </script>
 </body>
