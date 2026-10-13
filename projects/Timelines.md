@@ -1,7 +1,7 @@
 
-[Jewish History](./timelines/jewishHistory.html)  
+[Jewish History](projects/timelines/jewishHistory.html)  
 
-[5 Books of Moses](./timelines/5BooksOfMoses.html)
+[5 Books of Moses](projects/timelines/5BooksOfMoses.html)
 
 <!-- 
 

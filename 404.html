@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -64,19 +64,19 @@
 
   const redirectMap = {
 	'/index.html': '/projects.html', // NB: this does NOT catch root URLs (i.e. where /index.html is not explicitly included ny the user; see also the content of the index.html file
-    '/kotelScreen.html': '/kotelScreen/kotelScreen.html'
+    '/kotelScreen.html': 'projects/kotelScreen/kotelScreen.html'
   };
-  
+
   const path = window.location.pathname.replace(/\/+$/, ""); // Trim trailing slashes, so a user error "path\filename.html\" will not be treated as a folder
   const target = redirectMap[path];
-  
+
   if (target) {
     window.location.replace(target);
   }
   else { // 5-second countdown, then redirect to /index.html
-	
+
 	const span = document.getElementById('countdownSpan');
-	
+
 	let remainingSeconds = Number(span.textContent);
 
 	function timeoutAction() {
@@ -87,12 +87,12 @@
 		}
 		span.textContent += '... ' + remainingSeconds;
 	}
-	
+
 	const timer = setInterval(timeoutAction, 1000);
-	
+
   }
-  
-  
+
+
 </script>
 
 </body>
