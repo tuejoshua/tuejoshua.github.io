@@ -1,5 +1,5 @@
 <!--"Summary:" -->
-<mark>[Here](tarpsKabale/TarpsKabale.html)</mark>* is my implementation of a patience/solitaire card game known in my family as "Tarps kabale"  
+<mark>[Here](projects/tarpsKabale/TarpsKabale.html)</mark>* is my implementation of a patience/solitaire card game known in my family as "Tarps kabale"  
 (it seems that the rest of the world might know it as "[Four Seasons](https://en.wikipedia.org/wiki/Four_Seasons_(card_game))").
 
 As far as testing has shown, the game is fully functional — subject to the **Future improvements** listed below — although I'm still debating with my mother if one should really be able/allowed to move cards to the waste pile and back so freely...
@@ -34,6 +34,6 @@ More specifically, ChatGPT has told me that
 - enabling drag/drop of cards - which would be a huge improvement! - should not be so hard to obtain (even in vanilla CSS/JS), and
 - my current card shuffling algorithm is biased (i.e. some permutations will occur more often than others) and should be replaced with the Fisher-Yates (Knuth) shuffle, the proper algorithm for this 🫣
 
-*) source files can also be inspected [here (GitHub)](https://github.com/tuejoshua/tuejoshua.github.io/blob/main/tarpsKabale)  
+*) source files can also be inspected [here (GitHub)](https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects/tarpsKabale)  
 **) Please remember to consider any copyrights on the actual game concept... I'm not an expert in that, so all I can say is: Be warned!  
 ***) By the way: prototype vs. PoC is a whole other interesting discussion in itself 🤓
