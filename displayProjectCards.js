@@ -76,7 +76,7 @@ export async function displayProjectCards(file) {
 		// projects[i].title + '.md'
 		// Error handling based on chatGPT suggestion
 		try	{
-			let mdFileObject = await fetch('projects/' projects[i].title + '.md');
+			let mdFileObject = await fetch('projects/' + projects[i].title + '.md');
 			if (!mdFileObject.ok) { // fetch does not throw catchable error itself
 				throw new Error(`HTTP error! status: ${mdFileObject.status}`);
 			}
