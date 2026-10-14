@@ -73,10 +73,10 @@ export async function displayProjectCards(file) {
 			'<div id="projectCard' + i + '" class="markdown-content">';
 
 		// Read assumed Markdown file; alert if problem
-		// projects[i].title + '.md'
 		// Error handling based on chatGPT suggestion
 		try	{
-			let mdFileObject = await fetch('projects/' + projects[i].title + '.md');
+			let mdFilePath = 'projects/' + projects[i].title + '.md';
+			let mdFileObject = await fetch(mdFilePath);
 			if (!mdFileObject.ok) { // fetch does not throw catchable error itself
 				throw new Error(`HTTP error! status: ${mdFileObject.status}`);
 			}
@@ -86,7 +86,7 @@ export async function displayProjectCards(file) {
 		catch (error) {
 
 			/* To be re-enabled once we are ready to remove the fallback functionality below - and together with removing these 3 fields from the JSON:
-			domString += '<p style="color:red;"><em>Could not load project description from file ' + projects[i].title + '.md:<br>' + error + '</em></p>';
+			domString += '<p style="color:red;"><em>Could not load project description from file ' + mdFilePath + ':<br>' + error + '</em></p>';
 			*/
 
 			// FALLBACK:
