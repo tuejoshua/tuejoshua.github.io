@@ -1,0 +1,19 @@
+<html>
+<head>
+<script>
+function confirmHTTP(URL) {
+    if (confirm('NB: The page you\'re trying to access' +
+    '\n(' + URL + ')' +
+    '\nis hosted on an HTTP-only (i.e. "insecure") server' +
+    '\n\n(see the "Projects showcase" description for more information).' +
+    '\n\nDo you want to continue?\n(You may be warned again later by your browser)')) {
+        // page.redirect
+        open(URL);
+    }
+}
+</script>
+</head>
+<body>
+<a href="#" onClick="confirmHTTP('http://tuejoshua.atwebpages.com/gallery/gallery.php');">http://tuejoshua.atwebpages.com/gallery/gallery.php</a>
+</body>
+</html>

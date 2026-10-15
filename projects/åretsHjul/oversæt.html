@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic SVG Label Test</title>
+</head>
+<body>
+
+<button onclick="setLanguage('en')">English</button> <button onclick="setLanguage('da')">Danish</button>
+
+<div id="svg-container"></div>
+
+<script>
+let svgSource = "";
+
+const translations = {
+  en: "Test",
+  da: "Prøve"
+};
+
+async function loadSvg() {
+  const response = await fetch("Test.drawio.svg");
+  svgSource = await response.text();
+
+  setLanguage("en");
+}
+
+function setLanguage(language) {
+  const translatedSvg = svgSource.replace(
+    ">Test<",
+    ">" + translations[language] + "<"
+  );
+
+  document.getElementById("svg-container").innerHTML = translatedSvg;
+}
+
+loadSvg();
+</script>
+
+</body>
+</html>

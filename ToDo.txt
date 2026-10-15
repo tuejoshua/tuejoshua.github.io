@@ -1,3 +1,4 @@
+<I think the point of the following is: Should I emphasize (external only) links with an appropriate Favicon icon?>
 (Post)processing of Markdown: for each [link](URL) -> [ICON link](URL), where ICON is the Favicon of the linked-to domain, with ALT TEXT and ToolTip like for the tech logos...
 (This way, I won't(?) have to save copies of (Fav)icons for ALL the domains(!), e.g. GitHub, that I link to)
 ...here's a snippet of an update for Hilchot Brachot games.md, which is not very readable (and where the image is too large for the surrounding text):

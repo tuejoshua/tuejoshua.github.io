@@ -1,0 +1,23 @@
+https://chatgpt.com/share/6a578ad0-2aac-83ed-9ef2-c10f2ee93363
+
+GO TO ROOT FOLDER!
+Start localhost HTTP server at port 8000:
+python3 -m http.server 8000
+... where I can later inspect GET etc. requests!!!
+
+Go to
+http://localhost:8000/
+in browser
+
+OR, on any OTHER device on the WiFi/LAN:
+xxx.yyy.zzz.www:8000
+(
+the IP shall match what is found with
+hostname -I
+)
+
+Firewall rule was needed to allow incoming from other LAN devices:
+sudo ufw allow 8000/tcp
+...to remove later (not that critical):
+sudo ufw delete allow 8000/tcp
+
