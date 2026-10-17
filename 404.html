@@ -63,8 +63,9 @@
 <script>
 
   const redirectMap = {
-	'/index.html': '/projects.html', // NB: this does NOT catch root URLs (i.e. where /index.html is not explicitly included ny the user; see also the content of the index.html file
-    '/kotelScreen.html': 'projects/kotelScreen/kotelScreen.html'
+	'/børn.html': '/spil.html',
+  '/Ki Lekach Tov (Etz Chaim Hi).txt': '/projects/musik/Ki Lekach Tov (Etz Chaim Hi).txt',
+  '/kotelScreen.html': '/projects/kotelScreen/kotelScreen.html'
   };
 
   const path = window.location.pathname.replace(/\/+$/, ""); // Trim trailing slashes, so a user error "path\filename.html\" will not be treated as a folder
