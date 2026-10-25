@@ -136,15 +136,19 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 			const isFromInternalRepo = link.hostname === 'github.com' && link.pathname.startsWith('/tuejoshua/');
 			if (!(isFromInternalSite || isFromInternalRepo)) {
 
+
 				// Prepare user for expected browser warning
 				if (link.protocol === 'http:') {
-					// HTTP-specific warning and confirmation
-
+					link.addEventListener('click', event => {
+						event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
+						externalLink(link.href, true);
+					});
+					console.log('(External) HTTP warning confirmation wrapper added to ' + link);
 				}
 				else { // incl. HTTPS
 					link.addEventListener('click', event => {
-						event.preventDefault();
-						externalLink(link.href);
+						event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
+						externalLink(link.href, false);
 					});
 					console.log('External (non-HTTP) warning confirmation wrapper added to ' + link);
 
