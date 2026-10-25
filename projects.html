@@ -136,19 +136,17 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 			const isFromInternalRepo = link.hostname === 'github.com' && link.pathname.startsWith('/tuejoshua/');
 			if (!(isFromInternalSite || isFromInternalRepo)) {
 
-				console.log('External link detected');
-
 				// Prepare user for expected browser warning
 				if (link.protocol === 'http:') {
 					// HTTP-specific warning and confirmation
 
-					console.log('HTTP scheme detected');
 				}
 				else { // incl. HTTPS
 					link.addEventListener('click', event => {
 						event.preventDefault();
 						externalLink(link.href);
 					});
+					console.log('External (non-HTTP) warning confirmation wrapper added to ' + link);
 
 					if (link.protocol !== 'https:') {
 						console.error('Unexpected scheme: ' + link.protocol);
