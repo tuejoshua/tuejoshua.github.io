@@ -9,12 +9,14 @@ function externalLink(link, isMyHttp) {
         domain = '[' + domain + '] ';
     }
 
+    let confirmMessage;
+
     if (isMyHttp) {
-        let confirmMessage = 'The destination page is hosted on an HTTP-only (i.e. "insecure") server\n' +
+        confirmMessage += 'The destination page is hosted on an HTTP-only (i.e. "insecure") server\n' +
             '(see the "Projects showcase" description for more information).\n\n';
     }
     else {
-        let confirmMessage = 'By following this link [to ' + link + '], you\'ll be leaving the relative safety(?) of my ' + domain + 'domain.\n'
+        confirmMessage += 'By following this link [to ' + link + '], you\'ll be leaving the relative safety(?) of my ' + domain + 'domain.\n'
             + 'Although I have provided this external link, I take no responsibility for the corresponding destination.\n\n';
     }
 
