@@ -138,7 +138,7 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 
 				// Prepare user for expected browser warning
 				if (link.protocol === 'http:') {
-					if (link.hostname === 'TBD') {
+					if (link.hostname === 'tuejoshua.atwebpages.com') {
 						link.addEventListener('click', event => {
 							event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
 							externalLink(link.href, true);
