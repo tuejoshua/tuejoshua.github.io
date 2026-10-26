@@ -146,7 +146,9 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 						console.log('(External) HTTP warning confirmation wrapper added to ' + link);
 					}
 					else {
-						event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
+						link.addEventListener('click', event => {
+							event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
+						});
 						console.error('Unexpected HTTP host: ' + link.hostname);
 					}
 				}
@@ -158,7 +160,9 @@ This means that the string "Tue Joshua" will never be line-broken - if the windo
 					console.log('External (non-HTTP) warning confirmation wrapper added to ' + link);
 
 					if (link.protocol !== 'https:') {
-						event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
+						link.addEventListener('click', event => {
+							event.preventDefault(); // Prevent Default event handling (i.e. follow link), which may happen even when the Confirm added below is cancelled
+						});
 						console.error('Unexpected scheme: ' + link.protocol);
 					}
 				}
