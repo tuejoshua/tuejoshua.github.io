@@ -1,5 +1,5 @@
 // Warn user about leaving domain. If confirmed, open link in new window/tab
-function externalLink(link, isHttp) {
+function externalLink(link, isMyHttp) {
     let domain = window.location.hostname; // This seems to be empty (but not undefined) for client-side viewing of this page
 
     if (domain == '') {
@@ -9,14 +9,17 @@ function externalLink(link, isHttp) {
         domain = '[' + domain + '] ';
     }
 
-    let confirmMessage = 'By following this link [to ' + link + '], you\'ll be leaving the relative safety(?) of my ' + domain + 'domain.\n'
-        + 'Although I have provided this external link, I take no responsibility for the corresponding destination.\n\n';
-    if (isHttp) {
-        confirmMessage += 'Furthermore: the destination page is hosted on an HTTP-only (i.e. "insecure") server\n' +
+    if (isMyHttp) {
+        let confirmMessage = 'The destination page is hosted on an HTTP-only (i.e. "insecure") server\n' +
             '(see the "Projects showcase" description for more information).\n\n';
     }
+    else {
+        let confirmMessage = 'By following this link [to ' + link + '], you\'ll be leaving the relative safety(?) of my ' + domain + 'domain.\n'
+            + 'Although I have provided this external link, I take no responsibility for the corresponding destination.\n\n';
+    }
+
     confirmMessage += 'Do you want to continue?';
-    if (isHttp) {
+    if (isMyHttp) {
         confirmMessage += '\n(You may be warned again later by your browser)';
     }
 
