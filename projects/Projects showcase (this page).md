@@ -7,7 +7,7 @@ Being a "meta-project", it took me longer than usual to accept that it had becom
 As a result, the following is written even more in hindsight than for my other projects 🫣
 
 ### Complexity  
-Initially **a single (HTML) file** containing everything, this page has split into more and more smaller and smaller files over time.  
+Initially **a single (HTML) file** containing everything, this page has over time split into an increasing number of increasingly smaller files.  
 Wanting to edit the project descriptions (**data**) separately from the page layout (**structure**) itself, I first moved the former into a `JSON` file — and then realized that that format is not very well-suited for the prose I was writing (some of which you are reading right now). As a result, I moved that part of the data further into separate `Markdown` files (one for each project).
 
 Here's the current state of [the JSON file](https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects.json) and [one of the Markdown files](<https://github.com/tuejoshua/tuejoshua.github.io/blob/main/projects/Projects showcase (this page).md>).
@@ -23,7 +23,7 @@ To see how that works, click e.g. any link under the _Acknowledgements_ section 
 Initially, I had everything hosted in a free web hotel<!-- tuejoshua.atwebpages.com (hosted by awardspace.com) -->.
 Since no payment traditionally equals no `HTTPS` certificates, content from such domains is served over the less secure `HTTP` protocol.
 In my earliest days of [hacking (in the creative, exploratory sense)](https://en.wikipedia.org/wiki/Hacker), only experts even knew about this distinction, but nowadays, modern browsers warn the user so aggressively about this that the average user ~~would~~ _should_ follow the browser's advice of aborting the page visit.
-This is of course not good [usability](https://en.wikipedia.org/wiki/Usability) (to say the least), so I had to come up with a better solution.
+This is, of course, not good [usability](https://en.wikipedia.org/wiki/Usability) (to say the least), so I had to come up with a better solution.
 
 ---
 
@@ -49,7 +49,7 @@ It's a general design choice to make all (/as much as possible) text on the site
 --> 
 
 ### Future improvements
-- At *this* time of writing, the content of this page - besides that already in Markdown files - is implementing a sort of pseudo-Markdown format, where e.g. hyperlinks can be written more human readable, while some JS code parses that appropriately. This is unneccesarily complex; in the future, we want to move that content to Markdown files also.
+- At *this* time of writing, the content of this page - besides that already in Markdown files - is implementing a sort of pseudo-Markdown format, where e.g. hyperlinks can be written more human readable, while some JS code parses that appropriately. This is unnecessarily complex; in the future, we want to move that content to Markdown files also.
 - **Footnotes**: My current footnote system (see right above this section for an example) is quite crude. (The Markdown parser I'm using, and otherwise very happy with, does not implement such a feature, so I would probably have to implement some postprocessing of the parser output...)
 - Along a similar vein, **`code formatting`** (via backticks) doesn't look nice with my current fonts...
 - When expanding a project description, maybe the screen should **auto-scroll** to it and/or the others automatically close?  
