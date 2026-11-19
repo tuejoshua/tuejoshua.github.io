@@ -30,16 +30,20 @@ function externalLink(link, isMyHttp) {
 }
 
 // Returns a "<a>...</a>" string with externalLink() handling
-function linkMacroString(url, clickableContent) {
+function linkMacroString(url, clickableContent, cssClass) {
     // Use URL (also) as clickable content unless other provided
     if (clickableContent === undefined) {
         clickableContent = url;
     }
+
+    // Add optional CSS class
+    let classAttribute = cssClass ? ' class="' + cssClass + '"' : '';
+
     // the following (href="#" onclick="... return false;") based on (comments on) https://stackoverflow.com/questions/1291942/what-does-javascriptvoid0-mean/
-    return '<a title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\', false); return false;">' + clickableContent + '</a>';
+    return '<a' + classAttribute + ' title="https://' + url + '" href="#" onclick="externalLink(\'https://' + url + '\', false); return false;">' + clickableContent + '</a>';
 }
 
 // Writes (the output of linkMacroString()) directly to the DOM where invoked
-function linkMacro(url, clickableContent) {
-    document.write(linkMacroString(url, clickableContent));
+function linkMacro(url, clickableContent, cssClass) {
+    document.write(linkMacroString(url, clickableContent, cssClass));
 }

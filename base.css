@@ -38,7 +38,8 @@
        text-align: center;
    }
 
-   td, th {
+   td,
+   th {
        border: 1px solid black;
    }
 
@@ -60,11 +61,30 @@
        margin-top: 0;
    }
 
-    @keyframes pulse {
-        0%      { opacity: 1; }
-        50%     { opacity: 0.4; }
-        100%      { opacity: 1; }
+   @keyframes pulse {
+       0% {
+           opacity: 1;
+       }
+
+       50% {
+           opacity: 0.4;
+       }
+
+       100% {
+           opacity: 1;
+       }
    }
+
    .pulsating {
-      animation: pulse 3s ease-in-out infinite;
+       animation: pulse 3s ease-in-out infinite;
+   }
+
+   /* For links of class easterEgg,
+      no (blue underlined) styling before visiting
+      nor (purple underlined) styling after visiting
+      - however, styling during hovering as well as during active as normal */
+   a:where(.easterEgg):link,
+   a:where(.easterEgg):visited {
+       color: inherit;
+       text-decoration: none;
    }
