@@ -4,7 +4,7 @@ import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
 
 function getTechLogo(tag) {
 	let logoUrl;
-	switch(tag) {
+	switch (tag) {
 		case 'Bash':
 			logoUrl = '256x256 (Bash logo from github.com-odb).png';
 			break;
@@ -37,7 +37,7 @@ function getTechLogo(tag) {
 function showProjectCard(btn) {
 	const card = document.getElementById('projectCard' + btn.dataset.index); // DATA-INDEX parameter);
 	const isVisible = card.style.display === 'block';
-	card.style.display = isVisible? 'none' : 'block';
+	card.style.display = isVisible ? 'none' : 'block';
 	const titleCell = btn.querySelector('.project-title-cell');
 	const currentText = titleCell.textContent;
 	// Replace just the first character (icon) with ▶ or ▼
@@ -56,17 +56,17 @@ export async function displayProjectCards(file) {
 
 	let domString = '<div style="text-align: right;">(Click to expand)</div>';
 
-	for (let i=0; i<projects.length; i++) {
+	for (let i = 0; i < projects.length; i++) {
 
 		// ONCLICK is obsolete - and breaks with MODULE code => CLASS + DATA-* + event listener elsewhere...
 		domString += '<button type="button" class="ProjectButton" data-index="' + i + '">' +
 			'<table style="width: 100%; border-collapse: collapse;"><tr><td class="project-title-cell" style="border: none; text-align: left; font-size: 1.3em;">' + '▶ ' + projects[i].title + '</td><td style="text-align: right; border: none;">';
 
 		for (let tag of projects[i].technologies) {
-				domString += ' ' + getTechLogo(tag);
+			domString += ' ' + getTechLogo(tag);
 		}
 
-	/// PROJECT DESCRIPTION FROM MARKDOWN FILE
+		/// PROJECT DESCRIPTION FROM MARKDOWN FILE
 
 		// max-width because width does not include the padding that were also applying
 		domString += '</td></tr></table></button>' +
@@ -74,7 +74,7 @@ export async function displayProjectCards(file) {
 
 		// Read assumed Markdown file; alert if problem
 		// Error handling based on chatGPT suggestion
-		try	{
+		try {
 			let mdFilePath = 'projects/' + projects[i].title + '.md';
 			let mdFileObject = await fetch(mdFilePath);
 			if (!mdFileObject.ok) { // fetch does not throw catchable error itself
@@ -91,18 +91,24 @@ export async function displayProjectCards(file) {
 
 			// FALLBACK:
 			let motivationString = projects[i].motivation.trim(); if (motivationString !== '') { motivationString = '<b>motivation:</b><br>' + motivationString; }
-			let summaryString    = projects[i].summary.trim();	  if (summaryString    !== '') {	summaryString = '<b>summary: </b><br>'   + summaryString;	 }
-			let detailsString    = projects[i].details.trim();    if (detailsString    !== '') {	detailsString = '<b>details: </b><br>'   + detailsString;    }
+			let summaryString = projects[i].summary.trim(); if (summaryString !== '') { summaryString = '<b>summary: </b><br>' + summaryString; }
+			let detailsString = projects[i].details.trim(); if (detailsString !== '') { detailsString = '<b>details: </b><br>' + detailsString; }
 			domString += motivationString + '<p>' + summaryString + '<p>' + detailsString;
 
 		}
 
 		domString += '</div>';
 
-    }
+	}
 
-    // Write HTML DOM string to DIV element
-    document.getElementById('showData').innerHTML = domString;
+	// Write HTML DOM string to DIV element
+	document.getElementById('showData').innerHTML = domString;
+	// Since the above line changes the DOM content, if the URL accessing the current page includes a HASH aka ANCHOR aka "#",
+	// we should (re)evaluate that again how to scroll to the correct location on the page
+	if (window.location.hash) { // If URL includes a HASH...
+		//...and that HASH matches an existing ANCHOR (tested by '?'), scroll to it
+		document.querySelector(window.location.hash)?.scrollIntoView();
+	}
 
 	// OnClick events (see ONCLICK comment above)
 	document.querySelectorAll('.ProjectButton').forEach(btn => { // all CLASS = ProjectButton
@@ -119,7 +125,7 @@ export async function displayProjectCards(file) {
 		let mouseMoved = false;
 
 		btn.addEventListener('mousedown', () => {
-  			mouseMoved = false;
+			mouseMoved = false;
 		});
 
 		btn.addEventListener('mousemove', () => {
@@ -128,8 +134,8 @@ export async function displayProjectCards(file) {
 
 		btn.addEventListener('mouseup', () => {
 			if (!mouseMoved) {
-    			showProjectCard(btn);
-  			}
+				showProjectCard(btn);
+			}
 		});
 
 	});
